@@ -1,0 +1,41 @@
+package com.nenu.innovation.service;
+
+import com.nenu.innovation.entity.User;
+
+import java.util.List;
+
+/**
+ * UserService
+ *
+ * @author: wychen
+ * @time: 2017/4/2 11:17
+ */
+public interface UserService {
+    /**
+     * 添加新用户
+     *
+     * @param user
+     * @throws Exception
+     */
+    public void newUser(User user) throws Exception;
+
+    /**
+     * 判断用户是否可以登录
+     *
+     * @param user
+     * @return
+     * @throws Exception
+     */
+    public boolean checkLogin(User user) throws Exception;
+
+    /**
+     * 检查用户是否存在
+     *
+     * @param username
+     * @return
+     * @throws Exception
+     */
+    public boolean  checkExistByUsername(String username) throws Exception;
+
+    public List<User> listAllUser()throws Exception;
+}

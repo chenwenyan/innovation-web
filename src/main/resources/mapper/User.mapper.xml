@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nenu.innovation.mapper.UserMapper">
+    <resultMap id="userResultMap" type="User">
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+    </resultMap>
+
+    <insert id="newUser">
+        INSERT INTO t_user (username, password)
+        VALUES(#{user.username}, #{user.password})
+    </insert>
+
+    <select id="countByUser" resultType="int">
+        SELECT COUNT(1)
+        FROM t_user
+        WHERE username = #{user.username}
+        AND password = #{user.password}
+    </select>
+
+    <select id="checkExistByUsername" resultType="int">
+        SELECT COUNT(1)
+        FROM t_user
+        WHERE username = #{username}
+    </select>
+
+    <select id="listAllUser" resultMap="userResultMap">
+        SELECT *
+        FROM t_user
+        ORDER BY username
+    </select>
+</mapper>
