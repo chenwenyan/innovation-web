@@ -44,5 +44,13 @@ public interface UserMapper {
      * @return
      * @throws Exception
      */
-    public List<User> listAllUser()throws Exception;
+    public List<User> listAll()throws Exception;
+
+    /**
+     * 用户计数
+     *
+     * @return
+     * @throws Exception
+     */
+    public Integer count() throws Exception;
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nenu.innovation.mapper.ArticleMapper">
+    <resultMap id="articleResultMap" type="Article">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="type_id" property="typeId"/>
+        <result column="created_time" property="createdTime"/>
+        <result column="last_modified_time" property="lastModifiedTime"/>
+        <result column="creator_id" property="creatorId"/>
+    </resultMap>
+
+    <select id="listAll" resultMap="articleResultMap">
+        SELECT * FROM `t_article`
+        ORDER BY created_time
+    </select>
+
+    <select id="count" resultType="integer">
+        SELECT COUNT(1) FROM `t_article`
+    </select>
+
+    <select id="listByType" resultMap="articleResultMap">
+        SELECT * FROM `t_article`
+        ORDER BY cread_time
+    </select>
+    <select id="listByKeyWords" resultMap="articleResultMap">
+        SELECT * FROM `t_article`
+        <where>
+            <if test="#{keyWords} != null"> title like #{typeId} </if>
+        </where>
+
+    </select>
+
+    <insert id="newArticle" >
+        INSERT INTO `t_article` (title,content,type_id,creator_id)
+        VALUES(#{title},#{content},#{typeId},#{creatorId})
+    </insert>
+
+    <update id="updateArticleById" >
+        UPDATE `t_article` SET
+        <if test="#{title} != null"> title = #{title} </if>,
+        <if test="#{content} != null"> content = #{content} </if>,
+        <if test="#{creatorId} != null"> creator_id = #{creatorId} </if>
+        WHERE id = #{id}
+    </update>
+
+</mapper>

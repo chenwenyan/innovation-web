@@ -23,12 +23,53 @@ public class UserServiceTest extends AbstractTestCase {
         User user = new User();
         user.setUsername("user4");
         user.setPassword("123456");
-        userService.newUser(user);
+        try {
+            userService.newUser(user);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Test
-    public void testListAllUser()throws Exception{
-        List<User> list = userService.listAllUser();
-        System.out.println(list);
+    public void listAll()throws Exception{
+        try {
+            List<User> list = userService.listAll();
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
     }
+
+    @Test
+    public void count() throws Exception{
+        try{
+            userService.count();
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Test
+    public void checkLogin() throws Exception{
+        User user = new User();
+        String username = "admin";
+        String password = "123456";
+        user.setUsername(username);
+        user.setPassword(password);
+        try{
+           userService.checkLogin(user);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Test
+    public void checkExistByUsername() throws Exception{
+        String username = "user1";
+        try{
+            userService.checkExistByUsername(username);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

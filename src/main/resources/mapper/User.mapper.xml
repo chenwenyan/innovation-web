@@ -27,9 +27,14 @@
         WHERE username = #{username}
     </select>
 
-    <select id="listAllUser" resultMap="userResultMap">
+    <select id="listAll" resultMap="userResultMap">
         SELECT *
         FROM t_user
-        ORDER BY username
+        ORDER BY created_time
+    </select>
+
+    <select id="count" resultType="integer">
+        SELECT COUNT(1)
+        FROM t_user
     </select>
 </mapper>

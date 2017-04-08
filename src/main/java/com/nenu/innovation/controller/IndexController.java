@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * @time: 2017/4/2 15:49
  */
 @Controller
-public class indexController {
+public class IndexController {
 
     @Autowired
     private UserService userService;
@@ -104,7 +104,7 @@ public class indexController {
      * @param model
      * @return
      */
-    @RequestMapping(value = "registerXX", method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST)
     public String register(User user, Model model){
         if(user.getUsername().isEmpty()||user.getPassword().isEmpty()){
             model.addAttribute("msg","账号或密码为空，请重新注册！");
@@ -112,6 +112,7 @@ public class indexController {
         }
         try{
             if(!userService.checkExistByUsername(user.getUsername())){
+                user.setType(2);
                 userService.newUser(user);
                 model.addAttribute("msg","注册成功!");
                 return "display/login";

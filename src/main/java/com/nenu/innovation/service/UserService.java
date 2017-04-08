@@ -37,5 +37,19 @@ public interface UserService {
      */
     public boolean  checkExistByUsername(String username) throws Exception;
 
-    public List<User> listAllUser()throws Exception;
+    /**
+     * 获取用户列表
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<User> listAll()throws Exception;
+
+    /**
+     * 用户计数
+     *
+     * @return
+     * @throws Exception
+     */
+    public int count() throws Exception;
 }
