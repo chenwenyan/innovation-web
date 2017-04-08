@@ -3,14 +3,11 @@
 <html>
  <head>
      <title>大学生创新创业计划工程</title>
-     <link type="text/css" href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.css">
-     <script type="application/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-     <script type="application/javascript" src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+     <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
  </head>
- <header>
 
- </header>
 <body>
+<jsp:include flush="true" page="/WEB-INF/views/common/header.jsp"/>
 <h2>大学生创新创业计划工程</h2>
 <div>
     <button onclick="location='${website}register'">注册</button>
@@ -18,6 +15,6 @@
 <div>
     <button onclick="location='${website}login'">登录</button>
 </div>
-
+<jsp:include flush="true" page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
