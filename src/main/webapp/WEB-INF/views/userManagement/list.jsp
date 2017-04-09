@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>用户添加</title>
+    <title>用户信息管理</title>
     <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
     <style type="text/css">
         .tip1{
