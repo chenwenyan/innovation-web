@@ -52,4 +52,38 @@ public interface UserService {
      * @throws Exception
      */
     public int count() throws Exception;
+
+    /**
+     * 设置用户状态
+     *
+     * @throws Exception
+     */
+    public void setStatus(int id, int status) throws Exception;
+
+    /**
+     * 更新用户信息
+     *
+     * @param id
+     * @param username
+     * @param password
+     * @throws Exception
+     */
+    public void updateUserInfo(int id,String username,String password) throws Exception;
+
+    /**
+     * 根据id获取用户信息
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public User queryById(int id) throws Exception;
+
+    /**
+     * 根据id删除用户信息
+     *
+     * @param id
+     * @throws Exception
+     */
+    public void deleteById(int id) throws Exception;
 }

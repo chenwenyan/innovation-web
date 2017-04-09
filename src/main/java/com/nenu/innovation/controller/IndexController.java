@@ -39,7 +39,7 @@ public class IndexController {
      * @return
      */
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String toLogin(HttpServletRequest request){
+    public String toLogin(HttpServletRequest request,Model model){
         if(request.getSession().getAttribute("user") != null){
             User user = (User)request.getSession().getAttribute("user");
             if(user.getUsername().equals("admin")){
@@ -80,10 +80,10 @@ public class IndexController {
     @RequestMapping(value = {"index"}, method = RequestMethod.GET)
     public String toIndex(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
-        if(user.getUsername().equals("admin")) {
+        if(user != null ) {
             return "index";
         }else{
-            return "index";
+            return  "redirect:login";
         }
     }
 

@@ -77,4 +77,54 @@ public class UserServiceImpl implements UserService{
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public void setStatus(int id, int status) throws Exception{
+        if(status > 0){
+            try{
+                userMapper.setStatus(id,status);
+            }catch (Exception e){
+                System.out.println("设置用户状态出错！");
+                throw new Exception(e.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public void updateUserInfo(int id, String username, String password) throws Exception{
+        if(id >0 && username != null && password != null){
+            try{
+                userMapper.updateUserInfo(id,username,password);
+            }catch (Exception e){
+                System.out.println("更新用户信息出错！");
+                throw new Exception(e.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public User queryById(int id) throws Exception{
+        User user = new User();
+        try{
+            if(id > 0){
+              user = userMapper.queryById(id);
+            }
+        }catch (Exception e){
+            System.out.println("根据id获取用户信息出错！");
+            throw new Exception(e.getMessage());
+        }
+        return user;
+    }
+
+    @Override
+    public void deleteById(int id) throws Exception{
+        try{
+            if(id > 0){
+                userMapper.deleteById(id);
+            }
+        }catch (Exception e){
+            System.out.println("根据id删除用户信息出错！");
+            throw new Exception(e.getMessage());
+        }
+    }
 }

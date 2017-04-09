@@ -31,6 +31,12 @@ public class User {
     @Column(name = "created_time")
     private Timestamp createdTime;
 
+    @Column(name = "last_modified_time")
+    private Timestamp lastModifiedTime;
+
+    @Column(name = "status")
+    private String status;
+
     public Integer getType() {
         return type;
     }
@@ -55,10 +61,6 @@ public class User {
         this.lastModifiedTime = lastModifiedTime;
     }
 
-    @Column(name = "last_modified_time")
-    private Timestamp lastModifiedTime;
-
-
     public Integer getId() {
         return id;
     }
@@ -81,5 +83,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

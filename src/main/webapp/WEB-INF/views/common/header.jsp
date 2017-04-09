@@ -4,10 +4,10 @@
 <div class="row">
     <div class="col-sm-12">
         <nav class="navbar navbar-default navbar-static-top admin-nav J_admin_nav">
-            <a class="left-toggle pull-left" href="javascript:;">
-                <i class="fa fa-bars"></i>
-            </a>
-            <a class="pull-left logo-text menu-list-logo" href="javascript:;"><i class="fa fa-book"></i>&nbsp;大学生创新创业假话工程后台管理</a>
+            <%--<a class="left-toggle pull-left" href="javascript:;">--%>
+                <%--<i class="fa fa-bars"></i>--%>
+            <%--</a>--%>
+            <a class="pull-left logo-text menu-list-logo" href="javascript:;"><i class="fa fa-book"></i>&nbsp;大学生创新创业计划工程</a>
             <a class="pull-right header-menu" href="javascript:;"><i class="fa fa-bars"></i>&nbsp;</a>
             <ul class="nav navbar-nav">
 
@@ -30,7 +30,7 @@
                     <a class="menu-list J_layer_1_menu" data-menu-id="2" href="/borrower">用户管理</a>
                     <ul class="dropdown-menu arrow" aria-labelledby="dLabel">
                         <li><a class="J_menu" href="/user">用户信息管理</a></li>
-                        <li><a class="J_menu" href="/user/add">借阅人添加管理</a></li>
+                        <li><a class="J_menu" href="/user/add">用户添加管理</a></li>
                     </ul>
                 </li>
 

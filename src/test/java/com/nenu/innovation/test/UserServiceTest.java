@@ -72,4 +72,27 @@ public class UserServiceTest extends AbstractTestCase {
         }
     }
 
+    @Test
+    public void setStatus() throws Exception{
+        int id = 2;
+        int status = 1;
+        try {
+            userService.setStatus(id, status);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Test
+    public void updateUserInfo() throws Exception{
+        int id = 5;
+        String username = "user_5";
+        String password = "111111";
+        try{
+            userService.updateUserInfo(id,username,password);
+        }catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
 }

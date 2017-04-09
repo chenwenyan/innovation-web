@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -23,8 +25,12 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String toList(Model model){
+    public String toList(HttpServletRequest request,Model model){
         try{
+            if(request.getSession().getAttribute("user") != null){
+                User user = (User)request.getSession().getAttribute("user");
+                model.addAttribute("user",user);
+            }
             List<User> users = userService.listAll();
             model.addAttribute("userList",users);
             return "/userManagement/list";
@@ -33,4 +39,80 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/user/add",method = RequestMethod.GET)
+    public String toAdd(HttpServletRequest request, HttpServletResponse response,Model model){
+        try{
+            if(request.getSession().getAttribute("user") != null){
+                User user = (User)request.getSession().getAttribute("user");
+                model.addAttribute("user",user);
+            }
+            return "/userManagement/add";
+        }catch (Exception e){
+            return "error";
+        }
+    }
+
+    @RequestMapping(value = "/user/add",method = RequestMethod.POST)
+    public String newUser(HttpServletRequest request,HttpServletResponse response,
+                          Model model){
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        User user = new User();
+        if(username != null && password != null){
+            user.setUsername(username);
+            user.setPassword(password);
+        }
+        try{
+            if(userService.checkExistByUsername(username)){
+                model.addAttribute("msg","用户名已存在！");
+            }else {
+                userService.newUser(user);
+//                return "redirect:/user/add";
+            }
+        }catch (Exception e){
+            return "error";
+        }
+        return "redirect:/user";
+    }
+
+    @RequestMapping(value = "user/edit", method = RequestMethod.GET)
+    public String toEditPage(Integer id,
+                             Model model){
+        try{
+            User user = userService.queryById(id);
+            model.addAttribute("user",user);
+            return "/userManagement/edit";
+        }catch (Exception e){
+            return "error";
+        }
+    }
+
+    @RequestMapping(value = "user/edit", method = RequestMethod.POST)
+    public String toEdit(HttpServletRequest request,HttpServletResponse response,
+                         Model model){
+        int id = Integer.parseInt(request.getParameter("id"));
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        try{
+            userService.updateUserInfo(id,username,password);
+        }catch (Exception e){
+            return "error";
+        }
+        return "redirect:/user";
+    }
+
+    @RequestMapping(value = "user/delete",method = RequestMethod.POST)
+    public String deleteUser(Integer id,Model model){
+        try{
+            User user = userService.queryById(id);
+            if(user == null){
+              model.addAttribute("msg","该用户不存在！");
+            }else {
+                userService.deleteById(id);
+            }
+        }catch (Exception e){
+            return "error";
+        }
+        return "redirect:/user";
+    }
 }

@@ -53,4 +53,39 @@ public interface UserMapper {
      * @throws Exception
      */
     public Integer count() throws Exception;
+
+    /**
+     * 设置用户状态
+     *
+     * @param status
+     * @throws Exception
+     */
+    public void setStatus(@Param("id") Integer id, @Param("status") Integer status) throws Exception;
+
+    /**
+     * 更新用户信息
+     *
+     * @param id
+     * @param username
+     * @param password
+     * @throws Exception
+     */
+    public void updateUserInfo(@Param("id") Integer id,@Param("username") String username,@Param("password") String password) throws Exception;
+
+    /**
+     * 根据id获取用户信息
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public User queryById(@Param("id") Integer id) throws Exception;
+
+    /**
+     * 根据id删除用户信息
+     *
+     * @param id
+     * @throws Exception
+     */
+    public void deleteById(@Param("id") Integer id) throws Exception;
 }

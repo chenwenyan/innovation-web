@@ -7,6 +7,7 @@
         <id column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
+        <result column="status" property="status" />
     </resultMap>
 
     <insert id="newUser">
@@ -37,4 +38,26 @@
         SELECT COUNT(1)
         FROM t_user
     </select>
+
+    <update id="setStatus">
+        UPDATE `t_user`
+        SET status = #{status}
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateUserInfo">
+        UPDATE `t_user`
+        SET username = #{username},password = #{password}
+        WHERE id = #{id}
+    </update>
+
+    <select id="queryById" resultMap="userResultMap">
+        SELECT * FROM `t_user`
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM `t_user`
+        WHERE id = #{id}
+    </delete>
 </mapper>

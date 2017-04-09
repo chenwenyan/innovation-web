@@ -31,47 +31,37 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/index"><i class="fa fa-home"></i>&nbsp;首页</a></li>
-                        <li><a href="${website}/borrower">借阅人管理</a></li>
-                        <li><a href="${website}/borrower/add_borrower" class="active">借阅人添加管理</a></li>
+                        <li><a href="${website}/user">用户管理</a></li>
+                        <li><a href="${website}/user/add" class="active">用户添加管理</a></li>
                     </ol>
-                    <h2>添加借阅人</h2>
-                    <!--<div class="alert alert-success">保存成功！</div>-->
+                    <h2>添加用户</h2>
+                       <div class="alert alert-success">${msg}</div>
                 </div>
 
                 <div class="col-sm-12">
-                    <form class="J_form form-horizontal inline" action="${website}/borrower/add_borrower" method="post">
+                    <form class="J_form form-horizontal inline" action="${website}/user/add" method="post">
                         <div class="panel panel-info">
                             <div class="panel-heading">
                                 <h4>添加</h4>
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">借阅人账号</label>
-                                    <div class="col-sm-6">
-                                        <select class="w180 sex form-control" name="username">
-                                            <c:forEach var="user" items="${userList}">
-                                                <option value="${user.username}">${user.username}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-3 control-label"><span class="requires">*</span>借阅人名称</label>
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>用户名称</label>
                                     <div class="col-sm-9">
                                         <input type="text"
-                                               placeholder="请输入借阅人名称" class="w180 form-control name col-sm-3" name="name">
-                                        <span class="tip2 col-sm-6">借阅人名称不能为空，请重新填写</span>
+                                               placeholder="请输入用户名称" class="w180 form-control name col-sm-3" name="username">
+                                        <span class="tip2 col-sm-6">用户名称不能为空，请重新填写</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label">借阅人性别</label>
-                                    <div class="col-sm-6">
-                                        <select class="w180 sex form-control" name="sex">
-                                            <option value="0" selected="selected">男</option>
-                                            <option value="1">女</option>
-                                        </select>
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>用户密码</label>
+                                    <div class="col-sm-9">
+                                        <input type="text"
+                                               placeholder="请输入用户密码" class="w180 form-control name col-sm-3" name="password">
+                                        <span class="tip2 col-sm-6">用户密码不能为空，请重新填写</span>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="panel-footer clearfix">
                                 <div class="col-sm-6 col-sm-offset-3 ">
