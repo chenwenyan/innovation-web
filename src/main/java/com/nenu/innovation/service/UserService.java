@@ -86,4 +86,14 @@ public interface UserService {
      * @throws Exception
      */
     public void deleteById(int id) throws Exception;
+
+    /**
+     * 根据名称和状态查询用户
+     *
+     * @param name
+     * @param status
+     * @return
+     * @throws Exception
+     */
+    public List<User> queryBySearchInfo(String username,int status) throws Exception;
 }

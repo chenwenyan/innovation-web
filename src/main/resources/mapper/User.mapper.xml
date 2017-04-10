@@ -60,4 +60,23 @@
         DELETE FROM `t_user`
         WHERE id = #{id}
     </delete>
+
+    <select id="queryBySearchInfo" resultMap="userResultMap">
+        SELECT * FROM `t_user`
+        <if test="username == null and status == 0">
+
+        </if>
+        <if test="username != null and status == 0">
+            WHERE username LIKE "%"#{username}"%"
+        </if>
+        <if test="username != null and status != null and status != 0">
+            WHERE username LIKE "%"#{username}"%" AND status = #{status}
+        </if>
+        <if test="username != null and status == null">
+            WHERE username LIKE "%"#{username}"%"
+        </if>
+        <if test="username == null and status != null and status != 0 ">
+            WHERE status = #{status}
+        </if>
+    </select>
 </mapper>

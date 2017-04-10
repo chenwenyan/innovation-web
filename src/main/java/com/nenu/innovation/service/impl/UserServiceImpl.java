@@ -127,4 +127,16 @@ public class UserServiceImpl implements UserService{
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public List<User> queryBySearchInfo(String username,int status) throws Exception{
+        List<User> users = Collections.emptyList();
+        try{
+            users = userMapper.queryBySearchInfo(username, status);
+            return users;
+        }catch (Exception e){
+            System.out.println("根据名称和状态查询用户信息出错！");
+            throw new Exception(e.getMessage());
+        }
+    }
 }

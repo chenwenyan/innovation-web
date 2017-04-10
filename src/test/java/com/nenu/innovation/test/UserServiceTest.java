@@ -21,7 +21,7 @@ public class UserServiceTest extends AbstractTestCase {
     @Test
     public void newUser() throws Exception {
         User user = new User();
-        user.setUsername("user4");
+        user.setUsername("user7");
         user.setPassword("123456");
         try {
             userService.newUser(user);

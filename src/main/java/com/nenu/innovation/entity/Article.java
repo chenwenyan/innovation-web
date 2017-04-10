@@ -24,7 +24,10 @@ public class Article {
     private String content;
 
     @Column(name = "type_id")
-    private String typeId;
+    private Integer typeId;
+
+    @Transient
+    private String typeName;
 
     @Column(name = "created_time")
     private Timestamp createdTime;
@@ -33,7 +36,6 @@ public class Article {
     private Timestamp lastModifiedTime;
 
     @Column(name = "creator_id")
-
     private Integer creatorId;
 
     @Transient
@@ -63,12 +65,20 @@ public class Article {
         this.content = content;
     }
 
-    public String getTypeId() {
+    public Integer getTypeId() {
         return typeId;
     }
 
-    public void setTypeId(String typeId) {
+    public void setTypeId(Integer typeId) {
         this.typeId = typeId;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public Timestamp getCreatedTime() {

@@ -67,4 +67,32 @@ public interface ArticleService {
      */
     public void updateArticleById(int id, String title,String content,int typeId,int creatorId) throws Exception;
 
+    /**
+     * 根据查询文章信息
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
+    public Article queryById(int id) throws Exception;
+
+    /**
+     * 根据id删除文章信息
+     *
+     * @param id
+     * @throws Exception
+     */
+    public void deleteById(int id) throws Exception;
+
+    /**
+     * 根据条件查询文章
+     *
+     * @param title
+     * @param creatorId
+     * @param typeId
+     * @return
+     * @throws Exception
+     */
+    public List<Article> queryBySearchInfo(String title,int creatorId,int typeId) throws Exception;
+
 }

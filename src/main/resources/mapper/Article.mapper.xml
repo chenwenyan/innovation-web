@@ -47,4 +47,24 @@
         WHERE id = #{id}
     </update>
 
+    <select id="queryById" resultMap="articleResultMap">
+        SELECT * FROM `t_article`
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM `t_article`
+        WHERE id = #{id}
+    </delete>
+
+    <select id="queryBySearchInfo" resultMap="articleResultMap">
+        SELECT * FROM `t_article`
+        <if test="title != null and creatorId != null and typeId != null ">
+            WHERE title = #{title} and creator_id = #{creatorId} and type_id = #{typeId}}
+        </if>
+        <if test="title == null and creatorId != null and typeId != null ">
+            WHERE creator_id = #{creatorId} and type_id = #{typeId}}
+        </if>
+    </select>
+
 </mapper>

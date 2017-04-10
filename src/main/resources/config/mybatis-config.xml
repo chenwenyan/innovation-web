@@ -7,5 +7,6 @@
     <typeAliases>
         <typeAlias alias="User" type="com.nenu.innovation.entity.User"/>
         <typeAlias alias="Article" type="com.nenu.innovation.entity.Article"/>
+        <typeAlias alias="Type" type="com.nenu.innovation.entity.Type"/>
     </typeAliases>
 </configuration>

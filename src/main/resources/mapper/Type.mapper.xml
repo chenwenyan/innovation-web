@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nenu.innovation.mapper.TypeMapper">
+    <resultMap id="typeResultMap" type="Type">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="assistant_code" property="assistantCode"/>
+        <result column="created_time" property="createdTime" />
+        <result column="last_modified_time" property="lastModifiedTime" />
+    </resultMap>
+
+    <insert id="newType">
+        INSERT INTO t_type (name, assistant_code)
+        VALUES(#{name}, #{assistantCode})
+    </insert>
+
+    <select id="countByName" resultType="int">
+        SELECT COUNT(1)
+        FROM t_type
+        WHERE name = #{name}
+    </select>
+
+    <select id="checkExistByName" resultType="int">
+        SELECT COUNT(1)
+        FROM t_type
+        WHERE name = #{name}
+    </select>
+
+    <select id="listAll" resultMap="typeResultMap">
+        SELECT *
+        FROM t_type
+        ORDER BY created_time
+    </select>
+
+    <select id="count" resultType="integer">
+        SELECT COUNT(1)
+        FROM t_type
+    </select>
+
+    <update id="updateTypeInfo">
+        UPDATE `t_type`
+        SET name = #{name},assistant_code = #{assistantCode}
+        WHERE id = #{id}
+    </update>
+
+    <select id="queryById" resultMap="typeResultMap">
+        SELECT * FROM `t_type`
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM `t_type`
+        WHERE id = #{id}
+    </delete>
+
+    <select id="queryBySearchInfo" resultMap="typeResultMap">
+        SELECT * from `t_type`
+        <if test="name != null and assistantCode != null">
+            WHERE name LIKE "%"#{name}"%" AND assistant_code LIKE "%"#{assistantCode}"%"
+        </if>
+        <if test="name != null and assistantCode == null">
+            WHERE name LIKE "%"#{name}"%"
+        </if>
+        <if test="name == null and assistantCode != null">
+            WHERE assistant_code LIKE "%"#{assistantCode}"%"
+        </if>
+    </select>
+</mapper>

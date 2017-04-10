@@ -88,4 +88,14 @@ public interface UserMapper {
      * @throws Exception
      */
     public void deleteById(@Param("id") Integer id) throws Exception;
+
+    /**
+     * 根据名称和状态搜索用户信息
+     *
+     * @param username
+     * @param status
+     * @return
+     * @throws Exception
+     */
+    public List<User> queryBySearchInfo(@Param("username") String username,@Param("status")Integer status) throws Exception;
 }

@@ -7,14 +7,15 @@
     <title>文章管理</title>
     <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
     <style type="text/css">
-        .tip1{
+        .tip1 {
             height: 32px;
             font-size: 12px;
             font-family: inherit;
             color: red;
             padding: 8px;
         }
-        .tip2{
+
+        .tip2 {
             height: 32px;
             font-size: 12px;
             font-family: inherit;
@@ -33,7 +34,7 @@
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>首页</a></li>
                         <li><a href="${website}/article">文章管理</a></li>
-                        <li><a href="${website}/article/list" class="active">文章信息管理</a></li>
+                        <li><a href="${website}/article" class="active">文章信息管理</a></li>
                     </ol>
                     <h2>文章管理</h2>
                     <c:if test="${isRedirect==true}">
@@ -46,30 +47,42 @@
                             <h4>搜索</h4>
                         </div>
                         <div class="panel-body">
-                            <form class="form-horizontal J_form" action="${website}/article/list" method="post">
-                                <div class="form-group col-sm-6">
+                            <form class="form-horizontal J_form" action="${website}/article" method="post">
+                                <div class="form-group col-sm-4">
                                     <label class="col-sm-4 control-label">文章标题</label>
                                     <div class="col-sm-3">
                                         <input type="text" name="name" placeholder="请输入文章标题" class="form-control w180">
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-6">
+                                <div class="form-group col-sm-4">
                                     <label class="col-sm-4 control-label">文章作者</label>
-                                    <div class="col-sm-3">
-                                        <select >
-                                         <c:forEach var="user" items="${userList}">
-                                             <c:if test="fns:${userList.length == 0}">
-                                                 <option id="-1">无</option>
-                                             </c:if>
-                                             <c:if test="fns:${userList.length > 0}">
-                                                 <option id="${user.id}">${user.name}</option>
-                                             </c:if>
-                                         </c:forEach>
-                                        </select>
-                                    </div>
+                                    <select class="col-sm-2 form-control w180" name = "userId" id="userId">
+                                        <c:forEach var="user" items="${userList}">
+                                            <c:if test="${userList.size() == 0}">
+                                                <option id="-1">无</option>
+                                            </c:if>
+                                            <c:if test="${userList.size()> 0}" >
+                                                <option id="${user.id}">${user.username}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="col-sm-4 control-label">文章类别</label>
+                                    <select class="col-sm-2 form-control w180" name="typeId" id="typeId">
+                                        <c:forEach var="type" items="${typeList}">
+                                            <c:if test="${typeList.size() == 0}">
+                                                <option id="-1">无</option>
+                                            </c:if>
+                                            <c:if test="${typeList.size()> 0}">
+                                                <option id="${type.id}">${type.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-5">
-                                    <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询</button>
+                                    <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -78,10 +91,11 @@
                 <div class="col-sm-12">
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <h4>用户信息列表</h4>
+                            <h4>文章信息列表</h4>
                         </div>
                         <div class="panel-body">
-                            <a href="${website}/user/add" class="btn btn-success margin-bottom-15"><i class="fa fa-plus"></i>&nbsp;添加文章</a>
+                            <a href="${website}/article/add" class="btn btn-success margin-bottom-15"><i
+                                    class="fa fa-plus"></i>&nbsp;添加文章</a>
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered">
                                     <thead>
@@ -99,14 +113,30 @@
                                     <c:forEach var="article" items="${articleList}">
                                         <tr>
                                             <td hidden="hidden">${article.id}</td>
-                                            <td>${article.title}</td>
-                                            <td>${article.content}</td>
-                                            <td>${article.type}</td>
-                                            <td>${article.createdTime}</td>
-                                            <td>${article.creator}</td>
                                             <td>
-                                                <a href="${website}/article/edit?id=${article.id}" class="label-info"><i class="fa fa-edit"></i>&nbsp;编辑</a>
-                                                <a href="javascript:;" class="label-info J_delUser"><i class="fa fa-times"></i>&nbsp;删除</a>
+                                                <c:if test="${fn:length(article.title) > 40 }">
+                                                    ${fn:substring(article.title, 0, 20)}...
+                                                </c:if>
+                                                <c:if test="${fn:length(article.title) <= 40 }">
+                                                   ${article.title}
+                                                </c:if>
+                                            </td>
+                                            <td>
+                                                <c:if test="${fn:length(article.content)>20 }">
+                                                    ${fn:substring(article.content, 0, 20)}...
+                                                </c:if>
+                                                <c:if test="${fn:length(article.content)<= 20 }">
+                                                    ${article.content}
+                                                </c:if>
+                                            </td>
+                                            <td>${article.typeName}</td>
+                                            <td>${article.createdTime}</td>
+                                            <td>${article.creatorName}</td>
+                                            <td>
+                                                <a href="${website}/article/edit?id=${article.id}" class="label-info"><i
+                                                        class="fa fa-edit"></i>&nbsp;编辑</a>
+                                                <a href="javascript:;" class="label-info J_delArticle"><i
+                                                        class="fa fa-times"></i>&nbsp;删除</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -127,20 +157,20 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(function(){
-        if($(".J_tip")){
-            setTimeout(function(){
+    $(function () {
+        if ($(".J_tip")) {
+            setTimeout(function () {
                 $(".J_tip").hide();
             }, 3000);
         }
-        $(".J_delUser").click(function(e){
-            if(confirm("确定要删除此文章吗?") == true){
+        $(".J_delArticle").click(function (e) {
+            if (confirm("确定要删除此文章吗?") == true) {
                 var id = $(e.target).parents("tr").children().first().text();
                 $.ajax({
                     type: "post",
                     url: "/article/delete",
                     data: {id: id},
-                    success: function(msg){
+                    success: function (msg) {
                         window.location.reload();
                     }
                 });
