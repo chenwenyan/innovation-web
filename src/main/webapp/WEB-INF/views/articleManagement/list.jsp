@@ -56,13 +56,13 @@
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label class="col-sm-4 control-label">文章作者</label>
-                                    <select class="col-sm-2 form-control w180" name = "userId" id="userId">
+                                    <select class="col-sm-2 form-control w180" name="userId" id="userId">
                                         <c:forEach var="user" items="${userList}">
                                             <c:if test="${userList.size() == 0}">
-                                                <option id="-1">无</option>
+                                                <option value="-1">无</option>
                                             </c:if>
-                                            <c:if test="${userList.size()> 0}" >
-                                                <option id="${user.id}">${user.username}</option>
+                                            <c:if test="${userList.size()> 0}">
+                                                <option value="${user.id}">${user.username}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>
@@ -72,10 +72,10 @@
                                     <select class="col-sm-2 form-control w180" name="typeId" id="typeId">
                                         <c:forEach var="type" items="${typeList}">
                                             <c:if test="${typeList.size() == 0}">
-                                                <option id="-1">无</option>
+                                                <option value="-1">无</option>
                                             </c:if>
                                             <c:if test="${typeList.size()> 0}">
-                                                <option id="${type.id}">${type.name}</option>
+                                                <option value="${type.id}">${type.name}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>
@@ -118,7 +118,7 @@
                                                     ${fn:substring(article.title, 0, 20)}...
                                                 </c:if>
                                                 <c:if test="${fn:length(article.title) <= 40 }">
-                                                   ${article.title}
+                                                    ${article.title}
                                                 </c:if>
                                             </td>
                                             <td>

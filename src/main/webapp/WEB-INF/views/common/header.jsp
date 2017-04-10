@@ -11,11 +11,11 @@
             <a class="pull-right header-menu" href="javascript:;"><i class="fa fa-bars"></i>&nbsp;</a>
             <ul class="nav navbar-nav">
 
-                <li >
-                    <a class="menu-list J_layer_1_menu" data-menu-id="0" href="/type">文章类别管理</a>
+                <li>
+                    <a class="menu-list J_layer_1_menu" data-menu-id="2" href="/user">用户管理</a>
                     <ul class="dropdown-menu arrow" aria-labelledby="dLabel">
-                        <li><a class="J_menu" href="/type">文章类别管理</a></li>
-                        <li><a class="J_menu" href="/type/add">类别添加管理</a></li>
+                        <li><a class="J_menu" href="/user">用户信息管理</a></li>
+                        <li><a class="J_menu" href="/user/add">用户添加管理</a></li>
                     </ul>
                 </li>
 
@@ -27,11 +27,27 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a class="menu-list J_layer_1_menu" data-menu-id="2" href="/user">用户管理</a>
+                <li >
+                    <a class="menu-list J_layer_1_menu" data-menu-id="0" href="/type">文章类别管理</a>
                     <ul class="dropdown-menu arrow" aria-labelledby="dLabel">
-                        <li><a class="J_menu" href="/user">用户信息管理</a></li>
-                        <li><a class="J_menu" href="/user/add">用户添加管理</a></li>
+                        <li><a class="J_menu" href="/type">文章类别管理</a></li>
+                        <li><a class="J_menu" href="/type/add">类别添加管理</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="menu-list J_layer_1_menu" data-menu-id="2" href="/user">项目管理</a>
+                    <ul class="dropdown-menu arrow" aria-labelledby="dLabel">
+                        <li><a class="J_menu" href="/project">项目信息管理</a></li>
+                        <li><a class="J_menu" href="/project/add">项目添加管理</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="menu-list J_layer_1_menu" data-menu-id="2" href="/user">学院管理</a>
+                    <ul class="dropdown-menu arrow" aria-labelledby="dLabel">
+                        <li><a class="J_menu" href="/school">学院信息管理</a></li>
+                        <li><a class="J_menu" href="/school/add">学院添加管理</a></li>
                     </ul>
                 </li>
 

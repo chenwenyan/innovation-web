@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nenu.innovation.mapper.SchoolMapper">
+    <resultMap id="schoolResultMap" type="Type">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="created_time" property="createdTime" />
+        <result column="last_modified_time" property="lastModifiedTime" />
+    </resultMap>
+
+    <insert id="newSchool">
+        INSERT INTO t_school (name)
+        VALUES(#{name})
+    </insert>
+
+    <select id="checkExistByName" resultType="int">
+        SELECT COUNT(1)
+        FROM t_school
+        WHERE name = #{name}
+    </select>
+
+    <select id="listAll" resultMap="schoolResultMap">
+        SELECT *
+        FROM t_school
+        ORDER BY created_time
+    </select>
+
+    <select id="count" resultType="integer">
+        SELECT COUNT(1)
+        FROM t_school
+    </select>
+
+    <update id="updateTypeInfo">
+        UPDATE `t_school`
+        SET name = #{name}
+        WHERE id = #{id}
+    </update>
+
+    <select id="queryById" resultMap="schoolResultMap">
+        SELECT * FROM `t_school`
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE FROM `t_school`
+        WHERE id = #{id}
+    </delete>
+
+    <select id="queryBySearchInfo" resultMap="schoolResultMap">
+        SELECT * from `t_school`
+        <if test="name != null">
+            WHERE name LIKE "%"#{name}"%"
+        </if>
+    </select>
+</mapper>
