@@ -3,54 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="东北师范大学大学生创新创业计划工程">
-    <link rel="icon" href="/img/favicon.jpg">
-
-    <title>创新创业计划工程</title>
-    <jsp:include page="/WEB-INF/views/common/head.jsp" flush="true"/>
+    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
 </head>
-
 <body>
-<div class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-1">
-                <img src="/img/favicon.jpg" class="left" alt="东北师范大学">
-                <img src="/img/logo-right.jpg" class="right" alt="东北师范大学">
-            </div>
-            <div class="col-sm-5 col-sm-offset-1">
-                <h1>创新创业计划培训工程</h1>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="navbar-wrapper">
-    <nav class="navbar">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#"><i class="fa fa-home"></i>&nbsp;首页 <span
-                            class="sr-only">(current)</span></a></li>
-                    <li><a href="#"><i class="fa fa-anchor"></i>&nbsp;比赛</a></li>
-                    <li><a href="#"><i class="fa fa-arrows"></i>&nbsp;立项</a></li>
-                    <li><a href="#"><i class="fa fa-at"></i>&nbsp;未来计划</a></li>
-                    <!-- <li><a href="#"><i class="fa fa-bars"></i>&nbsp;关于我们</a></li> -->
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-</div>
-<!-- Carousel
-================================================== -->
+<jsp:include flush="true" page="/WEB-INF/views/display/header.jsp"/>
 <div class="img-container">
     <img src="/img/head1.jpg" alt="大学生创新创业计划">
 </div>
-
-
 <!-- START THE FEATURETTES -->
 <div class="public">
     <div class="container">
@@ -135,12 +94,6 @@
                                             <td>${project.charger}</td>
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
-                                            <td>
-                                                <a href="${website}/project/edit?id=${project.id}" class="label-info"><i
-                                                        class="fa fa-edit"></i>&nbsp;编辑</a>
-                                                <a href="javascript:;" class="label-info J_delType"><i
-                                                        class="fa fa-times"></i>&nbsp;删除</a>
-                                            </td>
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${projectlList.size()=='0'}">
@@ -187,34 +140,8 @@
     </div>
 </div>
 
-
-<!-- FOOTER -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-5 footer-left col-sm-offset-1">
-                <p>
-                    友情链接：
-                    <a href="http://www.nenu.edu.cn/">东北师范大学&nbsp;&nbsp;|&nbsp;</a>
-                    <a href="http://youth.nenu.edu.cn/">扬思网&nbsp;&nbsp;|&nbsp;</a>
-                    <a href="http://www.youth.cn/">中国青年网</a>
-                </p>
-                <p>版权所有：共青团东北师范大学委员会</p>
-                <p>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：吉林省长春市人民大街5268号　邮编：130024</p>
-            </div>
-            <div class="col-sm-4 col-sm-offset-1">
-                <img src="/img/weixin.jpg" alt="微信二维码" class="weixin">
-                <span>东北师范大学大学生创业中心</span>
-            </div>
-        </div>
-    </div>
-</footer>
+<jsp:include flush="true" page="/WEB-INF/views/display/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/holder.min.js"></script>
-<script src="../js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
 

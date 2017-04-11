@@ -42,6 +42,7 @@ public class ArticleServiceImpl implements ArticleService {
             return articles;
         } catch (Exception e) {
             System.out.println("显示文章列表出错！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -54,6 +55,7 @@ public class ArticleServiceImpl implements ArticleService {
             return sum;
         } catch (Exception e) {
             System.out.println("文章计数出错！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -70,6 +72,7 @@ public class ArticleServiceImpl implements ArticleService {
             }
         } catch (Exception e) {
             System.out.println("根据类型显示文章列表出错！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
         return articles;
@@ -88,6 +91,7 @@ public class ArticleServiceImpl implements ArticleService {
             return articles;
         } catch (Exception e) {
             System.out.println("根据关键词查询失败！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -100,6 +104,7 @@ public class ArticleServiceImpl implements ArticleService {
             }
         } catch (Exception e) {
             System.out.println("新增文章失败！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -112,6 +117,7 @@ public class ArticleServiceImpl implements ArticleService {
             }
         } catch (Exception e) {
             System.out.println("更新文章失败！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -125,6 +131,7 @@ public class ArticleServiceImpl implements ArticleService {
             return article;
         } catch (Exception e) {
             System.out.println("根据id查询文章失败！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -135,6 +142,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleMapper.deleteById(id);
         } catch (Exception e) {
             System.out.println("根据id删除文章失败！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -147,6 +155,7 @@ public class ArticleServiceImpl implements ArticleService {
             return articles;
         } catch (Exception e) {
             System.out.println("根据条件查询文章失败！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -161,6 +170,7 @@ public class ArticleServiceImpl implements ArticleService {
             article.setCreatorName(user.getUsername());
         } catch (Exception e) {
             System.out.println("设置文章类型和创建者名称失败！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }

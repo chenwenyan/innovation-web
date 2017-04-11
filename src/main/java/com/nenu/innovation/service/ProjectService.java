@@ -88,5 +88,4 @@ public interface ProjectService {
      * @throws Exception
      */
     public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId) throws Exception;
-
 }

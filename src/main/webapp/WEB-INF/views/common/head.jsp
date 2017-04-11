@@ -34,17 +34,14 @@
 <script type="text/javascript" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<!-- Custom styles for this template -->
-<link rel="stylesheet" type="text/css" href="/css/carousel.css">
-
-
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/back-to-top.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/holder.min.js"></script>
 <script type="text/javascript" src="/js/ie10-viewport-bug-workaround.js"></script>
 
-
+<!-- Custom styles for this template -->
+<link rel="stylesheet" type="text/css" href="/css/carousel.css">
 
 <style type="text/css">
     nav > ul > li:hover .arrow{

@@ -24,7 +24,7 @@
 
     <select id="listByType" resultMap="articleResultMap">
         SELECT * FROM `t_article`
-        ORDER BY cread_time
+        ORDER BY created_time
     </select>
     <select id="listByKeyWords" resultMap="articleResultMap">
         SELECT * FROM `t_article`
@@ -43,6 +43,7 @@
         UPDATE `t_article` SET
         <if test="#{title} != null"> title = #{title} </if>,
         <if test="#{content} != null"> content = #{content} </if>,
+        <if test="#{typeId} != null"> type_id = #{typeId} </if>,
         <if test="#{creatorId} != null"> creator_id = #{creatorId} </if>
         WHERE id = #{id}
     </update>
