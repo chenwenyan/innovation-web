@@ -10,9 +10,10 @@
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 <link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/css/welcome.css">
+<link rel="stylesheet" type="text/css" href="/css/login.css">
 
-<script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.js"></script>
 
 <style type="text/css">
     nav > ul > li:hover .arrow{
