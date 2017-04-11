@@ -89,8 +89,9 @@ public class SchoolController {
     }
 
     @RequestMapping(value = "/school/edit",method = RequestMethod.POST)
-    public String updateschoolInfo(HttpServletRequest request, HttpServletResponse response,
+    public String updateSchoolInfo(HttpServletRequest request, HttpServletResponse response,
                                  Model model){
+        String str = request.getParameter("id");
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         try{

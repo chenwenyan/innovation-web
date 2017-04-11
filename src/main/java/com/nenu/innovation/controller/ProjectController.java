@@ -1,7 +1,9 @@
 package com.nenu.innovation.controller;
 
 import com.nenu.innovation.entity.Project;
+import com.nenu.innovation.entity.School;
 import com.nenu.innovation.service.ProjectService;
+import com.nenu.innovation.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,14 +26,19 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
+    @Autowired
+    private SchoolService schoolService;
 
     @RequestMapping(value = "/project",method = RequestMethod.GET)
     public String toList(HttpServletRequest request,HttpServletResponse response,
                          Model model){
         List<Project> projects = Collections.emptyList();
+        List<School> schools = Collections.emptyList();
         try{
             projects = projectService.listAll();
+            schools = schoolService.listAll();
             model.addAttribute("projectList",projects);
+            model.addAttribute("schoolList",schools);
             return "projectManagement/list";
         }catch (Exception e){
             return "error";
@@ -45,7 +52,11 @@ public class ProjectController {
         String name = request.getParameter("name");
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
-        int schoolId = Integer.parseInt(request.getParameter("schoolId"));
+        String schoolIdStr = request.getParameter("schoolId");
+        if(schoolIdStr == null){
+            schoolIdStr = "1";
+        }
+        int schoolId = Integer.parseInt(schoolIdStr);
         try{
             projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId);
             model.addAttribute("projectList",projects);
@@ -58,7 +69,14 @@ public class ProjectController {
     @RequestMapping(value = "/project/add", method = RequestMethod.GET)
     public String toAdd(HttpServletRequest request, HttpServletResponse response,
                         Model model){
-        return "projectManagement/add";
+        List<School> schools = Collections.emptyList();
+        try{
+            schools = schoolService.listAll();
+            model.addAttribute("schoolList",schools);
+            return "projectManagement/add";
+        }catch (Exception e){
+            return "error";
+        }
     }
 
     @RequestMapping(value = "/project/add",method = RequestMethod.POST)
@@ -83,11 +101,14 @@ public class ProjectController {
     public String toEdit(HttpServletRequest request,HttpServletResponse response,
                          Model model,Integer id){
         Project project = new Project();
+        List<School> schools = Collections.emptyList();
         try{
             project = projectService.queryById(id);
             if(project == null){
                 model.addAttribute("msg","该项目不存在或者已被删除！");
             }
+            schools = schoolService.listAll();
+            model.addAttribute("schoolList",schools);
             model.addAttribute("project",project);
             return "projectManagement/edit";
         }catch (Exception e){

@@ -69,6 +69,7 @@ public class SchoolServiceImpl implements SchoolService{
             schoolMapper.updateSchoolInfo(id,name);
         }catch (Exception e){
             System.out.println("更新学院信息出错！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }

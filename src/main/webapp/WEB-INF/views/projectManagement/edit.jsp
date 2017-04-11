@@ -68,7 +68,16 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>指导老师</label>
                                     <div class="col-sm-9">
-                                        <select class="col-sm-2 form-control w180" name = "userId" id="schoolId">
+                                        <input type="text" value="${project.teacher}"
+                                               placeholder="请输入指导老师姓名" class="w180 form-control name col-sm-3"
+                                               name="teacher">
+                                        <span class="tip2 col-sm-6">指导老师姓名不能为空，请重新填写</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>学院</label>
+                                    <div class="col-sm-9">
+                                        <select class="col-sm-2 form-control w180" name = "schoolId" id="schoolId">
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size() == 0}">
                                                     <option value="-1">无</option>

@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="col-sm-12">
-                    <form class="J_form form-horizontal inline" action="${website}/school/edit"
+                    <form class="J_form form-horizontal inline" action="${website}/school/edit?id=${school.id}"
                           method="post">
                         <div class="panel panel-info">
                             <div class="panel-heading">

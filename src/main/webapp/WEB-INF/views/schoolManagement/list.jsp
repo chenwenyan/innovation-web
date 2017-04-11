@@ -68,7 +68,7 @@
                             <h4>项目信息列表</h4>
                         </div>
                         <div class="panel-body">
-                            <a href="${website}/type/add" class="btn btn-success margin-bottom-15"><i
+                            <a href="${website}/school/add" class="btn btn-success margin-bottom-15"><i
                                     class="fa fa-plus"></i>&nbsp;添加学院</a>
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered">
@@ -85,7 +85,7 @@
                                             <td hidden="hidden">${school.id}</td>
                                             <td>${school.name}</td>
                                             <td>
-                                                <a href="${website}/type/edit?id=${school.id}" class="label-info"><i
+                                                <a href="${website}/school/edit?id=${school.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
                                                     <%--<a href="javascript:;" class="label-info J_delType"><i--%>
                                                     <%--class="fa fa-times"></i>&nbsp;删除</a>--%>

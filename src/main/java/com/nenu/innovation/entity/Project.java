@@ -26,7 +26,7 @@ public class Project {
     private String teacher;
 
     @Column(name = "school_id")
-    private String schoolId;
+    private Integer schoolId;
 
     @Transient
     private String schoolName;
@@ -69,11 +69,11 @@ public class Project {
         this.teacher = teacher;
     }
 
-    public String getSchoolId() {
+    public Integer getSchoolId() {
         return schoolId;
     }
 
-    public void setSchoolId(String schoolId) {
+    public void setSchoolId(Integer schoolId) {
         this.schoolId = schoolId;
     }
 

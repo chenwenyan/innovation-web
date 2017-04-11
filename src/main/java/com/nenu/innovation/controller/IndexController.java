@@ -37,7 +37,7 @@ public class IndexController {
                 return "index";
             }
         }else{
-            return "/display/login";
+            return "login";
         }
     }
 
@@ -48,12 +48,12 @@ public class IndexController {
                 request.getSession().setAttribute("user", user);
                 return "redirect:index";
             }else{
-                model.addAttribute("login_err","登录失败，请重新输入！");
-                return "display/login";
+                model.addAttribute("msg","登录失败，请重新输入！");
+                return "login";
             }
         }catch (Exception e){
             model.addAttribute("error", e.getMessage());
-            return "display/login";
+            return "login";
         }
     }
 

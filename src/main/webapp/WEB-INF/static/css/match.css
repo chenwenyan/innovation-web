@@ -1,0 +1,82 @@
+div.img-container img{
+  width: 100%;
+  height: 350px;
+}
+
+/**公告**/
+div.panel-heading{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+h6.smart-margin-left{
+  margin-left: 8px;
+  font-size: 17px;
+  font-weight: bold;
+  display: inline-block;
+}
+a.smart-margin-left{
+  color: #fff;
+  font-size: 16px;
+  float: right;
+  line-height: 35px;
+}
+a.smart-margin-left i{
+  display: inline-block;
+  margin-top: 8px;
+}
+.public{
+  margin-top: 30px;
+}
+.public .panel-body{
+  margin-left: -20px !important;
+}
+.public ul{
+  list-style: none;
+  padding-left: 30px;
+}
+.public li{
+  line-height: 25px; 
+  font-size: 15px;
+}
+.public a{
+  text-decoration: none; 
+}
+.public a:hover{
+  color: #1CD5B5; 
+}
+.public i.fa{
+  float: left;
+  display: inline-block;
+}
+span.lixiang-information{
+  display: inline-block;
+  width: 408px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+span.lixiang-date{
+  display: inline-block;
+  float: right;
+}
+span.information{
+  display: inline-block;
+  width: 217px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+span.infor{
+  display: inline-block;
+  width: 370px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  float: left;
+}
+span.date{
+  display: inline-block;
+  float: right;
+}

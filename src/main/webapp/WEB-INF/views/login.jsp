@@ -19,7 +19,7 @@
             <h3 class="text-center">大学生创新创业计划工程管理系统</h3>
         </div>
     </div>
-    <form class="J_loginForm" method="" action="">
+    <form class="J_loginForm" method="post" action="/login">
         <div class="row">
             <div class="login-body login-box">
                 <div class="title">
@@ -153,14 +153,14 @@
             if (($(".J_username").val() == "")||($(".J_pwd").val().length<6)){
                 return false;
             }else{
-                $.ajax({
-                    type: 'post',
-                    url: '/login',
-                    data: {username:username,password:password,remember:remember},
-                    success: function(data) {
-
-                    }
-                });
+//                $.ajax({
+//                    type: 'post',
+//                    url: '/login',
+//                    data: {username:username,password:password,remember:remember},
+//                    success: function(data) {
+//
+//                    }
+//                });
             }
         });
 

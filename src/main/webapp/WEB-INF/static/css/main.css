@@ -1,0 +1,128 @@
+.header h1 {
+	font-weight: bold;
+	font-family: '微软雅黑';
+	letter-spacing:2px;
+}
+img.left{
+    width: 100px;
+    margin-left: 30px;
+}
+img.right{
+    width: 200px;
+    position: relative;
+    top: 8px;
+    left: 25px;
+}
+img.font{
+    margin-left:-54px;
+    margin-top:15px;
+    width: 500px;
+    height: 60px;
+}
+.navbar{
+    border-radius: 0 !important; 
+}
+.navbar li a:hover {
+    background-color: #1CD5B5;
+    color: #fff;
+}
+.navbar li a {
+    color: #fff !important;
+}
+.sousuo{
+    margin-top: 30px;
+    margin-left: -40px;
+}
+.sousuo img{
+    width: 100%;
+    height: 170px;
+    margin-left: 20px;
+}
+div.dongtai{
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-bottom: -50px;
+}
+h4.headline {
+    display: block;
+    border-bottom: 1px dashed #DEE1E2;
+    padding: 0 0 10px 0;
+    margin: 0 0 20px;
+    font-family: '微软雅黑';
+    font-weight: bold;
+}
+.dongtai .photo {
+    width: 243px;
+    display: inline;
+    margin: 20px 20px 20px 10px;
+    text-align: center;
+    float: left;
+    position: relative;
+}
+.dongtai .photo a {
+    display: block;
+}
+.dongtai .photo a:hover {
+    display: block;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    -webkit-transition: box-shadow 0.2s ease;
+    transition: box-shadow 0.2s ease;
+}
+.dongtai .photo img {
+    display: block;
+    width: 240px;
+    height: 240px;
+}
+.dongtai .photo a:hover img {
+    transition: all 0.5s ease; 
+    transform: scale(1.1, 1.1);
+}
+/**底部栏**/
+footer{
+    font-size: 17px;
+    color: #fff;
+    width: 100%;
+    background-color: #5a5a5a;
+    line-height: 17px;
+    position: relative;
+    bottom: -40px;
+    padding-bottom: 10px;
+}
+.featurette-divider{
+    margin-bottom: 20px !important;
+}
+footer .weixin{
+    width: 120px;
+    height: 120px;
+    margin-top: 10px;
+}
+footer .weixin + span{
+    margin-left: 10px;
+}
+footer .footer-left{
+    margin-top: 20px;
+}
+footer p{
+    line-height: 30px;
+}
+footer a{
+    text-decoration: none !important;
+    color: #fff;
+}
+footer a:hover{
+    color: #1CD5B5;
+}
+.back-to-top{
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
+    font-size: 50px;
+}
+.marketing{
+    margin-top: 50px;
+}
+.img-container{
+    margin-top: -21px;
+}

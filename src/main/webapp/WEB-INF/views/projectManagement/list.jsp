@@ -69,11 +69,12 @@
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">学院</label>
                                     <div class="col-sm-3">
-                                        <select class="col-sm-2 form-control w180" name = "userId" id="schoolId">
+                                        <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size() == 0}">
                                                     <option value="-1">无</option>
                                                 </c:if>
+                                                <%--<option value="0">全部</option>--%>
                                                 <c:if test="${schoolList.size()> 0}" >
                                                     <option value="${school.id}">${school.name}</option>
                                                 </c:if>
@@ -95,7 +96,7 @@
                             <h4>项目信息列表</h4>
                         </div>
                         <div class="panel-body">
-                            <a href="${website}/type/add" class="btn btn-success margin-bottom-15"><i
+                            <a href="${website}/project/add" class="btn btn-success margin-bottom-15"><i
                                     class="fa fa-plus"></i>&nbsp;添加项目</a>
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered">
@@ -110,7 +111,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="project" items="${projectlList}">
+                                    <c:forEach var="project" items="${projectList}">
                                         <tr>
                                             <td hidden="hidden">${project.id}</td>
                                             <td>${project.name}</td>
@@ -118,7 +119,7 @@
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
                                             <td>
-                                                <a href="${website}/type/edit?id=${project.id}" class="label-info"><i
+                                                <a href="${website}/project/edit?id=${project.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
                                                 <a href="javascript:;" class="label-info J_delType"><i
                                                         class="fa fa-times"></i>&nbsp;删除</a>

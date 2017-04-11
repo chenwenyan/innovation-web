@@ -20,6 +20,7 @@
         FROM t_user
         WHERE username = #{user.username}
         AND password = #{user.password}
+        AND status = 1;
     </select>
 
     <select id="checkExistByUsername" resultType="int">

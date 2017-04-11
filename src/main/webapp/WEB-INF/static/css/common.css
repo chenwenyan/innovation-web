@@ -521,7 +521,7 @@ form .help-inline{
 }
 .error-field{
     border: 1px solid #b94a48 !important;
-    background: rgba(0, 0, 0, 0) url("../../../tool/base-widget/img/form/edit-red.png") no-repeat scroll 100% 50%;
+    background: rgba(0, 0, 0, 0) url("/../../tool/base-widget/img/form/edit-red.png") no-repeat scroll 100% 50%;
 }
 .focus-field{
     border: 1px solid #a0a0a0 !important;

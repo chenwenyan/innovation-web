@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.nenu.innovation.mapper.ProjectMapper">
-    <resultMap id="projectResultMap" type="Type">
+    <resultMap id="projectResultMap" type="Project">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="charger" property="charger"/>
@@ -36,7 +36,7 @@
     </select>
 
     <update id="updateProjectInfo">
-        UPDATE `t_type`
+        UPDATE `t_project`
         SET name = #{name},charger = #{charger},teacher = #{teacher}, school_id = #{schoolId}
         WHERE id = #{id}
     </update>
@@ -53,29 +53,33 @@
 
     <select id="queryBySearchInfo" resultMap="projectResultMap">
         SELECT * from `t_project`
-        <if test="name != null and charger != null and teacher != null and schoolId != null">
-            WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
+        <if test="name == null and charger == null and teacher == null ">
+
         </if>
-        <if test="name == null and charger != null and teacher != null and schoolId != null">
-            WHERE charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
+        <if test="name != null and charger != null and teacher != null ">
+            WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
         </if>
-        <if test="name == null and charger == null and teacher != null and schoolId != null">
-            WHERE teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
+        <if test="name == null and charger != null and teacher != null ">
+            WHERE charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
         </if>
-        <if test="name == null and charger == null and teacher == null and schoolId != null">
+        <if test="name == null and charger == null and teacher != null ">
+            WHERE teacher LIKE  "%"#{teacher}"%"
+        </if>
+        <if test="name == null and charger == null and teacher == null ">
             WHERE school_id = #{schoolId}
         </if>
-        <if test="name == null and charger != null and teacher == null and schoolId != null">
-            WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
+        <if test="name == null and charger != null and teacher == null">
+            WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
         </if>
-        <if test="name != null and charger == null and teacher == null and schoolId != null">
-            WHERE name LIKE "%"#{name}"%"  AND school_id = #{schoolId}
+        <if test="name != null and charger == null and teacher == null">
+            WHERE name LIKE "%"#{name}"%"
         </if>
-        <if test="name != null and charger != null and teacher == null and schoolId != null">
-            WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%"  AND school_id = #{schoolId}
+        <if test="name != null and charger != null and teacher == null">
+            WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%"
         </if>
-        <if test="name != null and charger == null and teacher != null and schoolId != null">
-            WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
+        <if test="name != null and charger == null and teacher != null">
+            WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
         </if>
+        AND school_id = #{schoolId}
     </select>
 </mapper>
