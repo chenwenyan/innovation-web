@@ -54,33 +54,64 @@
 
     <select id="queryBySearchInfo" resultMap="projectResultMap">
         SELECT * from `t_project`
-        <if test="name == null and charger == null and teacher == null ">
+        <if test="schoolId == 0">
+            <if test="name == null and charger == null and teacher == null ">
 
+            </if>
+            <if test="name != null and charger != null and teacher != null ">
+                WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
+            </if>
+            <if test="name == null and charger != null and teacher != null ">
+                WHERE charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
+            </if>
+            <if test="name == null and charger == null and teacher != null ">
+                WHERE teacher LIKE  "%"#{teacher}"%"
+            </if>
+            <if test="name == null and charger != null and teacher == null">
+                WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
+            </if>
+            <if test="name != null and charger == null and teacher == null">
+                WHERE name LIKE "%"#{name}"%"
+            </if>
+            <if test="name != null and charger != null and teacher == null">
+                WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%"
+            </if>
+            <if test="name != null and charger == null and teacher != null">
+                WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
+            </if>
         </if>
-        <if test="name != null and charger != null and teacher != null ">
-            WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
+        <if test="schoolId != 0">
+            <if test="name == null and charger == null and teacher == null ">
+
+            </if>
+            <if test="name != null and charger != null and teacher != null ">
+                WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
+            </if>
+            <if test="name == null and charger != null and teacher != null ">
+                WHERE charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
+            </if>
+            <if test="name == null and charger == null and teacher != null ">
+                WHERE teacher LIKE  "%"#{teacher}"%"
+            </if>
+            <if test="name == null and charger != null and teacher == null">
+                WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
+            </if>
+            <if test="name != null and charger == null and teacher == null">
+                WHERE name LIKE "%"#{name}"%"
+            </if>
+            <if test="name != null and charger != null and teacher == null">
+                WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%"
+            </if>
+            <if test="name != null and charger == null and teacher != null">
+                WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
+            </if>
+            AND school_id = #{schoolId}
         </if>
-        <if test="name == null and charger != null and teacher != null ">
-            WHERE charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
-        </if>
-        <if test="name == null and charger == null and teacher != null ">
-            WHERE teacher LIKE  "%"#{teacher}"%"
-        </if>
-        <if test="name == null and charger == null and teacher == null ">
-            WHERE school_id = #{schoolId}
-        </if>
-        <if test="name == null and charger != null and teacher == null">
-            WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
-        </if>
-        <if test="name != null and charger == null and teacher == null">
-            WHERE name LIKE "%"#{name}"%"
-        </if>
-        <if test="name != null and charger != null and teacher == null">
-            WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%"
-        </if>
-        <if test="name != null and charger == null and teacher != null">
-            WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
-        </if>
-        AND school_id = #{schoolId}
+
+    </select>
+
+    <select id="listByPage" resultMap="projectResultMap">
+        SELECT * FROM `t_project`
+        LIMIT #{offset},#{pageSize}
     </select>
 </mapper>

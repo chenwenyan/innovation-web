@@ -35,7 +35,7 @@ public class UserController {
             List<User> users = userService.listAll();
             model.addAttribute("userList", users);
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "management/user/list";
+            return "management/users/list";
         } catch (Exception e) {
             return "error";
         }
@@ -50,7 +50,7 @@ public class UserController {
             model.addAttribute("user", request.getSession().getAttribute("user"));
             users = userService.queryBySearchInfo(username, status);
             model.addAttribute("userList", users);
-            return "management/user/list";
+            return "management/users/list";
         } catch (Exception e) {
             return "error";
         }
@@ -60,7 +60,7 @@ public class UserController {
     public String toAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
         try {
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "management/user/add";
+            return "management/users/add";
         } catch (Exception e) {
             return "error";
         }
@@ -83,7 +83,7 @@ public class UserController {
                 userService.newUser(user);
                 model.addAttribute("user", request.getSession().getAttribute("user"));
             }
-            return "redirect:/user";
+            return "redirect:user";
         } catch (Exception e) {
             return "error";
         }
@@ -95,7 +95,7 @@ public class UserController {
             User this_user = userService.queryById(id);
             model.addAttribute("this_user", this_user);
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "management/user/edit";
+            return "management/users/edit";
         } catch (Exception e) {
             return "error";
         }
@@ -110,7 +110,7 @@ public class UserController {
         try {
             userService.updateUserInfo(id, username, password);
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "redirect:/user";
+            return "redirect:user";
         } catch (Exception e) {
             return "error";
         }
@@ -126,7 +126,7 @@ public class UserController {
                 userService.deleteById(id);
             }
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "redirect:/user";
+            return "redirect:user";
         } catch (Exception e) {
             return "error";
         }
@@ -144,7 +144,7 @@ public class UserController {
                 userService.setStatus(id, status);
             }
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "redirect:/user";
+            return "redirect:user";
         } catch (Exception e) {
             return "error";
         }

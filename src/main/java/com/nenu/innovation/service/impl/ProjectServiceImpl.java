@@ -118,6 +118,19 @@ public class ProjectServiceImpl implements ProjectService{
             return projects;
         }catch (Exception e){
             System.out.println("根据条件查询项目出错！");
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Project> listByPage(int offset, int pageSize) throws Exception{
+        List<Project> projects = Collections.emptyList();
+        try{
+            projects = projectMapper.listByPage(offset,pageSize);
+            return projects;
+        }catch (Exception e){
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -130,7 +143,9 @@ public class ProjectServiceImpl implements ProjectService{
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("设置项目的学院名称出错！");
+            throw new Exception(e.getMessage());
         }
     }
+
 
 }

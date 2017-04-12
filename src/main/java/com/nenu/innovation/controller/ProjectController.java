@@ -30,13 +30,34 @@ public class ProjectController {
     @Autowired
     private SchoolService schoolService;
 
+//    @RequestMapping(value = "/project",method = RequestMethod.GET)
+//    public String toList(HttpServletRequest request,HttpServletResponse response,
+//                         Model model){
+//        List<Project> projects = Collections.emptyList();
+//        List<School> schools = Collections.emptyList();
+//        try{
+//            projects = projectService.listAll();
+//            schools = schoolService.listAll();
+//            model.addAttribute("projectList",projects);
+//            model.addAttribute("schoolList",schools);
+//            model.addAttribute("user",request.getSession().getAttribute("user"));
+//            return "management/project/list";
+//        }catch (Exception e){
+//            return "error";
+//        }
+//    }
+
     @RequestMapping(value = "/project",method = RequestMethod.GET)
     public String toList(HttpServletRequest request,HttpServletResponse response,
                          Model model){
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
         List<Project> projects = Collections.emptyList();
         List<School> schools = Collections.emptyList();
         try{
-            projects = projectService.listAll();
+            projects = projectService.listByPage(offset,pageSize);
             schools = schoolService.listAll();
             model.addAttribute("projectList",projects);
             model.addAttribute("schoolList",schools);
@@ -56,9 +77,6 @@ public class ProjectController {
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
-        if(schoolIdStr == null){
-            schoolIdStr = "1";
-        }
         int schoolId = Integer.parseInt(schoolIdStr);
         try{
             schools = schoolService.listAll();

@@ -88,4 +88,13 @@ public interface ProjectService {
      * @throws Exception
      */
     public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId) throws Exception;
+
+    /**
+     * 根据页码显示列表
+     *
+     * @param offset
+     * @param pageSize
+     * @return
+     */
+    public List<Project> listByPage(int offset, int pageSize)throws Exception;
 }

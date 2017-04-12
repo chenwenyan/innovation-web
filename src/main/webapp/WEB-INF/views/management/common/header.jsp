@@ -14,8 +14,8 @@
                 <li>
                     <a class="menu-list J_layer_1_menu" data-menu-id="2" href="/user">用户管理</a>
                     <ul class="dropdown-menu arrow" aria-labelledby="dLabel">
-                        <li><a class="J_menu" href="/user">用户信息管理</a></li>
-                        <li><a class="J_menu" href="/user/add">用户添加管理</a></li>
+                        <li><a class="J_menu" href="${website}/user">用户信息管理</a></li>
+                        <li><a class="J_menu" href="${website}/user/add">用户添加管理</a></li>
                     </ul>
                 </li>
 

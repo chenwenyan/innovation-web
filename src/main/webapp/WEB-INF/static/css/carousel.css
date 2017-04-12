@@ -21,18 +21,23 @@ body {
   font-size: 17px;
   line-height: 17px;
 }
+.fluid{
+  display: block;
+  background-color: #337ab7;
+
+}
 /* Flip around the padding for proper display in narrow viewports */
 .navbar-wrapper .navbar .container-fluid {
   width: auto;
-  background: #337ab7;  
+  background: #337ab7;
 }
 .navbar-wrapper .navbar li {
-  margin: 0;  
+  margin: 0;
   text-align: center;
   width: 250px;
 }
 .navbar-wrapper .navbar li:first-child{
-  margin-left: 130px;
+  margin-left: 40px;
 }
 .navbar-wrapper .navbar li:not(:last-child){
   border-right: 1px dotted #fff;

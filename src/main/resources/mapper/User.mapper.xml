@@ -30,8 +30,8 @@
     </select>
 
     <select id="listAll" resultMap="userResultMap">
-        SELECT *
-        FROM t_user
+        SELECT * FROM t_user
+        WHERE type = 1;
         ORDER BY created_time
     </select>
 

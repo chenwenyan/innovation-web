@@ -69,7 +69,7 @@ public class IndexController {
         return "management/login";
     }
 
-    @RequestMapping(value = "error")
+    @RequestMapping(value = "error",method = RequestMethod.GET)
     public String toError(HttpServletRequest request,Model model){
         model.addAttribute("user",request.getSession().getAttribute("user"));
         return "error";

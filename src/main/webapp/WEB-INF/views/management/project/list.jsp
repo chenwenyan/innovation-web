@@ -70,11 +70,8 @@
                                     <label class="col-sm-4 control-label">学院</label>
                                     <div class="col-sm-3">
                                         <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
+                                            <option value="0">全部</option>
                                             <c:forEach var="school" items="${schoolList}">
-                                                <c:if test="${schoolList.size() == 0}">
-                                                    <option value="-1">无</option>
-                                                </c:if>
-                                                <%--<option value="0">全部</option>--%>
                                                 <c:if test="${schoolList.size()> 0}" >
                                                     <option value="${school.id}">${school.name}</option>
                                                 </c:if>
@@ -133,7 +130,7 @@
                                     </c:if>
                                     </tbody>
                                 </table>
-                                <div class="J_pagination"></div>
+                                <div class="J_pagination"><ul id="pageLimit"></div>
                             </div>
                         </div>
                     </div>
@@ -160,6 +157,27 @@
                         window.location.reload();
                     }
                 });
+            }
+        });
+
+        $('#pageLimit').bootstrapPaginator({
+            currentPage: 1,
+            totalPages: ${fn:length(projectList)/10},
+            size:"normal",
+            bootstrapMajorVersion: 3,
+            alignment:"right",
+            numberOfPages:5,
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first": return "首页";
+                    case "prev": return "<<";
+                    case "next": return ">>";
+                    case "last": return "末页";
+                    case "page": return page;
+                }
+            },
+            pageUrl:function (url,page,current) {
+                return "/management/project?pageNo=" + page;
             }
         });
     });
