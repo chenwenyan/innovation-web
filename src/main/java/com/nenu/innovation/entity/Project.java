@@ -2,6 +2,7 @@ package com.nenu.innovation.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * School
@@ -36,6 +37,10 @@ public class Project {
 
     @Column(name = "last_modified_time")
     private Timestamp lastModifiedTime;
+
+    @Column(name = "year")
+
+    private Date year;
 
     public Integer getId() {
         return id;
@@ -99,5 +104,13 @@ public class Project {
 
     public void setLastModifiedTime(Timestamp lastModifiedTime) {
         this.lastModifiedTime = lastModifiedTime;
+    }
+
+    public Date getYear() {
+        return year;
+    }
+
+    public void setYear(Date year) {
+        this.year = year;
     }
 }

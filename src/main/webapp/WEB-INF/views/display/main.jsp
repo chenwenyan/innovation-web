@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
+    <jsp:include flush="true" page="/WEB-INF/views/display/common/head.jsp"/>
 </head>
 <body>
-<jsp:include flush="true" page="/WEB-INF/views/display/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -61,11 +61,6 @@
     </a>
 </div><!-- /.carousel -->
 
-
-<!-- Marketing messaging and featurettes
-================================================== -->
-<!-- Wrap the rest of the page in another container to center all the content. -->
-
 <div class="container marketing">
 
     <!-- Three columns of text below the carousel -->
@@ -77,7 +72,7 @@
             <p>创青春全国大学生创业大赛</p>
             <p>挑战杯</p>
             <p><a class="btn btn-default" href="#" role="button">详情 &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
+        </div>
         <div class="col-lg-4">
             <img class="img-circle" src="/img/2.jpg" alt="Generic placeholder image" width="140" height="140">
             <h2>创新创业科研项目</h2>
@@ -93,52 +88,21 @@
             <p>创业园&nbsp;&nbsp;企业注册</p>
             <p>科研成果</p>
             <p><a class="btn btn-default" href="#" role="button">详情 &raquo;</a></p>
-        </div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+        </div>
+    </div>
 
     <!-- START THE FEATURETTES -->
 
     <div class="row sousuo">
         <div class="col-sm-12">
-            <a href="#">
+            <a href="/search-project">
                 <img src="/img/search.jpg" alt="搜索入口" class="sousuo">
             </a>
         </div>
     </div>
 
-
-    <!-- START THE FEATURETTES -->
-
-    <!-- <div class="row dongtai">
-        <div>
-            <h4 class="headline">最新动态</h4>
-        </div>
-        <div class="col-lg-3 photo">
-            <a href="#">
-                <img src="/img/1.jpg" alt="最新动态">
-            </a>
-        </div>
-        <div class="col-lg-3 photo">
-            <a href="#">
-                <img src="/img/2.jpg" alt="最新动态">
-            </a>
-        </div>
-        <div class="col-lg-3 photo">
-            <a href="#">
-                <img src="/img/3.jpg" alt="最新动态">
-            </a>
-        </div>
-        <div class="col-lg-3 photo">
-            <a href="#">
-                <img src="/img/4.jpg" alt="最新动态">
-            </a>
-        </div>
-    </div>
-
-    <hr class="featurette-divider">
--->
 </div>
-<jsp:include flush="true" page="/WEB-INF/views/display/footer.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </body>
 </html>

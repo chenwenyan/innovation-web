@@ -24,6 +24,7 @@
 
     <select id="listByType" resultMap="articleResultMap">
         SELECT * FROM `t_article`
+        WHERE type_id = #{typeId}
         ORDER BY created_time
     </select>
     <select id="listByKeyWords" resultMap="articleResultMap">

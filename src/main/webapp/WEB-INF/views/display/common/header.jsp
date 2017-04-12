@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lenovo
-  Date: 2017/4/11
-  Time: 23:29
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +25,7 @@
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#"><i class="fa fa-home"></i>&nbsp;首页 <span
+                    <li class="active"><a href="/main"><i class="fa fa-home"></i>&nbsp;首页 <span
                             class="sr-only">(current)</span></a></li>
                     <li><a href="/matches"><i class="fa fa-anchor"></i>&nbsp;比赛</a></li>
                     <li><a href="/projects"><i class="fa fa-arrows"></i>&nbsp;立项</a></li>

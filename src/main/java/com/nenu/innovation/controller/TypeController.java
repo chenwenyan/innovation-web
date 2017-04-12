@@ -32,7 +32,8 @@ public class TypeController {
         try{
             types = typeService.listAll();
             model.addAttribute("typeList",types);
-            return "typeManagement/list";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/type/list";
         }catch (Exception e){
             return "error";
         }
@@ -47,7 +48,8 @@ public class TypeController {
         try{
             types = typeService.queryBySearchInfo(name,assistantCode);
             model.addAttribute("typeList",types);
-            return "typeManagement/list";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/type/list";
         }catch (Exception e){
             return "error";
         }
@@ -56,7 +58,8 @@ public class TypeController {
     @RequestMapping(value = "/type/add", method = RequestMethod.GET)
     public String toAdd(HttpServletRequest request, HttpServletResponse response,
                         Model model){
-        return "typeManagement/add";
+        model.addAttribute("user",request.getSession().getAttribute("user"));
+        return "management/type/add";
     }
 
     @RequestMapping(value = "/type/add",method = RequestMethod.POST)
@@ -69,6 +72,7 @@ public class TypeController {
                 model.addAttribute("msg","该类别名称已经存在！");
             }
            typeService.newType(name,assistantCode);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/type";
         }catch (Exception e){
             return "error";
@@ -84,8 +88,9 @@ public class TypeController {
             if(type == null){
                 model.addAttribute("msg","该类别不存在或者已被删除！");
             }
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             model.addAttribute("type",type);
-            return "typeManagement/edit";
+            return "management/type/edit";
         }catch (Exception e){
             return "error";
         }
@@ -99,6 +104,7 @@ public class TypeController {
         String assistantCode = request.getParameter("assistantCode");
         try{
             typeService.updateTypeInfo(id,name,assistantCode);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/type";
         }catch (Exception e){
             return "error";
@@ -115,6 +121,7 @@ public class TypeController {
                 model.addAttribute("msg","该类别不存在或者已被删除！");
             }
             typeService.deleteById(id);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/type";
         }catch (Exception e){
             return "error";

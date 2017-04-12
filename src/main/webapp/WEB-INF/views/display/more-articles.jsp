@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
+    <jsp:include flush="true" page="/WEB-INF/views/display/common/head.jsp"/>
 </head>
 <body>
-<jsp:include flush="true" page="/WEB-INF/views/display/header.jsp"/>
-<!-- START THE FEATURETTES -->
+<jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
 <div class="public">
     <div class="container">
         <div class="row">
@@ -84,7 +85,7 @@
         </div>
     </div>
 </div>
-<jsp:include flush="true" page="/WEB-INF/views/display/footer.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </body>
 </html>

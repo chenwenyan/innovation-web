@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>项目编辑</title>
-    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
+    <title>添加项目</title>
+    <jsp:include flush="true" page="/WEB-INF/views/management/common/head.jsp"/>
     <style type="text/css">
         .tip1 {
             height: 32px;
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-<jsp:include flush="true" page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/management/common/header.jsp"/>
 <div class="page clearfix">
     <div class="holder">
         <div class="container">
@@ -33,14 +33,14 @@
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
                         <li><a href="${website}/project">项目管理</a></li>
-                        <li><a href="javascript:;" class="active">项目编辑管理</a></li>
+                        <li><a href="${website}/project/add" class="active">项目添加管理</a></li>
                     </ol>
-                    <h2>项目编辑</h2>
+                    <h2>添加项目</h2>
                     <div class="alert alert-success">${msg}</div>
                 </div>
 
                 <div class="col-sm-12">
-                    <form class="J_form form-horizontal inline" action="${website}/project/edit?id=${project.id}"
+                    <form class="J_form form-horizontal inline" action="${website}/project/add"
                           method="post">
                         <div class="panel panel-info">
                             <div class="panel-heading">
@@ -50,7 +50,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>项目名称</label>
                                     <div class="col-sm-9">
-                                        <input type="text" value="${project.name}"
+                                        <input type="text"
                                                placeholder="请输入项目名称" class="w180 form-control name col-sm-3"
                                                name="name">
                                         <span class="tip2 col-sm-6">项目名称不能为空，请重新填写</span>
@@ -59,7 +59,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>负责人</label>
                                     <div class="col-sm-9">
-                                        <input type="text" value="${project.charger}"
+                                        <input type="text"
                                                placeholder="请输入负责人姓名" class="w180 form-control name col-sm-3"
                                                name="charger">
                                         <span class="tip2 col-sm-6">负责人姓名不能为空，请重新填写</span>
@@ -68,14 +68,14 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>指导老师</label>
                                     <div class="col-sm-9">
-                                        <input type="text" value="${project.teacher}"
+                                        <input type="text"
                                                placeholder="请输入指导老师姓名" class="w180 form-control name col-sm-3"
                                                name="teacher">
                                         <span class="tip2 col-sm-6">指导老师姓名不能为空，请重新填写</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><span class="requires">*</span>学院</label>
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>指导老师</label>
                                     <div class="col-sm-9">
                                         <select class="col-sm-2 form-control w180" name = "schoolId" id="schoolId">
                                             <c:forEach var="school" items="${schoolList}">

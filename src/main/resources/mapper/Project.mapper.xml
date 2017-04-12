@@ -11,6 +11,7 @@
         <result column="school_id" property="schoolId"/>
         <result column="created_time" property="createdTime" />
         <result column="last_modified_time" property="lastModifiedTime" />
+        <result column="year" property="year" />
     </resultMap>
 
     <insert id="newProject">

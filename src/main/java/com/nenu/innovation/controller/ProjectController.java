@@ -26,6 +26,7 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
+
     @Autowired
     private SchoolService schoolService;
 
@@ -39,7 +40,8 @@ public class ProjectController {
             schools = schoolService.listAll();
             model.addAttribute("projectList",projects);
             model.addAttribute("schoolList",schools);
-            return "projectManagement/list";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/project/list";
         }catch (Exception e){
             return "error";
         }
@@ -49,6 +51,7 @@ public class ProjectController {
     public String toSearchList(HttpServletRequest request,HttpServletResponse response,
                                Model model){
         List<Project> projects = Collections.emptyList();
+        List<School> schools = Collections.emptyList();
         String name = request.getParameter("name");
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
@@ -58,9 +61,12 @@ public class ProjectController {
         }
         int schoolId = Integer.parseInt(schoolIdStr);
         try{
+            schools = schoolService.listAll();
+            model.addAttribute("schoolList",schools);
             projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId);
             model.addAttribute("projectList",projects);
-            return "projectManagement/list";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/project/list";
         }catch (Exception e){
             return "error";
         }
@@ -73,7 +79,8 @@ public class ProjectController {
         try{
             schools = schoolService.listAll();
             model.addAttribute("schoolList",schools);
-            return "projectManagement/add";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/project/add";
         }catch (Exception e){
             return "error";
         }
@@ -91,6 +98,7 @@ public class ProjectController {
                 model.addAttribute("msg","该项目名称已经存在！");
             }
             projectService.newProject(name,charger,teacher,schoolId);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/project";
         }catch (Exception e){
             return "error";
@@ -110,7 +118,8 @@ public class ProjectController {
             schools = schoolService.listAll();
             model.addAttribute("schoolList",schools);
             model.addAttribute("project",project);
-            return "projectManagement/edit";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/project/edit";
         }catch (Exception e){
             return "error";
         }
@@ -126,6 +135,7 @@ public class ProjectController {
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
         try{
             projectService.updateProjectInfo(id,name,charger,teacher,schoolId);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/project";
         }catch (Exception e){
             return "error";
@@ -142,6 +152,7 @@ public class ProjectController {
                 model.addAttribute("msg","该项目不存在或者已被删除！");
             }
             projectService.deleteById(id);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/project";
         }catch (Exception e){
             return "error";

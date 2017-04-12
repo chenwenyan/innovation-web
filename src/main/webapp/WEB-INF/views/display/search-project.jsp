@@ -3,14 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
+    <jsp:include flush="true" page="/WEB-INF/views/display/common/head.jsp"/>
 </head>
 <body>
-<jsp:include flush="true" page="/WEB-INF/views/display/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
 <div class="img-container">
     <img src="/img/head1.jpg" alt="大学生创新创业计划">
 </div>
-<!-- START THE FEATURETTES -->
 <div class="public">
     <div class="container">
         <div class="row">
@@ -36,7 +35,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="" method="" class="form-horizontal">
+                        <form action="/search-project" method="post" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目名称：</label>
                                 <div class="col-sm-6">
@@ -140,7 +139,7 @@
     </div>
 </div>
 
-<jsp:include flush="true" page="/WEB-INF/views/display/footer.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </body>
 </html>

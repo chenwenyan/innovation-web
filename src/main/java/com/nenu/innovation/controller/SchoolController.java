@@ -31,7 +31,8 @@ public class SchoolController {
         try{
             schools = schoolService.listAll();
             model.addAttribute("schoolList",schools);
-            return "schoolManagement/list";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/school/list";
         }catch (Exception e){
             return "error";
         }
@@ -45,7 +46,8 @@ public class SchoolController {
         try{
             schools = schoolService.queryBySearchInfo(name);
             model.addAttribute("schoolList",schools);
-            return "schoolManagement/list";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/school/list";
         }catch (Exception e){
             return "error";
         }
@@ -54,7 +56,8 @@ public class SchoolController {
     @RequestMapping(value = "/school/add", method = RequestMethod.GET)
     public String toAdd(HttpServletRequest request, HttpServletResponse response,
                         Model model){
-        return "schoolManagement/add";
+        model.addAttribute("user",request.getSession().getAttribute("user"));
+        return "management/school/add";
     }
 
     @RequestMapping(value = "/school/add",method = RequestMethod.POST)
@@ -66,6 +69,7 @@ public class SchoolController {
                 model.addAttribute("msg","该学院名称已经存在！");
             }
             schoolService.newSchool(name);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/school";
         }catch (Exception e){
             return "error";
@@ -82,7 +86,8 @@ public class SchoolController {
                 model.addAttribute("msg","该学院不存在或者已被删除！");
             }
             model.addAttribute("school",school);
-            return "schoolManagement/edit";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/school/edit";
         }catch (Exception e){
             return "error";
         }
@@ -96,6 +101,7 @@ public class SchoolController {
         String name = request.getParameter("name");
         try{
             schoolService.updateSchoolInfo(id,name);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/school";
         }catch (Exception e){
             return "error";
@@ -112,6 +118,7 @@ public class SchoolController {
                 model.addAttribute("msg","该学院不存在或者已被删除！");
             }
             schoolService.deleteById(id);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/school";
         }catch (Exception e){
             return "error";

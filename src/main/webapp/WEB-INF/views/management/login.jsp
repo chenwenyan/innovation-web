@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>用户登录</title>
-    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
+    <jsp:include flush="true" page="/WEB-INF/views/management/common/head.jsp"/>
 </head>
 <body class="login-background">
 <div class="page container clearfix">

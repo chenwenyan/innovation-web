@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  * displayController
@@ -40,66 +39,118 @@ public class displayController {
         return "display/main";
     }
 
-    @RequestMapping(value = "/searchProject", method = RequestMethod.GET)
-    public String searchProject(Model model) {
+    @RequestMapping(value = "/search-project", method = RequestMethod.GET)
+    public String searchProject(HttpServletRequest request,HttpServletResponse response,
+                                Model model) {
         List<Project> projects = Collections.emptyList();
         List<School> schools = Collections.emptyList();
-        try {
-            projects = projectService.listAll();
+        String name = request.getParameter("name");
+        String charger = request.getParameter("charger");
+        String teacher = request.getParameter("teacher");
+        String schoolIdStr = request.getParameter("schoolId");
+        if(schoolIdStr == null){
+            schoolIdStr = "1";
+        }
+        int schoolId = Integer.parseInt(schoolIdStr);
+        try{
             schools = schoolService.listAll();
-            model.addAttribute("projectList", projects);
-            model.addAttribute("schoolList", schools);
-            return "display/searchProject";
-        } catch (Exception e) {
+            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId);
+            model.addAttribute("schoolList",schools);
+            model.addAttribute("projectList",projects);
+            return "display/search-project";
+        }catch (Exception e){
             return "error";
         }
+    }
+
+    @RequestMapping(value = "/search-project", method = RequestMethod.POST)
+    public String searchProject() {
+          return "redirect:/search-project";
     }
 
     @RequestMapping(value = "/matches", method = RequestMethod.GET)
     public String toMatches(HttpServletRequest request, HttpServletResponse response,
                                 Model model) {
-        List<Article> matches = Collections.emptyList();
-        int typeId = 1;
+        List<Article> hlw = Collections.emptyList();  //互联网+
+        List<Article> cqc = Collections.emptyList(); //创青春全国大学生创业大赛
+        List<Article> tzb = Collections.emptyList();  //挑战杯
+        List<Article> matches = Collections.emptyList(); //总比赛
         try {
-            matches = articleService.listByType(typeId);
+            hlw = articleService.listByType(1);
+            cqc = articleService.listByType(2);
+            tzb = articleService.listByType(3);
+            model.addAttribute("hlw", hlw);
+            model.addAttribute("cqc", cqc);
+            model.addAttribute("tzb", tzb);
+//            matches.addAll(hlw);
+//            matches.addAll(cqc);
+//            matches.addAll(tzb);
+//            concat(matches,hlw);
+//            concat(matches,cqc);
+//            concat(matches,tzb);
             model.addAttribute("matches", matches);
             return "display/matches";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "error";
+        }
+    }
+
+    @RequestMapping(value = "/plans", method = RequestMethod.GET)
+    public String toProjects(HttpServletRequest request, HttpServletResponse response,
+                                Model model) {
+        List<Article> sqshsjgg = Collections.emptyList();  //暑期社会实践
+        List<Article> kyfc = Collections.emptyList();  //科研扶持
+        List<Article> cyy = Collections.emptyList();  //创业园
+        List<Article> qyzc = Collections.emptyList();   //企业注册
+        List<Article> kycg = Collections.emptyList();   //科研成果
+
+        List<Article> plans = Collections.emptyList();  //总计划
+        try {
+            sqshsjgg = articleService.listByType(4);
+            kyfc = articleService.listByType(5);
+            cyy = articleService.listByType(6);
+            qyzc = articleService.listByType(7);
+            kycg = articleService.listByType(8);
+            model.addAttribute("sqshsjgg", sqshsjgg);
+            model.addAttribute("kyfc", kyfc);
+            model.addAttribute("cyy", cyy);
+            model.addAttribute("qyzc", qyzc);
+            model.addAttribute("kycg", kycg);
+//            plans.addAll(sqshsjgg);
+//            plans.addAll(kyfc);
+//            plans.addAll(cyy);
+//            plans.addAll(qyzc);
+//            plans.addAll(kycg);
+//            plans = concat(plans,sqshsjgg);
+//            plans = concat(plans,kyfc);
+//            plans = concat(plans,cyy);
+//            plans = concat(plans,qyzc);
+//            plans = concat(plans,kycg);
+//            model.addAttribute("plans", plans);
+            return "display/plans";
         } catch (Exception e) {
             return "error";
         }
     }
 
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
-    public String toProjects(HttpServletRequest request, HttpServletResponse response,
-                                Model model) {
-        List<Article> projects = Collections.emptyList();
-        int typeId = 2;
-        try {
-            projects = articleService.listByType(typeId);
-            model.addAttribute("projects", projects);
-            return "display/projects";
-        } catch (Exception e) {
-            return "error";
-        }
-    }
-
-    @RequestMapping(value = "/plans", method = RequestMethod.GET)
     public String toPlans(HttpServletRequest request, HttpServletResponse response,
                              Model model) {
-        List<Article> sqshsjs = Collections.emptyList();
-        List<Article> kyfcs = Collections.emptyList();
-        List<Article> kycgs = Collections.emptyList();
-        int sqshsj = 3; //暑期社会实践
-        int kyfc = 4; //科研扶持
-        int kycg = 5; //科研成果
+        List<Article> gjjcxcyxljh = Collections.emptyList();//国家级创新创业训练计划
+        List<Article> kylx = Collections.emptyList(); //科研立项
+//        List<Article> projects = Collections.emptyList(); //总立项
         try {
-            sqshsjs = articleService.listByType(sqshsj);
-            kyfcs = articleService.listByType(kyfc);
-            kycgs = articleService.listByType(kycg);
-            model.addAttribute("sqshsjs", sqshsjs);
-            model.addAttribute("kyfcs", kyfcs);
-            model.addAttribute("kycgs", kycgs);
-            return "display/plans";
+            gjjcxcyxljh = articleService.listByType(9);
+            kylx = articleService.listByType(10);
+//            projects.addAll(gjjcxcyxljh);
+//            projects.addAll(kylx);
+//            projects = concat(projects,gjjcxcyxljh);
+//            projects = concat(projects,kylx);
+            model.addAttribute("gjjcxcyxljh", gjjcxcyxljh);
+            model.addAttribute("kylx", kylx);
+//            model.addAttribute("projects", projects);
+            return "display/projects";
         } catch (Exception e) {
             return "error";
         }
@@ -111,8 +162,21 @@ public class displayController {
     }
 
     @RequestMapping(value = "article-detail", method = RequestMethod.GET)
-    public String articleDetail(Model model) {
-        return "display/article-detail";
+    public String articleDetail(Model model,int id) {
+        Article article = new Article();
+        try {
+            article = articleService.queryById(id);
+            model.addAttribute("article",article);
+            return "display/article-detail";
+        }catch (Exception e){
+            return "error";
+        }
     }
 
+    private List<Article> concat(List<Article> list1,List<Article> list2)throws Exception{
+        for(Article article : list2){
+            Collections.addAll(list1,article);
+        }
+        return list1;
+    }
 }

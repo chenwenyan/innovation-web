@@ -68,10 +68,9 @@ public class ProjectServiceImpl implements ProjectService{
             return projects;
         }catch (Exception e){
             System.out.println("显示项目列表出错！");
-//            throw new Exception(e.getMessage());
             e.printStackTrace();
+            throw new Exception(e.getMessage());
         }
-        return projects;
     }
 
     @Override

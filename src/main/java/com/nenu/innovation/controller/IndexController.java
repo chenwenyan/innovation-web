@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * indexController
@@ -22,23 +23,17 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public String toIndex(){
-        return "/index";
-    }
-
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String toLogin(HttpServletRequest request,Model model){
+    @RequestMapping(value = {"","login"}, method = RequestMethod.GET)
+    public String toIndex(HttpServletRequest request, HttpServletResponse response,
+                          Model model){
         if(request.getSession().getAttribute("user") != null){
             User user = (User)request.getSession().getAttribute("user");
-            if(user.getUsername().equals("admin")){
-                return "index";
-            }else{
-                return "index";
-            }
-        }else{
-            return "login";
+            model.addAttribute("user",user);
+            return "index";
+        }else {
+            return "management/login";
         }
+
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -49,11 +44,11 @@ public class IndexController {
                 return "redirect:index";
             }else{
                 model.addAttribute("msg","登录失败，请重新输入！");
-                return "login";
+                return "management/login";
             }
         }catch (Exception e){
             model.addAttribute("error", e.getMessage());
-            return "login";
+            return "management/login";
         }
     }
 
@@ -67,8 +62,16 @@ public class IndexController {
         }
     }
 
+    @RequestMapping(value = "logout", method = RequestMethod.POST)
+    public String logout(HttpServletRequest request,HttpServletResponse response,
+                         Model model){
+        request.getSession().setAttribute("user",null);
+        return "management/login";
+    }
+
     @RequestMapping(value = "error")
-    public String toError(){
+    public String toError(HttpServletRequest request,Model model){
+        model.addAttribute("user",request.getSession().getAttribute("user"));
         return "error";
     }
 }

@@ -42,17 +42,17 @@
     <mvc:resources mapping="/css/**" location="WEB-INF/static/css/" />
     <mvc:resources mapping="/img/**" location="WEB-INF/static/img/" />
 
-    <!--    &lt;!&ndash;拦截器&ndash;&gt;
-        <mvc:interceptors>
-            <mvc:interceptor>
-                &lt;!&ndash;需拦截的地址&ndash;&gt;
-                <mvc:mapping path="/index" />
-                <mvc:mapping path="/*/*" />
+    <!-- 自定义拦截链配置 -->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/index"/>-->
+            <!--<mvc:mapping path="/user/**"/>-->
+            <!--<mvc:mapping path="/article/**"/>-->
+            <!--<mvc:mapping path="/school/**"/>-->
+            <!--<mvc:mapping path="/project/**"/>-->
+            <!--<mvc:mapping path="/type/**"/>-->
+            <!--<bean class="com.nenu.innovation.controller.UserInterceptor"></bean>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
-                <bean class="com.houseyoung.ssm_sample.interceptor.LoginInterceptor">
-                    &lt;!&ndash;登录页地址&ndash;&gt;
-                    <property name="loginUrl" value="/login"/>
-                </bean>
-            </mvc:interceptor>
-        </mvc:interceptors>-->
 </beans>

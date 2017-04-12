@@ -25,128 +25,127 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String toList(HttpServletRequest request,Model model){
-        try{
-            if(request.getSession().getAttribute("user") != null){
-                User user = (User)request.getSession().getAttribute("user");
-                model.addAttribute("user",user);
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public String toList(HttpServletRequest request, Model model) {
+        try {
+            if (request.getSession().getAttribute("user") != null) {
+                User user = (User) request.getSession().getAttribute("user");
+                model.addAttribute("user", user);
             }
             List<User> users = userService.listAll();
-            model.addAttribute("userList",users);
-            return "/userManagement/list";
-        }catch (Exception e){
+            model.addAttribute("userList", users);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
+            return "management/user/list";
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String searchByInfo(HttpServletRequest request,Model model){
+    @RequestMapping(value = "user", method = RequestMethod.POST)
+    public String searchByInfo(HttpServletRequest request, Model model) {
         String username = request.getParameter("username").trim();
         int status = Integer.parseInt(request.getParameter("status"));
         List<User> users = Collections.emptyList();
-        try{
-//            if(request.getSession().getAttribute("user") != null){
-//                User user = (User)request.getSession().getAttribute("user");
-//                model.addAttribute("user",user);
-//            }
-            users = userService.queryBySearchInfo(username,status);
-            model.addAttribute("userList",users);
-            return "/userManagement/list";
-        }catch (Exception e){
+        try {
+            model.addAttribute("user", request.getSession().getAttribute("user"));
+            users = userService.queryBySearchInfo(username, status);
+            model.addAttribute("userList", users);
+            return "management/user/list";
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/user/add",method = RequestMethod.GET)
-    public String toAdd(HttpServletRequest request, HttpServletResponse response,Model model){
-        try{
-            if(request.getSession().getAttribute("user") != null){
-                User user = (User)request.getSession().getAttribute("user");
-                model.addAttribute("user",user);
-            }
-            return "/userManagement/add";
-        }catch (Exception e){
+    @RequestMapping(value = "user/add", method = RequestMethod.GET)
+    public String toAdd(HttpServletRequest request, HttpServletResponse response, Model model) {
+        try {
+            model.addAttribute("user", request.getSession().getAttribute("user"));
+            return "management/user/add";
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/user/add",method = RequestMethod.POST)
-    public String newUser(HttpServletRequest request,HttpServletResponse response,
-                          Model model){
+    @RequestMapping(value = "user/add", method = RequestMethod.POST)
+    public String newUser(HttpServletRequest request, HttpServletResponse response,
+                          Model model) {
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
         User user = new User();
-        if(username != null && password != null){
+        if (username != null && password != null) {
             user.setUsername(username);
             user.setPassword(password);
         }
-        try{
-            if(userService.checkExistByUsername(username)){
-                model.addAttribute("msg","用户名已存在！");
-            }else {
+        try {
+            if (userService.checkExistByUsername(username)) {
+                model.addAttribute("msg", "用户名已存在！");
+            } else {
                 userService.newUser(user);
-//                return "redirect:/user/add";
+                model.addAttribute("user", request.getSession().getAttribute("user"));
             }
-        }catch (Exception e){
+            return "redirect:/user";
+        } catch (Exception e) {
             return "error";
         }
-        return "redirect:/user";
     }
 
     @RequestMapping(value = "user/edit", method = RequestMethod.GET)
-    public String toEditPage(int id, Model model){
-        try{
-            User user = userService.queryById(id);
-            model.addAttribute("user",user);
-            return "/userManagement/edit";
-        }catch (Exception e){
+    public String toEditPage(HttpServletRequest request, int id, Model model) {
+        try {
+            User this_user = userService.queryById(id);
+            model.addAttribute("this_user", this_user);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
+            return "management/user/edit";
+        } catch (Exception e) {
             return "error";
         }
     }
 
     @RequestMapping(value = "user/edit", method = RequestMethod.POST)
-    public String toEdit(HttpServletRequest request,HttpServletResponse response,
-                         Model model){
+    public String toEdit(HttpServletRequest request, HttpServletResponse response,
+                         Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        try{
-            userService.updateUserInfo(id,username,password);
-        }catch (Exception e){
+        try {
+            userService.updateUserInfo(id, username, password);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
+            return "redirect:/user";
+        } catch (Exception e) {
             return "error";
         }
-        return "redirect:/user";
     }
 
-    @RequestMapping(value = "user/delete",method = RequestMethod.POST)
-    public String deleteUser(int id,Model model){
-        try{
+    @RequestMapping(value = "user/delete", method = RequestMethod.POST)
+    public String deleteUser(HttpServletRequest request, int id, Model model) {
+        try {
             User user = userService.queryById(id);
-            if(user == null){
-              model.addAttribute("msg","该用户不存在！");
-            }else {
+            if (user == null) {
+                model.addAttribute("msg", "该用户不存在！");
+            } else {
                 userService.deleteById(id);
             }
-        }catch (Exception e){
+            model.addAttribute("user", request.getSession().getAttribute("user"));
+            return "redirect:/user";
+        } catch (Exception e) {
             return "error";
         }
-        return "redirect:/user";
     }
 
-    @RequestMapping(value = "user/setStatus",method = RequestMethod.POST)
-    public String setStatus(int id,Model model){
+    @RequestMapping(value = "user/setStatus", method = RequestMethod.POST)
+    public String setStatus(HttpServletRequest request, int id, Model model) {
         int status = 1;
-        try{
+        try {
             User user = userService.queryById(id);
-            if(user == null){
-                model.addAttribute("msg","该用户不存在！");
-            }else {
-                status = (user.getStatus() == 1 )? 2 : 1;
-                userService.setStatus(id,status);
+            if (user == null) {
+                model.addAttribute("msg", "该用户不存在！");
+            } else {
+                status = (user.getStatus() == 1) ? 2 : 1;
+                userService.setStatus(id, status);
             }
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/user";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }

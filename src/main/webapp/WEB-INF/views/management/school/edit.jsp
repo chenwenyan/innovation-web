@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>学院编辑</title>
-    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
+    <jsp:include flush="true" page="/WEB-INF/views/management/common/head.jsp"/>
     <style type="text/css">
         .tip1 {
             height: 32px;
@@ -24,7 +24,7 @@
     </style>
 </head>
 <body>
-<jsp:include flush="true" page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/management/common/header.jsp"/>
 <div class="page clearfix">
     <div class="holder">
         <div class="container">

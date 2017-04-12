@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>用户添加</title>
-    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
+    <title>类别编辑</title>
+    <jsp:include flush="true" page="/WEB-INF/views/management/common/head.jsp"/>
     <style type="text/css">
         .tip1 {
             height: 32px;
@@ -24,23 +24,23 @@
     </style>
 </head>
 <body>
-<jsp:include flush="true" page="/WEB-INF/views/common/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/management/common/header.jsp"/>
 <div class="page clearfix">
     <div class="holder">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
-                        <li><a href="${website}/index"><i class="fa fa-home"></i>&nbsp;首页</a></li>
-                        <li><a href="${website}/user">用户管理</a></li>
-                        <li><a href="${website}/user/edit" class="active">用户编辑管理</a></li>
+                        <li><a href="${website}/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
+                        <li><a href="${website}/type">类别管理</a></li>
+                        <li><a href="javascript:;" class="active">类别编辑管理</a></li>
                     </ol>
-                    <h2>编辑用户</h2>
-                    <!--<div class="alert alert-success">保存成功！</div>-->
+                    <h2>编辑类别</h2>
+                    <div class="alert alert-success">${msg}</div>
                 </div>
 
                 <div class="col-sm-12">
-                    <form class="J_form form-horizontal inline" action="${website}/user/edit?id=${user.id}"
+                    <form class="J_form form-horizontal inline" action="${website}/type/edit?id=${type.id}"
                           method="post">
                         <div class="panel panel-info">
                             <div class="panel-heading">
@@ -48,25 +48,22 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><span class="requires">*</span>用户名称</label>
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>类别名称</label>
                                     <div class="col-sm-9">
-                                        <input type="text" value="${user.username}"
-                                               placeholder="请输入用户名称" class="w180 form-control name col-sm-3"
-                                               name="username">
-                                        <span class="tip2 col-sm-6">用户名称不能为空，请重新填写</span>
+                                        <input type="text" value="${type.name}"
+                                               placeholder="请输入类别名称" class="w180 form-control name col-sm-3"
+                                               name="name">
+                                        <span class="tip2 col-sm-6">类别名称不能为空，请重新填写</span>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><span class="requires">*</span>用户名称</label>
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>助记码</label>
                                     <div class="col-sm-9">
-                                        <input type="text" value="${user.password}"
-                                               placeholder="请输入用户名称" class="w180 form-control name col-sm-3"
-                                               name="password">
-                                        <span class="tip2 col-sm-6">用户密码不能为空，请重新填写</span>
+                                        <input type="text" value="${type.assistantCode}"
+                                               placeholder="请输入助记码" class="w180 form-control name col-sm-3"
+                                               name="assistantCode">
+                                        <span class="tip2 col-sm-6">助记码不能为空，请重新填写</span>
                                     </div>
-                                </div>
-                                <div hidden>
-                                    <input value="${user.status}" name="status">
                                 </div>
                             </div>
                             <div class="panel-footer clearfix">
@@ -94,9 +91,9 @@
         $(".tip2").hide();
 
         //验证是否为空
-        $(".username").blur(function () {
-            var username = $(".username").val();
-            if (username == "") {
+        $(".name").blur(function () {
+            var name = $(".name").val();
+            if (name == "") {
                 $(".tip1").show();
             }
             else {
@@ -105,14 +102,14 @@
         });
 
         //输入时不显示tip
-        $(".username").focus(function () {
+        $(".name").focus(function () {
             $(".tip1").hide();
         });
 
         //验证是否为空
-        $(".name").blur(function () {
-            var name = $(".name").val();
-            if (name == "") {
+        $(".assistantCode").blur(function () {
+            var assistantCode = $(".assistantCode").val();
+            if (assistantCode == "") {
                 $(".tip2").show();
             }
             else {
@@ -121,15 +118,15 @@
         });
 
         //输入时不显示tip
-        $(".name").focus(function () {
+        $(".assistantCode").focus(function () {
             $(".tip2").hide();
         });
 
         //表单提交验证
         $(".J_form").submit(function () {
-            var username = $(".username").val();
             var name = $(".name").val();
-            if (name == null || name == "") {
+            var assistantCode = $(".assistantCode").val();
+            if (name == null || assistantCode == "") {
                 alert("请将内容填写完整！");
                 return false;
             }

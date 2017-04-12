@@ -1,14 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <jsp:include flush="true" page="/WEB-INF/views/common/head.jsp"/>
+    <jsp:include flush="true" page="/WEB-INF/views/display/common/head.jsp"/>
 </head>
 <body>
-<jsp:include flush="true" page="/WEB-INF/views/display/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
 <div class="img-container">
     <img src="/img/head1.jpg" alt="大学生创新创业计划">
 </div>
-<!-- START THE FEATURETTES -->
 <div class="public">
     <div class="container">
         <div class="row">
@@ -36,30 +38,24 @@
             </div>
             <div class="col-sm-7">
                 <ul class="info-list">
-                    <li>
-                        <a href="#" class="clearfix">
-                            <i class="fa fa-check-circle info-icon">&nbsp;</i>
-                            <span class="info-detail">关于东北师范大学大学生数字摄制媒体中心骨干选聘的通知中心骨干选聘的通知</span>
-                            <span class="info-date">[2017-04-07]</span>
-                        </a>
-                        <div class="line"></div>
-                    </li>
-                    <li>
-                        <a href="#" class="clearfix">
-                            <i class="fa fa-check-circle info-icon">&nbsp;</i>
-                            <span class="info-detail">关于东北师范大学大学生数字摄制媒体中心骨干选聘的通知中心骨干选聘的通知</span>
-                            <span class="info-date">[2017-04-07]</span>
-                        </a>
-                        <div class="line"></div>
-                    </li>
-                    <li>
-                        <a href="#" class="clearfix">
-                            <i class="fa fa-check-circle info-icon">&nbsp;</i>
-                            <span class="info-detail">关于东北师范大学大学生数字摄制媒体中心骨干选聘的通知中心骨干选聘的通知</span>
-                            <span class="info-date">[2017-04-07]</span>
-                        </a>
-                        <div class="line"></div>
-                    </li>
+                    <c:forEach var="item" items="${gjjcxcyxljh}">
+                        <li>
+                            <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                <i class="fa fa-fire">&nbsp;&nbsp;</i>
+                                <span class="information">${item.title}</span>
+                                <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                            </a>
+                        </li>
+                    </c:forEach>
+                    <c:forEach var="item" items="${kylx}">
+                        <li>
+                            <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                <i class="fa fa-fire">&nbsp;&nbsp;</i>
+                                <span class="information">${item.title}</span>
+                                <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                            </a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
             <div class="col-sm-3 col-sm-offset-8 margin-top-50">
@@ -86,7 +82,7 @@
         </div>
     </div>
 </div>
-<jsp:include flush="true" page="/WEB-INF/views/display/footer.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </body>
 </html>

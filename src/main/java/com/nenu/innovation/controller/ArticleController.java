@@ -49,7 +49,8 @@ public class ArticleController {
             model.addAttribute("articleList", articles);
             model.addAttribute("userList", users);
             model.addAttribute("typeList", types);
-            return "/articleManagement/list";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/article/list";
         } catch (Exception e) {
             return "error";
         }
@@ -71,7 +72,8 @@ public class ArticleController {
             model.addAttribute("articleList", articles);
             model.addAttribute("userList", users);
             model.addAttribute("typeList", types);
-            return "/articleManagement/list";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/article/list";
         } catch (Exception e) {
             return "error";
         }
@@ -84,7 +86,8 @@ public class ArticleController {
         try {
             types = typeService.listAll();
             model.addAttribute("typeList", types);
-            return "articleManagement/add";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/article/add";
         } catch (Exception e) {
             return "error";
         }
@@ -98,6 +101,7 @@ public class ArticleController {
         String content = request.getParameter("content");
         try {
             articleService.newArticle(title, content, typeId, 1);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/article";
         } catch (Exception e) {
             return "error";
@@ -114,7 +118,8 @@ public class ArticleController {
             article = articleService.queryById(id);
             model.addAttribute("article", article);
             model.addAttribute("typeList", types);
-            return "articleManagement/edit";
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/article/edit";
         } catch (Exception e) {
             return "error";
         }
@@ -128,9 +133,10 @@ public class ArticleController {
             String title = request.getParameter("title");
             String content = request.getParameter("content");
             int typeId = Integer.parseInt(request.getParameter("typeId"));
-            //  int creatorId = Integer.parseInt(request.getParameter("creatorId"));
-            int creatorId = 1;
+            User user = (User)request.getSession().getAttribute("user");
+            int creatorId = user.getId();
             articleService.updateArticleById(id, title, content, typeId, creatorId);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/article";
         } catch (Exception e) {
             e.printStackTrace();
@@ -146,6 +152,7 @@ public class ArticleController {
                 model.addAttribute("msg", "该文章不存在或已被删除！");
             }
             articleService.deleteById(id);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/article";
         } catch (Exception e) {
             return "error";
