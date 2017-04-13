@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * displayController
@@ -157,8 +158,17 @@ public class displayController {
     }
 
     @RequestMapping(value = "more-articles", method = RequestMethod.GET)
-    public String moreArticles(Model model) {
-        return "display/more-articles";
+    public String moreArticles(HttpServletRequest request,HttpServletResponse response,
+                               Model model) {
+        int typeId = Integer.parseInt(request.getParameter("typeId"));
+        List<Article> articles = Collections.emptyList();
+        try{
+            articles = articleService.listByType(typeId);
+            model.addAttribute("list",articles);
+            return "display/more-articles";
+        }catch (Exception e){
+            return "error";
+        }
     }
 
     @RequestMapping(value = "article-detail", method = RequestMethod.GET)
@@ -166,7 +176,10 @@ public class displayController {
         Article article = new Article();
         try {
             article = articleService.queryById(id);
-            model.addAttribute("article",article);
+            if(article != null){
+                articleService.updateReadNum(id);
+                model.addAttribute("article",article);
+            }
             return "display/article-detail";
         }catch (Exception e){
             return "error";

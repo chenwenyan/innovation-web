@@ -44,7 +44,7 @@
             <p>互联网+</p>
             <p>创青春全国大学生创业大赛</p>
             <p>挑战杯</p>
-            <p><a class="btn btn-default" href="#" role="button">详情 &raquo;</a></p>
+            <p><a class="btn btn-default" href="/matches" role="button">详情 &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <img class="img-circle" src="/img/2.jpg" alt="Generic placeholder image" width="140" height="140">
@@ -52,7 +52,7 @@
             <p>国家级大学生创新创业训练计划</p>
             <p>“中央高校基本科研业务专项资金”本科生项目</p>
             <p>&nbsp;</p>
-            <p><a class="btn btn-default" href="#" role="button">详情 &raquo;</a></p>
+            <p><a class="btn btn-default" href="/project" role="button">详情 &raquo;</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <img class="img-circle" src="/img/3.jpg" alt="Generic placeholder image" width="140" height="140">
@@ -60,7 +60,7 @@
             <p>暑期社会实践&nbsp;&nbsp;科研扶持</p>
             <p>创业园&nbsp;&nbsp;企业注册</p>
             <p>科研成果</p>
-            <p><a class="btn btn-default" href="#" role="button">详情 &raquo;</a></p>
+            <p><a class="btn btn-default" href="/plans" role="button">详情 &raquo;</a></p>
         </div>
     </div>
     

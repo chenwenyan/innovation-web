@@ -160,6 +160,18 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
+    @Override
+    public void updateReadNum(int id) throws Exception{
+        try{
+            if(id > 0){
+                articleMapper.updateReadNum(id);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
     private void setArticleTypeAndCreator(Article article) throws Exception {
         try {
             int typeId = article.getTypeId();

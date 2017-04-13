@@ -11,6 +11,7 @@
         <result column="created_time" property="createdTime"/>
         <result column="last_modified_time" property="lastModifiedTime"/>
         <result column="creator_id" property="creatorId"/>
+        <result column="read_num" property="readNum"/>
     </resultMap>
 
     <select id="listAll" resultMap="articleResultMap">
@@ -68,5 +69,11 @@
             WHERE creator_id = #{creatorId} and type_id = #{typeId}}
         </if>
     </select>
+
+    <update id="updateReadNum">
+        UPDATE `t_article`
+        SET read_num = read_num + 1
+        WHERE id = #{id}
+    </update>
 
 </mapper>

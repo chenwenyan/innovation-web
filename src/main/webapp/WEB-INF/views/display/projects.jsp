@@ -21,8 +21,8 @@
                     </div>
                     <div class="col-sm-6 pull-right">
                                 <span class="public-right">当前位置：
-                                    <a href="">立项</a> >
-                                    <a href="">科研立项</a> > 通知公告
+                                    <a href="/project">立项</a> >
+                                    <a href="/more-articles?typeId=10">科研立项</a> > 通知公告
                                 </span>
                     </div>
                 </div>
@@ -31,8 +31,8 @@
                 <section class="demo">
                     <dl class="list maki">
                         <dt>公告</dt>
-                        <dd><a href="#">国家级创新创业训练计划</a></dd>
-                        <dd><a href="#">科研立项</a></dd>
+                        <dd><a href="/more-articles?typeId=9">国家级创新创业训练计划</a></dd>
+                        <dd><a href="/more-articles?type=10">科研立项</a></dd>
                     </dl>
                 </section>
             </div>

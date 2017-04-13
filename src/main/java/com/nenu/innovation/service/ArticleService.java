@@ -95,4 +95,12 @@ public interface ArticleService {
      */
     public List<Article> queryBySearchInfo(String title,int creatorId,int typeId) throws Exception;
 
+    /**
+     * 更新阅读次数
+     *
+     * @param id
+     * @throws Exception
+     */
+    public void updateReadNum(int id) throws Exception;
+
 }

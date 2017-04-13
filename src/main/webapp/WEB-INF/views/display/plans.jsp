@@ -22,8 +22,8 @@
                     </div>
                     <div class="col-sm-6 pull-right">
                                 <span class="public-right">当前位置：
-                                    <a href="">未来计划</a> >
-                                    <a href="">暑期社会实践公告</a> > 通知公告
+                                    <a href="/plans">未来计划</a> >
+                                    <a href="#">暑期社会实践公告</a> > 通知公告
                                 </span>
                     </div>
                 </div>
@@ -32,11 +32,11 @@
                 <section class="demo">
                     <dl class="list maki">
                         <dt>公告</dt>
-                        <dd><a href="#">暑期社会实践公告</a></dd>
-                        <dd><a href="#">科研扶持</a></dd>
-                        <dd><a href="#">创业园</a></dd>
-                        <dd><a href="#">企业注册</a></dd>
-                        <dd><a href="#">科研成果</a></dd>
+                        <dd><a href="/more-articles?typeId=4">暑期社会实践公告</a></dd>
+                        <dd><a href="/more-articles?typeId=5">科研扶持</a></dd>
+                        <dd><a href="/more-articles?typeId=6">创业园</a></dd>
+                        <dd><a href="/more-articles?typeId=7">企业注册</a></dd>
+                        <dd><a href="/more-articles?typeId=8">科研成果</a></dd>
                     </dl>
                 </section>
             </div>

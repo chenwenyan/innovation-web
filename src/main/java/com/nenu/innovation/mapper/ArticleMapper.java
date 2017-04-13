@@ -96,4 +96,11 @@ public interface ArticleMapper {
      */
     public List<Article> queryBySearchInfo(@Param("title") String title,@Param("creatorId") Integer creatorId,@Param("typeId") Integer typeId)throws Exception;
 
+    /**
+     * 更新阅读次数
+     *
+     * @param id
+     * @throws Exception
+     */
+    public void updateReadNum(@Param("id") Integer id)throws Exception;
 }

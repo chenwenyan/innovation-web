@@ -18,7 +18,7 @@ body {
   right: 0;
   left: 0;
   z-index: 20;
-  font-size: 17px;
+  font-size: 12px;
   line-height: 17px;
 }
 .fluid{
@@ -34,10 +34,10 @@ body {
 .navbar-wrapper .navbar li {
   margin: 0;
   text-align: center;
-  width: 250px;
+  width: 150px;
 }
 .navbar-wrapper .navbar li:first-child{
-  margin-left: 40px;
+  margin-left: 240px;
 }
 .navbar-wrapper .navbar li:not(:last-child){
   border-right: 1px dotted #fff;

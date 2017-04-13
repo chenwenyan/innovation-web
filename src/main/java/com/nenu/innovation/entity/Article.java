@@ -41,6 +41,9 @@ public class Article {
     @Transient
     private String creatorName;
 
+    @Column(name = "read_num")
+    private Integer readNum;
+
     public Integer getId() {
         return id;
     }
@@ -111,5 +114,13 @@ public class Article {
 
     public void setCreatorName(String creatorName) {
         this.creatorName = creatorName;
+    }
+
+    public Integer getReadNum() {
+        return readNum;
+    }
+
+    public void setReadNum(Integer readNum) {
+        this.readNum = readNum;
     }
 }
