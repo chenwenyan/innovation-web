@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <jsp:include flush="true" page="/WEB-INF/views/display/common/head.jsp"/>
@@ -35,7 +36,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="/search-project" method="post" class="form-horizontal">
+                        <form action="/searchProject" method="post" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目名称：</label>
                                 <div class="col-sm-6">
@@ -57,12 +58,9 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">学院：</label>
                                 <div class="col-sm-6">
-                                    <select name="" class="form-control" name="schoolId">
+                                    <select  class="form-control" name="schoolId">
+                                        <option value="0">全部</option>
                                         <c:forEach var="school" items="${schoolList}">
-                                            <c:if test="${schoolList.size() == 0}">
-                                                <option value="-1">无</option>
-                                            </c:if>
-                                            <%--<option value="0">全部</option>--%>
                                             <c:if test="${schoolList.size()> 0}">
                                                 <option value="${school.id}">${school.name}</option>
                                             </c:if>
@@ -83,6 +81,7 @@
                                         <th>负责人</th>
                                         <th>指导教师</th>
                                         <th>学院</th>
+                                        <th>年份</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -93,6 +92,7 @@
                                             <td>${project.charger}</td>
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
+                                            <td><fmt:formatDate value="${project.year}" pattern="yyyy" /></td>
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${projectlList.size()=='0'}">

@@ -12,6 +12,7 @@
         <result column="created_time" property="createdTime" />
         <result column="last_modified_time" property="lastModifiedTime" />
         <result column="year" property="year" />
+        <result column="type" property="type" />
     </resultMap>
 
     <insert id="newProject">
@@ -82,30 +83,29 @@
         </if>
         <if test="schoolId != 0">
             <if test="name == null and charger == null and teacher == null ">
-
+                WHERE school_id = #{schoolId}
             </if>
             <if test="name != null and charger != null and teacher != null ">
-                WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
+                WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
             </if>
             <if test="name == null and charger != null and teacher != null ">
-                WHERE charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%"
+                WHERE charger LIKE "%"#{charger}"%" AND teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
             </if>
             <if test="name == null and charger == null and teacher != null ">
-                WHERE teacher LIKE  "%"#{teacher}"%"
+                WHERE teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
             </if>
             <if test="name == null and charger != null and teacher == null">
-                WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
+                WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
             </if>
             <if test="name != null and charger == null and teacher == null">
-                WHERE name LIKE "%"#{name}"%"
+                WHERE name LIKE "%"#{name}"%" AND school_id = #{schoolId}
             </if>
             <if test="name != null and charger != null and teacher == null">
-                WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%"
+                WHERE name LIKE "%"#{name}"%" AND charger LIKE "%"#{charger}"%" AND school_id = #{schoolId}
             </if>
             <if test="name != null and charger == null and teacher != null">
-                WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%"
+                WHERE name LIKE "%"#{name}"%" AND teacher LIKE  "%"#{teacher}"%" AND school_id = #{schoolId}
             </if>
-            AND school_id = #{schoolId}
         </if>
 
     </select>

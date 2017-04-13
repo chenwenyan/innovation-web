@@ -18,7 +18,7 @@ body {
   right: 0;
   left: 0;
   z-index: 20;
-  font-size: 12px;
+  font-size: 17px;
   line-height: 17px;
 }
 .fluid{
@@ -29,15 +29,15 @@ body {
 /* Flip around the padding for proper display in narrow viewports */
 .navbar-wrapper .navbar .container-fluid {
   width: auto;
-  background: #337ab7;
+  background: #337ab7;  
 }
 .navbar-wrapper .navbar li {
-  margin: 0;
+  margin: 0;  
   text-align: center;
-  width: 150px;
+  width: 250px;
 }
 .navbar-wrapper .navbar li:first-child{
-  margin-left: 240px;
+  margin-left: 30px;
 }
 .navbar-wrapper .navbar li:not(:last-child){
   border-right: 1px dotted #fff;

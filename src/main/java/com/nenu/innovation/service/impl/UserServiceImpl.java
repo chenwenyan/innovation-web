@@ -62,6 +62,7 @@ public class UserServiceImpl implements UserService{
             return users;
         }catch (Exception e){
             System.out.println("显示用户列表出错！");
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }

@@ -40,7 +40,7 @@ public class displayController {
         return "display/main";
     }
 
-    @RequestMapping(value = "/search-project", method = RequestMethod.GET)
+    @RequestMapping(value = "/searchProject", method = RequestMethod.POST)
     public String searchProject(HttpServletRequest request,HttpServletResponse response,
                                 Model model) {
         List<Project> projects = Collections.emptyList();
@@ -50,7 +50,7 @@ public class displayController {
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
         if(schoolIdStr == null){
-            schoolIdStr = "1";
+            schoolIdStr = "0";
         }
         int schoolId = Integer.parseInt(schoolIdStr);
         try{
@@ -64,9 +64,20 @@ public class displayController {
         }
     }
 
-    @RequestMapping(value = "/search-project", method = RequestMethod.POST)
-    public String searchProject() {
-          return "redirect:/search-project";
+    @RequestMapping(value = "/search-project", method = RequestMethod.GET)
+    public String toProjectList(HttpServletRequest request,HttpServletResponse response,
+                                Model model) {
+        List<Project> projects = Collections.emptyList();
+        List<School> schools = Collections.emptyList();
+        try{
+            projects = projectService.listAll();
+            schools = schoolService.listAll();
+            model.addAttribute("projectList",projects);
+            model.addAttribute("schoolList",schools);
+            return "display/search-project";
+        }catch (Exception e){
+            return "error";
+        }
     }
 
     @RequestMapping(value = "/matches", method = RequestMethod.GET)

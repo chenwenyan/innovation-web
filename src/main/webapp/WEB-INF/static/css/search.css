@@ -14,3 +14,6 @@ div.img-container img{
 .public a.btn{
     color: #fff !important;
 }
+.margin-top-submit{
+    margin-top: -20px;
+}

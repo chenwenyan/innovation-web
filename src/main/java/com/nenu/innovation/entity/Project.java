@@ -39,8 +39,10 @@ public class Project {
     private Timestamp lastModifiedTime;
 
     @Column(name = "year")
-
     private Date year;
+
+    @Column(name = "type")
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -112,5 +114,13 @@ public class Project {
 
     public void setYear(Date year) {
         this.year = year;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

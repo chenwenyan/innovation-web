@@ -128,6 +128,9 @@ public class ProjectServiceImpl implements ProjectService{
         List<Project> projects = Collections.emptyList();
         try{
             projects = projectMapper.listByPage(offset,pageSize);
+            for(Project project : projects){
+                setSchoolName(project);
+            }
             return projects;
         }catch (Exception e){
             e.printStackTrace();

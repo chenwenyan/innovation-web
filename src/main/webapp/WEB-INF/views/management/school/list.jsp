@@ -55,7 +55,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-5">
-                                    <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
+                                    <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;搜索
                                     </button>
                                 </div>
                             </form>

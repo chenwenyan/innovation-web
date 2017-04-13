@@ -2,6 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>文章管理</title>
@@ -81,14 +82,14 @@
                                     </select>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-5">
-                                    <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
+                                    <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;搜索
                                     </button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-20">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h4>文章信息列表</h4>
@@ -114,10 +115,10 @@
                                         <tr>
                                             <td hidden="hidden">${article.id}</td>
                                             <td>
-                                                <c:if test="${fn:length(article.title) > 40 }">
+                                                <c:if test="${fn:length(article.title) > 20 }">
                                                     ${fn:substring(article.title, 0, 20)}...
                                                 </c:if>
-                                                <c:if test="${fn:length(article.title) <= 40 }">
+                                                <c:if test="${fn:length(article.title) <= 20 }">
                                                     ${article.title}
                                                 </c:if>
                                             </td>
@@ -130,9 +131,11 @@
                                                 </c:if>
                                             </td>
                                             <td>${article.typeName}</td>
-                                            <td>${article.createdTime}</td>
+                                            <td><fmt:formatDate value="${article.createdTime}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                             <td>${article.creatorName}</td>
                                             <td>
+                                                <a href="${website}/article/detail?id=${article.id}" class="label-info J_delArticle"><i
+                                                        class="fa fa-times"></i>&nbsp;查看</a>
                                                 <a href="${website}/article/edit?id=${article.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
                                                 <a href="javascript:;" class="label-info J_delArticle"><i

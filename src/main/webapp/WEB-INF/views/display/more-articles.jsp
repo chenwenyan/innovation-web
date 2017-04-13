@@ -8,13 +8,13 @@
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
-<div class="public">
+<div class="public-more">
     <div class="container">
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="alert alert-success clearfix">
                     <div class="col-sm-4">
-                                               <span class="public-left"><i class="fa fa-home"></i>
+                           <span class="public-left"><i class="fa fa-home"></i>
                             &nbsp;<c:if test="${article.typeId == 1 }">互联网+</c:if>
                              <c:if test="${article.typeId == 2 }">创青春全国大学生创业大赛</c:if>
                              <c:if test="${article.typeId == 3 }">挑战杯</c:if>
@@ -80,15 +80,17 @@
             <div class="col-sm-7">
                 <ul class="info-list">
                     <c:forEach var="item" items="${list}">
-                        <li>
-                            <a href="/article-detail?id=${item.id}" class="clearfix">
-                                <i class="fa fa-check-circle info-icon">&nbsp;</i>
-                                <span class="info-detail">${item.title}</span>
-                                <span class="info-date"><fmt:formatDate value="${item.createdTime}"
-                                                                        pattern="yyyy-MM-dd"/></span>
-                            </a>
-                            <div class="line"></div>
-                        </li>
+                        <div>
+                            <li>
+                                <a href="/article-detail?id=${item.id}" class="clearfix">
+                                    <i class="fa fa-check-circle info-icon">&nbsp;</i>
+                                    <span class="info-detail">${item.title}</span>
+                                    <span class="info-date"><fmt:formatDate value="${item.createdTime}"
+                                                                            pattern="yyyy-MM-dd"/></span>
+                                </a>
+                                <div class="line">ewjwehr wer</div>
+                            </li>
+                        </div>
                     </c:forEach>
                 </ul>
             </div>

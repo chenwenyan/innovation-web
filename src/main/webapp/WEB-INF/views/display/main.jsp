@@ -67,7 +67,7 @@
 
     <div class="row sousuo">
         <div class="col-sm-12">
-            <a href="#">
+            <a href="/search-project">
                 <img src="/img/search.jpg" alt="搜索入口" class="sousuo">
             </a>
         </div>

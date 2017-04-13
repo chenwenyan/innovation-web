@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>学院管理</title>
@@ -67,18 +67,18 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label class="col-sm-4 control-label">学院</label>
-                                    <div class="col-sm-3">
-                                        <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
-                                            <option value="0">全部</option>
-                                            <c:forEach var="school" items="${schoolList}">
-                                                <c:if test="${schoolList.size()> 0}" >
-                                                    <option value="${school.id}">${school.name}</option>
-                                                </c:if>
-                                            </c:forEach>
-                                        </select>
-                                    </div>
+                                <label class="col-sm-4 control-label">学院</label>
+                                <div class="col-sm-3">
+                                    <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
+                                        <option value="0">全部</option>
+                                        <c:forEach var="school" items="${schoolList}">
+                                            <c:if test="${schoolList.size()> 0}" >
+                                                <option value="${school.id}">${school.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
                                 </div>
+                            </div>
                                 <div class="col-sm-6 col-sm-offset-5">
                                     <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
                                     </button>
@@ -104,6 +104,8 @@
                                         <th>负责人</th>
                                         <th>指导老师</th>
                                         <th>学院</th>
+                                        <th>年份</th>
+                                        <th>类别</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -115,6 +117,11 @@
                                             <td>${project.charger}</td>
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
+                                            <td><fmt:formatDate value="${project.year}" pattern="yyyy" /></td>
+                                            <td>
+                                                <c:if test="${project.type == 1}">国创</c:if>
+                                                <c:if test="${project.type == 2}">立项</c:if>
+                                            </td>
                                             <td>
                                                 <a href="${website}/project/edit?id=${project.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
@@ -130,7 +137,7 @@
                                     </c:if>
                                     </tbody>
                                 </table>
-                                <div class="J_pagination"><ul id="pageLimit"></div>
+                                <div class="J_pagination"><ul id="pageLimit"></ul></div>
                             </div>
                         </div>
                     </div>
@@ -162,7 +169,7 @@
 
         $('#pageLimit').bootstrapPaginator({
             currentPage: 1,
-            totalPages: ${fn:length(projectList)/10},
+            totalPages: ${length(projectList)/10},
             size:"normal",
             bootstrapMajorVersion: 3,
             alignment:"right",
@@ -180,6 +187,15 @@
                 return "/management/project?pageNo=" + page;
             }
         });
+    });
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        startView: 'decade',
+        minView: 'decade',
+        format: 'yyyy',
+        maxViewMode: 2,
+        minViewMode:2,
+        autoclose: true
     });
 </script>
 </body>

@@ -29,7 +29,7 @@ public class IndexController {
         if(request.getSession().getAttribute("user") != null){
             User user = (User)request.getSession().getAttribute("user");
             model.addAttribute("user",user);
-            return "index";
+            return "redirect:user";
         }else {
             return "management/login";
         }
@@ -41,7 +41,7 @@ public class IndexController {
         try{
             if(userService.checkLogin(user)){
                 request.getSession().setAttribute("user", user);
-                return "redirect:index";
+                return "redirect:user";
             }else{
                 model.addAttribute("msg","登录失败，请重新输入！");
                 return "management/login";
@@ -56,7 +56,7 @@ public class IndexController {
     public String toIndex(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if(user != null ) {
-            return "index";
+            return "redirect:user";
         }else{
             return  "redirect:login";
         }
