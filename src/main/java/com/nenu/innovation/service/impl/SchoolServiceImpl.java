@@ -1,5 +1,6 @@
 package com.nenu.innovation.service.impl;
 
+import com.nenu.innovation.entity.Article;
 import com.nenu.innovation.entity.School;
 import com.nenu.innovation.mapper.SchoolMapper;
 import com.nenu.innovation.service.SchoolService;
@@ -105,6 +106,18 @@ public class SchoolServiceImpl implements SchoolService{
             return schools;
         }catch (Exception e){
             System.out.println("根据名称搜索学院信息出错！");
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<School> listByPage(int offset, int pageSize) throws Exception{
+        List<School> schools = Collections.emptyList();
+        try{
+            schools = schoolMapper.listByPage(offset,pageSize);
+            return schools;
+        }catch (Exception e){
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }

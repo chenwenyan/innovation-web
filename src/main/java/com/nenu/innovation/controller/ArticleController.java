@@ -39,16 +39,23 @@ public class ArticleController {
     @RequestMapping(value = "/article", method = RequestMethod.GET)
     public String toList(HttpServletRequest request, HttpServletResponse response,
                          Model model) {
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
         List<Article> articles = Collections.emptyList();
         List<User> users = Collections.emptyList();
         List<Type> types = Collections.emptyList();
         try {
-            articles = articleService.listAll();
+            articles = articleService.listByPage(offset,pageSize);
+            int count = articleService.count();
             users = userService.listAll();
             types = typeService.listAll();
             model.addAttribute("articleList", articles);
             model.addAttribute("userList", users);
             model.addAttribute("typeList", types);
+            model.addAttribute("pageNo",pageNo);
+            model.addAttribute("count",String.valueOf(Math.ceil(count/10)));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/article/list";
         } catch (Exception e) {

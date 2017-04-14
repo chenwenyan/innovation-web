@@ -10,7 +10,7 @@ import java.util.List;
  * @author: wychen
  * @time: 2017/4/8 12:45
  */
-public interface ProjectService {
+public interface ProjectService extends AbstractService{
 
     /**
      *  新增项目
@@ -89,12 +89,4 @@ public interface ProjectService {
      */
     public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId) throws Exception;
 
-    /**
-     * 根据页码显示列表
-     *
-     * @param offset
-     * @param pageSize
-     * @return
-     */
-    public List<Project> listByPage(int offset, int pageSize)throws Exception;
 }

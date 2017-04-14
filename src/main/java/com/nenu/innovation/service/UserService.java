@@ -10,7 +10,7 @@ import java.util.List;
  * @author: wychen
  * @time: 2017/4/2 11:17
  */
-public interface UserService {
+public interface UserService extends AbstractService{
     /**
      * 添加新用户
      *

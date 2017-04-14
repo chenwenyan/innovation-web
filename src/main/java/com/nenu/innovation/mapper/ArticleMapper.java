@@ -103,4 +103,14 @@ public interface ArticleMapper {
      * @throws Exception
      */
     public void updateReadNum(@Param("id") Integer id)throws Exception;
+
+    /**
+     * 根据页码显示列表
+     *
+     * @param offset
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    public List<Article> listByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 }

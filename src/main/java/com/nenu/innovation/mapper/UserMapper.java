@@ -1,5 +1,6 @@
 package com.nenu.innovation.mapper;
 
+import com.nenu.innovation.entity.Article;
 import com.nenu.innovation.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -98,4 +99,14 @@ public interface UserMapper {
      * @throws Exception
      */
     public List<User> queryBySearchInfo(@Param("username") String username,@Param("status")Integer status) throws Exception;
+
+    /**
+     * 根据页码显示列表
+     *
+     * @param offset
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    public List<User> listByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 }

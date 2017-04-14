@@ -80,4 +80,12 @@
             WHERE status = #{status}
         </if>
     </select>
+
+    <select id="listByPage" resultMap="userResultMap">
+        SELECT * FROM t_user
+        WHERE type = 2
+        LIMIT #{offset},#{pageSize}
+        ORDER BY created_time
+    </select>
+
 </mapper>

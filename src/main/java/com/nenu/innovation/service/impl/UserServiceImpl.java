@@ -140,4 +140,17 @@ public class UserServiceImpl implements UserService{
             throw new Exception(e.getMessage());
         }
     }
+
+    @Override
+    public List<User> listByPage(int offset, int pageSize) throws Exception{
+        List<User> users = Collections.emptyList();
+        try{
+            users = userMapper.listByPage(offset,pageSize);
+            return users;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("根据页码获取信息列表出错！");
+            throw new Exception(e.getMessage());
+        }
+    }
 }

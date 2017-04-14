@@ -67,4 +67,11 @@
             WHERE assistant_code LIKE "%"#{assistantCode}"%"
         </if>
     </select>
+
+    <select id="listByPage" resultMap="typeResultMap">
+        SELECT *
+        FROM t_type
+        ORDER BY created_time
+        LIMIT #{offset},#{pageSize}
+    </select>
 </mapper>

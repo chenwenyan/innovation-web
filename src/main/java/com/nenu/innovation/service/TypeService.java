@@ -10,7 +10,7 @@ import java.util.List;
  * @author: wychen
  * @time: 2017/4/10 9:00
  */
-public interface TypeService {
+public interface TypeService extends AbstractService{
 
     /**
      * 新增类型

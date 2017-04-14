@@ -27,13 +27,20 @@ public class UserController {
 
     @RequestMapping(value = "user", method = RequestMethod.GET)
     public String toList(HttpServletRequest request, Model model) {
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
         try {
             if (request.getSession().getAttribute("user") != null) {
                 User user = (User) request.getSession().getAttribute("user");
                 model.addAttribute("user", user);
             }
             List<User> users = userService.listAll();
+            int count = userService.count();
             model.addAttribute("userList", users);
+            model.addAttribute("pageNo",pageNo);
+            model.addAttribute("count",String.valueOf(Math.ceil(count/7)));
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/users/list";
         } catch (Exception e) {

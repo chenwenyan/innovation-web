@@ -1,5 +1,6 @@
 package com.nenu.innovation.mapper;
 
+import com.nenu.innovation.entity.Article;
 import com.nenu.innovation.entity.School;
 import org.apache.ibatis.annotations.Param;
 
@@ -80,5 +81,15 @@ public interface SchoolMapper {
      * @throws Exception
      */
     public List<School> queryBySearchInfo(@Param("name") String name) throws Exception;
+
+    /**
+     * 根据页码显示列表
+     *
+     * @param offset
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    public List<School> listByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 
 }

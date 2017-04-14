@@ -28,10 +28,17 @@ public class TypeController {
     @RequestMapping(value = "/type",method = RequestMethod.GET)
     public String toList(HttpServletRequest request,HttpServletResponse response,
                          Model model){
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
         List<Type> types = Collections.emptyList();
         try{
             types = typeService.listAll();
+            int count = typeService.count();
             model.addAttribute("typeList",types);
+            model.addAttribute("pageNo",pageNo);
+            model.addAttribute("count",String.valueOf(Math.ceil(count/10)));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/type/list";
         }catch (Exception e){

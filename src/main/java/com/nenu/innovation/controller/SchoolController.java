@@ -27,10 +27,17 @@ public class SchoolController {
     @RequestMapping(value = "/school",method = RequestMethod.GET)
     public String toList(HttpServletRequest request,HttpServletResponse response,
                          Model model){
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
         List<School> schools = Collections.emptyList();
         try{
-            schools = schoolService.listAll();
+            schools = schoolService.listByPage(offset,pageSize);
+            int count = schoolService.count();
             model.addAttribute("schoolList",schools);
+            model.addAttribute("pageNo",pageNo);
+            model.addAttribute("count",(int)(Math.ceil(count/10) + 1));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/school/list";
         }catch (Exception e){

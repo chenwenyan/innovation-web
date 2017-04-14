@@ -76,4 +76,11 @@
         WHERE id = #{id}
     </update>
 
+    <select id="listByPage" resultMap="articleResultMap">
+        SELECT *
+        FROM t_article
+        ORDER BY created_time
+        LIMIT #{offset},#{pageSize}
+    </select>
+
 </mapper>

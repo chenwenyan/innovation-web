@@ -1,5 +1,6 @@
 package com.nenu.innovation.service.impl;
 
+import com.nenu.innovation.entity.School;
 import com.nenu.innovation.entity.Type;
 import com.nenu.innovation.mapper.TypeMapper;
 import com.nenu.innovation.service.TypeService;
@@ -109,6 +110,18 @@ public class TypeServiceImpl implements TypeService{
             return typeMapper.queryBySearchInfo(name,assistantCode);
         }catch (Exception e){
             System.out.println("根据名称和助记码查询类型信息出错！");
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Type> listByPage(int offset, int pageSize) throws Exception{
+        List<Type> types = Collections.emptyList();
+        try{
+            types = typeMapper.listByPage(offset,pageSize);
+            return types;
+        }catch (Exception e){
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }

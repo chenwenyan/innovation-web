@@ -172,6 +172,18 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
+    @Override
+    public List<Article> listByPage(int offset, int pageSize) throws Exception{
+        List<Article> articles = Collections.emptyList();
+        try{
+           articles = articleMapper.listByPage(offset,pageSize);
+            return articles;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
     private void setArticleTypeAndCreator(Article article) throws Exception {
         try {
             int typeId = article.getTypeId();

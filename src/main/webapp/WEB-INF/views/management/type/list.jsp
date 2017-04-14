@@ -107,7 +107,7 @@
                                     </c:if>
                                     </tbody>
                                 </table>
-                                <div class="J_pagination"></div>
+                                <div class="pull-right"><ul id="pageLimit"></ul></div>
                             </div>
                         </div>
                     </div>
@@ -136,6 +136,26 @@
 //                });
 //            }
 //        });
+        $('#pageLimit').bootstrapPaginator({
+            currentPage: ${pageNo+1},
+            totalPages: ${count},
+            size:"normal",
+            bootstrapMajorVersion: 3,
+            alignment:"right",
+            numberOfPages:5,
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first": return "首页";
+                    case "prev": return "<<";
+                    case "next": return ">>";
+                    case "last": return "末页";
+                    case "page": return page;
+                }
+            },
+            pageUrl:function (url,page,current) {
+                return "/type?pageNo=" + page;
+            }
+        });
     });
 </script>
 </body>

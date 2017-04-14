@@ -1,5 +1,6 @@
 package com.nenu.innovation.mapper;
 
+import com.nenu.innovation.entity.Article;
 import com.nenu.innovation.entity.Type;
 import org.apache.ibatis.annotations.Param;
 
@@ -92,4 +93,13 @@ public interface TypeMapper {
      */
     public List<Type> queryBySearchInfo(@Param("name") String name,@Param("assistantCode") String assistantCode) throws Exception;
 
+    /**
+     * 根据页码显示列表
+     *
+     * @param offset
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    public List<Type> listByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 }

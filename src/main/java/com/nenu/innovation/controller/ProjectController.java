@@ -57,10 +57,13 @@ public class ProjectController {
         List<Project> projects = Collections.emptyList();
         List<School> schools = Collections.emptyList();
         try{
-            projects = projectService.listByPage(offset,pageSize);
+            projects =  projectService.listByPage(offset,pageSize);
             schools = schoolService.listAll();
+            int count = projectService.count();
             model.addAttribute("projectList",projects);
             model.addAttribute("schoolList",schools);
+            model.addAttribute("pageNo",pageNo);
+            model.addAttribute("count",String.valueOf(Math.ceil(count/10)));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/project/list";
         }catch (Exception e){

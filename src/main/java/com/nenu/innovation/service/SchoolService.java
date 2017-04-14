@@ -10,7 +10,7 @@ import java.util.List;
  * @author: wychen
  * @time: 2017/4/8 12:45
  */
-public interface SchoolService {
+public interface SchoolService extends AbstractService{
     /**
      * 新增学院
      *

@@ -54,4 +54,11 @@
             WHERE name LIKE "%"#{name}"%"
         </if>
     </select>
+
+    <select id="listByPage" resultMap="schoolResultMap">
+        SELECT * FROM t_school
+        ORDER BY created_time
+        LIMIT #{offset},#{pageSize}
+    </select>
+
 </mapper>
