@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
@@ -103,7 +102,6 @@
                                     <tr>
                                         <th hidden="hidden">用户ID</th>
                                         <th>标题</th>
-                                        <th>内容</th>
                                         <th>分类</th>
                                         <th>创建时间</th>
                                         <th>作者</th>
@@ -122,20 +120,12 @@
                                                     ${article.title}
                                                 </c:if>
                                             </td>
-                                            <td>
-                                                <c:if test="${fn:length(article.content)>20 }">
-                                                    ${fn:substring(article.content, 0, 20)}...
-                                                </c:if>
-                                                <c:if test="${fn:length(article.content)<= 20 }">
-                                                    ${article.content}
-                                                </c:if>
-                                            </td>
                                             <td>${article.typeName}</td>
                                             <td><fmt:formatDate value="${article.createdTime}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
                                             <td>${article.creatorName}</td>
                                             <td>
-                                                <a href="${website}/article/detail?id=${article.id}" class="label-info J_delArticle"><i
-                                                        class="fa fa-times"></i>&nbsp;查看</a>
+                                                <a href="${website}/article/detail?id=${article.id}" class="label-info"><i
+                                                        class="fa fa-search"></i>&nbsp;查看</a>
                                                 <a href="${website}/article/edit?id=${article.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
                                                 <a href="javascript:;" class="label-info J_delArticle"><i

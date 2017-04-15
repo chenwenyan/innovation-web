@@ -21,6 +21,9 @@
             padding: 8px;
         }
     </style>
+    <script>
+
+    </script>
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/management/common/header.jsp"/>
@@ -73,7 +76,8 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>文章内容</label>
                                     <div class="col-sm-6">
-                                        <textarea placeholder="请输入文章内容" rows="15" class="form-control col-sm-3" name="content" id="content" >${article.content}</textarea>
+                                        <%--<textarea placeholder="请输入文章内容" rows="15" class="form-control col-sm-3" name="content" id="content" >${article.content}</textarea>--%>
+                                        <textarea name="content" id="content">${article.content}</textarea>
                                         <span class="tip2 col-sm-6">文章内容不能为空，请重新填写</span>
                                     </div>
                                 </div>
@@ -96,6 +100,30 @@
 </div>
 <script type="text/javascript">
     $(function(){
+
+        tinymce.init({
+            selector: 'textarea',
+            height: 500,
+            theme: 'modern',
+            plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc'
+            ],
+            toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+            image_advtab: true,
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ],
+            content_css: [
+                '//fonts.googleapis.com/css?family=Lato:300,300i,400,400i',
+                '//www.tinymce.com/css/codepen.min.css'
+            ],
+            language:"zh_CN"
+        });
 
         $(".tip1").hide();
         $(".tip2").hide();
@@ -144,7 +172,7 @@
                 $(".J_form").submit();
             }
         });
-    })
+    });
 </script>
 </body>
 </html>

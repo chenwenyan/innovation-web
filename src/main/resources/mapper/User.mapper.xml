@@ -31,7 +31,6 @@
 
     <select id="listAll" resultMap="userResultMap">
         SELECT * FROM t_user
-        WHERE type = 2
         ORDER BY created_time
     </select>
 

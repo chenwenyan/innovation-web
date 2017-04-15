@@ -55,7 +55,7 @@ public class ArticleController {
             model.addAttribute("userList", users);
             model.addAttribute("typeList", types);
             model.addAttribute("pageNo",pageNo);
-            model.addAttribute("count",String.valueOf(Math.ceil(count/10)));
+            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/article/list";
         } catch (Exception e) {
@@ -71,8 +71,9 @@ public class ArticleController {
         List<Type> types = Collections.emptyList();
         try {
             String title = request.getParameter("title");
-            int creatorId = Integer.parseInt(request.getParameter("creatorId"));
+            int creatorId = Integer.parseInt(request.getParameter("userId"));
             int typeId = Integer.parseInt(request.getParameter("typeId"));
+            String year = request.getParameter("year");
             articles = articleService.queryBySearchInfo(title,creatorId,typeId);
             users = userService.listAll();
             types = typeService.listAll();
@@ -141,7 +142,8 @@ public class ArticleController {
             String content = request.getParameter("content");
             int typeId = Integer.parseInt(request.getParameter("typeId"));
             User user = (User)request.getSession().getAttribute("user");
-            int creatorId = user.getId();
+//            int creatorId = user.getId();
+            int creatorId = 1;
             articleService.updateArticleById(id, title, content, typeId, creatorId);
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/article";
@@ -161,6 +163,23 @@ public class ArticleController {
             articleService.deleteById(id);
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "redirect:/article";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @RequestMapping(value = "/article/detail", method = RequestMethod.GET)
+    public String toDetail(HttpServletRequest request, HttpServletResponse response,
+                             Model model, Integer id) {
+        Article article = new Article();
+        try {
+            article = articleService.queryById(id);
+            if (article == null) {
+                model.addAttribute("msg", "该文章不存在或已被删除！");
+            }
+            model.addAttribute("article",article);
+            model.addAttribute("user",request.getSession().getAttribute("user"));
+            return "management/article/detail";
         } catch (Exception e) {
             return "error";
         }

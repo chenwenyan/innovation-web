@@ -14,7 +14,7 @@
 <div class="public">
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
@@ -77,6 +77,31 @@
                     <div class="panel-body">
                         <ul>
                             <c:forEach var="item" items="${tzb}">
+                                <li>
+                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                        <i class="fa fa-fire">&nbsp;&nbsp;</i>
+                                        <span class="information">${item.title}</span>
+                                        <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-12 text-left">
+                                <h6 class="smart-margin-left">其他比赛</h6>
+                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            <c:forEach var="item" items="${qtbs}">
                                 <li>
                                     <a href="/article-detail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
 
 /**
  * ProjectController
@@ -63,7 +64,7 @@ public class ProjectController {
             model.addAttribute("projectList",projects);
             model.addAttribute("schoolList",schools);
             model.addAttribute("pageNo",pageNo);
-            model.addAttribute("count",String.valueOf(Math.ceil(count/10)));
+            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/project/list";
         }catch (Exception e){
@@ -74,6 +75,10 @@ public class ProjectController {
     @RequestMapping(value = "/project",method = RequestMethod.POST)
     public String toSearchList(HttpServletRequest request,HttpServletResponse response,
                                Model model){
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
         List<Project> projects = Collections.emptyList();
         List<School> schools = Collections.emptyList();
         String name = request.getParameter("name");
@@ -81,10 +86,11 @@ public class ProjectController {
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
         int schoolId = Integer.parseInt(schoolIdStr);
+        String year = request.getParameter("year");
         try{
             schools = schoolService.listAll();
             model.addAttribute("schoolList",schools);
-            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId);
+            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,year,offset,pageSize);
             model.addAttribute("projectList",projects);
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/project/list";

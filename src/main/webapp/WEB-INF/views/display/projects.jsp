@@ -14,75 +14,63 @@
 <div class="public">
     <div class="container">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1">
-                <div class="alert alert-success clearfix">
-                    <div class="col-sm-4">
-                        <span class="public-left"><i class="fa fa-home"></i>&nbsp;科研立项公告</span>
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-12 text-left">
+                                <h6 class="smart-margin-left">国家级大学生创新创业训练计划</h6>
+                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-6 pull-right">
-                                <span class="public-right">当前位置：
-                                    <a href="/project">立项</a> >
-                                    <a href="/more-articles?typeId=10">科研立项</a> > 通知公告
-                                </span>
+                    <div class="panel-body">
+                        <ul>
+                            <c:forEach var="item" items="${gjjcxcyjhxl}">
+                                <li>
+                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                        <i class="fa fa-fire">&nbsp;&nbsp;</i>
+                                        <span class="information">${item.title}</span>
+                                        <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3 col-sm-offset-1">
-                <section class="demo">
-                    <dl class="list maki">
-                        <dt>公告</dt>
-                        <dd><a href="/more-articles?typeId=9">国家级创新创业训练计划</a></dd>
-                        <dd><a href="/more-articles?type=10">科研立项</a></dd>
-                    </dl>
-                </section>
-            </div>
-            <div class="col-sm-7">
-                <ul class="info-list">
-                    <c:forEach var="item" items="${gjjcxcyxljh}">
-                        <li>
-                            <a href="/article-detail?id=${item.id}" title="${item.title}">
-                                <i class="fa fa-fire">&nbsp;&nbsp;</i>
-                                <span class="information">${item.title}</span>
-                                <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
-                            </a>
-                        </li>
-                    </c:forEach>
-                    <c:forEach var="item" items="${kylx}">
-                        <li>
-                            <a href="/article-detail?id=${item.id}" title="${item.title}">
-                                <i class="fa fa-fire">&nbsp;&nbsp;</i>
-                                <span class="information">${item.title}</span>
-                                <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
-                            </a>
-                        </li>
-                    </c:forEach>
-                </ul>
-            </div>
-            <div class="col-sm-3 col-sm-offset-8 margin-top-50">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+            <div class="col-sm-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-12 text-left">
+                                <h6 class="smart-margin-left">“中央高校基本科研业务专项资金”本科生项目</h6>
+                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            <c:forEach var="item" items="${kylx}">
+                                <li>
+                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                        <i class="fa fa-fire">&nbsp;&nbsp;</i>
+                                        <span class="information">${item.title}</span>
+                                        <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                                    </a>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+
 <jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </body>
 </html>
+

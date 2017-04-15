@@ -63,10 +63,10 @@
     <select id="queryBySearchInfo" resultMap="articleResultMap">
         SELECT * FROM `t_article`
         <if test="title != null and creatorId != null and typeId != null ">
-            WHERE title = #{title} and creator_id = #{creatorId} and type_id = #{typeId}}
+            WHERE title = #{title} and creator_id = #{creatorId} and type_id = #{typeId}
         </if>
         <if test="title == null and creatorId != null and typeId != null ">
-            WHERE creator_id = #{creatorId} and type_id = #{typeId}}
+            WHERE creator_id = #{creatorId} and type_id = #{typeId}
         </if>
     </select>
 

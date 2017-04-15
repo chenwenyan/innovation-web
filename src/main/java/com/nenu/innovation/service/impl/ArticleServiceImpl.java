@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -148,10 +149,13 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId) throws Exception {
+    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId, Date year,int offset,int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
-            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId);
+            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId, year,offset,pageSize);
+            for(Article article : articles){
+                setArticleTypeAndCreator(article);
+            }
             return articles;
         } catch (Exception e) {
             System.out.println("根据条件查询文章失败！");
@@ -177,6 +181,9 @@ public class ArticleServiceImpl implements ArticleService {
         List<Article> articles = Collections.emptyList();
         try{
            articles = articleMapper.listByPage(offset,pageSize);
+            for(Article article: articles){
+                setArticleTypeAndCreator(article);
+            }
             return articles;
         }catch (Exception e){
             e.printStackTrace();

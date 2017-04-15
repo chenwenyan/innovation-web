@@ -34,11 +34,11 @@ public class TypeController {
         int offset = pageNo * pageSize;
         List<Type> types = Collections.emptyList();
         try{
-            types = typeService.listAll();
+            types = typeService.listByPage(offset,pageSize);
             int count = typeService.count();
             model.addAttribute("typeList",types);
             model.addAttribute("pageNo",pageNo);
-            model.addAttribute("count",String.valueOf(Math.ceil(count/10)));
+            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/type/list";
         }catch (Exception e){

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -108,7 +109,7 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId) throws Exception{
+    public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId ) throws Exception{
         List<Project> projects = Collections.emptyList();
         try{
             projects =  projectMapper.queryBySearchInfo(name,charger,teacher,schoolId);

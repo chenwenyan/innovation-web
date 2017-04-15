@@ -4,6 +4,7 @@ import com.nenu.innovation.entity.Project;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Date;
 
 /**
  * ProjectMapper
@@ -88,7 +89,8 @@ public interface ProjectMapper {
      * @return
      * @throws Exception
      */
-    public List<Project> queryBySearchInfo(@Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId) throws Exception;
+    public List<Project> queryBySearchInfo(@Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId,
+                                           @Param("year") Date year , int offset,int pageSize) throws Exception;
 
     /**
      * 根据页码显示列表

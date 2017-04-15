@@ -57,28 +57,36 @@
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">负责人</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="charger" placeholder="请输入负责人姓名" class="form-control w180">
+                                        <input type="text" name="charger" placeholder="请输入负责人姓名"
+                                               class="form-control w180">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">指导老师</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="teacher" placeholder="请输入指导老师姓名" class="form-control w180">
+                                        <input type="text" name="teacher" placeholder="请输入指导老师姓名"
+                                               class="form-control w180">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                <label class="col-sm-4 control-label">学院</label>
-                                <div class="col-sm-3">
-                                    <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
-                                        <option value="0">全部</option>
-                                        <c:forEach var="school" items="${schoolList}">
-                                            <c:if test="${schoolList.size()> 0}" >
-                                                <option value="${school.id}">${school.name}</option>
-                                            </c:if>
-                                        </c:forEach>
-                                    </select>
+                                    <label class="col-sm-4 control-label">学院</label>
+                                    <div class="col-sm-3">
+                                        <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
+                                            <option value="0">全部</option>
+                                            <c:forEach var="school" items="${schoolList}">
+                                                <c:if test="${schoolList.size()> 0}">
+                                                    <option value="${school.id}">${school.name}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="form-group col-sm-6">
+                                    <label class="col-sm-4 control-label">年份</label>
+                                    <div class="col-sm-3">
+                                        <input class="col-sm-2 form-control w180 form-filter yearpicker" readonly="readonly" name="year" id="year" />
+                                    </div>
+                                </div>
                                 <div class="col-sm-6 col-sm-offset-5">
                                     <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
                                     </button>
@@ -117,7 +125,7 @@
                                             <td>${project.charger}</td>
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
-                                            <td><fmt:formatDate value="${project.year}" pattern="yyyy" /></td>
+                                            <td><fmt:formatDate value="${project.year}" pattern="yyyy"/></td>
                                             <td>
                                                 <c:if test="${project.type == 1}">国创</c:if>
                                                 <c:if test="${project.type == 2}">立项</c:if>
@@ -137,7 +145,9 @@
                                     </c:if>
                                     </tbody>
                                 </table>
-                                <div class="pull-right"><ul id="pageLimit"></ul></div>
+                                <div class="pull-right">
+                                    <ul id="pageLimit"></ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -167,23 +177,37 @@
             }
         });
 
+        $('.yearpicker').datetimepicker({
+            startView: 'decade',
+            minView: 'decade',
+            format: 'yyyy',
+            maxViewMode: 2,
+            minViewMode:2,
+            autoclose: true
+        });
+
         $('#pageLimit').bootstrapPaginator({
             currentPage: ${pageNo+1},
             totalPages: ${count},
-            size:"normal",
+            size: "normal",
             bootstrapMajorVersion: 3,
-            alignment:"right",
-            numberOfPages:5,
+            alignment: "right",
+            numberOfPages: 5,
             itemTexts: function (type, page, current) {
                 switch (type) {
-                    case "first": return "首页";
-                    case "prev": return "<<";
-                    case "next": return ">>";
-                    case "last": return "末页";
-                    case "page": return page;
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "<<";
+                    case "next":
+                        return ">>";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return page;
                 }
             },
-            pageUrl:function (url,page,current) {
+            pageUrl: function (url, page, current) {
                 return "/project?pageNo=" + page;
             }
         });

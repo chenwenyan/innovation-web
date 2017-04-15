@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "user", method = RequestMethod.GET)
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String toList(HttpServletRequest request, Model model) {
         String  pageNoStr = request.getParameter("pageNo");
         int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
@@ -40,7 +40,7 @@ public class UserController {
             int count = userService.count();
             model.addAttribute("userList", users);
             model.addAttribute("pageNo",pageNo);
-            model.addAttribute("count",String.valueOf(Math.ceil(count/7)));
+            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/users/list";
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "user", method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String searchByInfo(HttpServletRequest request, Model model) {
         String username = request.getParameter("username").trim();
         int status = Integer.parseInt(request.getParameter("status"));
@@ -90,7 +90,7 @@ public class UserController {
                 userService.newUser(user);
                 model.addAttribute("user", request.getSession().getAttribute("user"));
             }
-            return "redirect:user";
+            return "redirect:/user";
         } catch (Exception e) {
             return "error";
         }
@@ -117,7 +117,7 @@ public class UserController {
         try {
             userService.updateUserInfo(id, username, password);
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "redirect:user";
+            return "redirect:/user";
         } catch (Exception e) {
             return "error";
         }
@@ -133,7 +133,7 @@ public class UserController {
                 userService.deleteById(id);
             }
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "redirect:user";
+            return "redirect:/user";
         } catch (Exception e) {
             return "error";
         }
@@ -151,7 +151,7 @@ public class UserController {
                 userService.setStatus(id, status);
             }
             model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "redirect:user";
+            return "redirect:/user";
         } catch (Exception e) {
             return "error";
         }

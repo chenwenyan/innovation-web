@@ -3,6 +3,7 @@ package com.nenu.innovation.service;
 import com.nenu.innovation.entity.Project;
 
 import java.util.List;
+import java.util.Date;
 
 /**
  * ProjectService
@@ -87,6 +88,6 @@ public interface ProjectService extends AbstractService{
      * @return
      * @throws Exception
      */
-    public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId) throws Exception;
+    public List<Project> queryBySearchInfo(String name,  String charger,  String teacher, int schoolId, Date year,int offset,int pageSize) throws Exception;
 
 }

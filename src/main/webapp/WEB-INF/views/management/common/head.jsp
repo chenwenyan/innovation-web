@@ -11,10 +11,13 @@
 <link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/css/welcome.css">
 <link rel="stylesheet" type="text/css" href="/css/login.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap-datetimepicker.min.css">
 
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js"></script>
 
 <style type="text/css">
     nav > ul > li:hover .arrow{
