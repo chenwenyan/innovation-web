@@ -149,10 +149,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId, Date year,int offset,int pageSize) throws Exception {
+    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
-            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId, year,offset,pageSize);
+            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId);
             for(Article article : articles){
                 setArticleTypeAndCreator(article);
             }

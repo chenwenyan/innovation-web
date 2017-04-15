@@ -55,7 +55,7 @@ public class displayController {
         int schoolId = Integer.parseInt(schoolIdStr);
         try{
             schools = schoolService.listAll();
-            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId);
+//            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId);
             model.addAttribute("schoolList",schools);
             model.addAttribute("projectList",projects);
             return "display/search-project";

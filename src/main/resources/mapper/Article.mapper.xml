@@ -31,22 +31,22 @@
     <select id="listByKeyWords" resultMap="articleResultMap">
         SELECT * FROM `t_article`
         <where>
-            <if test="#{keyWords} != null"> title like #{typeId} </if>
+            <if test="#{keyWords} != null">title like #{typeId}</if>
         </where>
 
     </select>
 
-    <insert id="newArticle" >
+    <insert id="newArticle">
         INSERT INTO `t_article` (title,content,type_id,creator_id)
         VALUES(#{title},#{content},#{typeId},#{creatorId})
     </insert>
 
-    <update id="updateArticleById" >
+    <update id="updateArticleById">
         UPDATE `t_article` SET
-        <if test="#{title} != null"> title = #{title} </if>,
-        <if test="#{content} != null"> content = #{content} </if>,
-        <if test="#{typeId} != null"> type_id = #{typeId} </if>,
-        <if test="#{creatorId} != null"> creator_id = #{creatorId} </if>
+        <if test="#{title} != null">title = #{title}</if>,
+        <if test="#{content} != null">content = #{content}</if>,
+        <if test="#{typeId} != null">type_id = #{typeId}</if>,
+        <if test="#{creatorId} != null">creator_id = #{creatorId}</if>
         WHERE id = #{id}
     </update>
 
@@ -62,12 +62,11 @@
 
     <select id="queryBySearchInfo" resultMap="articleResultMap">
         SELECT * FROM `t_article`
-        <if test="title != null and creatorId != null and typeId != null ">
-            WHERE title = #{title} and creator_id = #{creatorId} and type_id = #{typeId}
+        WHERE TRUE
+        <if test="title != null">
+            and title = "%"#{title}"%"
         </if>
-        <if test="title == null and creatorId != null and typeId != null ">
-            WHERE creator_id = #{creatorId} and type_id = #{typeId}
-        </if>
+        and creator_id = #{creatorId} and type_id = #{typeId}
     </select>
 
     <update id="updateReadNum">

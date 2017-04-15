@@ -51,7 +51,7 @@
                                 <div class="form-group col-sm-4">
                                     <label class="col-sm-4 control-label">文章标题</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="name" placeholder="请输入文章标题" class="form-control w180">
+                                        <input type="text" name="title" placeholder="请输入文章标题" class="form-control w180">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-4">

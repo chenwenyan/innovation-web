@@ -57,14 +57,12 @@
 
     <select id="queryBySearchInfo" resultMap="typeResultMap">
         SELECT * from `t_type`
-        <if test="name != null and assistantCode != null">
-            WHERE name LIKE "%"#{name}"%" AND assistant_code LIKE "%"#{assistantCode}"%"
+        WHERE TRUE
+        <if test="name != null">
+            and name LIKE "%"#{name}"%"
         </if>
-        <if test="name != null and assistantCode == null">
-            WHERE name LIKE "%"#{name}"%"
-        </if>
-        <if test="name == null and assistantCode != null">
-            WHERE assistant_code LIKE "%"#{assistantCode}"%"
+        <if test="assistantCode != null">
+            and assistant_code LIKE "%"#{assistantCode}"%"
         </if>
     </select>
 

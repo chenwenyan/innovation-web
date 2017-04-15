@@ -89,5 +89,17 @@ public interface ProjectService extends AbstractService{
      * @throws Exception
      */
     public List<Project> queryBySearchInfo(String name,  String charger,  String teacher, int schoolId, Date year,int offset,int pageSize) throws Exception;
+    /**
+     * 条件查询计数
+     *
+     * @param name
+     * @param charger
+     * @param teacher
+     * @param schoolId
+     * @return
+     * @throws Exception
+     */
+    public int countQueryBySearchInfo(String name,  String charger,  String teacher, int schoolId, Date year) throws Exception;
+
 
 }

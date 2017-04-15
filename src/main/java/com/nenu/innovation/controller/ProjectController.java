@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * ProjectController
@@ -72,7 +74,7 @@ public class ProjectController {
         }
     }
 
-    @RequestMapping(value = "/project",method = RequestMethod.POST)
+    @RequestMapping(value = "/project" ,method = RequestMethod.POST)
     public String toSearchList(HttpServletRequest request,HttpServletResponse response,
                                Model model){
         String  pageNoStr = request.getParameter("pageNo");
@@ -86,12 +88,17 @@ public class ProjectController {
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
         int schoolId = Integer.parseInt(schoolIdStr);
-        String year = request.getParameter("year");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         try{
+            Date year = sdf.parse(request.getParameter("year"));
             schools = schoolService.listAll();
             model.addAttribute("schoolList",schools);
             projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,year,offset,pageSize);
             model.addAttribute("projectList",projects);
+            model.addAttribute("pageNo",pageNo);
+            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,year);
+            BigDecimal count = new BigDecimal(sum/10);
+            model.addAttribute("count", + Math.ceil(count.doubleValue()));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/project/list";
         }catch (Exception e){

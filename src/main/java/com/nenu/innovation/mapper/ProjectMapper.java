@@ -90,7 +90,7 @@ public interface ProjectMapper {
      * @throws Exception
      */
     public List<Project> queryBySearchInfo(@Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId,
-                                           @Param("year") Date year , int offset,int pageSize) throws Exception;
+                                           @Param("year") Date year ,@Param("offset") Integer offset,@Param("pageSize") Integer pageSize) throws Exception;
 
     /**
      * 根据页码显示列表
@@ -101,5 +101,19 @@ public interface ProjectMapper {
      * @throws Exception
      */
     public List<Project> listByPage(@Param("offset") Integer offset,@Param("pageSize") Integer pageSize) throws Exception;
+
+    /**
+     *
+     * 条件查询计数
+     * @param name
+     * @param charger
+     * @param teacher
+     * @param schoolId
+     * @param year
+     * @return
+     * @throws Exception
+     */
+    public Integer countQueryBySearchInfo(@Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId,
+                                          @Param("year") Date year)throws Exception;
 
 }

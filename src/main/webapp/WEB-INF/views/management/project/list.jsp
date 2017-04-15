@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>学院管理</title>
+    <title>项目管理</title>
     <jsp:include flush="true" page="/WEB-INF/views/management/common/head.jsp"/>
     <style type="text/css">
         .tip1 {

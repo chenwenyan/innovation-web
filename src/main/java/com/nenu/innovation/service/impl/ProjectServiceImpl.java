@@ -5,6 +5,7 @@ import com.nenu.innovation.entity.School;
 import com.nenu.innovation.mapper.ProjectMapper;
 import com.nenu.innovation.mapper.SchoolMapper;
 import com.nenu.innovation.service.ProjectService;
+import org.springframework.beans.CachedIntrospectionResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -109,10 +110,10 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId ) throws Exception{
+    public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId, Date year, int offset,int pageSize ) throws Exception{
         List<Project> projects = Collections.emptyList();
         try{
-            projects =  projectMapper.queryBySearchInfo(name,charger,teacher,schoolId);
+            projects =  projectMapper.queryBySearchInfo(name,charger,teacher,schoolId,year,offset,pageSize);
             for(Project project:projects){
                 setSchoolName(project);
             }
@@ -135,6 +136,17 @@ public class ProjectServiceImpl implements ProjectService{
             return projects;
         }catch (Exception e){
             e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public int countQueryBySearchInfo(String name,  String charger,  String teacher, int schoolId, Date year) throws Exception{
+        try{
+            int sum = projectMapper.countQueryBySearchInfo(name,charger,teacher,schoolId,year);
+            return sum;
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("条件查询计数出错");
             throw new Exception(e.getMessage());
         }
     }
