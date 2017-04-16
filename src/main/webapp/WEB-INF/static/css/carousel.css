@@ -24,23 +24,29 @@ body {
 .fluid{
   display: block;
   background-color: #337ab7;
-
 }
 /* Flip around the padding for proper display in narrow viewports */
-.navbar-wrapper .navbar .container-fluid {
-  width: auto;
-  background: #337ab7;  
+.navbar-default{
+  border-top: none;
 }
-.navbar-wrapper .navbar li {
+.navbar {
+  background: #337ab7; 
+  font-size: 14px;
+  font-family: "微软雅黑";
+}
+.nav li {
   margin: 0;  
   text-align: center;
-  width: 250px;
+  /*width: 250px;*/
 }
-.navbar-wrapper .navbar li:first-child{
-  margin-left: 30px;
+.nav li:first-child{
+  /*margin-left: 40px;*/
 }
-.navbar-wrapper .navbar li:not(:last-child){
+.nav li:not(:last-child){
   border-right: 1px dotted #fff;
+}
+.first-slide{
+  height: 500px !important;
 }
 .first-slide{
   height: 500px !important;
@@ -53,8 +59,8 @@ body {
 /* Carousel base class */
 .carousel {
   height: 500px;
-  margin-top: -21px;
   position: relative;
+  top: -22px;
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
@@ -109,7 +115,12 @@ body {
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
-
+@media (max-width: 1200px) {
+  /* Navbar positioning foo */
+  .nav li a {
+    margin: 0 40px;
+  }
+}
 @media (min-width: 768px) {
   /* Navbar positioning foo */
   .navbar-wrapper .container {

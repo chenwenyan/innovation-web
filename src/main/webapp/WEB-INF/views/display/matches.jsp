@@ -20,18 +20,27 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">互联网+</h6>
-                                <a href="/more-articles?typeId=1" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=1" class="smart-margin-left"><i
+                                        class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body line-number">
                         <ul>
                             <c:forEach var="item" items="${hlw}">
                                 <li>
                                     <a href="/article-detail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
-                                        <span class="information">${item.title}</span>
-                                        <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                                        <span class="lixiang-information">
+                                                <c:if test="${fn:length(item.title) > 20 }">
+                                                    ${fn:substring(item.title, 0, 20)}...
+                                                </c:if>
+                                                  <c:if test="${fn:length(item.title) <= 20 }">
+                                                      ${item.title}
+                                                  </c:if>
+                                        </span>
+                                        <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -45,18 +54,27 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">创青春全国大学生创业大赛</h6>
-                                <a href="/more-articles?typeId=2" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=2" class="smart-margin-left"><i
+                                        class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body line-number">
                         <ul>
                             <c:forEach var="item" items="${cqc}">
                                 <li>
                                     <a href="/article-detail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
-                                        <span class="information">${item.title}</span>
-                                        <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                                        <span class="lixiang-information">
+                                               <c:if test="${fn:length(item.title) > 20 }">
+                                                   ${fn:substring(item.title, 0, 20)}...
+                                               </c:if>
+                                                  <c:if test="${fn:length(item.title) <= 20 }">
+                                                      ${item.title}
+                                                  </c:if>
+                                        </span>
+                                        <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -70,18 +88,27 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">挑战杯</h6>
-                                <a href="/more-articles?typeId=3" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=3" class="smart-margin-left"><i
+                                        class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body line-number">
                         <ul>
                             <c:forEach var="item" items="${tzb}">
                                 <li>
                                     <a href="/article-detail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
-                                        <span class="information">${item.title}</span>
-                                        <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                                        <span class="lixiang-information">
+                                                <c:if test="${fn:length(item.title) > 20 }">
+                                                    ${fn:substring(item.title, 0, 20)}...
+                                                </c:if>
+                                                  <c:if test="${fn:length(item.title) <= 20 }">
+                                                      ${item.title}
+                                                  </c:if>
+                                        </span>
+                                        <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -95,18 +122,27 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">其他比赛</h6>
-                                <a href="/more-articles?typeId=11" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=11" class="smart-margin-left"><i
+                                        class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body">
+                    <div class="panel-body line-number">
                         <ul>
                             <c:forEach var="item" items="${qtbs}">
                                 <li>
                                     <a href="/article-detail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
-                                        <span class="information">${item.title}</span>
-                                        <span class="date"><fmt:formatDate value="${item.createdTime}" pattern="yyyy-MM-dd"/></span>
+                                        <span class="lixiang-information">
+                                                <c:if test="${fn:length(item.title) > 20 }">
+                                                    ${fn:substring(item.title, 0, 20)}...
+                                                </c:if>
+                                                  <c:if test="${fn:length(item.title) <= 20 }">
+                                                      ${item.title}
+                                                  </c:if>
+                                        </span>
+                                        <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>

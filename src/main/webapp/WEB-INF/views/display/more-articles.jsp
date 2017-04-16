@@ -88,37 +88,50 @@
                                     <span class="info-date"><fmt:formatDate value="${item.createdTime}"
                                                                             pattern="yyyy-MM-dd"/></span>
                                 </a>
-                                <div class="line">ewjwehr wer</div>
+                                <div class="line"></div>
                             </li>
                         </div>
                     </c:forEach>
                 </ul>
             </div>
             <div class="col-sm-3 col-sm-offset-8 margin-top-50">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <div class="pull-right"><ul id="pageLimit"> </ul></div>
             </div>
         </div>
     </div>
 </div>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<script type="text/javascript">
+    $(function () {
+        $('#pageLimit').bootstrapPaginator({
+            currentPage: ${pageNo + 1},
+            totalPages: ${count},
+            size: "normal",
+            bootstrapMajorVersion: 3,
+            alignment: "right",
+            numberOfPages: 5,
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "<<";
+                    case "next":
+                        return ">>";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return page;
+                }
+            },
+            pageUrl: function (url, page, current) {
+                return "/more-articles?pageNo=" + page;
+            }
+        });
+        console.log(${count});
+        console.log(${pageNo + 1});
+    });
+</script>
 </body>
 </html>

@@ -55,22 +55,25 @@
 
     <select id="queryBySearchInfo" resultMap="projectResultMap">
         SELECT * from `t_project`
-         WHERE TRUE
-            <if test="teacher != null ">
-                and teacher LIKE "%"#{teacher}"%"
-            </if>
-            <if test="charger != null">
-                and charger LIKE "%"#{charger}"%"
-            </if>
-            <if test="name != null">
-                and name LIKE "%"#{name}"%"
-            </if>
-            <if test="schoolId != 0">
-                AND school_id = #{schoolId}
-            </if>
-            <if test="year!= null">
-                AND year = #{year}
-            </if>
+        WHERE TRUE
+        <if test="teacher != null ">
+            and teacher LIKE "%"#{teacher}"%"
+        </if>
+        <if test="charger != null">
+            and charger LIKE "%"#{charger}"%"
+        </if>
+        <if test="name != null">
+            and name LIKE "%"#{name}"%"
+        </if>
+        <if test="schoolId != 0">
+            AND school_id = #{schoolId}
+        </if>
+        <if test="startYear != null">
+            AND year &gt;= #{startYear}
+        </if>
+        <if test="endYear != null">
+            AND year &lt;= #{endYear}
+        </if>
         LIMIT #{offset},#{pageSize}
     </select>
 
@@ -89,8 +92,11 @@
         <if test="schoolId != 0">
             AND school_id = #{schoolId}
         </if>
-        <if test="year!= null">
-            AND year = #{year}
+        <if test="startYear != null">
+            AND year &gt;= #{startYear}
+        </if>
+        <if test="endYear != null">
+            AND year &lt;= #{endYear}
         </if>
     </select>
 

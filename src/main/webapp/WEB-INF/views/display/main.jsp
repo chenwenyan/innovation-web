@@ -40,7 +40,7 @@
     <div class="row">
         <div class="col-lg-4">
             <img class="img-circle" src="/img/1.jpg" alt="Generic placeholder image" width="140" height="140">
-            <h2>创新创业类比赛</h2>
+            <h3>创新创业类比赛</h3>
             <p>互联网+</p>
             <p>创青春全国大学生创业大赛</p>
             <p>挑战杯</p>
@@ -48,7 +48,7 @@
         </div>
         <div class="col-lg-4">
             <img class="img-circle" src="/img/2.jpg" alt="Generic placeholder image" width="140" height="140">
-            <h2>创新创业科研项目</h2>
+            <h3>创新创业科研项目</h3>
             <p>国家级大学生创新创业训练计划</p>
             <p>“中央高校基本科研业务专项资金”本科生项目</p>
             <p>&nbsp;</p>
@@ -56,7 +56,7 @@
         </div>
         <div class="col-lg-4">
             <img class="img-circle" src="/img/3.jpg" alt="Generic placeholder image" width="140" height="140">
-            <h2>创新创业扶持一揽子计划</h2>
+            <h3>创新创业扶持一揽子计划</h3>
             <p>暑期社会实践&nbsp;&nbsp;科研扶持</p>
             <p>创业园&nbsp;&nbsp;企业注册</p>
             <p>科研成果</p>

@@ -114,4 +114,24 @@ public interface ArticleMapper {
      * @throws Exception
      */
     public List<Article> listByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
+
+    /**
+     * 按照页码列出该类别下的文章
+     *
+     * @param typeId
+     * @param offset
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    public List<Article> listByTypeAndPage(@Param("typeId") Integer typeId, @Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
+
+    /**
+     * 该类别下的文章数目
+     *
+     * @param typeId
+     * @return
+     * @throws Exception
+     */
+    public Integer countListByTypeAndPage(@Param("typeId") Integer typeId) throws Exception;
 }

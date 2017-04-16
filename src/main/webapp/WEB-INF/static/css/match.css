@@ -80,3 +80,6 @@ span.date{
   display: inline-block;
   float: right;
 }
+.line-number{
+  height: 155px;
+}

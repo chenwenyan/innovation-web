@@ -16,7 +16,7 @@
 
     <select id="listAll" resultMap="articleResultMap">
         SELECT * FROM `t_article`
-        ORDER BY created_time
+        ORDER BY created_time DESC
     </select>
 
     <select id="count" resultType="integer">
@@ -26,7 +26,7 @@
     <select id="listByType" resultMap="articleResultMap">
         SELECT * FROM `t_article`
         WHERE type_id = #{typeId}
-        ORDER BY created_time
+        ORDER BY created_time DESC
     </select>
     <select id="listByKeyWords" resultMap="articleResultMap">
         SELECT * FROM `t_article`
@@ -67,6 +67,7 @@
             and title = "%"#{title}"%"
         </if>
         and creator_id = #{creatorId} and type_id = #{typeId}
+        ORDER BY created_time DESC
     </select>
 
     <update id="updateReadNum">
@@ -78,8 +79,21 @@
     <select id="listByPage" resultMap="articleResultMap">
         SELECT *
         FROM t_article
-        ORDER BY created_time
+        ORDER BY created_time DESC
         LIMIT #{offset},#{pageSize}
     </select>
 
+    <select id="listByTypeAndPage" resultMap="articleResultMap">
+        SELECT *
+        FROM t_article
+        WHERE type_id = #{typeId}
+        ORDER BY created_time DESC
+        LIMIT #{offset},#{pageSize}
+    </select>
+
+    <select id="countListByTypeAndPage" resultType="Integer">
+        SELECT COUNT(1)
+        FROM t_article
+        WHERE type_id = #{typeId}
+    </select>
 </mapper>

@@ -5,12 +5,10 @@ import com.nenu.innovation.entity.School;
 import com.nenu.innovation.mapper.ProjectMapper;
 import com.nenu.innovation.mapper.SchoolMapper;
 import com.nenu.innovation.service.ProjectService;
-import org.springframework.beans.CachedIntrospectionResults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -110,10 +108,10 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId, Date year, int offset,int pageSize ) throws Exception{
+    public List<Project> queryBySearchInfo(String name,  String charger,  String teacher,  int schoolId, int startYear, int endYear, int offset,int pageSize ) throws Exception{
         List<Project> projects = Collections.emptyList();
         try{
-            projects =  projectMapper.queryBySearchInfo(name,charger,teacher,schoolId,year,offset,pageSize);
+            projects =  projectMapper.queryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear,offset,pageSize);
             for(Project project:projects){
                 setSchoolName(project);
             }
@@ -140,9 +138,9 @@ public class ProjectServiceImpl implements ProjectService{
         }
     }
 
-    public int countQueryBySearchInfo(String name,  String charger,  String teacher, int schoolId, Date year) throws Exception{
+    public int countQueryBySearchInfo(String name,  String charger,  String teacher, int schoolId, int startYear, int endYear) throws Exception{
         try{
-            int sum = projectMapper.countQueryBySearchInfo(name,charger,teacher,schoolId,year);
+            int sum = projectMapper.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear);
             return sum;
         }catch (Exception e){
             e.printStackTrace();

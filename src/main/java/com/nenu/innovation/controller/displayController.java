@@ -6,6 +6,7 @@ import com.nenu.innovation.entity.School;
 import com.nenu.innovation.service.ArticleService;
 import com.nenu.innovation.service.ProjectService;
 import com.nenu.innovation.service.SchoolService;
+import com.nenu.innovation.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,24 +42,37 @@ public class displayController {
         return "display/main";
     }
 
-    @RequestMapping(value = "/searchProject", method = RequestMethod.POST)
+    @RequestMapping(value = "/search-project", method = RequestMethod.POST)
     public String searchProject(HttpServletRequest request,HttpServletResponse response,
                                 Model model) {
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
         List<Project> projects = Collections.emptyList();
         List<School> schools = Collections.emptyList();
         String name = request.getParameter("name");
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
-        if(schoolIdStr == null){
-            schoolIdStr = "0";
-        }
         int schoolId = Integer.parseInt(schoolIdStr);
+        int startYear = -1;
+        int endYear = 99999;
         try{
+            if(request.getParameter("startYear") != ""){
+                startYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("startYear")).getYear();
+            }
+            if(request.getParameter("endYear") != ""){
+                endYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("endYear")).getYear();
+            }
             schools = schoolService.listAll();
-//            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId);
+            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear,offset,pageSize);
             model.addAttribute("schoolList",schools);
             model.addAttribute("projectList",projects);
+            model.addAttribute("pageNo",pageNo);
+            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear);
+            BigDecimal count = new BigDecimal(sum/10);
+            model.addAttribute("count", + Math.ceil(count.doubleValue()));
             return "display/search-project";
         }catch (Exception e){
             return "error";
@@ -67,13 +82,21 @@ public class displayController {
     @RequestMapping(value = "/search-project", method = RequestMethod.GET)
     public String toProjectList(HttpServletRequest request,HttpServletResponse response,
                                 Model model) {
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
         List<Project> projects = Collections.emptyList();
         List<School> schools = Collections.emptyList();
         try{
-            projects = projectService.listAll();
+            projects =  projectService.listByPage(offset,pageSize);
             schools = schoolService.listAll();
+            int count = projectService.count();
             model.addAttribute("projectList",projects);
             model.addAttribute("schoolList",schools);
+            model.addAttribute("pageNo",pageNo);
+            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
+            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "display/search-project";
         }catch (Exception e){
             return "error";
@@ -86,14 +109,17 @@ public class displayController {
         List<Article> hlw = Collections.emptyList();  //互联网+
         List<Article> cqc = Collections.emptyList(); //创青春全国大学生创业大赛
         List<Article> tzb = Collections.emptyList();  //挑战杯
+        List<Article> qtbs = Collections.emptyList();  //其他比赛
         List<Article> matches = Collections.emptyList(); //总比赛
         try {
             hlw = articleService.listByType(1);
             cqc = articleService.listByType(2);
             tzb = articleService.listByType(3);
-            model.addAttribute("hlw", hlw);
-            model.addAttribute("cqc", cqc);
-            model.addAttribute("tzb", tzb);
+            qtbs = articleService.listByType(11);
+            model.addAttribute("hlw", hlw.size() > 5 ? hlw.subList(0,5):hlw);
+            model.addAttribute("cqc", cqc.size() > 5 ? cqc.subList(0,5):cqc);
+            model.addAttribute("tzb", tzb.size() > 5 ? tzb.subList(0,5):tzb);
+            model.addAttribute("qtbs", qtbs.size() > 5 ? qtbs.subList(0,5):qtbs);
 //            matches.addAll(hlw);
 //            matches.addAll(cqc);
 //            matches.addAll(tzb);
@@ -124,11 +150,11 @@ public class displayController {
             cyy = articleService.listByType(6);
             qyzc = articleService.listByType(7);
             kycg = articleService.listByType(8);
-            model.addAttribute("sqshsjgg", sqshsjgg);
-            model.addAttribute("kyfc", kyfc);
-            model.addAttribute("cyy", cyy);
-            model.addAttribute("qyzc", qyzc);
-            model.addAttribute("kycg", kycg);
+            model.addAttribute("sqshsjgg", sqshsjgg.size() > 5 ? sqshsjgg.subList(0,5): sqshsjgg);
+            model.addAttribute("kyfc", kyfc.size() > 5 ? kyfc.subList(0,5):kyfc);
+            model.addAttribute("cyy", cyy.size() > 5 ? cyy.subList(0,5):cyy);
+            model.addAttribute("qyzc", qyzc.size() > 5 ? qyzc.subList(0,5): qyzc);
+            model.addAttribute("kycg", kycg.size() > 5 ? kycg.subList(0,5):kycg);
 //            plans.addAll(sqshsjgg);
 //            plans.addAll(kyfc);
 //            plans.addAll(cyy);
@@ -139,7 +165,7 @@ public class displayController {
 //            plans = concat(plans,cyy);
 //            plans = concat(plans,qyzc);
 //            plans = concat(plans,kycg);
-//            model.addAttribute("plans", plans);
+            model.addAttribute("plans", plans);
             return "display/plans";
         } catch (Exception e) {
             return "error";
@@ -159,8 +185,8 @@ public class displayController {
 //            projects.addAll(kylx);
 //            projects = concat(projects,gjjcxcyxljh);
 //            projects = concat(projects,kylx);
-            model.addAttribute("gjjcxcyxljh", gjjcxcyxljh);
-            model.addAttribute("kylx", kylx);
+            model.addAttribute("gjjcxcyxljh", gjjcxcyxljh.size() > 5 ?gjjcxcyxljh.subList(0,5) : gjjcxcyxljh);
+            model.addAttribute("kylx", kylx.size()>5? kylx.subList(0,5):kylx);
 //            model.addAttribute("projects", projects);
             return "display/projects";
         } catch (Exception e) {
@@ -171,11 +197,18 @@ public class displayController {
     @RequestMapping(value = "more-articles", method = RequestMethod.GET)
     public String moreArticles(HttpServletRequest request,HttpServletResponse response,
                                Model model) {
+        String  pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        int pageSize = 5;
+        int offset = pageNo * pageSize;
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         List<Article> articles = Collections.emptyList();
         try{
-            articles = articleService.listByType(typeId);
+            articles = articleService.listByTypeAndPage(typeId,offset,pageSize);
             model.addAttribute("list",articles);
+            int sum = articleService.countListByTypeAndPage(typeId);
+            BigDecimal count = new BigDecimal(sum/pageSize);
+            model.addAttribute("count", + Math.ceil(count.doubleValue()+1));
             return "display/more-articles";
         }catch (Exception e){
             return "error";
@@ -195,12 +228,5 @@ public class displayController {
         }catch (Exception e){
             return "error";
         }
-    }
-
-    private List<Article> concat(List<Article> list1,List<Article> list2)throws Exception{
-        for(Article article : list2){
-            Collections.addAll(list1,article);
-        }
-        return list1;
     }
 }

@@ -4,10 +4,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <link rel="stylesheet" type="text/css" href="/css/search.css">
 <link rel="stylesheet" type="text/css" href="/css/more.css">
@@ -34,6 +32,7 @@
 <script type="text/javascript" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 
+<script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/back-to-top.js"></script>
 <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/holder.min.js"></script>
@@ -42,6 +41,7 @@
 <script type="text/javascript" src="/js/accordion.js"></script>
 <script type="text/javascript" src="/js/jquery.slimscroll.js"></script>
 <script type="text/javascript" src="/js/makisu.min.js"></script>
+<script type="text/javascript" src="/js/bootstrap-paginator.js"></script>
 <%--<script type="text/javascript" src="/js/gmaps.js"></script>--%>
 
 

@@ -5,8 +5,8 @@
             <div class="col-sm-5 footer-left col-sm-offset-1">
                 <p>
                     友情链接：
-                    <a href="http://www.nenu.edu.cn/">东北师范大学&nbsp;&nbsp;|&nbsp;</a>
-                    <a href="http://youth.nenu.edu.cn/">扬思网&nbsp;&nbsp;|&nbsp;</a>
+                    <a href="http://www.nenu.edu.cn/">东北师范大学</a>&nbsp;&nbsp;|&nbsp;
+                    <a href="http://youth.nenu.edu.cn/">扬思网</a>&nbsp;&nbsp;|&nbsp;
                     <a href="http://www.youth.cn/">中国青年网</a>
                 </p>
                 <p>版权所有：共青团东北师范大学委员会</p>

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -185,6 +184,28 @@ public class ArticleServiceImpl implements ArticleService {
                 setArticleTypeAndCreator(article);
             }
             return articles;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Article> listByTypeAndPage(int typeId, int offset, int pageSize) throws Exception{
+       List<Article> articles = Collections.emptyList();
+        try{
+            articles = articleMapper.listByTypeAndPage(typeId,offset,pageSize);
+            return articles;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public int countListByTypeAndPage(int typeId) throws Exception{
+        try{
+            return articleMapper.countListByTypeAndPage(typeId);
         }catch (Exception e){
             e.printStackTrace();
             throw new Exception(e.getMessage());

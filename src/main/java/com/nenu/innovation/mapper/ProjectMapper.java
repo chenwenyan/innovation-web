@@ -4,7 +4,6 @@ import com.nenu.innovation.entity.Project;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-import java.util.Date;
 
 /**
  * ProjectMapper
@@ -86,11 +85,15 @@ public interface ProjectMapper {
      * @param charger
      * @param teacher
      * @param schoolId
+     * @param startYear
+     * @param endYear
+     * @param offset
+     * @param pageSize
      * @return
      * @throws Exception
      */
     public List<Project> queryBySearchInfo(@Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId,
-                                           @Param("year") Date year ,@Param("offset") Integer offset,@Param("pageSize") Integer pageSize) throws Exception;
+                                           @Param("startYear") Integer startYear,@Param("endYear") Integer endYear,@Param("offset") Integer offset,@Param("pageSize") Integer pageSize) throws Exception;
 
     /**
      * 根据页码显示列表
@@ -103,17 +106,18 @@ public interface ProjectMapper {
     public List<Project> listByPage(@Param("offset") Integer offset,@Param("pageSize") Integer pageSize) throws Exception;
 
     /**
-     *
      * 条件查询计数
+     *
      * @param name
      * @param charger
      * @param teacher
      * @param schoolId
-     * @param year
+     * @param startYear
+     * @param endYear
      * @return
      * @throws Exception
      */
     public Integer countQueryBySearchInfo(@Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId,
-                                          @Param("year") Date year)throws Exception;
+                                          @Param("startYear") Integer startYear,@Param("endYear") Integer endYear)throws Exception;
 
 }

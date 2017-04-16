@@ -21,7 +21,7 @@
                     </div>
                     <div class="col-sm-6 pull-right">
                                 <span class="public-right">当前位置：
-                                    <a href="">首页</a> > 项目检索
+                                    <a href="${website}/main">首页</a> > 项目检索
                                 </span>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="/searchProject" method="post" class="form-horizontal">
+                        <form action="/search-project" method="post" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目名称：</label>
                                 <div class="col-sm-6">
@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">学院：</label>
                                 <div class="col-sm-6">
-                                    <select  class="form-control" name="schoolId">
+                                    <select class="form-control" name="schoolId">
                                         <option value="0">全部</option>
                                         <c:forEach var="school" items="${schoolList}">
                                             <c:if test="${schoolList.size()> 0}">
@@ -66,6 +66,18 @@
                                             </c:if>
                                         </c:forEach>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group form-inline">
+                                <label class="col-sm-3 control-label">年份：</label>
+                                <div class="col-sm-6">
+                                    <input class="col-sm-2 form-control w180 form-filter yearpicker" readonly="readonly"
+                                           name="startYear" id="startYear"/>
+                                    <%--</div>--%>
+                                    <label class="col-sm-2 control-label">至</label>
+                                    <%--<div class="col-sm-3">--%>
+                                    <input class="col-sm-2 form-control w180 form-filter yearpicker "
+                                           readonly="readonly" name="endYear" id="endYear"/>
                                 </div>
                             </div>
                             <div class="col-sm-3 col-sm-offset-5">
@@ -88,11 +100,19 @@
                                     <c:forEach var="project" items="${projectList}">
                                         <tr>
                                             <td hidden="hidden">${project.id}</td>
-                                            <td>${project.name}</td>
+                                            <td>
+                                                <c:if test="${fn:length(project.name) > 20 }">
+                                                    ${fn:substring(project.name, 0, 20)}...
+                                                </c:if>
+                                                <c:if test="${fn:length(project.name) > 20 }">
+                                                    ${project.name}
+                                                </c:if>
+                                            </td>
                                             <td>${project.charger}</td>
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
-                                            <td><fmt:formatDate value="${project.year}" pattern="yyyy" /></td>
+                                            <td>${project.year}</td>
+                                                <%--<td><fmt:formatDate value="${project.year}" pattern="yyyy" /></td>--%>
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${projectlList.size()=='0'}">
@@ -102,27 +122,9 @@
                                     </c:if>
                                     </tbody>
                                 </table>
-                            </div>
-                            <div class="col-sm-4 pull-right">
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination">
-                                        <li>
-                                            <a href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li>
-                                            <a href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                <div class="pull-right">
+                                    <ul id="pageLimit"></ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -141,6 +143,69 @@
 
 <jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<script type="text/javascript">
+    $(function () {
+        $('#startYear').datetimepicker({
+            startView: 'decade',
+            minView: 'decade',
+            format: 'yyyy',
+            maxViewMode: 2,
+            minViewMode: 2,
+            autoclose: true
+        }).on("changeDate", function (ev) {
+            var startYear = $("#startYear").val();
+            $("#endYear").datetimepicker("setStartDate", startYear);
+            $("#startYear").datetimepicker("hide");
+        });
+
+        $('#endYear').datetimepicker({
+            startView: 'decade',
+            minView: 'decade',
+            format: 'yyyy',
+            maxViewMode: 2,
+            minViewMode: 2,
+            autoclose: true
+        }).on("changeDate", function (ev) {
+            var startYear = $("#startYear").val();
+            var endYear = $("#endYear").val();
+            if (startYear != "" && endYear != null) {
+                if (startYear >= endYear) {
+                    alert("开始年份应小于结束年份");
+                    return;
+                }
+            }
+            $("#startYear").datetimepicker("setEndDate", endYear);
+            $("#startYear").datetimepicker("hide");
+        });
+
+
+        $('#pageLimit').bootstrapPaginator({
+            currentPage: ${pageNo+1},
+            totalPages: ${count},
+            size: "normal",
+            bootstrapMajorVersion: 3,
+            alignment: "right",
+            numberOfPages: 5,
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "<<";
+                    case "next":
+                        return ">>";
+                    case "last":
+                        return "末页";
+                    case "page":
+                        return page;
+                }
+            },
+            pageUrl: function (url, page, current) {
+                return "/search-project?pageNo=" + page;
+            }
+        });
+    });
+</script>
 </body>
 </html>
 

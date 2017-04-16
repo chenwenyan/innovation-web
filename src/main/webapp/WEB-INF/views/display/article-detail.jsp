@@ -8,6 +8,9 @@
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
+<div class="img-container">
+    <img src="/img/head1.jpg" alt="大学生创新创业计划">
+</div>
 <div class="public">
     <div class="container">
         <div class="row">
@@ -25,16 +28,17 @@
                              <c:if test="${article.typeId == 8 }">科研成果</c:if>
                              <c:if test="${article.typeId == 9 }">国家级创新创业训练计划</c:if>
                              <c:if test="${article.typeId == 10 }">科研立项</c:if>
+                             <c:if test="${article.typeId == 11 }">其他比赛</c:if>
                             公告</span>
                     </div>
                     <div class="col-sm-6 pull-right">
                                 <span class="public-right">当前位置：
-                                    <c:if test="${article.typeId == 1 || article.typeId == 2}"><a
+                                    <c:if test="${article.typeId == 1 || article.typeId == 2 || article.typeId == 3 || article.typeId == 11}"><a
                                             href="/matches">比赛</a></c:if>
-                                    <c:if test="${article.typeId != 1 && article.typeId != 2 && article.typeId != 9 && article.typeId != 10 }"><a
+                                    <c:if test="${article.typeId == 4 || article.typeId == 5 || article.typeId == 6 || article.typeId == 7 || article.typeId == 8 }"><a
                                             href="/plans">计划</a></c:if>
                                     <c:if test="${article.typeId == 9 || article.typeId == 10}"><a
-                                            href="/project">立项</a></c:if>
+                                            href="/projects">立项</a></c:if>
                                      >
                                     <a href="/more-articles?typeId=${article.typeId}">
                                      <c:if test="${article.typeId == 1 }">互联网+</c:if>
@@ -47,6 +51,7 @@
                                      <c:if test="${article.typeId == 8 }">科研成果</c:if>
                                      <c:if test="${article.typeId == 9 }">国家级创新创业训练计划</c:if>
                                      <c:if test="${article.typeId == 10 }">科研立项</c:if>
+                                     <c:if test="${article.typeId == 11 }">其他比赛</c:if>
                                     </a>
                                     > 通知公告
                                 </span>
@@ -57,12 +62,13 @@
                 <section class="demo">
                     <dl class="list maki">
                         <dt>公告</dt>
-                        <c:if test="${article.typeId == 1 || article.typeId == 2}">
+                        <c:if test="${article.typeId == 1 || article.typeId == 2 || article.typeId == 3 || article.typeId == 11}">
                             <dd><a href="/more-articles?typeId=1">互联网+</a></dd>
                             <dd><a href="/more-articles?typeId=2">创青春</a></dd>
                             <dd><a href="/more-articles?typeId=3">挑战杯</a></dd>
+                            <dd><a href="/more-articles?typeId=11">其他比赛</a></dd>
                         </c:if>
-                        <c:if test="${article.typeId != 1 && article.typeId != 2 && article.typeId != 9 && article.typeId != 10 }">
+                        <c:if test="${article.typeId == 4 || article.typeId == 5 || article.typeId == 6 || article.typeId == 7 || article.typeId == 8 }">
                             <dd><a href="/more-articles?typeId=4">暑期社会实践公告</a></dd>
                             <dd><a href="/more-articles?typeId=5">科研扶持</a></dd>
                             <dd><a href="/more-articles?typeId=6">创业园</a></dd>
@@ -78,13 +84,15 @@
                 </section>
             </div>
             <div class="col-sm-7">
-                <h3>${article.title}</h3>
+                <h3 class="text-center">${article.title}</h3>
+                <div class="text-center">
+                    <span>发布时间：</span>
+                    <span><fmt:formatDate value="${article.createdTime}" pattern="yyyy-MM-dd HH-MM-ss"/></span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;浏览：</span>
+                    <span>${article.readNum}</span>
+                    <span>次</span>
+                </div>
                 <hr>
-                <span>发布时间：</span>
-                <span><fmt:formatDate value="${article.createdTime}" pattern="yyyy-MM-dd"/></span>
-                <span>浏览次数：</span>
-                <span>${article.readNum}</span>
-                <%--<h4>各学院（部）团委：</h4>--%>
                 <p>
                     ${article.content}
                 </p>

@@ -4,6 +4,7 @@ import com.nenu.innovation.entity.Project;
 import com.nenu.innovation.entity.School;
 import com.nenu.innovation.service.ProjectService;
 import com.nenu.innovation.service.SchoolService;
+import com.nenu.innovation.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -33,23 +33,6 @@ public class ProjectController {
     @Autowired
     private SchoolService schoolService;
 
-//    @RequestMapping(value = "/project",method = RequestMethod.GET)
-//    public String toList(HttpServletRequest request,HttpServletResponse response,
-//                         Model model){
-//        List<Project> projects = Collections.emptyList();
-//        List<School> schools = Collections.emptyList();
-//        try{
-//            projects = projectService.listAll();
-//            schools = schoolService.listAll();
-//            model.addAttribute("projectList",projects);
-//            model.addAttribute("schoolList",schools);
-//            model.addAttribute("user",request.getSession().getAttribute("user"));
-//            return "management/project/list";
-//        }catch (Exception e){
-//            return "error";
-//        }
-//    }
-
     @RequestMapping(value = "/project",method = RequestMethod.GET)
     public String toList(HttpServletRequest request,HttpServletResponse response,
                          Model model){
@@ -62,11 +45,12 @@ public class ProjectController {
         try{
             projects =  projectService.listByPage(offset,pageSize);
             schools = schoolService.listAll();
-            int count = projectService.count();
+            int sum = projectService.count();
             model.addAttribute("projectList",projects);
             model.addAttribute("schoolList",schools);
             model.addAttribute("pageNo",pageNo);
-            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
+            BigDecimal count = new BigDecimal(sum/10);
+            model.addAttribute("count", + Math.ceil(count.doubleValue()));
             model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/project/list";
         }catch (Exception e){
@@ -88,18 +72,17 @@ public class ProjectController {
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
         int schoolId = Integer.parseInt(schoolIdStr);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         try{
-            Date year = sdf.parse(request.getParameter("year"));
+            Date startYear = DateUtils.formatDate("yyyy",request.getParameter("startYear"));
+            Date endYear = DateUtils.formatDate("yyyy",request.getParameter("endYear"));
             schools = schoolService.listAll();
+            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,startYear.getYear(),endYear.getYear(),offset,pageSize);
             model.addAttribute("schoolList",schools);
-            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,year,offset,pageSize);
             model.addAttribute("projectList",projects);
             model.addAttribute("pageNo",pageNo);
-            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,year);
+            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear.getYear(),endYear.getYear());
             BigDecimal count = new BigDecimal(sum/10);
             model.addAttribute("count", + Math.ceil(count.doubleValue()));
-            model.addAttribute("user",request.getSession().getAttribute("user"));
             return "management/project/list";
         }catch (Exception e){
             return "error";

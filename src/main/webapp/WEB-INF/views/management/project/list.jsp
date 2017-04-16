@@ -121,11 +121,19 @@
                                     <c:forEach var="project" items="${projectList}">
                                         <tr>
                                             <td hidden="hidden">${project.id}</td>
-                                            <td>${project.name}</td>
+                                            <td>
+                                                <c:if test="${fn:length(project.name) > 20 }">
+                                                    ${fn:substring(project.name, 0, 20)}...
+                                                </c:if>
+                                                <c:if test="${fn:length(project.name) <= 20 }">
+                                                    ${project.name}
+                                                </c:if>
+                                            </td>
                                             <td>${project.charger}</td>
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
-                                            <td><fmt:formatDate value="${project.year}" pattern="yyyy"/></td>
+                                            <td>${project.year}</td>
+                                            <%--<td><fmt:formatDate value="${project.year}" pattern="yyyy"/></td>--%>
                                             <td>
                                                 <c:if test="${project.type == 1}">国创</c:if>
                                                 <c:if test="${project.type == 2}">立项</c:if>

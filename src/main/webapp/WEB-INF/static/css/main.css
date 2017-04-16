@@ -1,33 +1,39 @@
+.header{
+ background-color: #259fc8;
+}
 .header h1 {
 	font-weight: bold;
 	font-family: '微软雅黑';
 	letter-spacing:2px;
 }
 img.left{
-    width: 100px;
-    margin-left: 30px;
-}
-img.right{
-    width: 200px;
-    position: relative;
-    top: 8px;
-    left: 25px;
+    width: 100%;
+    margin-top: 6px;
 }
 img.font{
-    margin-left:-54px;
     margin-top:15px;
     width: 500px;
     height: 60px;
 }
 .navbar{
-    border-radius: 0 !important; 
+    border-radius: 0;
+    left: -1px;
 }
-.navbar li a:hover {
+.nav li {
+    padding: 0 !important;
+}
+.nav li:hover,.nav li:hover a{
+    background-color: #85adcd;
+    color: #259fc8;
+    cursor: pointer;
+}
+.nav li a:hover {
     background-color: #1CD5B5;
     color: #fff;
 }
-.navbar li a {
+.nav li a {
     color: #fff !important;
+    margin: 0 93px;
 }
 .sousuo{
     margin-top: 30px;
@@ -81,7 +87,7 @@ h4.headline {
 }
 /**底部栏**/
 footer{
-    font-size: 17px;
+    font-size: 14px;
     color: #fff;
     width: 100%;
     background-color: #5a5a5a;
@@ -89,6 +95,7 @@ footer{
     position: relative;
     bottom: -40px;
     padding-bottom: 10px;
+    font-family: "微软雅黑";
 }
 .featurette-divider{
     margin-bottom: 20px !important;
@@ -125,4 +132,48 @@ footer a:hover{
 }
 .img-container{
     margin-top: -21px;
+}
+.alert{
+    background: #259fc8;
+    color: #fff;
+    border: none;
+}
+.alert a{
+    color: #fff !important
+}
+ul.side{
+    padding: 0;
+    list-style: none;
+}
+.side li{
+    width: 100%;
+    background-color: #337ab7;
+    padding: 10px 20px;    
+    text-align: center;
+    font-size: 16px;
+}
+.side li:not(:first-child){
+    border-top: 1px dotted #fff;
+}
+.side li:hover{
+    cursor: pointer;
+    font-size: 22px;
+    color: #1CD5B5 !important;
+    background-color: #259fc8;
+    transition: text-indent 0.2s;
+    -moz-transition: text-indent 0.2s;  
+    -webkit-transition: text-indent 0.2s;   
+    -o-transition: text-indent 0.2s;    
+}
+.side li a{
+    text-decoration: none;
+    color: #fff;
+}
+p.gonggao{
+    background-color: #337ab7;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 17px;
+    text-align: center;
 }

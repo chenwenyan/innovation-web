@@ -3,7 +3,6 @@ package com.nenu.innovation.service;
 import com.nenu.innovation.entity.Article;
 
 import java.util.List;
-import java.util.Date;
 
 /**
  * ArticleService
@@ -103,5 +102,25 @@ public interface ArticleService extends AbstractService{
      * @throws Exception
      */
     public void updateReadNum(int id) throws Exception;
+
+    /**
+     *
+     * 按照页码列出该类别下的文章
+     * @param typeId
+     * @param offset
+     * @param pageSize
+     * @return
+     * @throws Exception
+     */
+    public List<Article> listByTypeAndPage(int typeId, int offset, int pageSize) throws Exception;
+
+    /**
+     *
+     * 该类别下的文章数目
+     * @param typeId
+     * @return
+     * @throws Exception
+     */
+    public int countListByTypeAndPage(int typeId) throws Exception;
 
 }
