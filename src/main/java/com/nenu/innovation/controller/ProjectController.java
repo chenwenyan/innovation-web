@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -72,15 +71,21 @@ public class ProjectController {
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
         int schoolId = Integer.parseInt(schoolIdStr);
+        int startYear = -1;
+        int endYear = 99999;
         try{
-            Date startYear = DateUtils.formatDate("yyyy",request.getParameter("startYear"));
-            Date endYear = DateUtils.formatDate("yyyy",request.getParameter("endYear"));
+            if(request.getParameter("startYear") != ""){
+                startYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("startYear")).getYear();
+            }
+            if(request.getParameter("endYear") != ""){
+                endYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("endYear")).getYear();
+            }
             schools = schoolService.listAll();
-            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,startYear.getYear(),endYear.getYear(),offset,pageSize);
+            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear,offset,pageSize);
             model.addAttribute("schoolList",schools);
             model.addAttribute("projectList",projects);
             model.addAttribute("pageNo",pageNo);
-            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear.getYear(),endYear.getYear());
+            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear);
             BigDecimal count = new BigDecimal(sum/10);
             model.addAttribute("count", + Math.ceil(count.doubleValue()));
             return "management/project/list";

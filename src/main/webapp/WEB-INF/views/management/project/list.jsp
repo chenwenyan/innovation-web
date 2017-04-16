@@ -81,12 +81,24 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label class="col-sm-4 control-label">年份</label>
-                                    <div class="col-sm-3">
-                                        <input class="col-sm-2 form-control w180 form-filter yearpicker" readonly="readonly" name="year" id="year" />
+                                <div class="form-group form-inline">
+                                    <label class="col-sm-2 control-label">年份：</label>
+                                    <div class="col-sm-6">
+                                        <input class="col-sm-2 form-control w180 form-filter yearpicker" value="2012" readonly="readonly"
+                                               name="startYear" id="startYear"/>
+                                        <%--</div>--%>
+                                        <label class="col-sm-1 control-label">至</label>
+                                        <%--<div class="col-sm-3">--%>
+                                        <input class="col-sm-2 form-control w180 form-filter yearpicker " value="2017"
+                                               readonly="readonly" name="endYear" id="endYear"/>
                                     </div>
                                 </div>
+                                <%--<div class="form-group col-sm-6">--%>
+                                    <%--<label class="col-sm-4 control-label">年份</label>--%>
+                                    <%--<div class="col-sm-3">--%>
+                                        <%--<input class="col-sm-2 form-control w180 form-filter yearpicker" readonly="readonly" name="year" id="year" />--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
                                 <div class="col-sm-6 col-sm-offset-5">
                                     <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
                                     </button>
@@ -185,13 +197,38 @@
             }
         });
 
-        $('.yearpicker').datetimepicker({
+        $('#startYear').datetimepicker({
             startView: 'decade',
             minView: 'decade',
             format: 'yyyy',
             maxViewMode: 2,
-            minViewMode:2,
-            autoclose: true
+            minViewMode: 2,
+            autoclose: true,
+            initialDate: "2012"
+        }).on("changeDate", function (ev) {
+            var startYear = $("#startYear").val();
+            $("#endYear").datetimepicker("setStartDate", startYear);
+            $("#startYear").datetimepicker("hide");
+        });
+
+        $('#endYear').datetimepicker({
+            startView: 'decade',
+            minView: 'decade',
+            format: 'yyyy',
+            maxViewMode: 2,
+            minViewMode: 2,
+            autoclose: true,
+            initialDate: new Date()
+        }).on("changeDate", function (ev) {
+            var startYear = $("#startYear").val();
+            var endYear = $("#endYear").val();
+            if (startYear != "" && endYear != null) {
+                if (startYear >= endYear) {
+                    alert("开始年份应小于结束年份");
+                }
+            }
+            $("#startYear").datetimepicker("setEndDate", endYear);
+            $("#startYear").datetimepicker("hide");
         });
 
         $('#pageLimit').bootstrapPaginator({

@@ -116,7 +116,7 @@
                                                 <c:if test="${fn:length(article.title) > 20 }">
                                                     ${fn:substring(article.title, 0, 20)}...
                                                 </c:if>
-                                                <c:if test="${fn:length(article.title) > 20 }">
+                                                <c:if test="${fn:length(article.title) <= 20 }">
                                                     ${article.title}
                                                 </c:if>
                                             </td>
