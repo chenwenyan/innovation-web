@@ -7,7 +7,7 @@
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 
 <!-- Bootstrap core CSS -->
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/main.css">
 <link rel="stylesheet" type="text/css" href="/css/search.css">
 <link rel="stylesheet" type="text/css" href="/css/more.css">

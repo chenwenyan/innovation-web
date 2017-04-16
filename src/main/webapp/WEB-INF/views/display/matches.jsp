@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">互联网+</h6>
-                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=1" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">创青春全国大学生创业大赛</h6>
-                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=2" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">挑战杯</h6>
-                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=3" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">其他比赛</h6>
-                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=11" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>

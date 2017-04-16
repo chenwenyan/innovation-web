@@ -45,7 +45,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">科研扶持 创业园 企业注册</h6>
-                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=5" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">科研成果</h6>
-                                <a href="#" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
+                                <a href="/more-articles?typeId=8" class="smart-margin-left"><i class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
                     </div>

@@ -28,7 +28,7 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="#"><i class="fa fa-home"></i>&nbsp;首页 <span class="sr-only">(current)</span></a></li>
+                            <li class="active"><a href="/main"><i class="fa fa-home"></i>&nbsp;首页 <span class="sr-only">(current)</span></a></li>
                             <li><a href="/matches"><i class="fa fa-anchor"></i>&nbsp;比赛</a></li>
                             <li><a href="/projects"><i class="fa fa-arrows"></i>&nbsp;立项</a></li>
                             <li><a href="/plans"><i class="fa fa-check-circle-o"></i>&nbsp;未来计划</a></li>

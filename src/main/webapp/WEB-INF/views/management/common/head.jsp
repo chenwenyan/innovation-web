@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
 <link rel="stylesheet" type="text/css" href="/css/reset.css">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/common.css">
 <link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/css/welcome.css">
