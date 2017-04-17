@@ -36,7 +36,7 @@
                         <li><a href="${website}/project/add" class="active">项目添加管理</a></li>
                     </ol>
                     <h2>添加项目</h2>
-                    <div class="alert alert-success">${msg}</div>
+                    <%--<div class="alert alert-success">${msg}</div>--%>
                 </div>
 
                 <div class="col-sm-12">
@@ -152,7 +152,7 @@
             var name = $(".name").val();
             var charger = $(".charger").val();
             var teacher = $(".teacher").val();
-            if (name == null || assistantCode == "") {
+            if (charger == null || charger == "" || teacher == "" || teacher == "" ) {
                 alert("请将内容填写完整！");
                 return false;
             }
@@ -160,7 +160,7 @@
                 $(".J_form").submit();
             }
         });
-    })
+    });
 </script>
 </body>
 </html>

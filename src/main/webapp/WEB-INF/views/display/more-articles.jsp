@@ -56,7 +56,7 @@
             <div class="col-sm-3 col-sm-offset-1">
                 <section class="demo">
                     <dl class="list maki">
-                        <dt>公告</dt>
+                        <dt>公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;告</dt>
                         <c:if test="${article.typeId == 1 || article.typeId == 2}">
                             <dd><a href="/more-articles?typeId=1">互联网+</a></dd>
                             <dd><a href="/more-articles?typeId=2">创青春</a></dd>
@@ -86,7 +86,7 @@
                                     <i class="fa fa-check-circle info-icon">&nbsp;</i>
                                     <span class="info-detail">${item.title}</span>
                                     <span class="info-date"><fmt:formatDate value="${item.createdTime}"
-                                                                            pattern="yyyy-MM-dd"/></span>
+                                                                            pattern="yyyy/MM/dd"/></span>
                                 </a>
                                 <div class="line"></div>
                             </li>
@@ -94,7 +94,7 @@
                     </c:forEach>
                 </ul>
             </div>
-            <div class="col-sm-3 col-sm-offset-8 margin-top-50">
+            <div class="col-sm-3 col-sm-offset-8">
                 <div class="pull-right"><ul id="pageLimit"> </ul></div>
             </div>
         </div>

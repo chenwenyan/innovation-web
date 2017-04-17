@@ -36,7 +36,7 @@
                         <li><a href="${website}/school/add" class="active">学院添加管理</a></li>
                     </ol>
                     <h2>添加类别</h2>
-                    <div class="alert alert-success">${msg}</div>
+                    <%--<div class="alert alert-success">${msg}</div>--%>
                 </div>
 
                 <div class="col-sm-12">

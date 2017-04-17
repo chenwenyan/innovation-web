@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
+import java.util.Date;
 
 /**
  * displayController
@@ -42,7 +43,7 @@ public class displayController {
         return "display/main";
     }
 
-    @RequestMapping(value = "/search-project", method = RequestMethod.POST)
+    @RequestMapping(value = "/search-project", method = RequestMethod.GET)
     public String searchProject(HttpServletRequest request,HttpServletResponse response,
                                 Model model) {
         String  pageNoStr = request.getParameter("pageNo");
@@ -55,14 +56,18 @@ public class displayController {
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
-        int schoolId = Integer.parseInt(schoolIdStr);
-        int startYear = -1;
-        int endYear = 99999;
+        int schoolId = 0;
+        if(schoolIdStr != "" && schoolIdStr != null){
+            schoolId = Integer.parseInt(schoolIdStr);
+        }
+
+        int startYear = 2012;
+        int endYear = 1900 + new Date().getYear();
         try{
-            if(request.getParameter("startYear") != ""){
+            if(request.getParameter("startYear") != "" && request.getParameter("startYear") != null){
                 startYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("startYear")).getYear();
             }
-            if(request.getParameter("endYear") != ""){
+            if(request.getParameter("endYear") != "" && request.getParameter("endYear") != null){
                 endYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("endYear")).getYear();
             }
             schools = schoolService.listAll();
@@ -72,36 +77,42 @@ public class displayController {
             model.addAttribute("pageNo",pageNo);
             int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear);
             BigDecimal count = new BigDecimal(sum/10);
-            model.addAttribute("count", + Math.ceil(count.doubleValue()));
+            model.addAttribute("count", + Math.ceil(count.doubleValue()+1));
+            model.addAttribute("name",name);
+            model.addAttribute("charger",charger);
+            model.addAttribute("teacher",teacher);
+            model.addAttribute("schoolId",schoolId);
+            model.addAttribute("startYear",startYear );
+            model.addAttribute("endYear",endYear);
             return "display/search-project";
         }catch (Exception e){
             return "error";
         }
     }
 
-    @RequestMapping(value = "/search-project", method = RequestMethod.GET)
-    public String toProjectList(HttpServletRequest request,HttpServletResponse response,
-                                Model model) {
-        String  pageNoStr = request.getParameter("pageNo");
-        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
-        int pageSize = 10;
-        int offset = pageNo * pageSize;
-        List<Project> projects = Collections.emptyList();
-        List<School> schools = Collections.emptyList();
-        try{
-            projects =  projectService.listByPage(offset,pageSize);
-            schools = schoolService.listAll();
-            int count = projectService.count();
-            model.addAttribute("projectList",projects);
-            model.addAttribute("schoolList",schools);
-            model.addAttribute("pageNo",pageNo);
-            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
-            model.addAttribute("user",request.getSession().getAttribute("user"));
-            return "display/search-project";
-        }catch (Exception e){
-            return "error";
-        }
-    }
+//    @RequestMapping(value = "/search-project", method = RequestMethod.GET)
+//    public String toProjectList(HttpServletRequest request,HttpServletResponse response,
+//                                Model model) {
+//        String  pageNoStr = request.getParameter("pageNo");
+//        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+//        int pageSize = 10;
+//        int offset = pageNo * pageSize;
+//        List<Project> projects = Collections.emptyList();
+//        List<School> schools = Collections.emptyList();
+//        try{
+//            projects =  projectService.listByPage(offset,pageSize);
+//            schools = schoolService.listAll();
+//            int count = projectService.count();
+//            model.addAttribute("projectList",projects);
+//            model.addAttribute("schoolList",schools);
+//            model.addAttribute("pageNo",pageNo);
+//            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
+//            model.addAttribute("user",request.getSession().getAttribute("user"));
+//            return "display/search-project";
+//        }catch (Exception e){
+//            return "error";
+//        }
+//    }
 
     @RequestMapping(value = "/matches", method = RequestMethod.GET)
     public String toMatches(HttpServletRequest request, HttpServletResponse response,
@@ -120,12 +131,6 @@ public class displayController {
             model.addAttribute("cqc", cqc.size() > 5 ? cqc.subList(0,5):cqc);
             model.addAttribute("tzb", tzb.size() > 5 ? tzb.subList(0,5):tzb);
             model.addAttribute("qtbs", qtbs.size() > 5 ? qtbs.subList(0,5):qtbs);
-//            matches.addAll(hlw);
-//            matches.addAll(cqc);
-//            matches.addAll(tzb);
-//            concat(matches,hlw);
-//            concat(matches,cqc);
-//            concat(matches,tzb);
             model.addAttribute("matches", matches);
             return "display/matches";
         } catch (Exception e) {
@@ -155,16 +160,6 @@ public class displayController {
             model.addAttribute("cyy", cyy.size() > 5 ? cyy.subList(0,5):cyy);
             model.addAttribute("qyzc", qyzc.size() > 5 ? qyzc.subList(0,5): qyzc);
             model.addAttribute("kycg", kycg.size() > 5 ? kycg.subList(0,5):kycg);
-//            plans.addAll(sqshsjgg);
-//            plans.addAll(kyfc);
-//            plans.addAll(cyy);
-//            plans.addAll(qyzc);
-//            plans.addAll(kycg);
-//            plans = concat(plans,sqshsjgg);
-//            plans = concat(plans,kyfc);
-//            plans = concat(plans,cyy);
-//            plans = concat(plans,qyzc);
-//            plans = concat(plans,kycg);
             model.addAttribute("plans", plans);
             return "display/plans";
         } catch (Exception e) {
@@ -177,17 +172,11 @@ public class displayController {
                              Model model) {
         List<Article> gjjcxcyxljh = Collections.emptyList();//国家级创新创业训练计划
         List<Article> kylx = Collections.emptyList(); //科研立项
-//        List<Article> projects = Collections.emptyList(); //总立项
         try {
             gjjcxcyxljh = articleService.listByType(9);
             kylx = articleService.listByType(10);
-//            projects.addAll(gjjcxcyxljh);
-//            projects.addAll(kylx);
-//            projects = concat(projects,gjjcxcyxljh);
-//            projects = concat(projects,kylx);
             model.addAttribute("gjjcxcyxljh", gjjcxcyxljh.size() > 5 ?gjjcxcyxljh.subList(0,5) : gjjcxcyxljh);
             model.addAttribute("kylx", kylx.size()>5? kylx.subList(0,5):kylx);
-//            model.addAttribute("projects", projects);
             return "display/projects";
         } catch (Exception e) {
             return "error";

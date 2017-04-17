@@ -36,33 +36,33 @@
                         </div>
                     </div>
                     <div class="panel-body">
-                        <form action="/search-project" method="post" class="form-horizontal">
+                        <form action="/search-project" method="get" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目名称：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="请输入项目名称" name="name">
+                                    <input type="text" class="form-control" placeholder="请输入项目名称" name="name" id="name" value="${name}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">负责人：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="请输入负责人姓名" name="charger">
+                                    <input type="text" class="form-control" placeholder="请输入负责人姓名" name="charger" id="charger" value="${charger}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">指导教师：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="请输入指导教师姓名" name="teacher">
+                                    <input type="text" class="form-control" placeholder="请输入指导教师姓名" name="teacher" id="teacher" value="${teacher}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">学院：</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="schoolId">
+                                    <select class="form-control" name="schoolId" id="schoolId">
                                         <option value="0">全部</option>
                                         <c:forEach var="school" items="${schoolList}">
                                             <c:if test="${schoolList.size()> 0}">
-                                                <option value="${school.id}">${school.name}</option>
+                                                <option value="${school.id}" ${school.id == schoolId ? 'selected' : ""}>${school.name}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>
@@ -71,13 +71,11 @@
                             <div class="form-group form-inline">
                                 <label class="col-sm-3 control-label">年份：</label>
                                 <div class="col-sm-6">
-                                    <input class="col-sm-2 form-control w180 form-filter yearpicker" readonly="readonly"
-                                           name="startYear" id="startYear"/>
-                                    <%--</div>--%>
-                                    <label class="col-sm-2 control-label">至</label>
-                                    <%--<div class="col-sm-3">--%>
-                                    <input class="col-sm-2 form-control w180 form-filter yearpicker "
-                                           readonly="readonly" name="endYear" id="endYear"/>
+                                    <input class="col-sm-2 form-control form-filter yearpicker" readonly="readonly"
+                                           name="startYear" id="startYear" value="${startYear}"/>
+                                    <label class="col-sm-2 control-label ">至</label>
+                                    <input class="col-sm-2 form-control form-filter yearpicker "
+                                           readonly="readonly" name="endYear" id="endYear" value="${endYear}"/>
                                 </div>
                             </div>
                             <div class="col-sm-3 col-sm-offset-5">
@@ -97,25 +95,26 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="project" items="${projectList}">
-                                        <tr>
-                                            <td hidden="hidden">${project.id}</td>
-                                            <td>
-                                                <c:if test="${fn:length(project.name) > 20 }">
-                                                    ${fn:substring(project.name, 0, 20)}...
-                                                </c:if>
-                                                <c:if test="${fn:length(project.name) > 20 }">
-                                                    ${project.name}
-                                                </c:if>
-                                            </td>
-                                            <td>${project.charger}</td>
-                                            <td>${project.teacher}</td>
-                                            <td>${project.schoolName}</td>
-                                            <td>${project.year}</td>
-                                                <%--<td><fmt:formatDate value="${project.year}" pattern="yyyy" /></td>--%>
-                                        </tr>
-                                    </c:forEach>
-                                    <c:if test="${projectlList.size()=='0'}">
+                                    <%--<c:if test="${projectlList.size() > 0}">--%>
+                                        <c:forEach var="project" items="${projectList}">
+                                            <tr>
+                                                <td hidden="hidden">${project.id}</td>
+                                                <td title="${project.name}">
+                                                    <c:if test="${fn:length(project.name) > 20 }">
+                                                        ${fn:substring(project.name, 0, 20)}...
+                                                    </c:if>
+                                                    <c:if test="${fn:length(project.name) <= 20 }">
+                                                        ${project.name}
+                                                    </c:if>
+                                                </td>
+                                                <td>${project.charger}</td>
+                                                <td>${project.teacher}</td>
+                                                <td>${project.schoolName}</td>
+                                                <td>${project.year}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    <%--</c:if>--%>
+                                    <c:if test="${projectlList.size() == 0}">
                                         <tr>
                                             <td colspan="8" style="text-align: center;">无查询结果</td>
                                         </tr>
@@ -145,6 +144,8 @@
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 <script type="text/javascript">
     $(function () {
+        console.log(${projectList.size()});
+
         $('#startYear').datetimepicker({
             startView: 'decade',
             minView: 'decade',
@@ -201,7 +202,8 @@
                 }
             },
             pageUrl: function (url, page, current) {
-                return "/search-project?pageNo=" + page;
+                return "/search-project?pageNo=" + page + "&name=" + $("#name").val().trim() + "&charger="+ $("#charger").val().trim() + "&teacher=" +
+                        $("#teacher").val().trim()+"&schoolId="+$("#schoolId").val() + "&startYear=" + $("#startYear").val() + "&endYear=" + $("#endYear").val();
             }
         });
     });

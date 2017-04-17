@@ -1,10 +1,13 @@
+body{
+    font-family: "微软雅黑";
+}
 div.img-container img{
   width: 100%;
   height: 350px;
 }
 .smart-margin-off{
     margin: 5px;
-    font-size: 17px;
+    font-size: 14px;
     text-align: center;
     font-weight: bold;
 }
@@ -16,4 +19,7 @@ div.img-container img{
 }
 .margin-top-submit{
     margin-top: -20px;
+}
+.table{
+    font-size: 14px;
 }

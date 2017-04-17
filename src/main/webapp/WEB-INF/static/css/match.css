@@ -10,13 +10,13 @@ div.panel-heading{
 }
 h6.smart-margin-left{
   margin-left: 8px;
-  font-size: 17px;
+  font-size: 15px;
   font-weight: bold;
   display: inline-block;
 }
 a.smart-margin-left{
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   float: right;
   line-height: 35px;
 }
@@ -36,7 +36,7 @@ a.smart-margin-left i{
 }
 .public li{
   line-height: 25px; 
-  font-size: 15px;
+  font-size: 14px;
 }
 .public a{
   text-decoration: none; 
@@ -82,4 +82,7 @@ span.date{
 }
 .line-number{
   height: 155px;
+}
+.fa-fire{
+  margin-top: 4px;
 }

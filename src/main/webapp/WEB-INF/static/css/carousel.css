@@ -37,13 +37,12 @@ body {
 .nav li {
   margin: 0;  
   text-align: center;
-  /*width: 250px;*/
 }
 .nav li:first-child{
   /*margin-left: 40px;*/
 }
 .nav li:not(:last-child){
-  border-right: 1px dotted #fff;
+  /*border-right: 1px dotted #fff;*/
 }
 .first-slide{
   height: 500px !important;

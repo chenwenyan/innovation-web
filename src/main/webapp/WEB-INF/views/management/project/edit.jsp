@@ -36,7 +36,7 @@
                         <li><a href="javascript:;" class="active">项目编辑管理</a></li>
                     </ol>
                     <h2>项目编辑</h2>
-                    <div class="alert alert-success">${msg}</div>
+                    <%--<div class="alert alert-success">${msg}</div>--%>
                 </div>
 
                 <div class="col-sm-12">

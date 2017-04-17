@@ -38,7 +38,7 @@
                     </ol>
                     <h2>项目管理</h2>
                     <c:if test="${isRedirect==true}">
-                        <div class="alert alert-success J_tip">${msg}</div>
+                        <%--<div class="alert alert-success J_tip">${msg}</div>--%>
                     </c:if>
                 </div>
                 <div class="col-sm-12">
@@ -47,25 +47,25 @@
                             <h4>搜索</h4>
                         </div>
                         <div class="panel-body">
-                            <form class="form-horizontal J_form" action="${website}/project" method="post">
+                            <form class="form-horizontal J_form" action="${website}/project" method="get">
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">项目名称</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="name" placeholder="请输入项目名称" class="form-control w180">
+                                        <input type="text" name="name" placeholder="请输入项目名称" class="form-control w180" id="name" value="${name}">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">负责人</label>
                                     <div class="col-sm-3">
                                         <input type="text" name="charger" placeholder="请输入负责人姓名"
-                                               class="form-control w180">
+                                               class="form-control w180" id="charger" value="${charger}">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">指导老师</label>
                                     <div class="col-sm-3">
                                         <input type="text" name="teacher" placeholder="请输入指导老师姓名"
-                                               class="form-control w180">
+                                               class="form-control w180" id="teacher" value="${teacher}">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
@@ -75,18 +75,28 @@
                                             <option value="0">全部</option>
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size()> 0}">
-                                                    <option value="${school.id}">${school.name}</option>
+                                                    <option value="${school.id}" ${schoolId == school.id ? "selected" : ""}>${school.name}</option>
                                                 </c:if>
                                             </c:forEach>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label class="col-sm-4 control-label">年份</label>
-                                    <div class="col-sm-3">
-                                        <input class="col-sm-2 form-control w180 form-filter yearpicker" readonly="readonly" name="year" id="year" />
+                                <div class="form-group form-inline ">
+                                    <label class="col-sm-2 control-label">年份：</label>
+                                    <div class="col-sm-6">
+                                        <input class="col-sm-2 form-control form-filter yearpicker" readonly="readonly"
+                                               name="startYear" id="startYear" value="${startYear}"/>
+                                        <label class="col-sm-2 control-label ">至</label>
+                                        <input class="col-sm-2 form-control form-filter yearpicker "
+                                               readonly="readonly" name="endYear" id="endYear" value="${endYear}"/>
                                     </div>
                                 </div>
+                                <%--<div class="form-group col-sm-6">--%>
+                                    <%--<label class="col-sm-4 control-label">年份</label>--%>
+                                    <%--<div class="col-sm-3">--%>
+                                        <%--<input class="col-sm-2 form-control w180 form-filter yearpicker" readonly="readonly" name="year" id="year" />--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
                                 <div class="col-sm-6 col-sm-offset-5">
                                     <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
                                     </button>
@@ -185,14 +195,39 @@
             }
         });
 
-        $('.yearpicker').datetimepicker({
+        $('#startYear').datetimepicker({
             startView: 'decade',
             minView: 'decade',
             format: 'yyyy',
             maxViewMode: 2,
-            minViewMode:2,
+            minViewMode: 2,
             autoclose: true
+        }).on("changeDate", function (ev) {
+            var startYear = $("#startYear").val();
+            $("#endYear").datetimepicker("setStartDate", startYear);
+            $("#startYear").datetimepicker("hide");
         });
+
+        $('#endYear').datetimepicker({
+            startView: 'decade',
+            minView: 'decade',
+            format: 'yyyy',
+            maxViewMode: 2,
+            minViewMode: 2,
+            autoclose: true
+        }).on("changeDate", function (ev) {
+            var startYear = $("#startYear").val();
+            var endYear = $("#endYear").val();
+            if (startYear != "" && endYear != null) {
+                if (startYear >= endYear) {
+                    alert("开始年份应小于结束年份");
+                    return;
+                }
+            }
+            $("#startYear").datetimepicker("setEndDate", endYear);
+            $("#startYear").datetimepicker("hide");
+        });
+
 
         $('#pageLimit').bootstrapPaginator({
             currentPage: ${pageNo+1},
@@ -216,7 +251,8 @@
                 }
             },
             pageUrl: function (url, page, current) {
-                return "/project?pageNo=" + page;
+                return "/project?pageNo=" + page + "&name=" + $("#name").val().trim() + "&charger="+ $("#charger").val().trim() + "&teacher=" +
+                        $("#teacher").val().trim()+"&schoolId="+$("#schoolId").val() + "&startYear=" + $("#startYear").val() + "&endYear=" + $("#endYear").val();
             }
         });
     });

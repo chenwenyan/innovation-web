@@ -23,7 +23,7 @@
                         <li><a href="javascript:;" class="active">查看文章内容</a></li>
                     </ol>
                     <h2>查看文章</h2>
-                    <div class="alert alert-success">${msg}</div>
+                    <%--<div class="alert alert-success">${msg}</div>--%>
                 </div>
 
                 <div class="col-sm-12">
@@ -32,22 +32,22 @@
                             <div class="panel-heading">
                                 <h4>查看</h4>
                             </div>
-                            <div class="panel-body  ">
+                            <div class="panel-body">
                                 <div class="form-group">
                                     <%--<label class="col-sm-3 control-label"><span class="requires">*</span>文章标题</label>--%>
-                                    <div class="col-sm-6 text-center">
+                                    <div class="col-sm-8 text-center col-sm-offset-2">
                                         <h4>${article.title}</h4>
                                     </div>
                                 </div>
                                 <div class="form-group text-right">
                                     <%--<label class="col-sm-3 control-label"><span class="requires">*</span>文章类别</label>--%>
-                                    <div class="col-sm-6">
-                                        文章类别：${article.typeName}&nbsp;&nbsp;&nbsp;作者：${article.creatorName} &nbsp;&nbsp;&nbsp;创建时间：<p><fmt:formatDate value="${article.createdTime}" pattern="yyyy-MM-dd"></fmt:formatDate></p>
+                                    <div class="col-sm-8 col-sm-offset-2">
+                                        文章类别：${article.typeName}&nbsp;&nbsp;&nbsp;作者：${article.creatorName} &nbsp;&nbsp;&nbsp;创建时间：<p><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd"></fmt:formatDate></p>
                                     </div>
                                 </div>
                                 <div class="form-group text-left">
                                     <%--<label class="col-sm-3 control-label"><span class="requires">*</span>文章内容</label>--%>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-8 col-sm-offset-2">
                                         ${article.content}
                                     </div>
                                 </div>

@@ -38,7 +38,7 @@
                     </ol>
                     <h2>文章管理</h2>
                     <c:if test="${isRedirect==true}">
-                        <div class="alert alert-success J_tip">保存成功！</div>
+                        <%--<div class="alert alert-success J_tip">保存成功！</div>--%>
                     </c:if>
                 </div>
                 <div class="col-sm-12">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-20">
+                <div class="col-sm-12">
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <h4>文章信息列表</h4>
@@ -116,12 +116,12 @@
                                                 <c:if test="${fn:length(article.title) > 20 }">
                                                     ${fn:substring(article.title, 0, 20)}...
                                                 </c:if>
-                                                <c:if test="${fn:length(article.title) > 20 }">
+                                                <c:if test="${fn:length(article.title) <= 20 }">
                                                     ${article.title}
                                                 </c:if>
                                             </td>
                                             <td>${article.typeName}</td>
-                                            <td><fmt:formatDate value="${article.createdTime}" pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                                            <td><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd HH:MM:ss"></fmt:formatDate></td>
                                             <td>${article.creatorName}</td>
                                             <td>
                                                 <a href="${website}/article/detail?id=${article.id}" class="label-info"><i

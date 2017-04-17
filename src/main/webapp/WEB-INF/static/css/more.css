@@ -4,7 +4,7 @@ div.img-container img{
 }
 /**公告栏**/
 div.alert-success{
-    font-size: 17px;
+    font-size: 14px;
     font-weight: bold;
 }
 div.public-more{
@@ -37,7 +37,7 @@ div.public-more .alert a{
 
 .info-list{
     list-style: none;
-    font-size: 17px;
+    font-size: 15px;
     padding: 0;
 }
 .margin-top-50{

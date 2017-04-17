@@ -35,7 +35,7 @@
                         <li><a href="${website}/article/add" class="active">文章添加管理</a></li>
                     </ol>
                     <h2>添加文章</h2>
-                    <div class="alert alert-success">${msg}</div>
+                    <%--<div class="alert alert-success">${msg}</div>--%>
                 </div>
 
                 <div class="col-sm-12">
@@ -156,10 +156,10 @@
 
         //表单提交验证
         $(".J_form").submit(function(){
-            var title = $("#title").val();
-            var content = $("#content").val();
+            var title = $("#title").val().trim();
+            var content = $("#content").val().trim();
             if(title == null || title == "" || content == null || content == ""){
-                alert("请将内容填写完整！");
+//                alert("请将内容填写完整！");
                 return false;
             }
             else{

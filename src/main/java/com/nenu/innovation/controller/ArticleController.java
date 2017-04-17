@@ -104,7 +104,7 @@ public class ArticleController {
     @RequestMapping(value = "article/add", method = RequestMethod.POST)
     public String newArticle(HttpServletRequest request, HttpServletResponse response,
                              Model model) {
-        String title = request.getParameter("title");
+        String title = request.getParameter("title").trim();
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         String content = request.getParameter("content");
         try {
@@ -138,7 +138,7 @@ public class ArticleController {
                                 Model model) {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            String title = request.getParameter("title");
+            String title = request.getParameter("title").trim();
             String content = request.getParameter("content");
             int typeId = Integer.parseInt(request.getParameter("typeId"));
             User user = (User)request.getSession().getAttribute("user");

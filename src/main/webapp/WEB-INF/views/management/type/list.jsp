@@ -38,7 +38,7 @@
                     </ol>
                     <h2>类别管理</h2>
                     <c:if test="${isRedirect==true}">
-                        <div class="alert alert-success J_tip">${msg}</div>
+                        <%--<div class="alert alert-success J_tip">${msg}</div>--%>
                     </c:if>
                 </div>
                 <div class="col-sm-12">

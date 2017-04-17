@@ -61,7 +61,7 @@
             <div class="col-sm-3 col-sm-offset-1">
                 <section class="demo">
                     <dl class="list maki">
-                        <dt>公告</dt>
+                        <dt>公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;告</dt>
                         <c:if test="${article.typeId == 1 || article.typeId == 2 || article.typeId == 3 || article.typeId == 11}">
                             <dd><a href="/more-articles?typeId=1">互联网+</a></dd>
                             <dd><a href="/more-articles?typeId=2">创青春</a></dd>
@@ -87,7 +87,7 @@
                 <h3 class="text-center">${article.title}</h3>
                 <div class="text-center">
                     <span>发布时间：</span>
-                    <span><fmt:formatDate value="${article.createdTime}" pattern="yyyy-MM-dd HH-MM-ss"/></span>
+                    <span><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd HH:MM:ss"/></span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;浏览：</span>
                     <span>${article.readNum}</span>
                     <span>次</span>

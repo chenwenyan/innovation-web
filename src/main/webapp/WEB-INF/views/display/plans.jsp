@@ -40,7 +40,7 @@
                                                    </c:if>
                                         </span>
                                         <span class="date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy-MM-dd"/></span>
+                                                                                   pattern="yyyy/MM/dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -74,7 +74,7 @@
                                                    </c:if>
                                         </span>
                                         <span class="date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy-MM-dd"/></span>
+                                                                                   pattern="yyyy/MM/dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -108,7 +108,7 @@
                                                   </c:if>
                                         </span>
                                         <span class="date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy-MM-dd"/></span>
+                                                                                   pattern="yyyy/MM/dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>

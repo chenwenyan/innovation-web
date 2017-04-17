@@ -38,7 +38,7 @@
                         <li><a href="${website}/article/add" class="active">文章添加管理</a></li>
                     </ol>
                     <h2>编辑文章</h2>
-                    <div class="alert alert-success">${msg}</div>
+                    <%--<div class="alert alert-success">${msg}</div>--%>
                 </div>
 
                 <div class="col-sm-12">

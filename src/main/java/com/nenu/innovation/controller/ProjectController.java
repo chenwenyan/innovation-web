@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
+import java.util.Date;
 
 /**
  * ProjectController
@@ -33,32 +33,32 @@ public class ProjectController {
     @Autowired
     private SchoolService schoolService;
 
-    @RequestMapping(value = "/project",method = RequestMethod.GET)
-    public String toList(HttpServletRequest request,HttpServletResponse response,
-                         Model model){
-        String  pageNoStr = request.getParameter("pageNo");
-        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
-        int pageSize = 10;
-        int offset = pageNo * pageSize;
-        List<Project> projects = Collections.emptyList();
-        List<School> schools = Collections.emptyList();
-        try{
-            projects =  projectService.listByPage(offset,pageSize);
-            schools = schoolService.listAll();
-            int sum = projectService.count();
-            model.addAttribute("projectList",projects);
-            model.addAttribute("schoolList",schools);
-            model.addAttribute("pageNo",pageNo);
-            BigDecimal count = new BigDecimal(sum/10);
-            model.addAttribute("count", + Math.ceil(count.doubleValue()));
-            model.addAttribute("user",request.getSession().getAttribute("user"));
-            return "management/project/list";
-        }catch (Exception e){
-            return "error";
-        }
-    }
+//    @RequestMapping(value = "/project",method = RequestMethod.GET)
+//    public String toList(HttpServletRequest request,HttpServletResponse response,
+//                         Model model){
+//        String  pageNoStr = request.getParameter("pageNo");
+//        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+//        int pageSize = 10;
+//        int offset = pageNo * pageSize;
+//        List<Project> projects = Collections.emptyList();
+//        List<School> schools = Collections.emptyList();
+//        try{
+//            projects =  projectService.listByPage(offset,pageSize);
+//            schools = schoolService.listAll();
+//            int sum = projectService.count();
+//            model.addAttribute("projectList",projects);
+//            model.addAttribute("schoolList",schools);
+//            model.addAttribute("pageNo",pageNo);
+//            BigDecimal count = new BigDecimal(sum/10);
+//            model.addAttribute("count", + Math.ceil(count.doubleValue()));
+//            model.addAttribute("user",request.getSession().getAttribute("user"));
+//            return "management/project/list";
+//        }catch (Exception e){
+//            return "error";
+//        }
+//    }
 
-    @RequestMapping(value = "/project" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/project" ,method = RequestMethod.GET)
     public String toSearchList(HttpServletRequest request,HttpServletResponse response,
                                Model model){
         String  pageNoStr = request.getParameter("pageNo");
@@ -71,18 +71,34 @@ public class ProjectController {
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
-        int schoolId = Integer.parseInt(schoolIdStr);
+        int schoolId = 0;
+        if(schoolIdStr != "" && schoolIdStr != null){
+            schoolId = Integer.parseInt(schoolIdStr);
+        }
+
+        int startYear = 2012;
+        int endYear = 1900 + new Date().getYear();
         try{
-            Date startYear = DateUtils.formatDate("yyyy",request.getParameter("startYear"));
-            Date endYear = DateUtils.formatDate("yyyy",request.getParameter("endYear"));
+            if(request.getParameter("startYear") != "" && request.getParameter("startYear") != null){
+                startYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("startYear")).getYear();
+            }
+            if(request.getParameter("endYear") != "" && request.getParameter("endYear") != null){
+                endYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("endYear")).getYear();
+            }
             schools = schoolService.listAll();
-            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,startYear.getYear(),endYear.getYear(),offset,pageSize);
+            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear,offset,pageSize);
             model.addAttribute("schoolList",schools);
             model.addAttribute("projectList",projects);
             model.addAttribute("pageNo",pageNo);
-            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear.getYear(),endYear.getYear());
+            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear);
             BigDecimal count = new BigDecimal(sum/10);
-            model.addAttribute("count", + Math.ceil(count.doubleValue()));
+            model.addAttribute("count", + Math.ceil(count.doubleValue()+1));
+            model.addAttribute("name",name);
+            model.addAttribute("charger",charger);
+            model.addAttribute("teacher",teacher);
+            model.addAttribute("schoolId",schoolId);
+            model.addAttribute("startYear",startYear );
+            model.addAttribute("endYear",endYear);
             return "management/project/list";
         }catch (Exception e){
             return "error";
