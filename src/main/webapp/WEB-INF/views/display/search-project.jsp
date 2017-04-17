@@ -172,7 +172,6 @@
             if (startYear != "" && endYear != null) {
                 if (startYear >= endYear) {
                     alert("开始年份应小于结束年份");
-                    return;
                 }
             }
             $("#startYear").datetimepicker("setEndDate", endYear);
