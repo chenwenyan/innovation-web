@@ -21,14 +21,6 @@ public interface ArticleService extends AbstractService{
     public List<Article> listAll() throws Exception;
 
     /**
-     * 文章计数
-     *
-     * @return
-     * @throws Exception
-     */
-    public Integer count() throws Exception;
-
-    /**
      * 根据类型显示文章列表
      *
      * @param typeId
