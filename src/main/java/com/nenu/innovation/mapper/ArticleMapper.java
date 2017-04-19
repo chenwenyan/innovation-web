@@ -57,17 +57,18 @@ public interface ArticleMapper {
      * @param creatorId
      * @throws Exception
      */
-    public void newArticle(@Param("title") String title,@Param("content") String content,@Param("typeId") Integer typeId,@Param("creatorId") Integer creatorId) throws Exception;
+    public void newArticle(@Param("title") String title, @Param("content") String content, @Param("typeId") Integer typeId, @Param("creatorId") Integer creatorId) throws Exception;
 
     /**
      * 更新文章
+     *
      * @param title
      * @param content
      * @param typeId
      * @param creatorId
      * @throws Exception
      */
-    public void updateArticleById(@Param("id") Integer id, @Param("title") String title,@Param("content") String content,@Param("typeId") Integer typeId,@Param("creatorId") Integer creatorId) throws Exception;
+    public void updateArticleById(@Param("id") Integer id, @Param("title") String title, @Param("content") String content, @Param("typeId") Integer typeId, @Param("creatorId") Integer creatorId) throws Exception;
 
     /**
      * 根据id查询文章信息
@@ -76,7 +77,7 @@ public interface ArticleMapper {
      * @return
      * @throws Exception
      */
-    public Article queryById(@Param("id") Integer id)throws Exception;
+    public Article queryById(@Param("id") Integer id) throws Exception;
 
     /**
      * 根据id删除文章信息
@@ -95,7 +96,7 @@ public interface ArticleMapper {
      * @return
      * @throws Exception
      */
-    public List<Article> queryBySearchInfo(@Param("title") String title,@Param("creatorId") Integer creatorId,@Param("typeId") Integer typeId)throws Exception;
+    public List<Article> queryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId) throws Exception;
 
     /**
      * 更新阅读次数
@@ -103,7 +104,7 @@ public interface ArticleMapper {
      * @param id
      * @throws Exception
      */
-    public void updateReadNum(@Param("id") Integer id)throws Exception;
+    public void updateReadNum(@Param("id") Integer id) throws Exception;
 
     /**
      * 根据页码显示列表
@@ -134,4 +135,13 @@ public interface ArticleMapper {
      * @throws Exception
      */
     public Integer countListByTypeAndPage(@Param("typeId") Integer typeId) throws Exception;
+
+    /**
+     * 根据名称检测名称是否已经存在
+     *
+     * @param title
+     * @return
+     * @throws Exception
+     */
+    public int checkExistByName(@Param("title") String title) throws Exception;
 }

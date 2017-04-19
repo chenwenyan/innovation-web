@@ -96,4 +96,10 @@
         FROM t_article
         WHERE type_id = #{typeId}
     </select>
+
+    <select id="checkExistByName" resultType="int">
+        SELECT COUNT(1)
+        FROM t_article
+        WHERE title = #{title}
+    </select>
 </mapper>

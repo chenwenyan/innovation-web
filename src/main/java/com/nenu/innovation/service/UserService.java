@@ -10,7 +10,7 @@ import java.util.List;
  * @author: wychen
  * @time: 2017/4/2 11:17
  */
-public interface UserService extends AbstractService{
+public interface UserService extends AbstractService {
     /**
      * 添加新用户
      *
@@ -29,29 +29,12 @@ public interface UserService extends AbstractService{
     public boolean checkLogin(User user) throws Exception;
 
     /**
-     * 检查用户是否存在
-     *
-     * @param username
-     * @return
-     * @throws Exception
-     */
-    public boolean  checkExistByUsername(String username) throws Exception;
-
-    /**
      * 获取用户列表
      *
      * @return
      * @throws Exception
      */
-    public List<User> listAll()throws Exception;
-
-    /**
-     * 用户计数
-     *
-     * @return
-     * @throws Exception
-     */
-    public int count() throws Exception;
+    public List<User> listAll() throws Exception;
 
     /**
      * 设置用户状态
@@ -68,32 +51,15 @@ public interface UserService extends AbstractService{
      * @param password
      * @throws Exception
      */
-    public void updateUserInfo(int id,String username,String password) throws Exception;
-
-    /**
-     * 根据id获取用户信息
-     *
-     * @param id
-     * @return
-     * @throws Exception
-     */
-    public User queryById(int id) throws Exception;
-
-    /**
-     * 根据id删除用户信息
-     *
-     * @param id
-     * @throws Exception
-     */
-    public void deleteById(int id) throws Exception;
+    public void updateUserInfo(int id, String username, String password) throws Exception;
 
     /**
      * 根据名称和状态查询用户
      *
-     * @param name
+     * @param username
      * @param status
      * @return
      * @throws Exception
      */
-    public List<User> queryBySearchInfo(String username,int status) throws Exception;
+    public List<User> queryBySearchInfo(String username, int status) throws Exception;
 }

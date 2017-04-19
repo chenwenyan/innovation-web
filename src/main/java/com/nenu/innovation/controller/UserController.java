@@ -27,8 +27,8 @@ public class UserController {
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String toList(HttpServletRequest request, Model model) {
-        String  pageNoStr = request.getParameter("pageNo");
-        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+        String pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
         int pageSize = 10;
         int offset = pageNo * pageSize;
         try {
@@ -39,8 +39,8 @@ public class UserController {
             List<User> users = userService.listAll();
             int count = userService.count();
             model.addAttribute("userList", users);
-            model.addAttribute("pageNo",pageNo);
-            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
+            model.addAttribute("pageNo", pageNo);
+            model.addAttribute("count", String.valueOf(Math.ceil(count / 10) + 1));
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/users/list";
         } catch (Exception e) {
@@ -84,7 +84,7 @@ public class UserController {
             user.setPassword(password);
         }
         try {
-            if (userService.checkExistByUsername(username)) {
+            if (userService.checkExistByName(username)) {
                 model.addAttribute("msg", "用户名已存在！");
             } else {
                 userService.newUser(user);
@@ -99,7 +99,7 @@ public class UserController {
     @RequestMapping(value = "user/edit", method = RequestMethod.GET)
     public String toEditPage(HttpServletRequest request, int id, Model model) {
         try {
-            User this_user = userService.queryById(id);
+            User this_user = (User) userService.queryById(id);
             model.addAttribute("this_user", this_user);
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/users/edit";
@@ -126,7 +126,7 @@ public class UserController {
     @RequestMapping(value = "user/delete", method = RequestMethod.POST)
     public String deleteUser(HttpServletRequest request, int id, Model model) {
         try {
-            User user = userService.queryById(id);
+            User user = (User) userService.queryById(id);
             if (user == null) {
                 model.addAttribute("msg", "该用户不存在！");
             } else {
@@ -143,7 +143,7 @@ public class UserController {
     public String setStatus(HttpServletRequest request, int id, Model model) {
         int status = 1;
         try {
-            User user = userService.queryById(id);
+            User user = (User) userService.queryById(id);
             if (user == null) {
                 model.addAttribute("msg", "该用户不存在！");
             } else {

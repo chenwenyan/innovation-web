@@ -23,30 +23,30 @@ public class IndexController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = {"","login"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"", "login"}, method = RequestMethod.GET)
     public String toIndex(HttpServletRequest request, HttpServletResponse response,
-                          Model model){
-        if(request.getSession().getAttribute("user") != null){
-            User user = (User)request.getSession().getAttribute("user");
-            model.addAttribute("user",user);
+                          Model model) {
+        if (request.getSession().getAttribute("user") != null) {
+            User user = (User) request.getSession().getAttribute("user");
+            model.addAttribute("user", user);
             return "redirect:user";
-        }else {
+        } else {
             return "management/login";
         }
 
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String login(User user, Model model, HttpServletRequest request) throws Exception{
-        try{
-            if(userService.checkLogin(user)){
+    public String login(User user, Model model, HttpServletRequest request) throws Exception {
+        try {
+            if (userService.checkLogin(user)) {
                 request.getSession().setAttribute("user", user);
                 return "redirect:user";
-            }else{
-                model.addAttribute("msg","登录失败，请重新输入！");
+            } else {
+                model.addAttribute("msg", "登录失败，请重新输入！");
                 return "management/login";
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
             return "management/login";
         }
@@ -55,23 +55,23 @@ public class IndexController {
     @RequestMapping(value = {"index"}, method = RequestMethod.GET)
     public String toIndex(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
-        if(user != null ) {
+        if (user != null) {
             return "redirect:user";
-        }else{
-            return  "redirect:login";
+        } else {
+            return "redirect:login";
         }
     }
 
     @RequestMapping(value = "logout", method = RequestMethod.POST)
-    public String logout(HttpServletRequest request,HttpServletResponse response,
-                         Model model){
-        request.getSession().setAttribute("user",null);
+    public String logout(HttpServletRequest request, HttpServletResponse response,
+                         Model model) {
+        request.getSession().setAttribute("user", null);
         return "management/login";
     }
 
-    @RequestMapping(value = "error",method = RequestMethod.GET)
-    public String toError(HttpServletRequest request,Model model){
-        model.addAttribute("user",request.getSession().getAttribute("user"));
+    @RequestMapping(value = "error", method = RequestMethod.GET)
+    public String toError(HttpServletRequest request, Model model) {
+        model.addAttribute("user", request.getSession().getAttribute("user"));
         return "error";
     }
 }

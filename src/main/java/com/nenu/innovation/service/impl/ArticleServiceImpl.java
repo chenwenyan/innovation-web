@@ -48,7 +48,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Integer count() throws Exception {
+    public int count() throws Exception {
         int sum = 0;
         try {
             sum = articleMapper.count();
@@ -56,6 +56,16 @@ public class ArticleServiceImpl implements ArticleService {
         } catch (Exception e) {
             System.out.println("文章计数出错！");
             e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean checkExistByName(String name) throws Exception {
+        try {
+            return articleMapper.checkExistByName(name) > 0 ? true : false;
+        } catch (Exception e) {
+            System.out.println("检查文章题目是否已存在出错！");
             throw new Exception(e.getMessage());
         }
     }
@@ -152,7 +162,7 @@ public class ArticleServiceImpl implements ArticleService {
         List<Article> articles = Collections.emptyList();
         try {
             articles = articleMapper.queryBySearchInfo(title, creatorId, typeId);
-            for(Article article : articles){
+            for (Article article : articles) {
                 setArticleTypeAndCreator(article);
             }
             return articles;
@@ -164,49 +174,49 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void updateReadNum(int id) throws Exception{
-        try{
-            if(id > 0){
+    public void updateReadNum(int id) throws Exception {
+        try {
+            if (id > 0) {
                 articleMapper.updateReadNum(id);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public List<Article> listByPage(int offset, int pageSize) throws Exception{
+    public List<Article> listByPage(int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
-        try{
-           articles = articleMapper.listByPage(offset,pageSize);
-            for(Article article: articles){
+        try {
+            articles = articleMapper.listByPage(offset, pageSize);
+            for (Article article : articles) {
                 setArticleTypeAndCreator(article);
             }
             return articles;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public List<Article> listByTypeAndPage(int typeId, int offset, int pageSize) throws Exception{
-       List<Article> articles = Collections.emptyList();
-        try{
-            articles = articleMapper.listByTypeAndPage(typeId,offset,pageSize);
+    public List<Article> listByTypeAndPage(int typeId, int offset, int pageSize) throws Exception {
+        List<Article> articles = Collections.emptyList();
+        try {
+            articles = articleMapper.listByTypeAndPage(typeId, offset, pageSize);
             return articles;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
     @Override
-    public int countListByTypeAndPage(int typeId) throws Exception{
-        try{
+    public int countListByTypeAndPage(int typeId) throws Exception {
+        try {
             return articleMapper.countListByTypeAndPage(typeId);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }

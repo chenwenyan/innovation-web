@@ -24,110 +24,110 @@ public class SchoolController {
     @Autowired
     private SchoolService schoolService;
 
-    @RequestMapping(value = "/school",method = RequestMethod.GET)
-    public String toList(HttpServletRequest request,HttpServletResponse response,
-                         Model model){
-        String  pageNoStr = request.getParameter("pageNo");
-        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+    @RequestMapping(value = "/school", method = RequestMethod.GET)
+    public String toList(HttpServletRequest request, HttpServletResponse response,
+                         Model model) {
+        String pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
         int pageSize = 10;
         int offset = pageNo * pageSize;
         List<School> schools = Collections.emptyList();
-        try{
-            schools = schoolService.listByPage(offset,pageSize);
+        try {
+            schools = schoolService.listByPage(offset, pageSize);
             int count = schoolService.count();
-            model.addAttribute("schoolList",schools);
-            model.addAttribute("pageNo",pageNo);
-            model.addAttribute("count",(int)(Math.ceil(count/10) + 1));
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            model.addAttribute("schoolList", schools);
+            model.addAttribute("pageNo", pageNo);
+            model.addAttribute("count", (int) (Math.ceil(count / 10) + 1));
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/school/list";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/school",method = RequestMethod.POST)
-    public String toSearchList(HttpServletRequest request,HttpServletResponse response,
-                               Model model){
+    @RequestMapping(value = "/school", method = RequestMethod.POST)
+    public String toSearchList(HttpServletRequest request, HttpServletResponse response,
+                               Model model) {
         List<School> schools = Collections.emptyList();
         String name = request.getParameter("name");
-        try{
+        try {
             schools = schoolService.queryBySearchInfo(name);
-            model.addAttribute("schoolList",schools);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            model.addAttribute("schoolList", schools);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/school/list";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
     @RequestMapping(value = "/school/add", method = RequestMethod.GET)
     public String toAdd(HttpServletRequest request, HttpServletResponse response,
-                        Model model){
-        model.addAttribute("user",request.getSession().getAttribute("user"));
+                        Model model) {
+        model.addAttribute("user", request.getSession().getAttribute("user"));
         return "management/school/add";
     }
 
-    @RequestMapping(value = "/school/add",method = RequestMethod.POST)
-    public String newschool(HttpServletRequest request,HttpServletResponse response,
-                          Model model){
+    @RequestMapping(value = "/school/add", method = RequestMethod.POST)
+    public String newschool(HttpServletRequest request, HttpServletResponse response,
+                            Model model) {
         String name = request.getParameter("name");
-        try{
-            if(schoolService.checkExistByName(name) == 1){
-                model.addAttribute("msg","该学院名称已经存在！");
+        try {
+            if (schoolService.checkExistByName(name)) {
+                model.addAttribute("msg", "该学院名称已经存在！");
             }
             schoolService.newSchool(name);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/school";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/school/edit",method = RequestMethod.GET)
-    public String toEdit(HttpServletRequest request,HttpServletResponse response,
-                         Model model,Integer id){
+    @RequestMapping(value = "/school/edit", method = RequestMethod.GET)
+    public String toEdit(HttpServletRequest request, HttpServletResponse response,
+                         Model model, Integer id) {
         School school = new School();
-        try{
-            school = schoolService.queryById(id);
-            if(school == null){
-                model.addAttribute("msg","该学院不存在或者已被删除！");
+        try {
+            school = (School) schoolService.queryById(id);
+            if (school == null) {
+                model.addAttribute("msg", "该学院不存在或者已被删除！");
             }
-            model.addAttribute("school",school);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            model.addAttribute("school", school);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/school/edit";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/school/edit",method = RequestMethod.POST)
+    @RequestMapping(value = "/school/edit", method = RequestMethod.POST)
     public String updateSchoolInfo(HttpServletRequest request, HttpServletResponse response,
-                                 Model model){
+                                   Model model) {
         String str = request.getParameter("id");
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        try{
-            schoolService.updateSchoolInfo(id,name);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+        try {
+            schoolService.updateSchoolInfo(id, name);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/school";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
     @RequestMapping(value = "/school/delete", method = RequestMethod.POST)
-    public String deleteById(HttpServletRequest request,HttpServletResponse response,
-                             Model model,Integer id){
+    public String deleteById(HttpServletRequest request, HttpServletResponse response,
+                             Model model, Integer id) {
         School school = new School();
-        try{
-            school = schoolService.queryById(id);
-            if(school == null){
-                model.addAttribute("msg","该学院不存在或者已被删除！");
+        try {
+            school = (School) schoolService.queryById(id);
+            if (school == null) {
+                model.addAttribute("msg", "该学院不存在或者已被删除！");
             }
             schoolService.deleteById(id);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/school";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }

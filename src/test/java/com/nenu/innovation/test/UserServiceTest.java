@@ -66,7 +66,7 @@ public class UserServiceTest extends AbstractTestCase {
     public void checkExistByUsername() throws Exception{
         String username = "user1";
         try{
-            userService.checkExistByUsername(username);
+            userService.checkExistByName(username);
         }catch (Exception e){
             throw new Exception(e.getMessage());
         }

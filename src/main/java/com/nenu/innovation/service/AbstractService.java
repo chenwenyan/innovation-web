@@ -16,15 +16,8 @@ public interface AbstractService {
      * @param pageSize
      * @return
      */
-    public List listByPage(int offset, int pageSize)throws Exception;
+    public List listByPage(int offset, int pageSize) throws Exception;
 
-    /**
-     * 新增实体信息
-     *
-     * @param obj
-     * @throws Exception
-     */
-    public void newObj(Object obj) throws Exception;
     /**
      * 根据id删除实体
      *
@@ -42,15 +35,6 @@ public interface AbstractService {
     public Object queryById(int id) throws Exception;
 
     /**
-     * 根据id更新实体信息
-     *
-     * @param obj
-     * @param id
-     * @throws Exception
-     */
-    public void updateById(Object obj,int id) throws Exception;
-
-    /**
      * 计数
      *
      * @return
@@ -64,6 +48,6 @@ public interface AbstractService {
      * @param name
      * @throws Exception
      */
-    public void checkExistByName(String name) throws Exception;
+    public boolean checkExistByName(String name) throws Exception;
 
 }

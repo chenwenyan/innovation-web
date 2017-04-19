@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
-import java.util.Date;
 
 /**
  * ProjectController
@@ -58,11 +57,11 @@ public class ProjectController {
 //        }
 //    }
 
-    @RequestMapping(value = "/project" ,method = RequestMethod.GET)
-    public String toSearchList(HttpServletRequest request,HttpServletResponse response,
-                               Model model){
-        String  pageNoStr = request.getParameter("pageNo");
-        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
+    @RequestMapping(value = "/project", method = RequestMethod.GET)
+    public String toSearchList(HttpServletRequest request, HttpServletResponse response,
+                               Model model) {
+        String pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
         int pageSize = 10;
         int offset = pageNo * pageSize;
         List<Project> projects = Collections.emptyList();
@@ -72,122 +71,122 @@ public class ProjectController {
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
         int schoolId = 0;
-        if(schoolIdStr != "" && schoolIdStr != null){
+        if (schoolIdStr != "" && schoolIdStr != null) {
             schoolId = Integer.parseInt(schoolIdStr);
         }
 
         int startYear = 2012;
-        int endYear = 1900 + new Date().getYear();
-        try{
-            if(request.getParameter("startYear") != "" && request.getParameter("startYear") != null){
-                startYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("startYear")).getYear();
+        try {
+            int endYear = DateUtils.getCurrentYear();
+            if (request.getParameter("startYear") != "" && request.getParameter("startYear") != null) {
+                startYear = 1900 + DateUtils.formatDate("yyyy", request.getParameter("startYear")).getYear();
             }
-            if(request.getParameter("endYear") != "" && request.getParameter("endYear") != null){
-                endYear = 1900 + DateUtils.formatDate("yyyy",request.getParameter("endYear")).getYear();
+            if (request.getParameter("endYear") != "" && request.getParameter("endYear") != null) {
+                endYear = 1900 + DateUtils.formatDate("yyyy", request.getParameter("endYear")).getYear();
             }
             schools = schoolService.listAll();
-            projects = projectService.queryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear,offset,pageSize);
-            model.addAttribute("schoolList",schools);
-            model.addAttribute("projectList",projects);
-            model.addAttribute("pageNo",pageNo);
-            int sum = projectService.countQueryBySearchInfo(name,charger,teacher,schoolId,startYear,endYear);
-            BigDecimal count = new BigDecimal(sum/10);
-            model.addAttribute("count", + Math.ceil(count.doubleValue()+1));
-            model.addAttribute("name",name);
-            model.addAttribute("charger",charger);
-            model.addAttribute("teacher",teacher);
-            model.addAttribute("schoolId",schoolId);
-            model.addAttribute("startYear",startYear );
-            model.addAttribute("endYear",endYear);
+            projects = projectService.queryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear, offset, pageSize);
+            model.addAttribute("schoolList", schools);
+            model.addAttribute("projectList", projects);
+            model.addAttribute("pageNo", pageNo);
+            int sum = projectService.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear);
+            BigDecimal count = new BigDecimal(sum / 10);
+            model.addAttribute("count", +Math.ceil(count.doubleValue() + 1));
+            model.addAttribute("name", name);
+            model.addAttribute("charger", charger);
+            model.addAttribute("teacher", teacher);
+            model.addAttribute("schoolId", schoolId);
+            model.addAttribute("startYear", startYear);
+            model.addAttribute("endYear", endYear);
             return "management/project/list";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
     @RequestMapping(value = "/project/add", method = RequestMethod.GET)
     public String toAdd(HttpServletRequest request, HttpServletResponse response,
-                        Model model){
+                        Model model) {
         List<School> schools = Collections.emptyList();
-        try{
+        try {
             schools = schoolService.listAll();
-            model.addAttribute("schoolList",schools);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            model.addAttribute("schoolList", schools);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/project/add";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/project/add",method = RequestMethod.POST)
-    public String newProject(HttpServletRequest request,HttpServletResponse response,
-                          Model model){
+    @RequestMapping(value = "/project/add", method = RequestMethod.POST)
+    public String newProject(HttpServletRequest request, HttpServletResponse response,
+                             Model model) {
         String name = request.getParameter("name");
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
-        try{
-            if(projectService.checkExistByName(name) == 1){
-                model.addAttribute("msg","该项目名称已经存在！");
+        try {
+            if (projectService.checkExistByName(name)) {
+                model.addAttribute("msg", "该项目名称已经存在！");
             }
-            projectService.newProject(name,charger,teacher,schoolId);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            projectService.newProject(name, charger, teacher, schoolId);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/project";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/project/edit",method = RequestMethod.GET)
-    public String toEdit(HttpServletRequest request,HttpServletResponse response,
-                         Model model,Integer id){
+    @RequestMapping(value = "/project/edit", method = RequestMethod.GET)
+    public String toEdit(HttpServletRequest request, HttpServletResponse response,
+                         Model model, Integer id) {
         Project project = new Project();
         List<School> schools = Collections.emptyList();
-        try{
-            project = projectService.queryById(id);
-            if(project == null){
-                model.addAttribute("msg","该项目不存在或者已被删除！");
+        try {
+            project = (Project) projectService.queryById(id);
+            if (project == null) {
+                model.addAttribute("msg", "该项目不存在或者已被删除！");
             }
             schools = schoolService.listAll();
-            model.addAttribute("schoolList",schools);
-            model.addAttribute("project",project);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            model.addAttribute("schoolList", schools);
+            model.addAttribute("project", project);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/project/edit";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/project/edit",method = RequestMethod.POST)
+    @RequestMapping(value = "/project/edit", method = RequestMethod.POST)
     public String updateProjectInfo(HttpServletRequest request, HttpServletResponse response,
-                                 Model model){
+                                    Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
-        try{
-            projectService.updateProjectInfo(id,name,charger,teacher,schoolId);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+        try {
+            projectService.updateProjectInfo(id, name, charger, teacher, schoolId);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/project";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
 
     @RequestMapping(value = "/project/delete", method = RequestMethod.POST)
     public String deleteById(HttpServletRequest request, HttpServletResponse response,
-                             Model model, Integer id){
+                             Model model, Integer id) {
         Project project = new Project();
-        try{
-            project = projectService.queryById(id);
-            if(project == null){
-                model.addAttribute("msg","该项目不存在或者已被删除！");
+        try {
+            project = (Project) projectService.queryById(id);
+            if (project == null) {
+                model.addAttribute("msg", "该项目不存在或者已被删除！");
             }
             projectService.deleteById(id);
-            model.addAttribute("user",request.getSession().getAttribute("user"));
+            model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/project";
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
