@@ -91,12 +91,6 @@
                                                readonly="readonly" name="endYear" id="endYear" value="${endYear}"/>
                                     </div>
                                 </div>
-                                <%--<div class="form-group col-sm-6">--%>
-                                    <%--<label class="col-sm-4 control-label">年份</label>--%>
-                                    <%--<div class="col-sm-3">--%>
-                                        <%--<input class="col-sm-2 form-control w180 form-filter yearpicker" readonly="readonly" name="year" id="year" />--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
                                 <div class="col-sm-6 col-sm-offset-5">
                                     <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
                                     </button>
@@ -143,10 +137,10 @@
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
                                             <td>${project.year}</td>
-                                            <%--<td><fmt:formatDate value="${project.year}" pattern="yyyy"/></td>--%>
                                             <td>
                                                 <c:if test="${project.type == 1}">国创</c:if>
-                                                <c:if test="${project.type == 2}">立项</c:if>
+                                                <c:if test="${project.type == 2}">挑战杯</c:if>
+                                                <c:if test="${project.type == 3}">科研立项</c:if>
                                             </td>
                                             <td>
                                                 <a href="${website}/project/edit?id=${project.id}" class="label-info"><i
