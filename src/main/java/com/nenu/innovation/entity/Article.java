@@ -44,6 +44,9 @@ public class Article {
     @Column(name = "read_num")
     private Integer readNum;
 
+    @Column(name = "is_audited")
+    private Integer isAudited;
+
     public Integer getId() {
         return id;
     }
@@ -122,5 +125,13 @@ public class Article {
 
     public void setReadNum(Integer readNum) {
         this.readNum = readNum;
+    }
+
+    public Integer getIsAudited() {
+        return isAudited;
+    }
+
+    public void setIsAudited(Integer isAudited) {
+        this.isAudited = isAudited;
     }
 }

@@ -12,6 +12,7 @@
         <result column="last_modified_time" property="lastModifiedTime"/>
         <result column="creator_id" property="creatorId"/>
         <result column="read_num" property="readNum"/>
+        <result column="is_audited" property="isAudited"/>
     </resultMap>
 
     <select id="listAll" resultMap="articleResultMap">

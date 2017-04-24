@@ -28,6 +28,9 @@ public class User {
     @Column(name = "type")
     private Integer type;
 
+    @Column(name = "school_id")
+    private Integer schoolId;
+
     @Column(name = "created_time")
     private Timestamp createdTime;
 
@@ -91,5 +94,13 @@ public class User {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
     }
 }
