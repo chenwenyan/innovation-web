@@ -99,4 +99,12 @@ public interface ArticleService extends AbstractService {
      */
     public int countListByTypeAndPage(int typeId) throws Exception;
 
+    /**
+     * 计数
+     *
+     * @return
+     * @throws Exception
+     */
+    public int count() throws Exception;
+
 }
