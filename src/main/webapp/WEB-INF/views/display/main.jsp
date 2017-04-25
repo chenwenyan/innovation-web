@@ -18,10 +18,10 @@
             <img class="first-slide" src="/img/head1.jpg" alt="First slide">
         </div>
         <div class="item">
-            <img class="second-slide" src="/img/coursel-2.jpg" alt="Second slide">
+            <img class="second-slide" src="/img/head2.jpg" alt="Second slide">
         </div>
         <div class="item">
-            <img class="third-slide" src="/img/coursel-3.jpg" alt="Third slide">
+            <img class="third-slide" src="/img/head3.jpg" alt="Third slide">
         </div>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">

@@ -37,7 +37,7 @@
                 <li><a href="/matches"><i class="fa fa-anchor"></i>&nbsp;比赛</a></li>
                 <li><a href="/projects"><i class="fa fa-arrows"></i>&nbsp;立项</a></li>
                 <li><a href="/plans"><i class="fa fa-check-circle-o"></i>&nbsp;未来计划</a></li>
-                <!-- <li><a href="#"><i class="fa fa-bars"></i>&nbsp;关于我们</a></li> -->
+                <li><a href="/contact"><i class="fa fa-bars"></i>&nbsp;关于我们</a></li>
             </ul>
         </div>
     </div>

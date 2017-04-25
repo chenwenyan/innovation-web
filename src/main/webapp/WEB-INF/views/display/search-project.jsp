@@ -8,9 +8,6 @@
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
-<div class="img-container">
-    <img src="/img/head1.jpg" alt="大学生创新创业计划">
-</div>
 <div class="public">
     <div class="container">
         <div class="row">

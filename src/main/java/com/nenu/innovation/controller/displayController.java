@@ -218,4 +218,10 @@ public class displayController {
             return "error";
         }
     }
+
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public String toError(HttpServletRequest request, Model model) {
+        model.addAttribute("user", request.getSession().getAttribute("user"));
+        return "display/contact";
+    }
 }

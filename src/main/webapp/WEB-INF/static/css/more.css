@@ -4,7 +4,7 @@ div.img-container img{
 }
 /**公告栏**/
 div.alert-success{
-    font-size: 14px;
+    font-size: 15px;
     font-weight: bold;
 }
 div.public-more{
@@ -13,6 +13,9 @@ div.public-more{
 }
 span.public-right{
     float: right;
+}
+i.fa-home{
+    margin-top: 3px;
 }
 div.row-img img{
     width: 150px;

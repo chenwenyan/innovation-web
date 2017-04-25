@@ -31,7 +31,7 @@ body {
 }
 .navbar {
   background: #337ab7; 
-  font-size: 14px;
+  font-size: 15px;
   font-family: "微软雅黑";
 }
 .nav li {
@@ -39,7 +39,7 @@ body {
   text-align: center;
 }
 .nav li:first-child{
-  /*margin-left: 40px;*/
+  margin-left: 27px;
 }
 .nav li:not(:last-child){
   /*border-right: 1px dotted #fff;*/
@@ -114,10 +114,16 @@ body {
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
-@media (max-width: 1200px) {
+@media (max-width: 1201px) {
   /* Navbar positioning foo */
   .nav li a {
-    margin: 0 40px;
+    margin: 0 -20px;
+  }
+}
+@media (max-width: 1000px) {
+  /* Navbar positioning foo */
+  .nav li a {
+    margin: 0 -42px;
   }
 }
 @media (min-width: 768px) {
