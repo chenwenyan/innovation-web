@@ -158,10 +158,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     
-    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId, int offset, int pageSize) throws Exception {
+    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId,int isAudited, int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
-            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId, offset, pageSize);
+            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId,isAudited, offset, pageSize);
             for (Article article : articles) {
                 setArticleTypeAndCreator(article);
             }
@@ -221,10 +221,19 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    public int countQueryBySearchInfo(String title, int creatorId, int typeId) throws Exception{
+    public int countQueryBySearchInfo(String title, int creatorId, int typeId,int isAudited) throws Exception{
         try {
-            return articleMapper.countQueryBySearchInfo(title,creatorId,typeId);
+            return articleMapper.countQueryBySearchInfo(title,creatorId,typeId,isAudited);
         } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public void setIsAudited(int id,int isAudited)throws Exception{
+        try{
+            articleMapper.setIsAudited(id,isAudited);
+        }catch (Exception e){
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }

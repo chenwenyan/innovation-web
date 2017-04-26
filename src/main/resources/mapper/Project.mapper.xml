@@ -17,8 +17,8 @@
     </resultMap>
 
     <insert id="newProject">
-        INSERT INTO t_project (name, charger,teacher,school_id)
-        VALUES(#{name}, #{charger},#{teacher},#{schoolId})
+        INSERT INTO t_project (name, charger,teacher,school_id,year,type,category)
+        VALUES(#{project.name}, #{project.charger},#{project.teacher},#{project.schoolId},#{project.year},#{project.type},#{project.category})
     </insert>
 
     <select id="checkExistByName" resultType="int">
@@ -40,7 +40,8 @@
 
     <update id="updateProjectInfo">
         UPDATE `t_project`
-        SET name = #{name},charger = #{charger},teacher = #{teacher}, school_id = #{schoolId}
+        SET name = #{project.name},charger = #{project.charger},teacher = #{project.teacher}, school_id = #{project.schoolId},
+        year=#{project.year},type=#{type},category=#{category}
         WHERE id = #{id}
     </update>
 

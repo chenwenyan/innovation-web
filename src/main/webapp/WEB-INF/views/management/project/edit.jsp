@@ -83,10 +83,35 @@
                                                     <option value="-1">无</option>
                                                 </c:if>
                                                 <c:if test="${schoolList.size()> 0}" >
-                                                    <option value="${school.id}">${school.name}</option>
+                                                    <option <c:if test="${project.schoolId == school.id}">selected="selected"</c:if> value="${school.id}">${school.name}</option>
                                                 </c:if>
                                             </c:forEach>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>项目分类</label>
+                                    <div class="col-sm-9">
+                                        <select class="col-sm-3 form-control w180" name ="type" id="type">
+                                            <option  <c:if test="${project.type == 1}">selected="selected"</c:if> value="1" selected>比赛 </option>
+                                            <option  <c:if test="${project.type == 2}">selected="selected"</c:if>value="2">科研立项 </option>
+                                            <option  <c:if test="${project.type == 3}">selected="selected"</c:if> value="3">未来计划 </option>
+                                        </select>
+                                        <label class="col-sm-2 control-label">项目类别</label>
+                                        <select class="col-sm-3 form-control w180" name ="category" id="category">
+                                            <option <c:if test="${project.category == 1}">selected="selected"</c:if> value="1">互联网+</option>
+                                            <option <c:if test="${project.category == 2}">selected="selected"</c:if> value="2">创青春全国大学生创业大赛</option>
+                                            <option <c:if test="${project.category == 3}">selected="selected"</c:if> value="3">挑战杯</option>
+                                            <option <c:if test="${project.category == 4}">selected="selected"</c:if> value="11">其他比赛</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>年份</label>
+                                    <div class="col-sm-9">
+                                        <input class="col-sm-2 form-control form-filter yearpicker w180"
+                                               readonly="readonly" name="year" id="year" value="${year}"/>
                                     </div>
                                 </div>
 

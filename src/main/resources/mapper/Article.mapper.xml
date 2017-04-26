@@ -26,15 +26,15 @@
 
     <select id="listByType" resultMap="articleResultMap">
         SELECT * FROM `t_article`
-        WHERE type_id = #{typeId}
+        WHERE type_id = #{typeId} and is_audited = 1
         ORDER BY created_time DESC
     </select>
     <select id="listByKeyWords" resultMap="articleResultMap">
         SELECT * FROM `t_article`
-        <where>
-            <if test="#{keyWords} != null">title like #{typeId}</if>
-        </where>
-
+        WHERE TRUE
+        <if test="#{keyWords} != null">
+          and  title like #{typeId}
+        </if>
     </select>
 
     <insert id="newArticle">
@@ -73,6 +73,9 @@
         <if test="typeId != 0">
             and type_id = #{typeId}
         </if>
+        <if test="isAudited == 0 || isAudited == 1">
+            and is_audited = #{isAudited}
+        </if>
         ORDER BY created_time DESC
         LIMIT #{offset},#{pageSize}
     </select>
@@ -93,7 +96,7 @@
     <select id="listByTypeAndPage" resultMap="articleResultMap">
         SELECT *
         FROM t_article
-        WHERE type_id = #{typeId}
+        WHERE type_id = #{typeId} and is_audited = 1
         ORDER BY created_time DESC
         LIMIT #{offset},#{pageSize}
     </select>
@@ -101,16 +104,16 @@
     <select id="countListByTypeAndPage" resultType="Integer">
         SELECT COUNT(1)
         FROM t_article
-        WHERE type_id = #{typeId}
+        WHERE type_id = #{typeId} and is_audited = 1
     </select>
 
-    <select id="checkExistByName" resultType="int">
+    <select id="checkExistByName" resultType="Integer">
         SELECT COUNT(1)
         FROM t_article
         WHERE title = #{title}
     </select>
 
-    <select id="countQueryBySearchInfo" resultType="int">
+    <select id="countQueryBySearchInfo" resultType="Integer">
         SELECT COUNT(1) FROM `t_article`
         WHERE TRUE
         <if test="title != null and title != ''">
@@ -122,6 +125,21 @@
         <if test="typeId != 0">
             and type_id = #{typeId}
         </if>
+        <if test="isAudited == 0 or isAudited == 1">
+            and is_audited = #{isAudited}
+        </if>
     </select>
+
+    <select id="listIsAudited" resultMap="articleResultMap">
+        SELECT * FROM t_article
+        WHERE is_audited = #{isAudited}
+        ORDER BY create_time DESC
+    </select>
+
+    <update id = "setIsAudited">
+        UPDATE t_article
+        SET is_audited = #{isAudited}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

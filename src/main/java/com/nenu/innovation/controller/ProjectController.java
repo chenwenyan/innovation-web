@@ -32,31 +32,6 @@ public class ProjectController {
     @Autowired
     private SchoolService schoolService;
 
-//    @RequestMapping(value = "/project",method = RequestMethod.GET)
-//    public String toList(HttpServletRequest request,HttpServletResponse response,
-//                         Model model){
-//        String  pageNoStr = request.getParameter("pageNo");
-//        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
-//        int pageSize = 10;
-//        int offset = pageNo * pageSize;
-//        List<Project> projects = Collections.emptyList();
-//        List<School> schools = Collections.emptyList();
-//        try{
-//            projects =  projectService.listByPage(offset,pageSize);
-//            schools = schoolService.listAll();
-//            int sum = projectService.count();
-//            model.addAttribute("projectList",projects);
-//            model.addAttribute("schoolList",schools);
-//            model.addAttribute("pageNo",pageNo);
-//            BigDecimal count = new BigDecimal(sum/10);
-//            model.addAttribute("count", + Math.ceil(count.doubleValue()));
-//            model.addAttribute("user",request.getSession().getAttribute("user"));
-//            return "management/project/list";
-//        }catch (Exception e){
-//            return "error";
-//        }
-//    }
-
     @RequestMapping(value = "/project", method = RequestMethod.GET)
     public String toSearchList(HttpServletRequest request, HttpServletResponse response,
                                Model model) {
@@ -121,15 +96,29 @@ public class ProjectController {
     @RequestMapping(value = "/project/add", method = RequestMethod.POST)
     public String newProject(HttpServletRequest request, HttpServletResponse response,
                              Model model) {
-        String name = request.getParameter("name");
-        String charger = request.getParameter("charger");
-        String teacher = request.getParameter("teacher");
+        String name = request.getParameter("name").trim();
+        String charger = request.getParameter("charger").trim();
+        String teacher = request.getParameter("teacher").trim();
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
+        int type = Integer.parseInt(request.getParameter("type"));
+        int category = Integer.parseInt(request.getParameter("category"));
         try {
-            if (projectService.checkExistByName(name)) {
-                model.addAttribute("msg", "该项目名称已经存在！");
+//            if (projectService.checkExistByName(name)) {
+//                model.addAttribute("msg", "该项目名称已经存在！");
+//            }
+            int year = DateUtils.getCurrentYear();
+            if(request.getParameter("year") != null){
+                year = 1900 + DateUtils.formatDate("yyyy", request.getParameter("year")).getYear();
             }
-            projectService.newProject(name, charger, teacher, schoolId);
+            Project project = new Project();
+            project.setName(name);
+            project.setCharger(charger);
+            project.setTeacher(teacher);
+            project.setSchoolId(schoolId);
+            project.setType(type);
+            project.setYear(year);
+            project.setCategory(category);
+            projectService.newProject(project);
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/project";
         } catch (Exception e) {
@@ -164,9 +153,23 @@ public class ProjectController {
         String name = request.getParameter("name");
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
+        int type = Integer.parseInt(request.getParameter("type"));
+        int category = Integer.parseInt(request.getParameter("category"));
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
         try {
-            projectService.updateProjectInfo(id, name, charger, teacher, schoolId);
+            int year = DateUtils.getCurrentYear();
+            if(request.getParameter("year") != null){
+                year = 1900 + DateUtils.formatDate("yyyy", request.getParameter("year")).getYear();
+            }
+            Project project = new Project();
+            project.setName(name);
+            project.setCharger(charger);
+            project.setTeacher(teacher);
+            project.setSchoolId(schoolId);
+            project.setType(type);
+            project.setYear(year);
+            project.setCategory(category);
+            projectService.updateProjectInfo(id, project);
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/project";
         } catch (Exception e) {

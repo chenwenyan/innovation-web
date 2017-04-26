@@ -16,13 +16,10 @@ public interface ProjectMapper {
     /**
      *  新增项目
      *
-     * @param name
-     * @param charger
-     * @param teacher
-     * @param schoolId
+     * @param project
      * @throws Exception
      */
-    public void newProject(@Param("name") String name,@Param("charger") String charger,@Param("teacher") String teacher,@Param("schoolId") Integer schoolId) throws Exception;
+    public void newProject(@Param("project") Project project) throws Exception;
 
     /**
      * 统计项目数目
@@ -53,13 +50,10 @@ public interface ProjectMapper {
      * 更新项目信息
      *
      * @param id
-     * @param name
-     * @param charger
-     * @param teacher
-     * @param schoolId
+     * @param project
      * @throws Exception
      */
-    public void updateProjectInfo(@Param("id") Integer id, @Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId) throws Exception;
+    public void updateProjectInfo(@Param("id") Integer id, @Param("project") Project project) throws Exception;
 
     /**
      * 根据id查询项目

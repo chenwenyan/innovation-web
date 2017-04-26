@@ -82,6 +82,14 @@
                                         </c:forEach>
                                     </select>
                                 </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="col-sm-4 control-label">审核状态</label>
+                                    <select class="col-sm-2 form-control w180" name="isAudited" id="isAudited">
+                                        <option value="-1">全部</option>
+                                        <option <c:if test="${isAudited == 0}">selected="selected"</c:if>value="0">待审核</option>
+                                        <option <c:if test="${isAudited == 1}">selected="selected"</c:if>value="1">审核通过</option>
+                                    </select>
+                                </div>
                                 <div class="col-sm-6 col-sm-offset-5">
                                     <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;搜索
                                     </button>
@@ -106,7 +114,8 @@
                                         <th>标题</th>
                                         <th>分类</th>
                                         <th>创建时间</th>
-                                        <th>作者</th>
+                                        <th>发布单位</th>
+                                        <th>审核状态</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -126,12 +135,20 @@
                                             <td><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd HH:MM:ss"></fmt:formatDate></td>
                                             <td>${article.creatorName}</td>
                                             <td>
+                                                <c:if test="${article.isAudited == 0}">待审核</c:if>
+                                                <c:if test="${article.isAudited == 1}">审核通过</c:if>
+                                            </td>
+                                            <td>
                                                 <a href="${website}/article/detail?id=${article.id}" class="label-info"><i
                                                         class="fa fa-search"></i>&nbsp;查看</a>
                                                 <a href="${website}/article/edit?id=${article.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
                                                 <a href="javascript:;" class="label-info J_delArticle"><i
                                                         class="fa fa-times"></i>&nbsp;删除</a>
+                                                <c:if test="${article.isAudited == 0}">
+                                                    <a href="javascript:;" class="label-info J_setIsAudited"><i
+                                                            class="fa fa-edit"></i>&nbsp;审核</a>
+                                                </c:if>
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -164,6 +181,20 @@
                 $.ajax({
                     type: "post",
                     url: "/article/delete",
+                    data: {id: id},
+                    success: function (msg) {
+                        window.location.reload();
+                    }
+                });
+            }
+        });
+
+        $(".J_setIsAudited").click(function (e) {
+            if (confirm("修改审核状态？") == true) {
+                var id = $(e.target).parents("tr").children().first().text();
+                $.ajax({
+                    type: "post",
+                    url: "/article/audited",
                     data: {id: id},
                     success: function (msg) {
                         window.location.reload();

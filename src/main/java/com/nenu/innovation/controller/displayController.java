@@ -90,30 +90,6 @@ public class displayController {
         }
     }
 
-//    @RequestMapping(value = "/search-project", method = RequestMethod.GET)
-//    public String toProjectList(HttpServletRequest request,HttpServletResponse response,
-//                                Model model) {
-//        String  pageNoStr = request.getParameter("pageNo");
-//        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr)-1);
-//        int pageSize = 10;
-//        int offset = pageNo * pageSize;
-//        List<Project> projects = Collections.emptyList();
-//        List<School> schools = Collections.emptyList();
-//        try{
-//            projects =  projectService.listByPage(offset,pageSize);
-//            schools = schoolService.listAll();
-//            int count = projectService.count();
-//            model.addAttribute("projectList",projects);
-//            model.addAttribute("schoolList",schools);
-//            model.addAttribute("pageNo",pageNo);
-//            model.addAttribute("count",String.valueOf(Math.ceil(count/10)+1));
-//            model.addAttribute("user",request.getSession().getAttribute("user"));
-//            return "display/search-project";
-//        }catch (Exception e){
-//            return "error";
-//        }
-//    }
-
     @RequestMapping(value = "/matches", method = RequestMethod.GET)
     public String toMatches(HttpServletRequest request, HttpServletResponse response,
                             Model model) {

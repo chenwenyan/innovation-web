@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><span class="requires">*</span>指导老师</label>
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>学院</label>
                                     <div class="col-sm-9">
                                         <select class="col-sm-2 form-control w180" name = "schoolId" id="schoolId">
                                             <c:forEach var="school" items="${schoolList}">
@@ -89,22 +89,29 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>项目分类</label>
                                     <div class="col-sm-9">
-                                        <select class="col-sm-2 form-control w180" name ="category" id="category">
+                                        <select class="col-sm-3 form-control w180" name ="type" id="type">
                                            <option value="1" selected>比赛 </option>
                                            <option value="2">科研立项 </option>
                                            <option value="3">未来计划 </option>
                                         </select>
-                                        <p>项目类别</p>
-                                        <select class="col-sm-2 form-control w180" name ="typeId" id="typeId">
+                                        <label class="col-sm-2 control-label">项目类别</label>
+                                        <select class="col-sm-3 form-control w180" name ="category" id="category">
                                             <option value="1">互联网+</option>
                                             <option value="2">创青春全国大学生创业大赛</option>
                                             <option value="3">挑战杯</option>
                                             <option value="11">其他比赛</option>
                                         </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>年份</label>
+                                    <div class="col-sm-9">
+                                        <input class="col-sm-2 form-control form-filter yearpicker w180"
+                                               readonly="readonly" name="year" id="year"/>
                                     </div>
                                 </div>
 
@@ -133,6 +140,15 @@
 
         $(".tip1").hide();
         $(".tip2").hide();
+
+        $('#year').datetimepicker({
+            startView: 'decade',
+            minView: 'decade',
+            format: 'yyyy',
+            maxViewMode: 2,
+            minViewMode: 2,
+            autoclose: true
+        });
 
         //验证是否为空
         $(".name").blur(function () {

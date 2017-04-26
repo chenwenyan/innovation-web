@@ -48,25 +48,27 @@ public class ArticleController {
         List<User> users = Collections.emptyList();
         List<Type> types = Collections.emptyList();
 
-        String title = (request.getParameter("typeId") == null) ? null : request.getParameter("title").trim();
+        String title = (request.getParameter("title") == null) ? null : request.getParameter("title").trim();
         int creatorId = (request.getParameter("userId") == null) ? 0 : Integer.parseInt(request.getParameter("userId"));
         int typeId = (request.getParameter("typeId") == null ) ? 0 : Integer.parseInt(request.getParameter("typeId"));
+        int isAudited = (request.getParameter("isAudited") == null) ? -1: Integer.parseInt(request.getParameter("isAudited"));
 
         try {
-            articles = articleService.queryBySearchInfo(title,creatorId,typeId,offset, pageSize);
+            articles = articleService.queryBySearchInfo(title,creatorId,typeId,isAudited,offset, pageSize);
             users = userService.listAll();
             types = typeService.listAll();
             model.addAttribute("articleList", articles);
             model.addAttribute("userList", users);
             model.addAttribute("typeList", types);
             model.addAttribute("pageNo", pageNo);
-            int sum = articleService.countQueryBySearchInfo(title,creatorId,typeId);
+            int sum = articleService.countQueryBySearchInfo(title,creatorId,typeId,isAudited);
             BigDecimal count = new BigDecimal(sum / 10);
             model.addAttribute("count", +Math.ceil(count.doubleValue() + 1));
             model.addAttribute("user", request.getSession().getAttribute("user"));
             model.addAttribute("title",title);
             model.addAttribute("creatorId",creatorId);
             model.addAttribute("typeId",typeId);
+            model.addAttribute("isAudited",isAudited);
             return "management/article/list";
         } catch (Exception e) {
             return "error";
@@ -201,6 +203,25 @@ public class ArticleController {
             model.addAttribute("article", article);
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/article/detail";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @RequestMapping(value = "/article/audited", method = RequestMethod.POST)
+    public String audited(HttpServletRequest request, HttpServletResponse response,
+                           Model model) {
+        int isAudited = 1;
+        Article article = new Article();
+        int id = Integer.parseInt(request.getParameter("id"));
+        try {
+            article = (Article) articleService.queryById(id);
+//            if (article == null) {
+//                model.addAttribute("msg", "该文章不存在或已被删除！");
+//            }
+            articleService.setIsAudited(id,isAudited);
+            model.addAttribute("user", request.getSession().getAttribute("user"));
+            return "redirect:/article";
         } catch (Exception e) {
             return "error";
         }

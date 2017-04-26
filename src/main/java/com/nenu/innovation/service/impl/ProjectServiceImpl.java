@@ -27,9 +27,9 @@ public class ProjectServiceImpl implements ProjectService {
     private SchoolMapper schoolMapper;
 
  
-    public void newProject(String name, String charger, String teacher, int schoolId) throws Exception {
+    public void newProject(Project project) throws Exception {
         try {
-            projectMapper.newProject(name, charger, teacher, schoolId);
+            projectMapper.newProject(project);
         } catch (Exception e) {
             System.out.println("新增项目出错！");
             e.printStackTrace();
@@ -74,9 +74,9 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
  
-    public void updateProjectInfo(int id, String name, String charger, String teacher, int schoolId) throws Exception {
+    public void updateProjectInfo(int id, Project project) throws Exception {
         try {
-            projectMapper.updateProjectInfo(id, name, charger, teacher, schoolId);
+            projectMapper.updateProjectInfo(id, project);
         } catch (Exception e) {
             System.out.println("根据id更新项目信息出错！");
             e.printStackTrace();

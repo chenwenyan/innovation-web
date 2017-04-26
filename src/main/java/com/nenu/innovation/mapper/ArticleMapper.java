@@ -97,7 +97,7 @@ public interface ArticleMapper {
      * @throws Exception
      */
     public List<Article> queryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId,
-                                           @Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
+                                           @Param("isAudited") Integer isAudited, @Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 
     /**
      * 更新阅读次数
@@ -155,5 +155,23 @@ public interface ArticleMapper {
      * @return
      * @throws Exception
      */
-    public Integer countQueryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId)throws Exception;
+    public Integer countQueryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId,@Param("isAudited") Integer isAudited)throws Exception;
+
+    /**
+     * 根据审批状态显示列表
+     *
+     * @param isAudited
+     * @return
+     * @throws Exception
+     */
+    public List<Article> listIsAudited(@Param("isAudited") Integer isAudited)throws Exception;
+
+    /**
+     * 修改审核状态
+     *
+     * @param id
+     * @param isAudited
+     * @throws Exception
+     */
+    public void setIsAudited(@Param("id") Integer id,@Param("isAudited") Integer isAudited)throws Exception;
 }

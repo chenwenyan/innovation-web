@@ -15,13 +15,10 @@ public interface ProjectService extends AbstractService {
     /**
      * 新增项目
      *
-     * @param name
-     * @param charger
-     * @param teacher
-     * @param schoolId
+     * @param project
      * @throws Exception
      */
-    public void newProject(String name, String charger, String teacher, int schoolId) throws Exception;
+    public void newProject(Project project) throws Exception;
 
     /**
      * 类型列表
@@ -35,13 +32,10 @@ public interface ProjectService extends AbstractService {
      * 更新项目信息
      *
      * @param id
-     * @param name
-     * @param charger
-     * @param teacher
-     * @param schoolId
+     * @param project
      * @throws Exception
      */
-    public void updateProjectInfo(int id, String name, String charger, String teacher, int schoolId) throws Exception;
+    public void updateProjectInfo(int id, Project project) throws Exception;
 
     /**
      * 根据条件搜素项目

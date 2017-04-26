@@ -69,7 +69,7 @@ public interface ArticleService extends AbstractService {
      * @return
      * @throws Exception
      */
-    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId, int offset, int pageSize) throws Exception;
+    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId, int isAudited,int offset, int pageSize) throws Exception;
 
     /**
      * 更新阅读次数
@@ -116,6 +116,24 @@ public interface ArticleService extends AbstractService {
      * @return
      * @throws Exception
      */
-    public int countQueryBySearchInfo(String title, int creatorId, int typeId) throws Exception;
+    public int countQueryBySearchInfo(String title, int creatorId, int typeId,int isAudited) throws Exception;
+
+//    /**
+//     * 根据审批状态显示列表
+//     *
+//     * @param isAudited
+//     * @return
+//     * @throws Exception
+//     */
+//    public List<Article> listIsAudited(int isAudited) throws Exception;
+
+    /**
+     * 修改审核状态
+     *
+     * @param id
+     * @param isAudited
+     * @throws Exception
+     */
+    public void setIsAudited(int id,int isAudited)throws Exception;
 
 }
