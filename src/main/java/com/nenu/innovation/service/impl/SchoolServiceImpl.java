@@ -21,7 +21,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Autowired
     private SchoolMapper schoolMapper;
 
-    @Override
+ 
     public void newSchool(String name) throws Exception {
         try {
             schoolMapper.newSchool(name);
@@ -31,7 +31,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-    @Override
+ 
     public int count() throws Exception {
         try {
             return schoolMapper.count();
@@ -41,7 +41,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-    @Override
+ 
     public boolean checkExistByName(String name) throws Exception {
         try {
             return schoolMapper.checkExistByName(name) > 0 ? true : false;
@@ -51,7 +51,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-    @Override
+ 
     public List<School> listAll() throws Exception {
         List<School> schools = Collections.emptyList();
         try {
@@ -63,7 +63,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-    @Override
+ 
     public void updateSchoolInfo(int id, String name) throws Exception {
         try {
             schoolMapper.updateSchoolInfo(id, name);
@@ -74,7 +74,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-    @Override
+ 
     public School queryById(int id) throws Exception {
         School school = new School();
         try {
@@ -86,7 +86,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-    @Override
+ 
     public void deleteById(int id) throws Exception {
         try {
             schoolMapper.deleteById(id);
@@ -97,7 +97,7 @@ public class SchoolServiceImpl implements SchoolService {
     }
 
 
-    @Override
+ 
     public List<School> queryBySearchInfo(String name) throws Exception {
         List<School> schools = Collections.emptyList();
         try {
@@ -109,7 +109,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-    @Override
+ 
     public List<School> listByPage(int offset, int pageSize) throws Exception {
         List<School> schools = Collections.emptyList();
         try {

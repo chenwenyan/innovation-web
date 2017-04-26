@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private SchoolMapper schoolMapper;
 
-    @Override
+ 
     public void newProject(String name, String charger, String teacher, int schoolId) throws Exception {
         try {
             projectMapper.newProject(name, charger, teacher, schoolId);
@@ -37,7 +37,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
+ 
     public int count() throws Exception {
         try {
             return projectMapper.count();
@@ -47,7 +47,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
+ 
     public boolean checkExistByName(String name) throws Exception {
         try {
             return projectMapper.checkExistByName(name) > 0 ? true : false;
@@ -57,7 +57,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
+ 
     public List<Project> listAll() throws Exception {
         List<Project> projects = Collections.emptyList();
         try {
@@ -73,7 +73,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
+ 
     public void updateProjectInfo(int id, String name, String charger, String teacher, int schoolId) throws Exception {
         try {
             projectMapper.updateProjectInfo(id, name, charger, teacher, schoolId);
@@ -84,7 +84,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
+ 
     public Project queryById(int id) throws Exception {
         Project project = new Project();
         try {
@@ -97,7 +97,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
+ 
     public void deleteById(int id) throws Exception {
         try {
             projectMapper.deleteById(id);
@@ -107,7 +107,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
+ 
     public List<Project> queryBySearchInfo(String name, String charger, String teacher, int schoolId, int startYear, int endYear, int offset, int pageSize) throws Exception {
         List<Project> projects = Collections.emptyList();
         try {
@@ -123,7 +123,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-    @Override
+ 
     public List<Project> listByPage(int offset, int pageSize) throws Exception {
         List<Project> projects = Collections.emptyList();
         try {

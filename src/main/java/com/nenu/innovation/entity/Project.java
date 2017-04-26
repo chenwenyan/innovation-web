@@ -43,6 +43,9 @@ public class Project {
     @Column(name = "type")
     private Integer type;
 
+    @Column(name = "category")
+    private Integer category;
+
     public Integer getId() {
         return id;
     }
@@ -121,5 +124,13 @@ public class Project {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public Integer getCategory() {
+        return category;
+    }
+
+    public void setCategory(Integer category) {
+        this.category = category;
     }
 }

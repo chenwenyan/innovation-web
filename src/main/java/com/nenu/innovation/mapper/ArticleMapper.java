@@ -96,7 +96,8 @@ public interface ArticleMapper {
      * @return
      * @throws Exception
      */
-    public List<Article> queryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId) throws Exception;
+    public List<Article> queryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId,
+                                           @Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 
     /**
      * 更新阅读次数
@@ -143,5 +144,16 @@ public interface ArticleMapper {
      * @return
      * @throws Exception
      */
-    public int checkExistByName(@Param("title") String title) throws Exception;
+    public Integer checkExistByName(@Param("title") String title) throws Exception;
+
+    /**
+     * 获取条件查询的个数
+     *
+     * @param title
+     * @param creatorId
+     * @param typeId
+     * @return
+     * @throws Exception
+     */
+    public Integer countQueryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId)throws Exception;
 }

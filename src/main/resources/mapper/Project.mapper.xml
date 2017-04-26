@@ -13,6 +13,7 @@
         <result column="last_modified_time" property="lastModifiedTime"/>
         <result column="year" property="year"/>
         <result column="type" property="type"/>
+        <result column="category" property="category"/>
     </resultMap>
 
     <insert id="newProject">
@@ -80,13 +81,13 @@
     <select id="countQueryBySearchInfo" resultType="int">
         SELECT COUNT(1) from `t_project`
         WHERE TRUE
-        <if test="teacher != null ">
+        <if test="teacher != null and teacher != ''">
             and teacher LIKE "%"#{teacher}"%"
         </if>
-        <if test="charger != null">
+        <if test="charger != null and charger != ''">
             and charger LIKE "%"#{charger}"%"
         </if>
-        <if test="name != null">
+        <if test="name != null and name != ''">
             and name LIKE "%"#{name}"%"
         </if>
         <if test="schoolId != 0">

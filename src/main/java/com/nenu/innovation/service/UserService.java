@@ -51,7 +51,7 @@ public interface UserService extends AbstractService {
      * @param password
      * @throws Exception
      */
-    public void updateUserInfo(int id, String username, String password) throws Exception;
+    public void updateUserInfo(int id, String username, String password,int schoolId) throws Exception;
 
     /**
      * 根据名称和状态查询用户

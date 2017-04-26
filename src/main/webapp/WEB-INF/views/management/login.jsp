@@ -1,12 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: wychen
-  Date: 2017/4/2
-  Time: 16:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>用户登录</title>
@@ -23,8 +16,10 @@
         <div class="row">
             <div class="login-body login-box">
                 <div class="title">
-                    <h4 class="text-center margin-top-25 margin-bottom-30">欢迎登录
-                    </h4>
+                    <h4 class="text-center margin-top-25 margin-bottom-30">欢迎登录</h4>
+                    <c:if test="${isRedirect == true}">
+                        <div class="alert alert-success J_tip">${msg}</div>
+                    </c:if>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
@@ -53,7 +48,6 @@
                     </label>
                 </div>
                 <button class="J_submitBtn btn btn-primary btn-block" type="submit" data-btn-type="loading" data-btn-loading-text="正在登录，请稍后..." >登录</button>
-                <%--<a href="#" class="right">前往注册</a>--%>
             </div>
         </div>
         <div class="row">
@@ -72,6 +66,13 @@
 </div>
 <script type="text/javascript">
     $(function() {
+
+        if ($(".J_tip")) {
+            setTimeout(function () {
+                $(".J_tip").hide();
+            }, 3000);
+        }
+
         /**
          * 输入用户名提示
          */

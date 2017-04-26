@@ -1,8 +1,8 @@
 package com.nenu.innovation.controller;
 
 import com.nenu.innovation.entity.Article;
-import com.nenu.innovation.entity.User;
 import com.nenu.innovation.entity.Type;
+import com.nenu.innovation.entity.User;
 import com.nenu.innovation.service.ArticleService;
 import com.nenu.innovation.service.TypeService;
 import com.nenu.innovation.service.UserService;
@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -46,46 +47,54 @@ public class ArticleController {
         List<Article> articles = Collections.emptyList();
         List<User> users = Collections.emptyList();
         List<Type> types = Collections.emptyList();
+
+        String title = (request.getParameter("typeId") == null) ? null : request.getParameter("title").trim();
+        int creatorId = (request.getParameter("userId") == null) ? 0 : Integer.parseInt(request.getParameter("userId"));
+        int typeId = (request.getParameter("typeId") == null ) ? 0 : Integer.parseInt(request.getParameter("typeId"));
+
         try {
-            articles = articleService.listByPage(offset, pageSize);
-            int count = articleService.count();
+            articles = articleService.queryBySearchInfo(title,creatorId,typeId,offset, pageSize);
             users = userService.listAll();
             types = typeService.listAll();
             model.addAttribute("articleList", articles);
             model.addAttribute("userList", users);
             model.addAttribute("typeList", types);
             model.addAttribute("pageNo", pageNo);
-            model.addAttribute("count", String.valueOf(Math.ceil(count / 10) + 1));
+            int sum = articleService.countQueryBySearchInfo(title,creatorId,typeId);
+            BigDecimal count = new BigDecimal(sum / 10);
+            model.addAttribute("count", +Math.ceil(count.doubleValue() + 1));
             model.addAttribute("user", request.getSession().getAttribute("user"));
+            model.addAttribute("title",title);
+            model.addAttribute("creatorId",creatorId);
+            model.addAttribute("typeId",typeId);
             return "management/article/list";
         } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/article", method = RequestMethod.POST)
-    public String searchByInfo(HttpServletRequest request, HttpServletResponse response,
-                               Model model) {
-        List<Article> articles = Collections.emptyList();
-        List<User> users = Collections.emptyList();
-        List<Type> types = Collections.emptyList();
-        try {
-            String title = request.getParameter("title");
-            int creatorId = Integer.parseInt(request.getParameter("userId"));
-            int typeId = Integer.parseInt(request.getParameter("typeId"));
-            String year = request.getParameter("year");
-            articles = articleService.queryBySearchInfo(title, creatorId, typeId);
-            users = userService.listAll();
-            types = typeService.listAll();
-            model.addAttribute("articleList", articles);
-            model.addAttribute("userList", users);
-            model.addAttribute("typeList", types);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "management/article/list";
-        } catch (Exception e) {
-            return "error";
-        }
-    }
+//    @RequestMapping(value = "/article", method = RequestMethod.POST)
+//    public String searchByInfo(HttpServletRequest request, HttpServletResponse response,
+//                               Model model) {
+//        List<Article> articles = Collections.emptyList();
+//        List<User> users = Collections.emptyList();
+//        List<Type> types = Collections.emptyList();
+//        try {
+//            String title = request.getParameter("title");
+//            int creatorId = Integer.parseInt(request.getParameter("userId"));
+//            int typeId = Integer.parseInt(request.getParameter("typeId"));
+//            articles = articleService.queryBySearchInfo(title, creatorId, typeId);
+//            users = userService.listAll();
+//            types = typeService.listAll();
+//            model.addAttribute("articleList", articles);
+//            model.addAttribute("userList", users);
+//            model.addAttribute("typeList", types);
+//            model.addAttribute("user", request.getSession().getAttribute("user"));
+//            return "management/article/list";
+//        } catch (Exception e) {
+//            return "error";
+//        }
+//    }
 
     @RequestMapping(value = "article/add", method = RequestMethod.GET)
     public String toAdd(HttpServletRequest request, HttpServletResponse response,
@@ -108,6 +117,11 @@ public class ArticleController {
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         String content = request.getParameter("content");
         try {
+            if(articleService.checkExistByName(title)){
+                model.addAttribute("msg", "文章名称已存在！");
+                model.addAttribute("isRedirect",true);
+                return "management/article/add";
+            }
             articleService.newArticle(title, content, typeId, 1);
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/article";
@@ -144,6 +158,11 @@ public class ArticleController {
             User user = (User) request.getSession().getAttribute("user");
 //            int creatorId = user.getId();
             int creatorId = 1;
+            if(articleService.checkExistByName(title)){
+                model.addAttribute("msg", "文章名称已存在！");
+                model.addAttribute("isRedirect",true);
+                return "management/article/edit";
+            }
             articleService.updateArticleById(id, title, content, typeId, creatorId);
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "redirect:/article";
@@ -159,6 +178,8 @@ public class ArticleController {
         try {
             if (articleService.queryById(id) == null) {
                 model.addAttribute("msg", "该文章不存在或已被删除！");
+                model.addAttribute("isRedirect",true);
+//                return "management/article/list";
             }
             articleService.deleteById(id);
             model.addAttribute("user", request.getSession().getAttribute("user"));

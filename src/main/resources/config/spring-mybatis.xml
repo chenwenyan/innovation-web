@@ -19,7 +19,7 @@
 
     <bean id="dataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
         <property name="username" value="root"/>
-        <property name="password" value="root"/>
+        <property name="password" value="mysql"/>
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/innovation-web?useUnicode=true&amp;characterEncoding=utf-8" />
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
         <property name="idleConnectionTestPeriod" value="60"/>

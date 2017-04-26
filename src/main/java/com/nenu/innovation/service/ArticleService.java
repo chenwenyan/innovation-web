@@ -69,7 +69,7 @@ public interface ArticleService extends AbstractService {
      * @return
      * @throws Exception
      */
-    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId) throws Exception;
+    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId, int offset, int pageSize) throws Exception;
 
     /**
      * 更新阅读次数
@@ -106,5 +106,16 @@ public interface ArticleService extends AbstractService {
      * @throws Exception
      */
     public int count() throws Exception;
+
+    /**
+     * 获取格局查询条件得到的个数
+     *
+     * @param title
+     * @param creatorId
+     * @param typeId
+     * @return
+     * @throws Exception
+     */
+    public int countQueryBySearchInfo(String title, int creatorId, int typeId) throws Exception;
 
 }

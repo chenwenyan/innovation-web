@@ -1,6 +1,5 @@
 package com.nenu.innovation.mapper;
 
-import com.nenu.innovation.entity.Article;
 import com.nenu.innovation.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -71,7 +70,7 @@ public interface UserMapper {
      * @param password
      * @throws Exception
      */
-    public void updateUserInfo(@Param("id") Integer id,@Param("username") String username,@Param("password") String password) throws Exception;
+    public void updateUserInfo(@Param("id") Integer id,@Param("username") String username,@Param("password") String password,@Param("schoolId") Integer schoolId) throws Exception;
 
     /**
      * 根据id获取用户信息

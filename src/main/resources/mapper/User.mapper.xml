@@ -51,7 +51,7 @@
 
     <update id="updateUserInfo">
         UPDATE `t_user`
-        SET username = #{username},password = #{password}
+        SET username = #{username},password = #{password},school_id=#{schoolId}
         WHERE id = #{id}
     </update>
 

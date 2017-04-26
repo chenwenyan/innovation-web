@@ -87,7 +87,9 @@
                                 <div class="col-sm-6 col-sm-offset-3 ">
                                     <div class="btn-toolbar">
                                         <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>&nbsp;保存</button>
-                                        <button class="btn btn-default" type="reset"><i class="fa fa-undo"></i>重置</button>
+                                        <button class="btn btn-default" type="button"
+                                                onclick="javascript:window.history.back(-1);"><i class="fa fa-undo"></i>返回
+                                        </button>
                                     </div>
                                 </div>
                             </div>

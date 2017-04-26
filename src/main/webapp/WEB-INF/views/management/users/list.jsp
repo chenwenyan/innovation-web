@@ -37,7 +37,7 @@
                         <li><a href="${website}/user" class="active">用户信息管理</a></li>
                     </ol>
                     <h2>用户信息管理</h2>
-                    <c:if test="${isRedirect==true}">
+                    <c:if test="${isRedirect == true}">
                         <div class="alert alert-success J_tip">保存成功！</div>
                     </c:if>
                 </div>
@@ -87,6 +87,7 @@
                                         <th hidden="hidden">用户ID</th>
                                         <th>用户名称</th>
                                         <th>密码</th>
+                                        <th>学院</th>
                                         <th>用户状态</th>
                                         <th>操作</th>
                                     </tr>
@@ -97,6 +98,7 @@
                                             <td hidden="hidden">${user.id}</td>
                                             <td>${user.username}</td>
                                             <td>${user.password}</td>
+                                            <td>${user.schoolName}</td>
                                             <td>
                                                 <c:if test="${user.status=='1'}">正常</c:if>
                                                 <c:if test="${user.status=='2'}">停用</c:if>
@@ -128,6 +130,7 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(function () {
         if ($(".J_tip")) {

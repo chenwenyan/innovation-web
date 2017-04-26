@@ -47,22 +47,23 @@
                             <h4>搜索</h4>
                         </div>
                         <div class="panel-body">
-                            <form class="form-horizontal J_form" action="${website}/article" method="post">
+                            <form class="form-horizontal J_form" action="${website}/article" method="get">
                                 <div class="form-group col-sm-4">
                                     <label class="col-sm-4 control-label">文章标题</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="title" placeholder="请输入文章标题" class="form-control w180">
+                                        <input type="text" name="title" id="title" placeholder="请输入文章标题" class="form-control w180" value="${title}">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-4">
                                     <label class="col-sm-4 control-label">文章作者</label>
                                     <select class="col-sm-2 form-control w180" name="userId" id="userId">
+                                        <option value="0">全部</option>
                                         <c:forEach var="user" items="${userList}">
                                             <c:if test="${userList.size() == 0}">
                                                 <option value="-1">无</option>
                                             </c:if>
                                             <c:if test="${userList.size()> 0}">
-                                                <option value="${user.id}">${user.username}</option>
+                                                <option <c:if test='${user.id == creatorId}'>selected="selected"</c:if>  value="${user.id}">${user.username}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>
@@ -70,12 +71,13 @@
                                 <div class="form-group col-sm-4">
                                     <label class="col-sm-4 control-label">文章类别</label>
                                     <select class="col-sm-2 form-control w180" name="typeId" id="typeId">
+                                        <option value="0">全部</option>
                                         <c:forEach var="type" items="${typeList}">
                                             <c:if test="${typeList.size() == 0}">
                                                 <option value="-1">无</option>
                                             </c:if>
                                             <c:if test="${typeList.size()> 0}">
-                                                <option value="${type.id}">${type.name}</option>
+                                                <option  <c:if test='${type.id == typeId}'>selected="selected"</c:if> value="${type.id}">${type.name}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>
@@ -112,7 +114,7 @@
                                     <c:forEach var="article" items="${articleList}">
                                         <tr>
                                             <td hidden="hidden">${article.id}</td>
-                                            <td>
+                                            <td title="${article.title}">
                                                 <c:if test="${fn:length(article.title) > 20 }">
                                                     ${fn:substring(article.title, 0, 20)}...
                                                 </c:if>
@@ -187,7 +189,7 @@
                 }
             },
             pageUrl:function (url,page,current) {
-                return "/article?pageNo=" + page;
+                return "/article?pageNo=" + page + "&title=" + $("#title").val().trim() + "&creatorId=" + $("#userId").val() + "&typeId="+ $("#typeId").val();
             }
         });
 

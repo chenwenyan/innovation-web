@@ -193,6 +193,7 @@ public class displayController {
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         List<Article> articles = Collections.emptyList();
         try {
+            model.addAttribute("typeId",typeId);
             articles = articleService.listByTypeAndPage(typeId, offset, pageSize);
             model.addAttribute("list", articles);
             int sum = articleService.countListByTypeAndPage(typeId);

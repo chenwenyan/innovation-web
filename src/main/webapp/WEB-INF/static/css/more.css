@@ -49,6 +49,7 @@ div.public-more .alert a{
 i.info-icon{
     display: inline-block;
     float: left;
+    margin-top: 4px;
 }
 span.info-detail{
     display: inline-block;

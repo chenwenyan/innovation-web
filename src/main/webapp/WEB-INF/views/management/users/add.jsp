@@ -36,7 +36,9 @@
                         <li><a href="${website}/user/add" class="active">用户添加管理</a></li>
                     </ol>
                     <h2>添加用户</h2>
-                    <div class="alert alert-success">${msg}</div>
+                    <c:if test="${isRedirect == true}">
+                        <div class="alert alert-success J_tip">${msg}</div>
+                    </c:if>
                 </div>
 
                 <div class="col-sm-12">
@@ -50,8 +52,8 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>用户名称</label>
                                     <div class="col-sm-9">
                                         <input type="text"
-                                               placeholder="请输入用户名称" class="w180 form-control name col-sm-3"
-                                               name="username">
+                                               placeholder="不超过30个字符" class="w180 form-control name col-sm-3"
+                                               name="username" maxlength="30">
                                         <span class="tip2 col-sm-6">用户名称不能为空，请重新填写</span>
                                     </div>
                                 </div>
@@ -59,9 +61,21 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>用户密码</label>
                                     <div class="col-sm-9">
                                         <input type="text"
-                                               placeholder="请输入用户密码" class="w180 form-control name col-sm-3"
-                                               name="password">
+                                               placeholder="不超过30个字符" class="w180 form-control name col-sm-3"
+                                               name="password" maxlength="30">
                                         <span class="tip2 col-sm-6">用户密码不能为空，请重新填写</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>学院</label>
+                                    <div class="col-sm-9">
+                                        <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
+                                            <c:forEach var="school" items="${schoolList}">
+                                                <c:if test="${schoolList.size()> 0}">
+                                                    <option value="${school.id}">${school.name}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -71,7 +85,8 @@
                                     <div class="btn-toolbar">
                                         <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>&nbsp;保存
                                         </button>
-                                        <button class="btn btn-default" type="reset"><i class="fa fa-undo"></i>重置
+                                        <button class="btn btn-default" type="button"
+                                                onclick="javascript:window.history.back(-1);"><i class="fa fa-undo"></i>返回
                                         </button>
                                     </div>
                                 </div>
@@ -83,8 +98,15 @@
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(function () {
+
+        if ($(".J_tip")) {
+            setTimeout(function () {
+                $(".J_tip").hide();
+            }, 3000);
+        }
 
         $(".tip1").hide();
         $(".tip2").hide();

@@ -1,9 +1,6 @@
 package com.nenu.innovation.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -30,6 +27,9 @@ public class User {
 
     @Column(name = "school_id")
     private Integer schoolId;
+
+    @Transient
+    private String schoolName;
 
     @Column(name = "created_time")
     private Timestamp createdTime;
@@ -102,5 +102,13 @@ public class User {
 
     public void setSchoolId(Integer schoolId) {
         this.schoolId = schoolId;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 }

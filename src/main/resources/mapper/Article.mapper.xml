@@ -64,11 +64,17 @@
     <select id="queryBySearchInfo" resultMap="articleResultMap">
         SELECT * FROM `t_article`
         WHERE TRUE
-        <if test="title != null">
+        <if test="title != null and title != ''">
             and title = "%"#{title}"%"
         </if>
-        and creator_id = #{creatorId} and type_id = #{typeId}
+        <if test="creatorId != 0">
+            and creator_id = #{creatorId}
+        </if>
+        <if test="typeId != 0">
+            and type_id = #{typeId}
+        </if>
         ORDER BY created_time DESC
+        LIMIT #{offset},#{pageSize}
     </select>
 
     <update id="updateReadNum">
@@ -103,4 +109,19 @@
         FROM t_article
         WHERE title = #{title}
     </select>
+
+    <select id="countQueryBySearchInfo" resultType="int">
+        SELECT COUNT(1) FROM `t_article`
+        WHERE TRUE
+        <if test="title != null and title != ''">
+            and title = "%"#{title}"%"
+        </if>
+        <if test="creatorId != 0">
+            and creator_id = #{creatorId}
+        </if>
+        <if test="typeId != 0">
+            and type_id = #{typeId}
+        </if>
+    </select>
+
 </mapper>

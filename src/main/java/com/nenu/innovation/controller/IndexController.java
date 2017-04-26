@@ -43,7 +43,8 @@ public class IndexController {
                 request.getSession().setAttribute("user", user);
                 return "redirect:user";
             } else {
-                model.addAttribute("msg", "登录失败，请重新输入！");
+                model.addAttribute("msg", "输入信息有误，请重新输入！");
+                model.addAttribute("isRedirect", true);
                 return "management/login";
             }
         } catch (Exception e) {

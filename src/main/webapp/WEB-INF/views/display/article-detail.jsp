@@ -58,30 +58,29 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-sm-3 col-sm-offset-1">
-                <section class="demo">
-                    <dl class="list maki">
-                        <dt>公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;告</dt>
+                <p class="gonggao">公&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;告</p>
+                <ul class="side">
                         <c:if test="${article.typeId == 1 || article.typeId == 2 || article.typeId == 3 || article.typeId == 11}">
-                            <dd><a href="/more-articles?typeId=1">互联网+</a></dd>
-                            <dd><a href="/more-articles?typeId=2">创青春</a></dd>
-                            <dd><a href="/more-articles?typeId=3">挑战杯</a></dd>
-                            <dd><a href="/more-articles?typeId=11">其他比赛</a></dd>
+                            <li><a href="/more-articles?typeId=1">互联网+</a></li>
+                            <li><a href="/more-articles?typeId=2">创青春</a></li>
+                            <li><a href="/more-articles?typeId=3">挑战杯</a></li>
+                            <li><a href="/more-articles?typeId=11">其他比赛</a></li>
                         </c:if>
-                        <c:if test="${article.typeId == 4 || article.typeId == 5 || article.typeId == 6 || article.typeId == 7 || article.typeId == 8 }">
-                            <dd><a href="/more-articles?typeId=4">暑期社会实践公告</a></dd>
-                            <dd><a href="/more-articles?typeId=5">科研扶持</a></dd>
-                            <dd><a href="/more-articles?typeId=6">创业园</a></dd>
-                            <dd><a href="/more-articles?typeId=7">企业注册</a></dd>
-                            <dd><a href="/more-articles?typeId=8">科研成果</a></dd>
+                    <c:if test="${article.typeId == 4 || article.typeId == 5 || article.typeId == 6 || article.typeId == 7 || article.typeId == 8 }">
+                            <li><a href="/more-articles?typeId=4">暑期社会实践公告</a></li>
+                            <li><a href="/more-articles?typeId=5">科研扶持</a></li>
+                            <li><a href="/more-articles?typeId=6">创业园</a></li>
+                            <li><a href="/more-articles?typeId=7">企业注册</a></li>
+                            <li><a href="/more-articles?typeId=8">科研成果</a></li>
                         </c:if>
                         <c:if test="${article.typeId == 9 || article.typeId == 10}">
-                            <dd><a href="/more-articles?typeId=9">国家级创新创业训练计划</a></dd>
-                            <dd><a href="/more-articles?typeId=10">科研立项</a></dd>
+                            <li><a href="/more-articles?typeId=9">国家级创新创业训练计划</a></li>
+                            <li><a href="/more-articles?typeId=10">科研立项</a></li>
                         </c:if>
 
-                    </dl>
-                </section>
+                </ul>
             </div>
             <div class="col-sm-7">
                 <h3 class="text-center">${article.title}</h3>

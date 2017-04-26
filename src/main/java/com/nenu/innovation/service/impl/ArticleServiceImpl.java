@@ -31,7 +31,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private UserMapper userMapper;
 
-    @Override
+    
     public List<Article> listAll() throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -47,7 +47,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public int count() throws Exception {
         int sum = 0;
         try {
@@ -60,7 +60,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public boolean checkExistByName(String name) throws Exception {
         try {
             return articleMapper.checkExistByName(name) > 0 ? true : false;
@@ -70,7 +70,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public List<Article> listByType(int typeId) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -88,7 +88,7 @@ public class ArticleServiceImpl implements ArticleService {
         return articles;
     }
 
-    @Override
+    
     public List<Article> listByKeyWords(String keywords) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -106,7 +106,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public void newArticle(String title, String content, int typeId, int creatorId) throws Exception {
         try {
             if (title != null && content != null && typeId > 0 && creatorId > 0) {
@@ -119,7 +119,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public void updateArticleById(int id, String title, String content, int typeId, int creatorId) throws Exception {
         try {
             if (title != null && content != null && typeId > 0 && creatorId > 0) {
@@ -132,7 +132,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public Article queryById(int id) throws Exception {
         Article article = new Article();
         try {
@@ -146,7 +146,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public void deleteById(int id) throws Exception {
         try {
             articleMapper.deleteById(id);
@@ -157,11 +157,11 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
-    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId) throws Exception {
+    
+    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId, int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
-            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId);
+            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId, offset, pageSize);
             for (Article article : articles) {
                 setArticleTypeAndCreator(article);
             }
@@ -173,7 +173,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public void updateReadNum(int id) throws Exception {
         try {
             if (id > 0) {
@@ -185,7 +185,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public List<Article> listByPage(int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -200,7 +200,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    @Override
+    
     public List<Article> listByTypeAndPage(int typeId, int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -211,11 +211,19 @@ public class ArticleServiceImpl implements ArticleService {
             throw new Exception(e.getMessage());
         }
     }
-
-    @Override
+    
     public int countListByTypeAndPage(int typeId) throws Exception {
         try {
             return articleMapper.countListByTypeAndPage(typeId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public int countQueryBySearchInfo(String title, int creatorId, int typeId) throws Exception{
+        try {
+            return articleMapper.countQueryBySearchInfo(title,creatorId,typeId);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());

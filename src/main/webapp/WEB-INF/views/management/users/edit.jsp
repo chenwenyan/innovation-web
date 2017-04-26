@@ -36,7 +36,9 @@
                         <li><a href="${website}/user/edit" class="active">用户编辑管理</a></li>
                     </ol>
                     <h2>编辑用户</h2>
-                    <!--<div class="alert alert-success">保存成功！</div>-->
+                    <c:if test="${isRedirect == true}">
+                        <div class="alert alert-success J_tip">${msg}</div>
+                    </c:if>
                 </div>
 
                 <div class="col-sm-12">
@@ -65,6 +67,18 @@
                                         <span class="tip2 col-sm-6">用户密码不能为空，请重新填写</span>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>学院</label>
+                                    <div class="col-sm-9">
+                                        <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
+                                            <c:forEach var="school" items="${schoolList}">
+                                                <c:if test="${schoolList.size()> 0}">
+                                                    <option <c:if test='${school.id == user.schoolId}'>selected="selected"</c:if> value="${school.id}">${school.name}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div hidden>
                                     <input value="${this_user.status}" name="status">
                                 </div>
@@ -89,6 +103,11 @@
 </div>
 <script type="text/javascript">
     $(function () {
+        if ($(".J_tip")) {
+            setTimeout(function () {
+                $(".J_tip").hide();
+            }, 3000);
+        }
 
         $(".tip1").hide();
         $(".tip2").hide();

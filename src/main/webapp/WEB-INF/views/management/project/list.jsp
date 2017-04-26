@@ -75,7 +75,7 @@
                                             <option value="0">全部</option>
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size()> 0}">
-                                                    <option value="${school.id}" ${schoolId == school.id ? "selected" : ""}>${school.name}</option>
+                                                    <option <c:if test='${school.id == schoolId}'>selected="selected"</c:if> value="${school.id}">${school.name}</option>
                                                 </c:if>
                                             </c:forEach>
                                         </select>
@@ -117,7 +117,8 @@
                                         <th>指导老师</th>
                                         <th>学院</th>
                                         <th>年份</th>
-                                        <th>类别</th>
+                                        <th>项目分类</th>
+                                        <th>项目类别</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -125,7 +126,7 @@
                                     <c:forEach var="project" items="${projectList}">
                                         <tr>
                                             <td hidden="hidden">${project.id}</td>
-                                            <td>
+                                            <td title="${project.name}">
                                                 <c:if test="${fn:length(project.name) > 20 }">
                                                     ${fn:substring(project.name, 0, 20)}...
                                                 </c:if>
@@ -141,7 +142,9 @@
                                                 <c:if test="${project.type == 1}">国创</c:if>
                                                 <c:if test="${project.type == 2}">挑战杯</c:if>
                                                 <c:if test="${project.type == 3}">科研立项</c:if>
+                                                <c:if test="${project.type == 11}">其他比赛</c:if>
                                             </td>
+                                            <td>${project.category}</td>
                                             <td>
                                                 <a href="${website}/project/edit?id=${project.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
