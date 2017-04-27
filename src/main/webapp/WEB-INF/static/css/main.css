@@ -261,3 +261,13 @@ footer a:hover {
     font-family: '微软雅黑';
     color:#337ab7;
 }
+.control-label{
+    /*font-size: 13px !important;*/
+    font-weight: normal !important;
+}
+.form-control{
+    font-size: 13px !important;
+}
+.my-current-location{
+    float:none !important;
+}

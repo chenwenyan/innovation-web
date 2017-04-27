@@ -110,8 +110,12 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>年份</label>
                                     <div class="col-sm-9">
-                                        <input class="col-sm-2 form-control form-filter yearpicker w180"
-                                               readonly="readonly" name="year" id="year" value="${project.year}"/>
+                                        <div class='input-group date' id='this_year' name="this_year">
+                                            <input type='text' class="form-control" readonly id='year' name="year" value="${project.year}"/>
+                                            <span class="input-group-addon">
+                                              <span class="glyphicon glyphicon-calendar"></span>
+                                           </span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -140,13 +144,14 @@
         $(".tip1").hide();
         $(".tip2").hide();
 
-        $('#year').datetimepicker({
+        $('#this_year').datetimepicker({
             startView: 'decade',
             minView: 'decade',
             format: 'yyyy',
             maxViewMode: 2,
             minViewMode: 2,
-            autoclose: true
+            autoclose: true,
+            pickerPosition: "bottom-left"
         });
 
         //验证是否为空

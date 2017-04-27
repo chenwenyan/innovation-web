@@ -77,12 +77,12 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>学院</label>
                                     <div class="col-sm-9">
-                                        <select class="col-sm-2 form-control w180" name = "schoolId" id="schoolId">
+                                        <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size() == 0}">
                                                     <option value="-1">无</option>
                                                 </c:if>
-                                                <c:if test="${schoolList.size()> 0}" >
+                                                <c:if test="${schoolList.size()> 0}">
                                                     <option value="${school.id}">${school.name}</option>
                                                 </c:if>
                                             </c:forEach>
@@ -92,13 +92,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>项目分类</label>
                                     <div class="col-sm-9">
-                                        <select class="col-sm-3 form-control w180" name ="type" id="type">
-                                           <option value="1" selected>比赛 </option>
-                                           <option value="2">科研立项 </option>
-                                           <option value="3">未来计划 </option>
+                                        <select class="col-sm-3 form-control w180" name="type" id="type">
+                                            <option value="1" selected>比赛</option>
+                                            <option value="2">科研立项</option>
+                                            <option value="3">未来计划</option>
                                         </select>
                                         <label class="col-sm-2 control-label">项目类别</label>
-                                        <select class="col-sm-3 form-control w180" name ="category" id="category">
+                                        <select class="col-sm-3 form-control w180" name="category" id="category">
                                             <option value="1">互联网+</option>
                                             <option value="2">创青春全国大学生创业大赛</option>
                                             <option value="3">挑战杯</option>
@@ -110,8 +110,13 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>年份</label>
                                     <div class="col-sm-9">
-                                        <input class="col-sm-2 form-control form-filter yearpicker w180"
-                                               readonly="readonly" name="year" id="year"/>
+                                        <div class='input-group date' id='this_year' name="this_year">
+                                            <input type='text' class="form-control" readonly id='year' name="year"
+                                                   value="${year}"/>
+                                            <span class="input-group-addon">
+                                              <span class="glyphicon glyphicon-calendar"></span>
+                                           </span>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -141,13 +146,14 @@
         $(".tip1").hide();
         $(".tip2").hide();
 
-        $('#year').datetimepicker({
+        $('#this_year').datetimepicker({
             startView: 'decade',
             minView: 'decade',
             format: 'yyyy',
             maxViewMode: 2,
             minViewMode: 2,
-            autoclose: true
+            autoclose: true,
+            pickerPosition: "bottom-left"
         });
 
         //验证是否为空
@@ -187,7 +193,7 @@
             var name = $("#name").val().trim();
             var charger = $("#charger").val().trim();
             var teacher = $("#teacher").val().trim();
-            if (name == null || name == "" || charger == null || charger == "" || teacher == "" || teacher == null ) {
+            if (name == null || name == "" || charger == null || charger == "" || teacher == "" || teacher == null) {
                 alert("请将内容填写完整！");
                 return false;
             }
@@ -199,14 +205,14 @@
         //类别选项
         $("#category").change(function () {
             var category = $("#category").val();
-            if(category == 1) {
+            if (category == 1) {
                 $("#typeId").empty();
                 $("#typeId").append("<option value='1' selected>互联网+</option>");
                 $("#typeId").append("<option value='2'>创青春全国大学生创业大赛</option>");
                 $("#typeId").append("<option value='3'>挑战杯</option>");
                 $("#typeId").append("<option value='11'>其他比赛</option>");
             }
-            if(category == 2) {
+            if (category == 2) {
                 $("#typeId").empty();
                 $("#typeId").append("<option value='4' selected>暑期社会实践公告</option>");
                 $("#typeId").append("<option value='5'>科研扶持</option>");
@@ -214,7 +220,7 @@
                 $("#typeId").append("<option value='7'>企业注册</option>");
                 $("#typeId").append("<option value='8'>科研成果</option>");
             }
-            if(category == 3) {
+            if (category == 3) {
                 $("#typeId").empty();
                 $("#typeId").append("<option value='9' selected>国家级创新创业训练计划</option>");
                 $("#typeId").append("<option value='10'>科研立项</option>");

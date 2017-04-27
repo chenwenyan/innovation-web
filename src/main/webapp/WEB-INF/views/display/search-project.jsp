@@ -11,50 +11,46 @@
 <div class="public">
     <div class="container">
         <div class="row">
+            <%--<div class="col-sm-10  col-sm-offset-1 panel panel-default panel-top">--%>
+                <%--<div class="panel-heading top-heading">--%>
+                    <%--<span class="panel-title top-location"><i class="fa fa-map-marker"></i>&nbsp;当前位置：--%>
+                        <%--<a href="${website}/main">首页</a> > 项目检索--%>
+                  <%--</span>--%>
+                <%--</div>--%>
+            <%--</div>--%>
             <div class="col-sm-10 col-sm-offset-1">
-                <div class="alert alert-success clearfix">
-                    <div class="col-sm-6">
-                      <span class="public-right"><i class="fa fa-map-marker"></i>&nbsp;当前位置：
-                            <a href="${website}/main">首页</a> > 项目检索
-                      </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-10 col-sm-offset-1">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-12 text-left">
-                                <h6 class="smart-margin-off">项目检索</h6>
-                            </div>
-                        </div>
+                <div class=" panel panel-default panel-top">
+                    <div class="panel-heading top-heading">
+                      <span class="panel-title top-location"><i class="fa fa-map-marker my-current-location"></i>&nbsp;&nbsp;当前位置：
+                        <a href="${website}/main">首页</a> > 项目检索
+                     </span>
                     </div>
                     <div class="panel-body">
                         <form action="/search-project" method="get" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目名称：</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <input type="text" class="form-control" placeholder="请输入项目名称" name="name" id="name"
                                            value="${name}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">负责人：</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <input type="text" class="form-control" placeholder="请输入负责人姓名" name="charger"
                                            id="charger" value="${charger}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">指导教师：</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <input type="text" class="form-control" placeholder="请输入指导教师姓名" name="teacher"
                                            id="teacher" value="${teacher}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">学院：</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <select class="form-control" name="schoolId" id="schoolId">
                                         <option value="0">全部</option>
                                         <c:forEach var="school" items="${schoolList}">
@@ -67,16 +63,24 @@
                             </div>
                             <div class="form-group form-inline">
                                 <label class="col-sm-3 control-label">年份：</label>
-                                <div class="col-sm-6">
-                                    <input class="col-sm-2 form-control form-filter yearpicker" readonly="readonly"
-                                           name="startYear" id="startYear" value="${startYear}"/>
-                                    <label class="col-sm-2 control-label ">至</label>
-                                    <input class="col-sm-2 form-control form-filter yearpicker "
-                                           readonly="readonly" name="endYear" id="endYear" value="${endYear}"/>
+                                <div class="col-sm-7">
+                                    <div class='input-group date' id='start_year' name="start_year">
+                                        <input type='text' class="form-control" readonly id='startYear' name="startYear" value="${startYear}"/>
+                                        <span class="input-group-addon">
+                                           <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                    &nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;
+                                    <div class='input-group date' id='end_year' name="end_year">
+                                        <input type='text' class="form-control" readonly id='endYear' name="endYear" value="${endYear}"/>
+                                        <span class="input-group-addon">
+                                           <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-sm-3 col-sm-offset-5">
-                                <button class="btn btn-primary" type="submit">搜&nbsp;索</button>
+                                <button class="btn btn-info" type="submit">搜&nbsp;索</button>
                             </div>
                         </form>
                         <div class="col-sm-12 margin-top-15">
@@ -92,7 +96,6 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <%--<c:if test="${projectlList.size() > 0}">--%>
                                     <c:forEach var="project" items="${projectList}">
                                         <tr>
                                             <td hidden="hidden">${project.id}</td>
@@ -110,8 +113,7 @@
                                             <td>${project.year}</td>
                                         </tr>
                                     </c:forEach>
-                                    <%--</c:if>--%>
-                                    <c:if test="${projectlList.size() == 0}">
+                                    <c:if test="${projectlList.size() == '0'}">
                                         <tr>
                                             <td colspan="8" style="text-align: center;">无查询结果</td>
                                         </tr>
@@ -121,13 +123,6 @@
                                 <div class="pull-right">
                                     <ul id="pageLimit"></ul>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-12 text-left">
-                                <h6 class="smart-margin-off"></h6>
                             </div>
                         </div>
                     </div>
@@ -143,26 +138,28 @@
     $(function () {
         console.log(${projectList.size()});
 
-        $('#startYear').datetimepicker({
+        $('#start_year').datetimepicker({
             startView: 'decade',
             minView: 'decade',
             format: 'yyyy',
             maxViewMode: 2,
             minViewMode: 2,
-            autoclose: true
+            autoclose: true,
+            pickerPosition: "bottom-left"
         }).on("changeDate", function (ev) {
             var startYear = $("#startYear").val();
             $("#endYear").datetimepicker("setStartDate", startYear);
             $("#startYear").datetimepicker("hide");
         });
 
-        $('#endYear').datetimepicker({
+        $('#end_year').datetimepicker({
             startView: 'decade',
             minView: 'decade',
             format: 'yyyy',
             maxViewMode: 2,
             minViewMode: 2,
-            autoclose: true
+            autoclose: true,
+            pickerPosition: "bottom-left"
         }).on("changeDate", function (ev) {
             var startYear = $("#startYear").val();
             var endYear = $("#endYear").val();

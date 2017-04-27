@@ -83,12 +83,20 @@
                                 </div>
                                 <div class="form-group form-inline ">
                                     <label class="col-sm-2 control-label">年份：</label>
-                                    <div class="col-sm-6">
-                                        <input class="col-sm-2 form-control form-filter yearpicker" readonly="readonly"
-                                               name="startYear" id="startYear" value="${startYear}"/>
-                                        <label class="col-sm-2 control-label ">至</label>
-                                        <input class="col-sm-2 form-control form-filter yearpicker "
-                                               readonly="readonly" name="endYear" id="endYear" value="${endYear}"/>
+                                    <div class="col-sm-7">
+                                        <div class='input-group date' id='start_year' name="start_year">
+                                            <input type='text' class="form-control" readonly id='startYear' name="startYear" value="${startYear}"/>
+                                            <span class="input-group-addon">
+                                           <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        </div>
+                                        &nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;
+                                        <div class='input-group date' id='end_year' name="end_year">
+                                            <input type='text' class="form-control" readonly id='endYear' name="endYear" value="${endYear}"/>
+                                            <span class="input-group-addon">
+                                           <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-5">
@@ -194,26 +202,28 @@
             }
         });
 
-        $('#startYear').datetimepicker({
+        $('#start_year').datetimepicker({
             startView: 'decade',
             minView: 'decade',
             format: 'yyyy',
             maxViewMode: 2,
             minViewMode: 2,
-            autoclose: true
+            autoclose: true,
+            pickerPosition: "bottom-left"
         }).on("changeDate", function (ev) {
             var startYear = $("#startYear").val();
             $("#endYear").datetimepicker("setStartDate", startYear);
             $("#startYear").datetimepicker("hide");
         });
 
-        $('#endYear').datetimepicker({
+        $('#end_year').datetimepicker({
             startView: 'decade',
             minView: 'decade',
             format: 'yyyy',
             maxViewMode: 2,
             minViewMode: 2,
-            autoclose: true
+            autoclose: true,
+            pickerPosition: "bottom-left"
         }).on("changeDate", function (ev) {
             var startYear = $("#startYear").val();
             var endYear = $("#endYear").val();

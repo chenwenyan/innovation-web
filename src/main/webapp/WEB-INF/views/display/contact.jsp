@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1 panel panel-default panel-top">
                 <div class="panel-heading top-heading">
-                        <span class="panel-title top-location"><i class="fa fa-map-marker"></i>&nbsp;当前位置：
+                        <span class="panel-title top-location"><i class="fa fa-map-marker my-current-location"></i>&nbsp;&nbsp;当前位置：
                             <a href="/main">首页</a> > 关于我们
                         </span>
                 </div>
