@@ -62,7 +62,7 @@
                                                     <option value="-1">无</option>
                                                 </c:if>
                                                 <c:if test="${typeList.size() > 0}">
-                                                    <option value ="${type.id}"">${type.name}</option>
+                                                    <option value ="${type.id}">${type.name}</option>
                                                 </c:if>
                                             </c:forEach>
                                         </select>
@@ -75,7 +75,6 @@
                                         <span class="tip2 col-sm-6">文章内容不能为空，请重新填写</span>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="panel-footer clearfix">
                                 <div class="col-sm-6 col-sm-offset-3 ">
@@ -89,6 +88,17 @@
                             </div>
                         </div>
                     </form>
+
+                    <%--<div class="form-horizontal inline">--%>
+                        <%--<form class="col-sm-6" name="uploadForm" id="uploadForm" method="post" action="/file/upload" enctype="multipart/form-data" >--%>
+                            <%--<label class="col-sm-3 control-label"><span class="requires">*</span>上传附件</label>--%>
+                            <%--<div class="">--%>
+                                <%--<input class="" type="file" name="uploadInput" id="uploadInput" size="30"  multiple="multiple">--%>
+                                <%--<button class="btn btn-default" type="submit" >上传</button>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
+
                 </div>
             </div>
         </div>
@@ -167,6 +177,23 @@
             else{
                 $(".J_form").submit();
             }
+        });
+        
+        $("#uploadForm").submit(function () {
+             if($("#uploadInput").value == ""){
+                 alert("还未选择文件！");
+                 return false;
+             }else{
+                 $("#uploadForm").submit();
+//                 $.ajax({
+//                     type: "post",
+//                     url: "/file/upload",
+//                     data: {id: id},
+//                     success: function (msg) {
+//                         window.location.reload();
+//                     }
+//                 });
+             }
         });
     })
 </script>

@@ -104,6 +104,7 @@
             bootstrapMajorVersion: 3,
             alignment: "right",
             numberOfPages: 5,
+            shouldShowPage: false,
             itemTexts: function (type, page, current) {
                 switch (type) {
                     case "first":

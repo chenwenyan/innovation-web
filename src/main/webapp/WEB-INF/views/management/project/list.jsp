@@ -81,12 +81,12 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group form-inline ">
+                                <div class="form-group form-inline clearfix ">
                                     <label class="col-sm-2 control-label">年份：</label>
-                                    <div class="col-sm-7">
-                                        <div class='input-group date' id='start_year' name="start_year">
-                                            <input type='text' class="form-control" readonly id='startYear' name="startYear" value="${startYear}"/>
-                                            <span class="input-group-addon">
+                                    <div class="col-sm-7 " style="display: inline-block">
+                                        <div class='input-group date ' id='start_year' name="start_year">
+                                            <input  type='text' class="form-control" readonly id='startYear' name="startYear" value="${startYear}"/>
+                                            <span class="input-group-addon" >
                                            <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                         </div>
@@ -94,8 +94,8 @@
                                         <div class='input-group date' id='end_year' name="end_year">
                                             <input type='text' class="form-control" readonly id='endYear' name="endYear" value="${endYear}"/>
                                             <span class="input-group-addon">
-                                           <span class="glyphicon glyphicon-calendar"></span>
-                                        </span>
+                                               <span class="glyphicon glyphicon-calendar"></span>
+                                           </span>
                                         </div>
                                     </div>
                                 </div>

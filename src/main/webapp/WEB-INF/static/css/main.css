@@ -262,8 +262,8 @@ footer a:hover {
     color:#337ab7;
 }
 .control-label{
-    /*font-size: 13px !important;*/
-    font-weight: normal !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
 }
 .form-control{
     font-size: 13px !important;
