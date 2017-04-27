@@ -41,6 +41,7 @@
     <select id="count" resultType="integer">
         SELECT COUNT(1)
         FROM t_user
+        WHERE type = 2
     </select>
 
     <update id="setStatus">
@@ -79,8 +80,13 @@
     <select id="listByPage" resultMap="userResultMap">
         SELECT * FROM t_user
         WHERE type = 2
-        LIMIT #{offset},#{pageSize}
         ORDER BY created_time
+        LIMIT #{offset},#{pageSize}
+    </select>
+
+    <select id="queryByNameAndPassword" resultMap="userResultMap">
+        SELECT * FROM t_user
+        WHERE username = #{username} and password = #{password}
     </select>
 
 </mapper>

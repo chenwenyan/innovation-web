@@ -47,6 +47,12 @@ public class Article {
     @Column(name = "is_audited")
     private Integer isAudited;
 
+    @Column(name = "school_id")
+    private Integer schoolId;
+
+    @Transient
+    private String schoolName;
+
     public Integer getId() {
         return id;
     }
@@ -133,5 +139,21 @@ public class Article {
 
     public void setIsAudited(Integer isAudited) {
         this.isAudited = isAudited;
+    }
+
+    public Integer getSchoolId() {
+        return schoolId;
+    }
+
+    public void setSchoolId(Integer schoolId) {
+        this.schoolId = schoolId;
+    }
+
+    public String getSchoolName() {
+        return schoolName;
+    }
+
+    public void setSchoolName(String schoolName) {
+        this.schoolName = schoolName;
     }
 }

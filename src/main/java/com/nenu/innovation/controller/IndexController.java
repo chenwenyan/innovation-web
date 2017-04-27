@@ -40,6 +40,7 @@ public class IndexController {
     public String login(User user, Model model, HttpServletRequest request) throws Exception {
         try {
             if (userService.checkLogin(user)) {
+                user = userService.queryByNameAndPassword(user.getUsername(),user.getPassword());
                 request.getSession().setAttribute("user", user);
                 return "redirect:user";
             } else {
@@ -48,8 +49,7 @@ public class IndexController {
                 return "management/login";
             }
         } catch (Exception e) {
-            model.addAttribute("error", e.getMessage());
-            return "management/login";
+            return "error";
         }
     }
 
@@ -63,11 +63,11 @@ public class IndexController {
         }
     }
 
-    @RequestMapping(value = "logout", method = RequestMethod.POST)
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response,
                          Model model) {
         request.getSession().setAttribute("user", null);
-        return "management/login";
+        return "redirect:/login";
     }
 
     @RequestMapping(value = "error", method = RequestMethod.GET)

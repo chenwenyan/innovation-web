@@ -169,6 +169,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public User queryByNameAndPassword(String username,String password) throws Exception{
+        try{
+            return userMapper.queryByNameAndPassword(username,password);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("根据用户名和密码查询用户信息出错！");
+            throw new Exception(e.getMessage());
+        }
+    }
+
     private void setSchoolName(User user) throws Exception{
         try{
             if(user != null){

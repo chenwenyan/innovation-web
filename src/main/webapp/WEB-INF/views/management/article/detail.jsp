@@ -41,10 +41,11 @@
                                 </div>
                                 <div class="form-group text-right">
                                     <%--<label class="col-sm-3 control-label"><span class="requires">*</span>文章类别</label>--%>
-                                    <div class="col-sm-8 col-sm-offset-2">
-                                        文章类别：${article.typeName}&nbsp;&nbsp;&nbsp;作者：${article.creatorName} &nbsp;&nbsp;&nbsp;创建时间：<p><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd"></fmt:formatDate></p>
+                                    <div class="col-sm-8">
+                                        文章类别：${article.typeName}&nbsp;&nbsp;&nbsp;发布单位：${article.schoolName} &nbsp;&nbsp;&nbsp;创建时间：<fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd hh-MM-ss"></fmt:formatDate>
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="form-group text-left">
                                     <%--<label class="col-sm-3 control-label"><span class="requires">*</span>文章内容</label>--%>
                                     <div class="col-sm-8 col-sm-offset-2">

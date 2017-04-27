@@ -87,6 +87,8 @@
                 <div class="text-center">
                     <span>发布时间：</span>
                     <span><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd HH:MM:ss"/></span>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;发布单位：</span>
+                    <span>${article.schoolName}</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;浏览：</span>
                     <span>${article.readNum}</span>
                     <span>次</span>

@@ -1,9 +1,11 @@
 package com.nenu.innovation.service.impl;
 
 import com.nenu.innovation.entity.Article;
+import com.nenu.innovation.entity.School;
 import com.nenu.innovation.entity.Type;
 import com.nenu.innovation.entity.User;
 import com.nenu.innovation.mapper.ArticleMapper;
+import com.nenu.innovation.mapper.SchoolMapper;
 import com.nenu.innovation.mapper.TypeMapper;
 import com.nenu.innovation.mapper.UserMapper;
 import com.nenu.innovation.service.ArticleService;
@@ -31,13 +33,16 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private UserMapper userMapper;
 
+    @Autowired
+    private SchoolMapper schoolMapper;
+
     
     public List<Article> listAll() throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
             articles = articleMapper.listAll();
             for (Article article : articles) {
-                setArticleTypeAndCreator(article);
+                setArticleTypeAndCreatorAndSchool(article);
             }
             return articles;
         } catch (Exception e) {
@@ -77,7 +82,7 @@ public class ArticleServiceImpl implements ArticleService {
             if (typeId > 0) {
                 articles = articleMapper.listByType(typeId);
                 for (Article article : articles) {
-                    setArticleTypeAndCreator(article);
+                    setArticleTypeAndCreatorAndSchool(article);
                 }
             }
         } catch (Exception e) {
@@ -95,7 +100,7 @@ public class ArticleServiceImpl implements ArticleService {
             if (keywords.length() > 0 && keywords != null) {
                 articles = articleMapper.listByKeyWords(keywords);
                 for (Article article : articles) {
-                    setArticleTypeAndCreator(article);
+                    setArticleTypeAndCreatorAndSchool(article);
                 }
             }
             return articles;
@@ -137,7 +142,7 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = new Article();
         try {
             article = articleMapper.queryById(id);
-            setArticleTypeAndCreator(article);
+            setArticleTypeAndCreatorAndSchool(article);
             return article;
         } catch (Exception e) {
             System.out.println("根据id查询文章失败！");
@@ -163,7 +168,7 @@ public class ArticleServiceImpl implements ArticleService {
         try {
             articles = articleMapper.queryBySearchInfo(title, creatorId, typeId,isAudited, offset, pageSize);
             for (Article article : articles) {
-                setArticleTypeAndCreator(article);
+                setArticleTypeAndCreatorAndSchool(article);
             }
             return articles;
         } catch (Exception e) {
@@ -191,7 +196,7 @@ public class ArticleServiceImpl implements ArticleService {
         try {
             articles = articleMapper.listByPage(offset, pageSize);
             for (Article article : articles) {
-                setArticleTypeAndCreator(article);
+                setArticleTypeAndCreatorAndSchool(article);
             }
             return articles;
         } catch (Exception e) {
@@ -239,16 +244,16 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    private void setArticleTypeAndCreator(Article article) throws Exception {
+    private void setArticleTypeAndCreatorAndSchool(Article article) throws Exception {
         try {
-            int typeId = article.getTypeId();
-            int creatorId = article.getCreatorId();
-            Type type = typeMapper.queryById(typeId);
-            User user = userMapper.queryById(creatorId);
+            Type type = typeMapper.queryById(article.getTypeId());
+            User user = userMapper.queryById(article.getCreatorId());
+            School school = schoolMapper.queryById(article.getSchoolId());
             article.setTypeName(type.getName());
             article.setCreatorName(user.getUsername());
+            article.setSchoolName(school.getName());
         } catch (Exception e) {
-            System.out.println("设置文章类型和创建者名称失败！");
+            System.out.println("设置文章类型、创建者名称和学院名称失败！");
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }

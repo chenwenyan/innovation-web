@@ -62,4 +62,14 @@ public interface UserService extends AbstractService {
      * @throws Exception
      */
     public List<User> queryBySearchInfo(String username, int status) throws Exception;
+
+    /**
+     * 根据名称和密码获取用户
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws Exception
+     */
+    public User queryByNameAndPassword(String username,String password) throws Exception;
 }

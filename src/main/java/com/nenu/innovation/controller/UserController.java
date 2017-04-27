@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,11 +42,12 @@ public class UserController {
                 User user = (User) request.getSession().getAttribute("user");
                 model.addAttribute("user", user);
             }
-            List<User> users = userService.listAll();
-            int count = userService.count();
+            List<User> users = userService.listByPage(offset,pageSize);
+            int sum = userService.count();
+            BigDecimal count = new BigDecimal(sum / 10);
+            model.addAttribute("count", +Math.ceil(count.doubleValue() + 1));
             model.addAttribute("userList", users);
             model.addAttribute("pageNo", pageNo);
-            model.addAttribute("count", String.valueOf(Math.ceil(count / 10) + 1));
             model.addAttribute("user", request.getSession().getAttribute("user"));
             return "management/users/list";
         } catch (Exception e) {

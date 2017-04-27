@@ -43,16 +43,17 @@
     <mvc:resources mapping="/img/**" location="WEB-INF/static/img/" />
 
     <!-- 自定义拦截链配置 -->
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/index"/>-->
-            <!--<mvc:mapping path="/user/**"/>-->
-            <!--<mvc:mapping path="/article/**"/>-->
-            <!--<mvc:mapping path="/school/**"/>-->
-            <!--<mvc:mapping path="/project/**"/>-->
-            <!--<mvc:mapping path="/type/**"/>-->
-            <!--<bean class="com.nenu.innovation.controller.UserInterceptor"></bean>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/"/>
+            <mvc:mapping path="/user/**"/>
+            <mvc:mapping path="/article/**"/>
+            <mvc:mapping path="/school/**"/>
+            <mvc:mapping path="/project/**"/>
+            <mvc:mapping path="/type/**"/>
+            <mvc:mapping path="/school/**"/>
+            <bean class="com.nenu.innovation.controller.UserInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

@@ -1,10 +1,12 @@
 package com.nenu.innovation.controller;
 
+import com.nenu.innovation.entity.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * UserInterceptor
@@ -14,26 +16,22 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserInterceptor implements HandlerInterceptor {
 
-    @Override
-    public void afterCompletion(HttpServletRequest request,
-                                HttpServletResponse response, Object obj, Exception err)
-            throws Exception {
-    }
+    private static final String LOGIN_URL = "/login";
 
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response,
-                           Object obj, ModelAndView mav) throws Exception {
-        response.sendRedirect("/login");
-    }
-
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
-                             Object obj) throws Exception {
-        Object user = request.getSession().getAttribute("user");
-        System.out.println("用户登录：" + user.toString());
-        if (user != null) {
-            return true;
+    public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
+        HttpSession session = req.getSession(true);
+        // 从session 里面获取用户名的信息
+        User user = (User)req.getSession().getAttribute("user");
+        // 判断如果没有取到用户信息，就跳转到登陆页面，提示用户进行登陆
+        if (user == null || "".equals(user.toString())) {
+            res.sendRedirect(LOGIN_URL);
         }
-        return false;
+        return true;
+    }
+
+    public void postHandle(HttpServletRequest req, HttpServletResponse res, Object arg2, ModelAndView arg3) throws Exception {
+    }
+
+    public void afterCompletion(HttpServletRequest req, HttpServletResponse res, Object arg2, Exception arg3) throws Exception {
     }
 }

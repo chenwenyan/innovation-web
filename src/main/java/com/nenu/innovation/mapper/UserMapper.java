@@ -108,4 +108,14 @@ public interface UserMapper {
      * @throws Exception
      */
     public List<User> listByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
+
+    /**
+     * 根据名称和密码获取用户
+     *
+     * @param username
+     * @param password
+     * @return
+     * @throws Exception
+     */
+    public User queryByNameAndPassword(@Param("username") String username, @Param("password") String password) throws Exception;
 }

@@ -133,7 +133,7 @@
                                             </td>
                                             <td>${article.typeName}</td>
                                             <td><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd HH:MM:ss"></fmt:formatDate></td>
-                                            <td>${article.creatorName}</td>
+                                            <td>${article.schoolName}</td>
                                             <td>
                                                 <c:if test="${article.isAudited == 0}">待审核</c:if>
                                                 <c:if test="${article.isAudited == 1}">审核通过</c:if>

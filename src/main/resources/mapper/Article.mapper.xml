@@ -13,6 +13,7 @@
         <result column="creator_id" property="creatorId"/>
         <result column="read_num" property="readNum"/>
         <result column="is_audited" property="isAudited"/>
+        <result column="school_id" property="schoolId"/>
     </resultMap>
 
     <select id="listAll" resultMap="articleResultMap">
