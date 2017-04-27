@@ -41,12 +41,12 @@
                         <span class="empty-tip">密码不能为空，请重新输入</span>
                     </div>
                 </div>
-                <div class="checkbox pull-right margin-top-0 margin-bottom-15">
-                    <label>
-                        <input class="J_remember height-18" type="checkbox" name="remember" value="0">
-                        记住我的登录信息
-                    </label>
-                </div>
+                <%--<div class="checkbox pull-right margin-top-0 margin-bottom-15">--%>
+                    <%--<label>--%>
+                        <%--<input class="J_remember height-18" type="checkbox" name="remember" value="0">--%>
+                        <%--记住我的登录信息--%>
+                    <%--</label>--%>
+                <%--</div>--%>
                 <button class="J_submitBtn btn btn-primary btn-block" type="submit" data-btn-type="loading" data-btn-loading-text="正在登录，请稍后..." >登录</button>
             </div>
         </div>
@@ -118,26 +118,26 @@
         /**
          * 记住登录状态
          */
-        var rememberStatus = $(".J_remember").attr("checked"),
-                remember;
-        if(rememberStatus == "checked"){
-            $(".J_remember").attr("checked","checked");
-            remember=1;
-        }else{
-            $(".J_remember").removeAttr("checked");
-            remember=0;
-        }
-        $(".J_remember").change(function (){
-            $(".J_remember").attr("checked","checked");
-            remember+=1;
-            if (remember==2) {
-                remember=0;
-                rememberStatus="unchecked";
-            }else{
-                rememberStatus="checked";
-            }
-            // console.log(remember);
-        } ) ;
+//        var rememberStatus = $(".J_remember").attr("checked"),
+//                remember;
+//        if(rememberStatus == "checked"){
+//            $(".J_remember").attr("checked","checked");
+//            remember=1;
+//        }else{
+//            $(".J_remember").removeAttr("checked");
+//            remember=0;
+//        }
+//        $(".J_remember").change(function (){
+//            $(".J_remember").attr("checked","checked");
+//            remember+=1;
+//            if (remember==2) {
+//                remember=0;
+//                rememberStatus="unchecked";
+//            }else{
+//                rememberStatus="checked";
+//            }
+//            // console.log(remember);
+//        } ) ;
 
         /**
          * 验证并提交

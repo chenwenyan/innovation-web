@@ -39,8 +39,8 @@
     </select>
 
     <insert id="newArticle">
-        INSERT INTO `t_article` (title,content,type_id,creator_id)
-        VALUES(#{title},#{content},#{typeId},#{creatorId})
+        INSERT INTO `t_article` (title,content,type_id,creator_id,school_id)
+        VALUES(#{article.title},#{article.content},#{article.typeId},#{article.creatorId},#{article.schoolId})
     </insert>
 
     <update id="updateArticleById">
@@ -142,5 +142,12 @@
         SET is_audited = #{isAudited}
         WHERE id = #{id}
     </update>
+
+    <select id="listThree" resultMap="articleResultMap">
+        SELECT * FROM t_article
+        WHERE type_id = 5 OR type_id = 6 OR type_id = 7
+        ORDER BY created_time DESC
+    </select>
+
 
 </mapper>

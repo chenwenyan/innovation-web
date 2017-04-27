@@ -10,12 +10,18 @@
 <div class="header">
     <div class="container">
         <div class="row">
-            <div class="col-sm-3 col-sm-offset-1">
-                <img src="/img/favicon.jpg" class="left" alt="东北师范大学">
+            <%--<div class="col-sm-3 col-sm-offset-1">--%>
+            <div class="col-sm-3">
+                <%--<img src="/img/favicon.jpg" class="left" alt="东北师范大学">--%>
+                <img src="/img/nenu.png" class="left" alt="东北师范大学">
             </div>
-            <div class="col-sm-5 col-sm-offset-2">
-                <!-- <h1>创新创业计划培训工程</h1> -->
-                <img src="/img/font.png" class="font" alt="创新创业计划培训工程">
+            <%--<div class="col-sm-5 col-sm-offset-2">--%>
+            <div class="col-sm-5" >
+                 <h3 class="title-innovation">大学生创新创业计划培训工程</h3>
+                <%--<img src="/img/font.png" class="font" alt="创新创业计划培训工程">--%>
+            </div>
+            <div class="col-sm-3">
+                <a href="/search-project"><img src="/img/search.png" alt="创新创业项目查询入口"></a>
             </div>
         </div>
     </div>

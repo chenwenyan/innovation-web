@@ -4,15 +4,12 @@ div.img-container img{
 }
 /**公告栏**/
 div.alert-success{
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 14px;
+    /*font-weight: bold;*/
 }
 div.public-more{
     margin-top: 10px;
     margin-bottom: -30px;
-}
-span.public-right{
-    float: right;
 }
 i.fa-home{
     margin-top: 3px;
@@ -62,9 +59,26 @@ span.info-detail{
 span.info-date{
     display: inline-block;
     float: right;
+    margin-right: 20px;
 }
 div.line{
     border-bottom: 1px dashed #DEE1E2;
     padding: 0 0 10px 0;
-    margin: 0 0 20px;
+    margin: 0 0px 15px 0;
+}
+.panel-top{
+    padding: 0;
+}
+.top-heading{
+    padding: 10px 15px 10px 25px !important;
+}
+.panel-top .panel-body{
+    padding-left: 0 !important;
+}
+.top-location{
+    font-size: 14px;
+}
+.list-inline a{
+    font-size: 14px;
+    color: #333 !important;
 }

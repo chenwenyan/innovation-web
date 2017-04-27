@@ -51,13 +51,10 @@ public interface ArticleMapper {
     /**
      * 新建文章
      *
-     * @param title
-     * @param content
-     * @param typeId
-     * @param creatorId
+     * @param article
      * @throws Exception
      */
-    public void newArticle(@Param("title") String title, @Param("content") String content, @Param("typeId") Integer typeId, @Param("creatorId") Integer creatorId) throws Exception;
+    public void newArticle(@Param("article") Article article) throws Exception;
 
     /**
      * 更新文章
@@ -174,4 +171,12 @@ public interface ArticleMapper {
      * @throws Exception
      */
     public void setIsAudited(@Param("id") Integer id,@Param("isAudited") Integer isAudited)throws Exception;
+
+    /**
+     * 获取科研扶持 创业园 企业注册 三种类型文章列表
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<Article> listThree() throws Exception;
 }

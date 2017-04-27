@@ -2,9 +2,12 @@ package com.nenu.innovation.controller;
 
 import com.nenu.innovation.entity.Project;
 import com.nenu.innovation.entity.School;
+import com.nenu.innovation.entity.User;
 import com.nenu.innovation.service.ProjectService;
 import com.nenu.innovation.service.SchoolService;
 import com.nenu.innovation.utils.DateUtils;
+import com.nenu.innovation.utils.NumUtils;
+import com.nenu.innovation.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -65,8 +67,7 @@ public class ProjectController {
             model.addAttribute("projectList", projects);
             model.addAttribute("pageNo", pageNo);
             int sum = projectService.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear);
-            BigDecimal count = new BigDecimal(sum / 10);
-            model.addAttribute("count", +Math.ceil(count.doubleValue() + 1));
+            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
             model.addAttribute("name", name);
             model.addAttribute("charger", charger);
             model.addAttribute("teacher", teacher);
@@ -86,7 +87,8 @@ public class ProjectController {
         try {
             schools = schoolService.listAll();
             model.addAttribute("schoolList", schools);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", user);
             return "management/project/add";
         } catch (Exception e) {
             return "error";
@@ -119,7 +121,8 @@ public class ProjectController {
             project.setYear(year);
             project.setCategory(category);
             projectService.newProject(project);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", user);
             return "redirect:/project";
         } catch (Exception e) {
             return "error";
@@ -139,7 +142,8 @@ public class ProjectController {
             schools = schoolService.listAll();
             model.addAttribute("schoolList", schools);
             model.addAttribute("project", project);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", user);
             return "management/project/edit";
         } catch (Exception e) {
             return "error";
@@ -170,7 +174,8 @@ public class ProjectController {
             project.setYear(year);
             project.setCategory(category);
             projectService.updateProjectInfo(id, project);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", user);
             return "redirect:/project";
         } catch (Exception e) {
             return "error";
@@ -187,7 +192,8 @@ public class ProjectController {
                 model.addAttribute("msg", "该项目不存在或者已被删除！");
             }
             projectService.deleteById(id);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", user);
             return "redirect:/project";
         } catch (Exception e) {
             return "error";

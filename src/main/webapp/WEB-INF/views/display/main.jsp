@@ -55,7 +55,7 @@
             <p><a class="btn btn-default" href="/projects" role="button">详情 &raquo;</a></p>
         </div>
         <div class="col-lg-4">
-            <img class="img-circle" src="/img/3.jpg" alt="Generic placeholder image" width="140" height="140">
+            <img class="img-circle" src="/img/innovation.jpg" alt="Generic placeholder image" width="140" height="140">
             <h3>创新创业扶持一揽子计划</h3>
             <p>暑期社会实践&nbsp;&nbsp;科研扶持</p>
             <p>创业园&nbsp;&nbsp;企业注册</p>

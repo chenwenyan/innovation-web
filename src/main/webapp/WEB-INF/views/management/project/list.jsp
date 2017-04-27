@@ -146,10 +146,12 @@
                                             </td>
                                             <td>${project.category}</td>
                                             <td>
+                                                <c:if test="${project.schoolId == user.schoolId || user.schoolId == 0}">
                                                 <a href="${website}/project/edit?id=${project.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
                                                 <a href="javascript:;" class="label-info J_delType"><i
                                                         class="fa fa-times"></i>&nbsp;删除</a>
+                                                </c:if>
                                             </td>
                                         </tr>
                                     </c:forEach>

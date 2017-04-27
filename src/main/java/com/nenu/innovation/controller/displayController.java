@@ -7,6 +7,7 @@ import com.nenu.innovation.service.ArticleService;
 import com.nenu.innovation.service.ProjectService;
 import com.nenu.innovation.service.SchoolService;
 import com.nenu.innovation.utils.DateUtils;
+import com.nenu.innovation.utils.NumUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
 import java.util.Collections;
-import java.util.List;
 import java.util.Date;
+import java.util.List;
 
 /**
  * displayController
@@ -76,8 +76,7 @@ public class displayController {
             model.addAttribute("projectList", projects);
             model.addAttribute("pageNo", pageNo);
             int sum = projectService.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear);
-            BigDecimal count = new BigDecimal(sum / 10);
-            model.addAttribute("count", +Math.ceil(count.doubleValue() + 1));
+            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
             model.addAttribute("name", name);
             model.addAttribute("charger", charger);
             model.addAttribute("teacher", teacher);
@@ -127,14 +126,15 @@ public class displayController {
         List<Article> plans = Collections.emptyList();  //总计划
         try {
             sqshsjgg = articleService.listByType(4);
-            kyfc = articleService.listByType(5);
-            cyy = articleService.listByType(6);
-            qyzc = articleService.listByType(7);
+            kyfc = articleService.listThree();
+//            kyfc = articleService.listByType(5);
+//            cyy = articleService.listByType(6);
+//            qyzc = articleService.listByType(7);
             kycg = articleService.listByType(8);
             model.addAttribute("sqshsjgg", sqshsjgg.size() > 5 ? sqshsjgg.subList(0, 5) : sqshsjgg);
             model.addAttribute("kyfc", kyfc.size() > 5 ? kyfc.subList(0, 5) : kyfc);
-            model.addAttribute("cyy", cyy.size() > 5 ? cyy.subList(0, 5) : cyy);
-            model.addAttribute("qyzc", qyzc.size() > 5 ? qyzc.subList(0, 5) : qyzc);
+//            model.addAttribute("cyy", cyy.size() > 5 ? cyy.subList(0, 5) : cyy);
+//            model.addAttribute("qyzc", qyzc.size() > 5 ? qyzc.subList(0, 5) : qyzc);
             model.addAttribute("kycg", kycg.size() > 5 ? kycg.subList(0, 5) : kycg);
             model.addAttribute("plans", plans);
             return "display/plans";
@@ -164,7 +164,7 @@ public class displayController {
                                Model model) {
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
-        int pageSize = 5;
+        int pageSize = 10;
         int offset = pageNo * pageSize;
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         List<Article> articles = Collections.emptyList();
@@ -173,8 +173,7 @@ public class displayController {
             articles = articleService.listByTypeAndPage(typeId, offset, pageSize);
             model.addAttribute("list", articles);
             int sum = articleService.countListByTypeAndPage(typeId);
-            BigDecimal count = new BigDecimal(sum / pageSize);
-            model.addAttribute("count", +Math.ceil(count.doubleValue() + 1));
+            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
             return "display/more-articles";
         } catch (Exception e) {
             return "error";
@@ -198,7 +197,6 @@ public class displayController {
 
     @RequestMapping(value = "/contact", method = RequestMethod.GET)
     public String toError(HttpServletRequest request, Model model) {
-        model.addAttribute("user", request.getSession().getAttribute("user"));
         return "display/contact";
     }
 }

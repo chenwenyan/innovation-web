@@ -52,7 +52,7 @@
                                     <div class="col-sm-9">
                                         <input type="text"
                                                placeholder="请输入项目名称" class="w180 form-control name col-sm-3"
-                                               name="name">
+                                               name="name" id="name">
                                         <span class="tip2 col-sm-6">项目名称不能为空，请重新填写</span>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
                                     <div class="col-sm-9">
                                         <input type="text"
                                                placeholder="请输入负责人姓名" class="w180 form-control name col-sm-3"
-                                               name="charger">
+                                               name="charger" id="charger">
                                         <span class="tip2 col-sm-6">负责人姓名不能为空，请重新填写</span>
                                     </div>
                                 </div>
@@ -70,7 +70,7 @@
                                     <div class="col-sm-9">
                                         <input type="text"
                                                placeholder="请输入指导老师姓名" class="w180 form-control name col-sm-3"
-                                               name="teacher">
+                                               name="teacher" id="teacher">
                                         <span class="tip2 col-sm-6">指导老师姓名不能为空，请重新填写</span>
                                     </div>
                                 </div>
@@ -151,8 +151,8 @@
         });
 
         //验证是否为空
-        $(".name").blur(function () {
-            var name = $(".name").val();
+        $("#name").blur(function () {
+            var name = $("#name").val();
             if (name == "") {
                 $(".tip1").show();
             }
@@ -162,13 +162,13 @@
         });
 
         //输入时不显示tip
-        $(".name").focus(function () {
+        $("#name").focus(function () {
             $(".tip1").hide();
         });
 
         //验证是否为空
-        $(".charger").blur(function () {
-            var charger = $(".charger").val();
+        $("#charger").blur(function () {
+            var charger = $("#charger").val();
             if (charger == "") {
                 $(".tip2").show();
             }
@@ -178,16 +178,16 @@
         });
 
         //输入时不显示tip
-        $(".charger").focus(function () {
+        $("#charger").focus(function () {
             $(".tip2").hide();
         });
 
         //表单提交验证
         $(".J_form").submit(function () {
-            var name = $(".name").val();
-            var charger = $(".charger").val();
-            var teacher = $(".teacher").val();
-            if (charger == null || charger == "" || teacher == "" || teacher == null ) {
+            var name = $("#name").val().trim();
+            var charger = $("#charger").val().trim();
+            var teacher = $("#teacher").val().trim();
+            if (name == null || name == "" || charger == null || charger == "" || teacher == "" || teacher == null ) {
                 alert("请将内容填写完整！");
                 return false;
             }

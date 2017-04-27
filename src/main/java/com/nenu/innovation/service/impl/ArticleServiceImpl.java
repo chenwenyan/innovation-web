@@ -112,10 +112,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     
-    public void newArticle(String title, String content, int typeId, int creatorId) throws Exception {
+    public void newArticle(Article article) throws Exception {
         try {
-            if (title != null && content != null && typeId > 0 && creatorId > 0) {
-                articleMapper.newArticle(title, content, typeId, creatorId);
+            if (article.getTitle() != null && article.getContent() != null && article.getTypeId() > 0 && article.getCreatorId() > 0) {
+                articleMapper.newArticle(article);
             }
         } catch (Exception e) {
             System.out.println("新增文章失败！");
@@ -238,6 +238,17 @@ public class ArticleServiceImpl implements ArticleService {
     public void setIsAudited(int id,int isAudited)throws Exception{
         try{
             articleMapper.setIsAudited(id,isAudited);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<Article> listThree()throws Exception{
+        List<Article> articles = Collections.emptyList();
+        try{
+            articles = articleMapper.listThree();
+            return articles;
         }catch (Exception e){
             e.printStackTrace();
             throw new Exception(e.getMessage());

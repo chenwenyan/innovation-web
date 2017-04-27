@@ -41,13 +41,10 @@ public interface ArticleService extends AbstractService {
     /**
      * 新建文章
      *
-     * @param title
-     * @param content
-     * @param typeId
-     * @param creatorId
+     * @param article
      * @throws Exception
      */
-    public void newArticle(String title, String content, int typeId, int creatorId) throws Exception;
+    public void newArticle(Article article) throws Exception;
 
     /**
      * 更新文章
@@ -135,5 +132,13 @@ public interface ArticleService extends AbstractService {
      * @throws Exception
      */
     public void setIsAudited(int id,int isAudited)throws Exception;
+
+    /**
+     * 获取科研扶持 创业园 企业注册 三种类型文章列表
+     *
+     * @return
+     * @throws Exception
+     */
+    public List<Article> listThree() throws Exception;
 
 }

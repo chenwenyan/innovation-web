@@ -2,6 +2,7 @@ package com.nenu.innovation.controller;
 
 import com.nenu.innovation.entity.User;
 import com.nenu.innovation.service.UserService;
+import com.nenu.innovation.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,14 +27,17 @@ public class IndexController {
     @RequestMapping(value = {"", "login"}, method = RequestMethod.GET)
     public String toIndex(HttpServletRequest request, HttpServletResponse response,
                           Model model) {
-        if (request.getSession().getAttribute("user") != null) {
-            User user = (User) request.getSession().getAttribute("user");
-            model.addAttribute("user", user);
-            return "redirect:user";
-        } else {
-            return "management/login";
+        try {
+            if (request.getSession().getAttribute("user") != null) {
+                User user = UserUtils.setUserSession(request,model);
+                model.addAttribute("user", user);
+                return "redirect:user";
+            } else {
+                return "management/login";
+            }
+        }catch (Exception e){
+            return "error";
         }
-
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
@@ -42,7 +46,7 @@ public class IndexController {
             if (userService.checkLogin(user)) {
                 user = userService.queryByNameAndPassword(user.getUsername(),user.getPassword());
                 request.getSession().setAttribute("user", user);
-                return "redirect:user";
+                return "redirect:article";
             } else {
                 model.addAttribute("msg", "输入信息有误，请重新输入！");
                 model.addAttribute("isRedirect", true);
@@ -72,7 +76,12 @@ public class IndexController {
 
     @RequestMapping(value = "error", method = RequestMethod.GET)
     public String toError(HttpServletRequest request, Model model) {
-        model.addAttribute("user", request.getSession().getAttribute("user"));
+//        try{
+//            User user = UserUtils.setUserSession(request,model);
+//            model.addAttribute("user", user);
+//        }catch (Exception e){
+//
+//        }
         return "error";
     }
 }

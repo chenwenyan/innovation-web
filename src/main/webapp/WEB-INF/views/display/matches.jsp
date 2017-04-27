@@ -8,7 +8,7 @@
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
-<div class="img-container">
+<div class="img-container container">
     <img src="/img/head1.jpg" alt="大学生创新创业计划">
 </div>
 <div class="public">
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body line-number">
+                    <div class="panel-body line-number my-panel-body">
                         <ul>
                             <c:forEach var="item" items="${hlw}">
                                 <li>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body line-number">
+                    <div class="panel-body line-number my-panel-body">
                         <ul>
                             <c:forEach var="item" items="${cqc}">
                                 <li>
@@ -93,7 +93,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body line-number">
+                    <div class="panel-body line-number my-panel-body">
                         <ul>
                             <c:forEach var="item" items="${tzb}">
                                 <li>
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body line-number">
+                    <div class="panel-body line-number my-panel-body">
                         <ul>
                             <c:forEach var="item" items="${qtbs}">
                                 <li>

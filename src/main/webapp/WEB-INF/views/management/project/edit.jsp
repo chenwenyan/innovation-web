@@ -111,7 +111,7 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>年份</label>
                                     <div class="col-sm-9">
                                         <input class="col-sm-2 form-control form-filter yearpicker w180"
-                                               readonly="readonly" name="year" id="year" value="${year}"/>
+                                               readonly="readonly" name="year" id="year" value="${project.year}"/>
                                     </div>
                                 </div>
 
@@ -139,6 +139,15 @@
 
         $(".tip1").hide();
         $(".tip2").hide();
+
+        $('#year').datetimepicker({
+            startView: 'decade',
+            minView: 'decade',
+            format: 'yyyy',
+            maxViewMode: 2,
+            minViewMode: 2,
+            autoclose: true
+        });
 
         //验证是否为空
         $(".name").blur(function () {

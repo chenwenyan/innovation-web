@@ -4,6 +4,8 @@ import com.nenu.innovation.entity.School;
 import com.nenu.innovation.entity.User;
 import com.nenu.innovation.service.SchoolService;
 import com.nenu.innovation.service.UserService;
+import com.nenu.innovation.utils.NumUtils;
+import com.nenu.innovation.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,19 +38,23 @@ public class UserController {
         int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
         int pageSize = 10;
         int offset = pageNo * pageSize;
+        User user = new User();
         try {
+
             if (request.getSession().getAttribute("user") != null) {
-                User user = (User) request.getSession().getAttribute("user");
+                user = UserUtils.setUserSession(request,model);
                 model.addAttribute("user", user);
             }
             List<User> users = userService.listByPage(offset,pageSize);
             int sum = userService.count();
-            BigDecimal count = new BigDecimal(sum / 10);
-            model.addAttribute("count", +Math.ceil(count.doubleValue() + 1));
+            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
             model.addAttribute("userList", users);
             model.addAttribute("pageNo", pageNo);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
-            return "management/users/list";
+            if(user.getSchoolId() == 0){
+                return "management/users/list";
+            }else{
+                return "redirect:article";
+            }
         } catch (Exception e) {
             return "error";
         }
@@ -61,7 +66,8 @@ public class UserController {
         int status = Integer.parseInt(request.getParameter("status"));
         List<User> users = Collections.emptyList();
         try {
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User this_user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", this_user);
             users = userService.queryBySearchInfo(username, status);
             model.addAttribute("userList", users);
             return "management/users/list";
@@ -75,7 +81,8 @@ public class UserController {
         List<School> schoolList = Collections.emptyList();
         try {
             schoolList = schoolService.listAll();
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User this_user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", this_user);
             model.addAttribute("schoolList",schoolList);
             return "management/users/add";
         } catch (Exception e) {
@@ -102,7 +109,8 @@ public class UserController {
                 return "management/users/add";
             } else {
                 userService.newUser(user);
-                model.addAttribute("user", request.getSession().getAttribute("user"));
+                User this_user = UserUtils.setUserSession(request,model);
+                model.addAttribute("user", this_user);
                 return "redirect:/user";
             }
         } catch (Exception e) {
@@ -118,7 +126,8 @@ public class UserController {
             User this_user = (User) userService.queryById(id);
             model.addAttribute("this_user", this_user);
             model.addAttribute("schoolList",schoolList);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", user);
             return "management/users/edit";
         } catch (Exception e) {
             return "error";
@@ -139,7 +148,8 @@ public class UserController {
                 return "management/users/edit";
             }
             userService.updateUserInfo(id, username, password ,schoolId);
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User this_user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", this_user);
             return "redirect:/user";
         } catch (Exception e) {
             return "error";
@@ -156,7 +166,8 @@ public class UserController {
                 model.addAttribute("msg", "删除成功！");
                 userService.deleteById(id);
             }
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User this_user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", this_user);
             model.addAttribute("isRedirect",true);
             return "redirect:/user";
         } catch (Exception e) {
@@ -177,7 +188,8 @@ public class UserController {
                 status = (user.getStatus() == 1) ? 2 : 1;
                 userService.setStatus(id, status);
             }
-            model.addAttribute("user", request.getSession().getAttribute("user"));
+            User this_user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", this_user);
             return "redirect:/user";
         } catch (Exception e) {
             return "error";

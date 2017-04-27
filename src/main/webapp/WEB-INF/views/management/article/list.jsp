@@ -140,14 +140,16 @@
                                             </td>
                                             <td>
                                                 <a href="${website}/article/detail?id=${article.id}" class="label-info"><i
-                                                        class="fa fa-search"></i>&nbsp;查看</a>
-                                                <a href="${website}/article/edit?id=${article.id}" class="label-info"><i
-                                                        class="fa fa-edit"></i>&nbsp;编辑</a>
-                                                <a href="javascript:;" class="label-info J_delArticle"><i
-                                                        class="fa fa-times"></i>&nbsp;删除</a>
-                                                <c:if test="${article.isAudited == 0}">
+                                                        class="fa fa-eye"></i>&nbsp;查看</a>
+                                                <c:if test="${article.schoolId == user.schoolId || user.schoolId == 0}">
+                                                    <a href="${website}/article/edit?id=${article.id}" class="label-info"><i
+                                                            class="fa fa-edit"></i>&nbsp;编辑</a>
+                                                    <a href="javascript:;" class="label-info J_delArticle"><i
+                                                            class="fa fa-times"></i>&nbsp;删除</a>
+                                                </c:if>
+                                                <c:if test="${article.isAudited == 0 && user.schoolId == 0}">
                                                     <a href="javascript:;" class="label-info J_setIsAudited"><i
-                                                            class="fa fa-edit"></i>&nbsp;审核</a>
+                                                            class="fa fa-toggle-on"></i>&nbsp;审核</a>
                                                 </c:if>
                                             </td>
                                         </tr>
@@ -223,7 +225,6 @@
                 return "/article?pageNo=" + page + "&title=" + $("#title").val().trim() + "&creatorId=" + $("#userId").val() + "&typeId="+ $("#typeId").val();
             }
         });
-
     });
 </script>
 </body>

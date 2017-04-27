@@ -13,13 +13,10 @@
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
                 <div class="alert alert-success clearfix">
-                    <div class="col-sm-4">
-                        <span class="public-left"><i class="fa fa-home"></i>&nbsp;项目检索</span>
-                    </div>
-                    <div class="col-sm-6 pull-right">
-                                <span class="public-right">当前位置：
-                                    <a href="${website}/main">首页</a> > 项目检索
-                                </span>
+                    <div class="col-sm-6">
+                      <span class="public-right"><i class="fa fa-map-marker"></i>&nbsp;当前位置：
+                            <a href="${website}/main">首页</a> > 项目检索
+                      </span>
                     </div>
                 </div>
             </div>
@@ -37,19 +34,22 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目名称：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="请输入项目名称" name="name" id="name" value="${name}">
+                                    <input type="text" class="form-control" placeholder="请输入项目名称" name="name" id="name"
+                                           value="${name}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">负责人：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="请输入负责人姓名" name="charger" id="charger" value="${charger}">
+                                    <input type="text" class="form-control" placeholder="请输入负责人姓名" name="charger"
+                                           id="charger" value="${charger}">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">指导教师：</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="请输入指导教师姓名" name="teacher" id="teacher" value="${teacher}">
+                                    <input type="text" class="form-control" placeholder="请输入指导教师姓名" name="teacher"
+                                           id="teacher" value="${teacher}">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -93,23 +93,23 @@
                                     </thead>
                                     <tbody>
                                     <%--<c:if test="${projectlList.size() > 0}">--%>
-                                        <c:forEach var="project" items="${projectList}">
-                                            <tr>
-                                                <td hidden="hidden">${project.id}</td>
-                                                <td title="${project.name}">
-                                                    <c:if test="${fn:length(project.name) > 20 }">
-                                                        ${fn:substring(project.name, 0, 20)}...
-                                                    </c:if>
-                                                    <c:if test="${fn:length(project.name) <= 20 }">
-                                                        ${project.name}
-                                                    </c:if>
-                                                </td>
-                                                <td>${project.charger}</td>
-                                                <td>${project.teacher}</td>
-                                                <td>${project.schoolName}</td>
-                                                <td>${project.year}</td>
-                                            </tr>
-                                        </c:forEach>
+                                    <c:forEach var="project" items="${projectList}">
+                                        <tr>
+                                            <td hidden="hidden">${project.id}</td>
+                                            <td title="${project.name}">
+                                                <c:if test="${fn:length(project.name) > 20 }">
+                                                    ${fn:substring(project.name, 0, 20)}...
+                                                </c:if>
+                                                <c:if test="${fn:length(project.name) <= 20 }">
+                                                    ${project.name}
+                                                </c:if>
+                                            </td>
+                                            <td>${project.charger}</td>
+                                            <td>${project.teacher}</td>
+                                            <td>${project.schoolName}</td>
+                                            <td>${project.year}</td>
+                                        </tr>
+                                    </c:forEach>
                                     <%--</c:if>--%>
                                     <c:if test="${projectlList.size() == 0}">
                                         <tr>
@@ -198,8 +198,8 @@
                 }
             },
             pageUrl: function (url, page, current) {
-                return "/search-project?pageNo=" + page + "&name=" + $("#name").val().trim() + "&charger="+ $("#charger").val().trim() + "&teacher=" +
-                        $("#teacher").val().trim()+"&schoolId="+$("#schoolId").val() + "&startYear=" + $("#startYear").val() + "&endYear=" + $("#endYear").val();
+                return "/search-project?pageNo=" + page + "&name=" + $("#name").val().trim() + "&charger=" + $("#charger").val().trim() + "&teacher=" +
+                        $("#teacher").val().trim() + "&schoolId=" + $("#schoolId").val() + "&startYear=" + $("#startYear").val() + "&endYear=" + $("#endYear").val();
             }
         });
     });

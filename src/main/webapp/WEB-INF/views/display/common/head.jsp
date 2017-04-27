@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css" href="/css/search.css">
 <link rel="stylesheet" type="text/css" href="/css/more.css">
 <link rel="stylesheet" type="text/css" href="/css/match.css">
-<link rel="stylesheet" type="text/css" href="/css/accordion.css">
 <link rel="stylesheet" type="text/css" href="/css/detail.css">
 <link rel="stylesheet" type="text/css" href="/css/font-awesome.css">
 <!-- Custom styles for this template -->
@@ -38,11 +37,8 @@
 <script type="text/javascript" src="/js/holder.min.js"></script>
 <script type="text/javascript" src="/js/ie10-viewport-bug-workaround.js"></script>
 <script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript" src="/js/accordion.js"></script>
 <script type="text/javascript" src="/js/jquery.slimscroll.js"></script>
-<script type="text/javascript" src="/js/makisu.min.js"></script>
 <script type="text/javascript" src="/js/bootstrap-paginator.js"></script>
-<%--<script type="text/javascript" src="/js/gmaps.js"></script>--%>
 
 
 

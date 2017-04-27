@@ -54,16 +54,16 @@
                                         <input type="text" name="username" placeholder="请输入用户名称" class="form-control w180">
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label class="col-sm-4 control-label">用户状态</label>
-                                    <div class="col-sm-3">
-                                        <select class="col-sm-2 form-control w180" name="status" id="status">
-                                            <option value="0">全部</option>
-                                            <option value="1">正常</option>
-                                            <option value="2">停用</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                <%--<div class="form-group col-sm-6">--%>
+                                    <%--<label class="col-sm-4 control-label">用户状态</label>--%>
+                                    <%--<div class="col-sm-3">--%>
+                                        <%--<select class="col-sm-2 form-control w180" name="status" id="status">--%>
+                                            <%--<option value="0">全部</option>--%>
+                                            <%--<option value="1">正常</option>--%>
+                                            <%--<option value="2">停用</option>--%>
+                                        <%--</select>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
                                 <div class="col-sm-6 col-sm-offset-5">
                                     <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;查询
                                     </button>
@@ -88,7 +88,7 @@
                                         <th>用户名称</th>
                                         <th>密码</th>
                                         <th>学院</th>
-                                        <th>用户状态</th>
+                                        <%--<th>用户状态</th>--%>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -99,16 +99,16 @@
                                             <td>${user.username}</td>
                                             <td>${user.password}</td>
                                             <td>${user.schoolName}</td>
-                                            <td>
-                                                <c:if test="${user.status=='1'}">正常</c:if>
-                                                <c:if test="${user.status=='2'}">停用</c:if>
-                                            </td>
+                                            <%--<td>--%>
+                                                <%--<c:if test="${user.status=='1'}">正常</c:if>--%>
+                                                <%--<c:if test="${user.status=='2'}">停用</c:if>--%>
+                                            <%--</td>--%>
                                             <td>
                                                 <a href="${website}/user/edit?id=${user.id}" class="label-info"><i
                                                         class="fa fa-edit"></i>&nbsp;编辑</a>
-                                                <a href="javascript:;"
-                                                   class="label-info J_alertStatus"><i
-                                                        class="fa fa-search"></i>&nbsp;修改状态</a>
+                                                <%--<a href="javascript:;"--%>
+                                                   <%--class="label-info J_alertStatus"><i--%>
+                                                        <%--class="fa fa-search"></i>&nbsp;修改状态</a>--%>
                                                 <a href="javascript:;" class="label-info J_delUser"><i
                                                         class="fa fa-times"></i>&nbsp;删除</a>
                                             </td>
