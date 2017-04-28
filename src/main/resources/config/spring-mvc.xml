@@ -44,11 +44,11 @@
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/views/" p:suffix=".jsp"/>
 
-    <!--文件上传-->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!--最大上传大小(字节)-->
-        <property name="maxUploadSize" value="1048576" />
-    </bean>
+    <!--&lt;!&ndash;文件上传&ndash;&gt;-->
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+        <!--&lt;!&ndash;最大上传大小(字节)&ndash;&gt;-->
+        <!--<property name="maxUploadSize" value="1048576" />-->
+    <!--</bean>-->
 
     <!--静态资源路径-->
     <mvc:resources mapping="/js/**" location="WEB-INF/static/js/" />

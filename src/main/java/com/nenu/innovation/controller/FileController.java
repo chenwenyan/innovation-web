@@ -3,7 +3,6 @@ package com.nenu.innovation.controller;
 import com.nenu.innovation.entity.UserFile;
 import com.nenu.innovation.service.UserFileService;
 import com.nenu.innovation.utils.UserUtils;
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +39,7 @@ public class FileController {
 
     @RequestMapping(value = "/ajax/upload",method = RequestMethod.POST)
     @ResponseBody
-    public JSON ajaxFileUpload(HttpServletRequest request, HttpServletResponse response,
+    public JSONObject ajaxFileUpload(HttpServletRequest request, HttpServletResponse response,
                                Model model) throws SecurityException, IOException{
 
         JSONObject result = new JSONObject();
