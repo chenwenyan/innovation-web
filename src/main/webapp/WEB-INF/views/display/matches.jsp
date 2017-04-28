@@ -9,7 +9,7 @@
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
 <div class="img-container container">
-    <img src="/img/head1.jpg" alt="大学生创新创业计划">
+    <img src="/img/little.jpg" alt="大学生创新创业计划">
 </div>
 <div class="public">
     <div class="container">
@@ -40,7 +40,7 @@
                                                   </c:if>
                                         </span>
                                         <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy/MM/dd"/></span>
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -74,7 +74,7 @@
                                                   </c:if>
                                         </span>
                                         <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy/MM/dd"/></span>
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -108,7 +108,7 @@
                                                   </c:if>
                                         </span>
                                         <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy/MM/dd"/></span>
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -142,7 +142,7 @@
                                                   </c:if>
                                         </span>
                                         <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy/MM/dd"/></span>
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>

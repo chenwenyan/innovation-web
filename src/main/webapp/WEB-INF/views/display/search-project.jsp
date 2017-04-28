@@ -11,13 +11,6 @@
 <div class="public">
     <div class="container">
         <div class="row">
-            <%--<div class="col-sm-10  col-sm-offset-1 panel panel-default panel-top">--%>
-                <%--<div class="panel-heading top-heading">--%>
-                    <%--<span class="panel-title top-location"><i class="fa fa-map-marker"></i>&nbsp;当前位置：--%>
-                        <%--<a href="${website}/main">首页</a> > 项目检索--%>
-                  <%--</span>--%>
-                <%--</div>--%>
-            <%--</div>--%>
             <div class="col-sm-10 col-sm-offset-1">
                 <div class=" panel panel-default panel-top">
                     <div class="panel-heading top-heading">
@@ -93,6 +86,8 @@
                                         <th>指导教师</th>
                                         <th>学院</th>
                                         <th>年份</th>
+                                        <th>项目分类</th>
+                                        <th>项目类别</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -110,7 +105,12 @@
                                             <td>${project.charger}</td>
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
-                                            <td>${project.year}</td>
+                                            <td>
+                                                <c:if test="${project.year == 0}">延期</c:if>
+                                                <c:if test="${project.year > 0}">${project.year}</c:if>
+                                            </td>
+                                            <td>${project.type}</td>
+                                            <td>${project.category}</td>
                                         </tr>
                                     </c:forEach>
                                     <c:if test="${projectlList.size() == '0'}">

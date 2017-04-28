@@ -80,5 +80,8 @@ div.line{
 }
 .list-inline a{
     font-size: 14px;
-    color: #333 !important;
+    color:#505050 !important;
+}
+.list-inline a:hover{
+    color: #337ab7 !important;
 }

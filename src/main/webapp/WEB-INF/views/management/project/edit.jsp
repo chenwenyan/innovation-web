@@ -21,6 +21,14 @@
             color: red;
             padding: 8px;
         }
+
+        .w415{
+            width: 444px !important;
+        }
+
+        .w400{
+            width: 400px !important;
+        }
     </style>
 </head>
 <body>
@@ -51,7 +59,7 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>项目名称</label>
                                     <div class="col-sm-9">
                                         <input type="text" value="${project.name}"
-                                               placeholder="请输入项目名称" class="w180 form-control name col-sm-3"
+                                               placeholder="请输入项目名称" class="w415 form-control name col-sm-3"
                                                name="name">
                                         <span class="tip2 col-sm-6">项目名称不能为空，请重新填写</span>
                                     </div>
@@ -60,7 +68,7 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>负责人</label>
                                     <div class="col-sm-9">
                                         <input type="text" value="${project.charger}"
-                                               placeholder="请输入负责人姓名" class="w180 form-control name col-sm-3"
+                                               placeholder="请输入负责人姓名" class="w415 form-control name col-sm-3"
                                                name="charger">
                                         <span class="tip2 col-sm-6">负责人姓名不能为空，请重新填写</span>
                                     </div>
@@ -69,7 +77,7 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>指导老师</label>
                                     <div class="col-sm-9">
                                         <input type="text" value="${project.teacher}"
-                                               placeholder="请输入指导老师姓名" class="w180 form-control name col-sm-3"
+                                               placeholder="请输入指导老师姓名" class="w415 form-control name col-sm-3"
                                                name="teacher">
                                         <span class="tip2 col-sm-6">指导老师姓名不能为空，请重新填写</span>
                                     </div>
@@ -77,7 +85,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>学院</label>
                                     <div class="col-sm-9">
-                                        <select class="col-sm-2 form-control w180" name = "schoolId" id="schoolId">
+                                        <select class="col-sm-2 form-control w415" name = "schoolId" id="schoolId">
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size() == 0}">
                                                     <option value="-1">无</option>
@@ -93,16 +101,19 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>项目分类</label>
                                     <div class="col-sm-9">
                                         <select class="col-sm-3 form-control w180" name ="type" id="type">
-                                            <option  <c:if test="${project.type == 1}">selected="selected"</c:if> value="1" selected>比赛 </option>
-                                            <option  <c:if test="${project.type == 2}">selected="selected"</c:if>value="2">科研立项 </option>
-                                            <option  <c:if test="${project.type == 3}">selected="selected"</c:if> value="3">未来计划 </option>
+                                            <option  <c:if test="${project.type == '国创'}">selected="selected"</c:if> value="1" selected>国创 </option>
+                                            <option  <c:if test="${project.type == '科研立项'}">selected="selected"</c:if>value="2">科研立项 </option>
                                         </select>
-                                        <label class="col-sm-2 control-label">项目类别</label>
+                                        <label class="col-sm-1 control-label">项目类别</label>
                                         <select class="col-sm-3 form-control w180" name ="category" id="category">
-                                            <option <c:if test="${project.category == 1}">selected="selected"</c:if> value="1">互联网+</option>
-                                            <option <c:if test="${project.category == 2}">selected="selected"</c:if> value="2">创青春全国大学生创业大赛</option>
-                                            <option <c:if test="${project.category == 3}">selected="selected"</c:if> value="3">挑战杯</option>
-                                            <option <c:if test="${project.category == 4}">selected="selected"</c:if> value="11">其他比赛</option>
+                                            <option <c:if test="${project.category == '创新训练'}">selected="selected"</c:if> value="创新训练">创新训练</option>
+                                            <option <c:if test="${project.category == '创业训练'}">selected="selected"</c:if> value="创业训练">创业训练</option>
+                                            <option <c:if test="${project.category == '创业实践'}">selected="selected"</c:if> value="创业实践">创业实践</option>
+                                            <option <c:if test="${project.category == '本科生项目'}">selected="selected"</c:if> value="本科生项目">本科生项目</option>
+                                            <option <c:if test="${project.category == '本科生项目（重点）'}">selected="selected"</c:if> value="本科生项目（重点）">本科生项目（重点）</option>
+                                            <option <c:if test="${project.category == '本科生项目（一般）'}">selected="selected"</c:if> value="本科生项目（一般）">本科生项目（一般）</option>
+                                            <option <c:if test="${project.category == '青年探索培育基金拟资助项目'}">selected="selected"</c:if> value="青年探索培育基金拟资助项目">青年探索培育基金拟资助项目</option>
+                                            <option <c:if test="${project.category == '科研项目'}">selected="selected"</c:if> value="科研项目">科研项目</option>
                                         </select>
                                     </div>
                                 </div>
@@ -111,7 +122,7 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>年份</label>
                                     <div class="col-sm-9">
                                         <div class='input-group date' id='this_year' name="this_year">
-                                            <input type='text' class="form-control" readonly id='year' name="year" value="${project.year}"/>
+                                            <input type='text' class="form-control w400" readonly id='year' name="year" value="${project.year}"/>
                                             <span class="input-group-addon">
                                               <span class="glyphicon glyphicon-calendar"></span>
                                            </span>
@@ -197,6 +208,24 @@
             }
             else {
                 $(".J_form").submit();
+            }
+        });
+
+        //类别选项
+        $("#category").change(function () {
+            var category = $("#category").val();
+            if (category == '国创') {
+                $("#typeId").empty();
+                $("#typeId").append("<option value='创新训练' selected>创新训练</option>");
+                $("#typeId").append("<option value='创业训练'>创业训练</option>");
+                $("#typeId").append("<option value='创业实践'>创业实践</option>");
+            }
+            if (category == '科研立项') {
+                $("#typeId").empty();
+                $("#typeId").append("<option value='本科生项目（重点）' selected>本科生项目（重点）</option>");
+                $("#typeId").append("<option value='本科生项目（一般）'>本科生项目（一般）</option>");
+                $("#typeId").append("<option value='青年探索培育基金拟资助项目'>青年探索培育基金拟资助项目</option>");
+                $("#typeId").append("<option value='科研项目'>科研项目</option>");
             }
         });
     })

@@ -67,7 +67,7 @@
         <if test="name != null">
             and name LIKE "%"#{name}"%"
         </if>
-        <if test="schoolId != 0">
+        <if test="schoolId != -1">
             AND school_id = #{schoolId}
         </if>
         <if test="startYear != null">
@@ -92,7 +92,7 @@
         <if test="name != null and name != ''">
             and name LIKE "%"#{name}"%"
         </if>
-        <if test="schoolId != 0">
+        <if test="schoolId != -1">
             AND school_id = #{schoolId}
         </if>
         <if test="startYear != null">

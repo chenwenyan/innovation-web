@@ -47,10 +47,10 @@ body {
   /*border-right: 1px dotted #fff;*/
 }
 .first-slide{
-  height: 400px !important;
+  height: 450px !important;
 }
 .first-slide{
-  height: 400px !important;
+  height: 450px !important;
 }
 
 
@@ -59,7 +59,7 @@ body {
 
 /* Carousel base class */
 .carousel {
-  height: 400px;
+  height: 450px;
   position: relative;
   top: -22px;
 }
@@ -70,7 +70,7 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel .item {
-  height: 400px;
+  height: 450px;
   background-color: #777;
 }
 .carousel-inner > .item > img {
@@ -78,7 +78,7 @@ body {
   top: 0;
   left: 0%;
   min-width: 100%;
-  height: 400px;
+  height: 450px;
 }
 
 

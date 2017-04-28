@@ -39,6 +39,7 @@ public class SchoolController {
             schools = schoolService.listByPage(offset, pageSize);
             int sum = schoolService.count();
             model.addAttribute("schoolList", schools);
+            model.addAttribute("pageNo", pageNo);
             model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);

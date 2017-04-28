@@ -15,7 +15,7 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="first-slide" src="/img/head1.jpg" alt="First slide">
+            <img class="first-slide" src="/img/nenu-hlw.jpg" alt="First slide">
         </div>
         <div class="item">
             <img class="second-slide" src="/img/head2.jpg" alt="Second slide">

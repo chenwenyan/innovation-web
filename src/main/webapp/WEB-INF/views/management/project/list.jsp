@@ -72,7 +72,7 @@
                                     <label class="col-sm-4 control-label">学院</label>
                                     <div class="col-sm-3">
                                         <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
-                                            <option value="0">全部</option>
+                                            <option <c:if test='${schoolId == null}'>selected="selected"</c:if> value="-1">全部</option>
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size()> 0}">
                                                     <option <c:if test='${school.id == schoolId}'>selected="selected"</c:if> value="${school.id}">${school.name}</option>
@@ -83,16 +83,16 @@
                                 </div>
                                 <div class="form-group form-inline clearfix ">
                                     <label class="col-sm-2 control-label">年份：</label>
-                                    <div class="col-sm-7 " style="display: inline-block">
-                                        <div class='input-group date ' id='start_year' name="start_year">
-                                            <input  type='text' class="form-control" readonly id='startYear' name="startYear" value="${startYear}"/>
+                                    <div class="col-sm-7 ">
+                                        <div class='input-group date ' id='start_year' name="start_year" style="float:left;">
+                                            <input  type='text' class="form-control w180" readonly id='startYear' name="startYear" value="${startYear}"/>
                                             <span class="input-group-addon" >
                                            <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
                                         </div>
-                                        &nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;
+                                        <label class="col-sm-1 control-label" style="float:left;">至</label>
                                         <div class='input-group date' id='end_year' name="end_year">
-                                            <input type='text' class="form-control" readonly id='endYear' name="endYear" value="${endYear}"/>
+                                            <input type='text' class="w180 form-control" readonly id='endYear' name="endYear" value="${endYear}"/>
                                             <span class="input-group-addon">
                                                <span class="glyphicon glyphicon-calendar"></span>
                                            </span>
@@ -146,12 +146,7 @@
                                             <td>${project.teacher}</td>
                                             <td>${project.schoolName}</td>
                                             <td>${project.year}</td>
-                                            <td>
-                                                <c:if test="${project.type == 1}">国创</c:if>
-                                                <c:if test="${project.type == 2}">挑战杯</c:if>
-                                                <c:if test="${project.type == 3}">科研立项</c:if>
-                                                <c:if test="${project.type == 11}">其他比赛</c:if>
-                                            </td>
+                                            <td>${project.type}</td>
                                             <td>${project.category}</td>
                                             <td>
                                                 <c:if test="${project.schoolId == user.schoolId || user.schoolId == 0}">

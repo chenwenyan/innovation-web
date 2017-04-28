@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nenu.innovation.mapper.UserFileMapper">
+    <resultMap id="userFileResultMap" type="userFile">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="path" property="path"/>
+        <result column="type" property="type"/>
+        <result column="size" property="size"/>
+        <result column="user_id" property="userId"/>
+        <result column="download_num" property="downloadNum"/>
+        <result column="created_time" property="createdTime" />
+        <result column="last_modified_time" property="lastModifiedTime" />
+    </resultMap>
+    <insert id="newFile" parameterType="com.nenu.innovation.entity.UserFile" useGeneratedKeys="true" keyProperty="userFile.id">
+        INSERT INTO t_file (name,path,type,size,user_id)
+        VALUES(#{userFile.name},#{userFile.path},#{userFile.type},#{userFile.size},#{userFile.userId})
+    </insert>
+    <update id="updateDownloadNum">
+        UPDATE t_file
+        SET download_num = #{download}+1
+        WHERE id = #{id}
+    </update>
+    <delete id="deleteById">
+        DELETE FROM t_file
+        WHERE id = #{id}
+    </delete>
+    <select id="queryById" resultMap="userFileResultMap">
+        SELECT * FROM t_file
+        WHERE id = #{id}
+    </select>
+</mapper>

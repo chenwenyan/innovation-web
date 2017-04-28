@@ -77,7 +77,7 @@
                                     <i class="fa fa-check-circle info-icon">&nbsp;</i>
                                     <span class="info-detail">${item.title}</span>
                                     <span class="info-date"><fmt:formatDate value="${item.createdTime}"
-                                                                            pattern="yyyy/MM/dd"/></span>
+                                                                            pattern="yyyy-MM-dd"/></span>
                                 </a>
                                 <div class="line"></div>
                             </li>
@@ -104,7 +104,9 @@
             bootstrapMajorVersion: 3,
             alignment: "right",
             numberOfPages: 5,
-            shouldShowPage: false,
+            shouldShowPage: function () {
+                return ${pageNo == 0} ?  false : true;
+            },
             itemTexts: function (type, page, current) {
                 switch (type) {
                     case "first":

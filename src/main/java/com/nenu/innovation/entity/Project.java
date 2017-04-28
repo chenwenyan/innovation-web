@@ -41,10 +41,10 @@ public class Project {
     private Integer year;
 
     @Column(name = "type")
-    private Integer type;
+    private String type;
 
     @Column(name = "category")
-    private Integer category;
+    private String category;
 
     public Integer getId() {
         return id;
@@ -118,19 +118,19 @@ public class Project {
         this.year = year;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public Integer getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 }

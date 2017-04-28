@@ -75,6 +75,14 @@
                                         <span class="tip2 col-sm-6">文章内容不能为空，请重新填写</span>
                                     </div>
                                 </div>
+                                <%--<form class="form-group" id="uploadForm">--%>
+                                    <%--<input hidden id="filesList" name="filesList">--%>
+                                    <%--<label class="col-sm-3 control-label">上传附件</label>--%>
+                                    <%--<div class="col-sm-6">--%>
+                                        <%--<input class="" type="file" name="uploadInput" id="uploadInput" size="30"  multiple="multiple" accept="application/msword;application/pdf;application/msexcel;">--%>
+                                        <%--<button class="btn btn-default" type="button" id="J_upload">上传</button>--%>
+                                    <%--</div>--%>
+                                <%--</form>--%>
                             </div>
                             <div class="panel-footer clearfix">
                                 <div class="col-sm-6 col-sm-offset-3 ">
@@ -88,17 +96,6 @@
                             </div>
                         </div>
                     </form>
-
-                    <%--<div class="form-horizontal inline">--%>
-                        <%--<form class="col-sm-6" name="uploadForm" id="uploadForm" method="post" action="/file/upload" enctype="multipart/form-data" >--%>
-                            <%--<label class="col-sm-3 control-label"><span class="requires">*</span>上传附件</label>--%>
-                            <%--<div class="">--%>
-                                <%--<input class="" type="file" name="uploadInput" id="uploadInput" size="30"  multiple="multiple">--%>
-                                <%--<button class="btn btn-default" type="submit" >上传</button>--%>
-                            <%--</div>--%>
-                        <%--</form>--%>
-                    <%--</div>--%>
-
                 </div>
             </div>
         </div>
@@ -178,22 +175,44 @@
                 $(".J_form").submit();
             }
         });
-        
-        $("#uploadForm").submit(function () {
-             if($("#uploadInput").value == ""){
+
+        $("#J_upload").click(function () {
+            var files = document.getElementById("uploadInput").value;
+            if(files == "" || files == null){
                  alert("还未选择文件！");
                  return false;
-             }else{
-                 $("#uploadForm").submit();
-//                 $.ajax({
-//                     type: "post",
-//                     url: "/file/upload",
-//                     data: {id: id},
-//                     success: function (msg) {
-//                         window.location.reload();
-//                     }
-//                 });
              }
+             if(files.lastIndexOf('.') == -1){
+                 alert("文件路径不正确！");
+                 return false;
+             }
+            var fileTypes=".doc|.docx|.pdf|.xls|.xlsx|";
+            var extName = files.substring(files.lastIndexOf(".")).toLowerCase();//（把路径中的所有字母全部转换为小写）
+            if(fileTypes.indexOf(extName+"|")==-1)
+            {
+                var ErrMsg="该文件类型不允许上传。请上传 "+fileTypes+" 类型的文件，当前文件类型为"+extName;
+                alert(ErrMsg);
+                return false;
+            }
+            var formData = new FormData();
+            var name = $("#uploadInput").val();
+            formData.append("file",$("#uploadInput")[0].files[0]);
+            formData.append("name",name);
+            $.ajax({
+                type:"post",
+                url: "${website}/ajax/upload",
+                data : formData,
+                processData : false,
+                // 告诉jQuery不要去设置Content-Type请求头
+                contentType : false,
+                success:function(res){
+//                   $("#filesList").value = res.toString();
+                    alert(res);
+                },
+                error:function (res) {
+                    alert("error");
+                }
+            });
         });
     })
 </script>

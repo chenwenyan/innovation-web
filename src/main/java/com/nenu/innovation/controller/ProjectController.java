@@ -47,12 +47,12 @@ public class ProjectController {
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
-        int schoolId = 0;
+        int schoolId = -1;
         if (schoolIdStr != "" && schoolIdStr != null) {
             schoolId = Integer.parseInt(schoolIdStr);
         }
 
-        int startYear = 2012;
+        int startYear = 2000;
         try {
             int endYear = DateUtils.getCurrentYear();
             if (request.getParameter("startYear") != "" && request.getParameter("startYear") != null) {
@@ -102,8 +102,8 @@ public class ProjectController {
         String charger = request.getParameter("charger").trim();
         String teacher = request.getParameter("teacher").trim();
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
-        int type = Integer.parseInt(request.getParameter("type"));
-        int category = Integer.parseInt(request.getParameter("category"));
+        String type = request.getParameter("type");
+        String category = request.getParameter("category");
         try {
 //            if (projectService.checkExistByName(name)) {
 //                model.addAttribute("msg", "该项目名称已经存在！");
@@ -157,8 +157,8 @@ public class ProjectController {
         String name = request.getParameter("name");
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
-        int type = Integer.parseInt(request.getParameter("type"));
-        int category = Integer.parseInt(request.getParameter("category"));
+        String type = request.getParameter("type");
+        String category = request.getParameter("category");
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
         try {
             int year = DateUtils.getCurrentYear();

@@ -48,47 +48,53 @@
                         </div>
                         <div class="panel-body">
                             <form class="form-horizontal J_form" action="${website}/article" method="get">
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">文章标题</label>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-2">
                                         <input type="text" name="title" id="title" placeholder="请输入文章标题" class="form-control w180" value="${title}">
                                     </div>
                                 </div>
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">文章作者</label>
-                                    <select class="col-sm-2 form-control w180" name="userId" id="userId">
-                                        <option value="0">全部</option>
-                                        <c:forEach var="user" items="${userList}">
-                                            <c:if test="${userList.size() == 0}">
-                                                <option value="-1">无</option>
-                                            </c:if>
-                                            <c:if test="${userList.size()> 0}">
-                                                <option <c:if test='${user.id == creatorId}'>selected="selected"</c:if>  value="${user.id}">${user.username}</option>
-                                            </c:if>
-                                        </c:forEach>
-                                    </select>
+                                    <div class="col-sm-2">
+                                        <select class="form-control w180" name="userId" id="userId">
+                                            <option value="0">全部</option>
+                                            <c:forEach var="user" items="${userList}">
+                                                <c:if test="${userList.size() == 0}">
+                                                    <option value="-1">无</option>
+                                                </c:if>
+                                                <c:if test="${userList.size()> 0}">
+                                                    <option <c:if test='${user.id == creatorId}'>selected="selected"</c:if>  value="${user.id}">${user.username}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">文章类别</label>
-                                    <select class="col-sm-2 form-control w180" name="typeId" id="typeId">
-                                        <option value="0">全部</option>
-                                        <c:forEach var="type" items="${typeList}">
-                                            <c:if test="${typeList.size() == 0}">
-                                                <option value="-1">无</option>
-                                            </c:if>
-                                            <c:if test="${typeList.size()> 0}">
-                                                <option  <c:if test='${type.id == typeId}'>selected="selected"</c:if> value="${type.id}">${type.name}</option>
-                                            </c:if>
-                                        </c:forEach>
-                                    </select>
+                                    <div class="col-sm-2">
+                                        <select class="form-control w180" name="typeId" id="typeId">
+                                            <option value="0">全部</option>
+                                            <c:forEach var="type" items="${typeList}">
+                                                <c:if test="${typeList.size() == 0}">
+                                                    <option value="-1">无</option>
+                                                </c:if>
+                                                <c:if test="${typeList.size()> 0}">
+                                                    <option  <c:if test='${type.id == typeId}'>selected="selected"</c:if> value="${type.id}">${type.name}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group col-sm-4">
+                                <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">审核状态</label>
-                                    <select class="col-sm-2 form-control w180" name="isAudited" id="isAudited">
-                                        <option value="-1">全部</option>
-                                        <option <c:if test="${isAudited == 0}">selected="selected"</c:if>value="0">待审核</option>
-                                        <option <c:if test="${isAudited == 1}">selected="selected"</c:if>value="1">审核通过</option>
-                                    </select>
+                                    <div class="col-sm-2">
+                                        <select class="form-control w180" name="isAudited" id="isAudited">
+                                            <option value="-1">全部</option>
+                                            <option <c:if test="${isAudited == 0}">selected="selected"</c:if>value="0">待审核</option>
+                                            <option <c:if test="${isAudited == 1}">selected="selected"</c:if>value="1">审核通过</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-5">
                                     <button type="submit" class="btn btn-primary J_submit"><i class="fa fa-search"></i>&nbsp;搜索

@@ -10,5 +10,6 @@
         <typeAlias alias="Type" type="com.nenu.innovation.entity.Type"/>
         <typeAlias alias="School" type="com.nenu.innovation.entity.School"/>
         <typeAlias alias="Project" type="com.nenu.innovation.entity.Project"/>
+        <typeAlias alias="UserFile" type="com.nenu.innovation.entity.UserFile"/>
     </typeAliases>
 </configuration>

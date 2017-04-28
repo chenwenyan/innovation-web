@@ -35,7 +35,7 @@ img.font {
 }
 
 .nav li:hover, .nav li:hover a {
-    background-color: #85adcd;
+    background-color: #53bf8e;
     color: #259fc8;
     cursor: pointer;
 }
@@ -186,6 +186,9 @@ footer a:hover {
     color: #FFF;
     line-height: 54px;
     padding-left: 30px;
+    width: 240px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .side-title span {

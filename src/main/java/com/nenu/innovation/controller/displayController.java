@@ -56,7 +56,7 @@ public class displayController {
         String charger = request.getParameter("charger");
         String teacher = request.getParameter("teacher");
         String schoolIdStr = request.getParameter("schoolId");
-        int schoolId = 0;
+        int schoolId = -1;
         if (schoolIdStr != "" && schoolIdStr != null) {
             schoolId = Integer.parseInt(schoolIdStr);
         }

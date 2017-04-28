@@ -20,6 +20,9 @@
 		    border-left: 1px solid #ddd;
 		    border-right: 1px solid #ddd;
 		}
+		.btn{
+			padding: 8px 12px !important;
+		}
 		.login-box .form-group{
 			margin-bottom: 0;
 		}

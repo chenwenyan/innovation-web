@@ -40,7 +40,7 @@
                                                    </c:if>
                                         </span>
                                         <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy/MM/dd"/></span>
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
@@ -74,7 +74,7 @@
                                                   </c:if>
                                         </span>
                                         <span class="lixiang-date"><fmt:formatDate value="${item.createdTime}"
-                                                                                   pattern="yyyy/MM/dd"/></span>
+                                                                                   pattern="yyyy-MM-dd"/></span>
                                     </a>
                                 </li>
                             </c:forEach>
