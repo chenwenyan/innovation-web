@@ -2,6 +2,8 @@ package com.nenu.innovation.service;
 
 import com.nenu.innovation.entity.UserFile;
 
+import java.util.List;
+
 /**
  * UserFileService
  *
@@ -42,5 +44,13 @@ public interface UserFileService {
      * @throws Exception
      */
     public UserFile queryById(int id) throws Exception;
+
+    /**
+     * 根据id查询文件信息
+     *
+     * @param articleId
+     * @throws Exception
+     */
+    public List<UserFile> queryByArticleId(int articleId) throws Exception;
 
 }

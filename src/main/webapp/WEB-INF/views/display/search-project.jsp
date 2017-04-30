@@ -45,7 +45,7 @@
                                 <label class="col-sm-3 control-label">学院：</label>
                                 <div class="col-sm-7">
                                     <select class="form-control" name="schoolId" id="schoolId">
-                                        <option value="0">全部</option>
+                                        <option value="-1">全部</option>
                                         <c:forEach var="school" items="${schoolList}">
                                             <c:if test="${schoolList.size()> 0}">
                                                 <option value="${school.id}" ${school.id == schoolId ? 'selected' : ""}>${school.name}</option>
@@ -113,7 +113,7 @@
                                             <td>${project.category}</td>
                                         </tr>
                                     </c:forEach>
-                                    <c:if test="${projectlList.size() == '0'}">
+                                    <c:if test="${projectList.size() == '0'}">
                                         <tr>
                                             <td colspan="8" style="text-align: center;">无查询结果</td>
                                         </tr>
@@ -176,7 +176,7 @@
         $('#pageLimit').bootstrapPaginator({
             currentPage: ${pageNo+1},
             totalPages: ${count},
-            size: "normal",
+            size: "small",
             bootstrapMajorVersion: 3,
             alignment: "right",
             numberOfPages: 5,

@@ -6,6 +6,9 @@ import com.nenu.innovation.service.UserFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * UserFileImpl
  *
@@ -49,6 +52,17 @@ public class UserFileServiceImpl implements UserFileService{
     public UserFile queryById(int id) throws Exception{
         try {
             return userFileMapper.queryById(id);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public List<UserFile> queryByArticleId(int articleId) throws Exception{
+        List<UserFile> userFiles = Collections.emptyList();
+        try {
+            userFiles = userFileMapper.queryByArticleId(articleId);
+            return userFiles;
         }catch (Exception e){
             e.printStackTrace();
             throw new Exception(e.getMessage());

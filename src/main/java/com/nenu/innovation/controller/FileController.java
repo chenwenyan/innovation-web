@@ -2,25 +2,17 @@ package com.nenu.innovation.controller;
 
 import com.nenu.innovation.entity.UserFile;
 import com.nenu.innovation.service.UserFileService;
-import com.nenu.innovation.utils.UserUtils;
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.io.*;
+import java.net.URLEncoder;
+
 
 /**
  * FileController
@@ -35,66 +27,89 @@ public class FileController {
     private UserFileService userFileService;
 
 
-    private static final String UPLOAD_FILE_PATH = "D:";
 
-    @RequestMapping(value = "/ajax/upload",method = RequestMethod.POST)
-    @ResponseBody
-    public JSONObject ajaxFileUpload(HttpServletRequest request, HttpServletResponse response,
-                               Model model) throws SecurityException, IOException{
-
-        JSONObject result = new JSONObject();
-        int code = 0;
-
-        List<Integer> fileIds = new ArrayList<Integer>();
-
+    @RequestMapping(value = "file/download",method = RequestMethod.GET)
+    public void fileDownload(HttpServletRequest request, HttpServletResponse response,
+                               Model model) throws Exception{
+        int fileId = Integer.parseInt(request.getParameter("fileId"));
+        UserFile userFile = new UserFile();
         try {
-            // @RequestParam("file") MultipartFile file
-            CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-                    request.getSession().getServletContext());
-            // 判断 request 是否有文件上传,即多部分请求
-            if (multipartResolver.isMultipart(request)) {
-                // 转换成多部分request
-                MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-                // 取得request中的所有文件名
-                Iterator<String> iter = multiRequest.getFileNames();
-                while (iter.hasNext()) {
+            userFile = userFileService.queryById(fileId);
+            if (userFile == null) {
+                System.out.println("文件不存在！");
+            } else {
+                File proposeFile = new File(userFile.getPath());
 
-                    UserFile userFile = new UserFile();
-
-                    // 取得上传文件
-                    MultipartFile file = multiRequest.getFile(iter.next());
-                    if (file != null) {
-                        // 取得当前上传文件的文件名称
-                        String fileName = file.getOriginalFilename();
-                        // 如果名称不为“”,说明该文件存在，否则说明该文件不存在
-                        if (fileName.trim() != "") {
-                            // 定义上传路径
-                            String filePath = UPLOAD_FILE_PATH + fileName;
-                            File localFile = new File(filePath);
-                            file.transferTo(localFile);
-
-                            userFile.setName(fileName);
-                            userFile.setPath(filePath);
-                            userFile.setSize(file.getSize());
-                            userFile.setType(file.getContentType());
-                            userFile.setUserId(UserUtils.setUserSession(request, model).getId());
-                            userFile.setDownloadNum(0);
-                            userFileService.newFile(userFile);
-                            int fileId = userFile.getId();
-                            fileIds.add(fileId);
+                InputStream inputStream = null;
+                OutputStream bufferOut = null;
+                try {
+                    // 设置响应报头
+                    long fSize = proposeFile.length();
+                    response.setContentType("application/x-download");
+                    response.addHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(proposeFile.getName(), "utf-8"));
+                    // Accept-Ranges: bytes
+                    response.setHeader("Accept-Ranges", "bytes");
+                    long pos = 0, last = fSize - 1, sum = 0;// pos开始读取位置; last最后读取位置; sum记录总共已经读取了多少字节
+                    if (null != request.getHeader("Range")) {
+                        // 断点续传
+                        response.setStatus(HttpServletResponse.SC_PARTIAL_CONTENT);
+                        try {
+                            // 情景一：RANGE: bytes=2000070- 情景二：RANGE: bytes=2000070-2000970
+                            String numRang = request.getHeader("Range").replaceAll("bytes=", "");
+                            String[] strRange = numRang.split("-");
+                            if (strRange.length == 2) {
+                                pos = Long.parseLong(strRange[0].trim());
+                                last = Long.parseLong(strRange[1].trim());
+                            } else {
+                                pos = Long.parseLong(numRang.replaceAll("-", "").trim());
+                            }
+                        } catch (NumberFormatException e) {
+                            pos = 0;
                         }
                     }
+                    long rangLength = last - pos + 1;// 总共需要读取的字节
+                    // Content-Range: bytes 10-1033/304974592
+                    String contentRange = new StringBuffer("bytes ").append(pos).append("-").append(last).append("/").append(fSize).toString();
+                    response.setHeader("Content-Range", contentRange);
+                    // Content-Length: 1024
+                    response.addHeader("Content-Length", String.valueOf(rangLength));
+
+                    // 跳过已经下载的部分，进行后续下载
+                    bufferOut = new BufferedOutputStream(response.getOutputStream());
+                    inputStream = new BufferedInputStream(new FileInputStream(proposeFile));
+                    inputStream.skip(pos);
+                    byte[] buffer = new byte[1024];
+                    int length = 0;
+                    while (sum < rangLength) {
+                        length = inputStream.read(buffer, 0, ((rangLength - sum) <= buffer.length ? ((int) (rangLength - sum)) : buffer.length));
+                        sum = sum + length;
+                        bufferOut.write(buffer, 0, length);
+                    }
+                } catch (Throwable e) {
+//                    if (e instanceof ClientAbortException) {
+//                        // 浏览器点击取消
+//                        LOGGER.info("用户取消下载!");
+//                    } else {
+//                        LOGGER.info("下载文件失败....");
+//                        e.printStackTrace();
+//                    }
+                } finally {
+                    try {
+                        if (bufferOut != null) {
+                            bufferOut.close();
+                        }
+                        if (inputStream != null) {
+                            inputStream.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+
             }
         }catch (Exception e){
             e.printStackTrace();
         }
-        if(fileIds.size() > 0) {
-            code = 1;
-        }
-        result.put("code",code);
-        result.put("fileIds",fileIds);
-        return result;
+//        return null;
     }
-
 }

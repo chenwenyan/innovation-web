@@ -3,9 +3,11 @@ package com.nenu.innovation.controller;
 import com.nenu.innovation.entity.Article;
 import com.nenu.innovation.entity.Project;
 import com.nenu.innovation.entity.School;
+import com.nenu.innovation.entity.UserFile;
 import com.nenu.innovation.service.ArticleService;
 import com.nenu.innovation.service.ProjectService;
 import com.nenu.innovation.service.SchoolService;
+import com.nenu.innovation.service.UserFileService;
 import com.nenu.innovation.utils.DateUtils;
 import com.nenu.innovation.utils.NumUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,11 @@ public class displayController {
     @Autowired
     private ArticleService articleService;
 
+    @Autowired
+    private UserFileService userFileService;
+
+    private int pageSize = 5;
+
     @RequestMapping(value = "main", method = RequestMethod.GET)
     public String main(Model model) {
         return "display/main";
@@ -46,9 +53,9 @@ public class displayController {
     @RequestMapping(value = "/search-project", method = RequestMethod.GET)
     public String searchProject(HttpServletRequest request, HttpServletResponse response,
                                 Model model) {
+        int pageSize = 15;
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
-        int pageSize = 10;
         int offset = pageNo * pageSize;
         List<Project> projects = Collections.emptyList();
         List<School> schools = Collections.emptyList();
@@ -102,10 +109,10 @@ public class displayController {
             cqc = articleService.listByType(2);
             tzb = articleService.listByType(3);
             qtbs = articleService.listByType(11);
-            model.addAttribute("hlw", hlw.size() > 5 ? hlw.subList(0, 5) : hlw);
-            model.addAttribute("cqc", cqc.size() > 5 ? cqc.subList(0, 5) : cqc);
-            model.addAttribute("tzb", tzb.size() > 5 ? tzb.subList(0, 5) : tzb);
-            model.addAttribute("qtbs", qtbs.size() > 5 ? qtbs.subList(0, 5) : qtbs);
+            model.addAttribute("hlw", hlw.size() > pageSize ? hlw.subList(0, pageSize) : hlw);
+            model.addAttribute("cqc", cqc.size() > pageSize ? cqc.subList(0, pageSize) : cqc);
+            model.addAttribute("tzb", tzb.size() > pageSize ? tzb.subList(0, pageSize) : tzb);
+            model.addAttribute("qtbs", qtbs.size() > pageSize ? qtbs.subList(0, pageSize) : qtbs);
             model.addAttribute("matches", matches);
             return "display/matches";
         } catch (Exception e) {
@@ -127,15 +134,10 @@ public class displayController {
         try {
             sqshsjgg = articleService.listByType(4);
             kyfc = articleService.listThree();
-//            kyfc = articleService.listByType(5);
-//            cyy = articleService.listByType(6);
-//            qyzc = articleService.listByType(7);
             kycg = articleService.listByType(8);
-            model.addAttribute("sqshsjgg", sqshsjgg.size() > 5 ? sqshsjgg.subList(0, 5) : sqshsjgg);
-            model.addAttribute("kyfc", kyfc.size() > 5 ? kyfc.subList(0, 5) : kyfc);
-//            model.addAttribute("cyy", cyy.size() > 5 ? cyy.subList(0, 5) : cyy);
-//            model.addAttribute("qyzc", qyzc.size() > 5 ? qyzc.subList(0, 5) : qyzc);
-            model.addAttribute("kycg", kycg.size() > 5 ? kycg.subList(0, 5) : kycg);
+            model.addAttribute("sqshsjgg", sqshsjgg.size() > pageSize ? sqshsjgg.subList(0, pageSize) : sqshsjgg);
+            model.addAttribute("kyfc", kyfc.size() > pageSize ? kyfc.subList(0, pageSize) : kyfc);
+            model.addAttribute("kycg", kycg.size() > pageSize ? kycg.subList(0, pageSize) : kycg);
             model.addAttribute("plans", plans);
             return "display/plans";
         } catch (Exception e) {
@@ -151,8 +153,8 @@ public class displayController {
         try {
             gjjcxcyxljh = articleService.listByType(9);
             kylx = articleService.listByType(10);
-            model.addAttribute("gjjcxcyxljh", gjjcxcyxljh.size() > 5 ? gjjcxcyxljh.subList(0, 5) : gjjcxcyxljh);
-            model.addAttribute("kylx", kylx.size() > 5 ? kylx.subList(0, 5) : kylx);
+            model.addAttribute("gjjcxcyxljh", gjjcxcyxljh.size() > pageSize ? gjjcxcyxljh.subList(0, pageSize) : gjjcxcyxljh);
+            model.addAttribute("kylx", kylx.size() > pageSize ? kylx.subList(0, pageSize) : kylx);
             return "display/projects";
         } catch (Exception e) {
             return "error";
@@ -162,9 +164,9 @@ public class displayController {
     @RequestMapping(value = "more-articles", method = RequestMethod.GET)
     public String moreArticles(HttpServletRequest request, HttpServletResponse response,
                                Model model) {
+        int pageSize = 10;
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
-        int pageSize = 10;
         int offset = pageNo * pageSize;
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         List<Article> articles = Collections.emptyList();
@@ -172,6 +174,7 @@ public class displayController {
             model.addAttribute("typeId",typeId);
             articles = articleService.listByTypeAndPage(typeId, offset, pageSize);
             model.addAttribute("list", articles);
+            model.addAttribute("pageNo", pageNo);
             int sum = articleService.countListByTypeAndPage(typeId);
             model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
             return "display/more-articles";
@@ -183,11 +186,14 @@ public class displayController {
     @RequestMapping(value = "article-detail", method = RequestMethod.GET)
     public String articleDetail(Model model, int id) {
         Article article = new Article();
+        List<UserFile> files = Collections.emptyList();
         try {
             article = (Article) articleService.queryById(id);
             if (article != null) {
                 articleService.updateReadNum(id);
                 model.addAttribute("article", article);
+                files = userFileService.queryByArticleId(article.getId());
+                model.addAttribute("files",files);
             }
             return "display/article-detail";
         } catch (Exception e) {

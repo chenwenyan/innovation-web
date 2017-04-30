@@ -6,6 +6,7 @@
     <resultMap id="userFileResultMap" type="userFile">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
+        <result column="article_id" property="articleId"/>
         <result column="path" property="path"/>
         <result column="type" property="type"/>
         <result column="size" property="size"/>
@@ -14,9 +15,9 @@
         <result column="created_time" property="createdTime" />
         <result column="last_modified_time" property="lastModifiedTime" />
     </resultMap>
-    <insert id="newFile" parameterType="com.nenu.innovation.entity.UserFile" useGeneratedKeys="true" keyProperty="userFile.id">
-        INSERT INTO t_file (name,path,type,size,user_id)
-        VALUES(#{userFile.name},#{userFile.path},#{userFile.type},#{userFile.size},#{userFile.userId})
+    <insert id="newFile" >
+        INSERT INTO t_file (name,article_id,path,type,size,user_id)
+        VALUES(#{userFile.name},#{userFile.articleId},#{userFile.path},#{userFile.type},#{userFile.size},#{userFile.userId})
     </insert>
     <update id="updateDownloadNum">
         UPDATE t_file
@@ -30,5 +31,9 @@
     <select id="queryById" resultMap="userFileResultMap">
         SELECT * FROM t_file
         WHERE id = #{id}
+    </select>
+    <select id="queryByArticleId" resultMap="userFileResultMap">
+        SELECT * FROM t_file
+        WHERE article_id = #{articleId}
     </select>
 </mapper>

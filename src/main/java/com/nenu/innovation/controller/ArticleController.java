@@ -3,8 +3,10 @@ package com.nenu.innovation.controller;
 import com.nenu.innovation.entity.Article;
 import com.nenu.innovation.entity.Type;
 import com.nenu.innovation.entity.User;
+import com.nenu.innovation.entity.UserFile;
 import com.nenu.innovation.service.ArticleService;
 import com.nenu.innovation.service.TypeService;
+import com.nenu.innovation.service.UserFileService;
 import com.nenu.innovation.service.UserService;
 import com.nenu.innovation.utils.NumUtils;
 import com.nenu.innovation.utils.UserUtils;
@@ -13,9 +15,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,6 +43,8 @@ public class ArticleController {
     @Autowired
     private TypeService typeService;
 
+    @Autowired
+    private UserFileService userFileService;
 
     @RequestMapping(value = "/article", method = RequestMethod.GET)
     public String toList(HttpServletRequest request, HttpServletResponse response,
@@ -51,25 +59,25 @@ public class ArticleController {
 
         String title = (request.getParameter("title") == null) ? null : request.getParameter("title").trim();
         int creatorId = (request.getParameter("userId") == null) ? 0 : Integer.parseInt(request.getParameter("userId"));
-        int typeId = (request.getParameter("typeId") == null ) ? 0 : Integer.parseInt(request.getParameter("typeId"));
-        int isAudited = (request.getParameter("isAudited") == null) ? -1: Integer.parseInt(request.getParameter("isAudited"));
+        int typeId = (request.getParameter("typeId") == null) ? 0 : Integer.parseInt(request.getParameter("typeId"));
+        int isAudited = (request.getParameter("isAudited") == null) ? -1 : Integer.parseInt(request.getParameter("isAudited"));
 
         try {
-            articles = articleService.queryBySearchInfo(title,creatorId,typeId,isAudited,offset, pageSize);
+            articles = articleService.queryBySearchInfo(title, creatorId, typeId, isAudited, offset, pageSize);
             users = userService.listAll();
             types = typeService.listAll();
             model.addAttribute("articleList", articles);
             model.addAttribute("userList", users);
             model.addAttribute("typeList", types);
             model.addAttribute("pageNo", pageNo);
-            int sum = articleService.countQueryBySearchInfo(title,creatorId,typeId,isAudited);
-            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
-            User user = UserUtils.setUserSession(request,model);
+            int sum = articleService.countQueryBySearchInfo(title, creatorId, typeId, isAudited);
+            model.addAttribute("count", NumUtils.ceilNum(sum, pageSize));
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
-            model.addAttribute("title",title);
-            model.addAttribute("creatorId",creatorId);
-            model.addAttribute("typeId",typeId);
-            model.addAttribute("isAudited",isAudited);
+            model.addAttribute("title", title);
+            model.addAttribute("creatorId", creatorId);
+            model.addAttribute("typeId", typeId);
+            model.addAttribute("isAudited", isAudited);
             return "management/article/list";
         } catch (Exception e) {
             return "error";
@@ -83,7 +91,7 @@ public class ArticleController {
         try {
             types = typeService.listAll();
             model.addAttribute("typeList", types);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "management/article/add";
         } catch (Exception e) {
@@ -94,26 +102,65 @@ public class ArticleController {
     @RequestMapping(value = "article/add", method = RequestMethod.POST)
     public String newArticle(HttpServletRequest request, HttpServletResponse response,
                              Model model) {
+
+        String UPLOAD_FILE_PATH = request.getSession().getServletContext().getRealPath("") + "\\";
+//        String UPLOAD_FILE_PATH = request.getServletContext().getRealPath("upload_files")+"\\";
+
         String title = request.getParameter("title").trim();
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         String content = request.getParameter("content");
         Article article = new Article();
         try {
-            if(articleService.checkExistByName(title)){
+            if (articleService.checkExistByName(title)) {
                 model.addAttribute("msg", "文章名称已存在！");
-                model.addAttribute("isRedirect",true);
+                model.addAttribute("isRedirect", true);
                 return "management/article/add";
             }
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             article.setTitle(title);
             article.setTypeId(typeId);
             article.setContent(content);
             article.setCreatorId(user.getId());
             article.setSchoolId(user.getSchoolId());
             articleService.newArticle(article);
+
+            // @RequestParam("file") MultipartFile file
+            CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
+                    request.getSession().getServletContext());
+            // 判断 request 是否有文件上传,即多部分请求
+            if (multipartResolver.isMultipart(request)) {
+                // 转换成多部分request
+                MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+                // 取得上传文件
+                List<MultipartFile> fileList = multiRequest.getFiles("uploadInput");
+                if (fileList.size() > 0) {
+                    for (MultipartFile file : fileList) {
+                        UserFile userFile = new UserFile();
+                        if (file != null) {
+                            // 取得当前上传文件的文件名称
+                            String fileName = file.getOriginalFilename();
+                            // 如果名称不为“”,说明该文件存在，否则说明该文件不存在
+                            if (fileName.trim() != "") {
+                                // 定义上传路径
+                                String filePath = UPLOAD_FILE_PATH + fileName;
+                                File localFile = new File(filePath);
+                                file.transferTo(localFile);
+                                userFile.setName(fileName);
+                                userFile.setPath(filePath);
+                                userFile.setSize(file.getSize());
+                                userFile.setType(file.getContentType());
+                                userFile.setUserId(UserUtils.setUserSession(request, model).getId());
+                                userFile.setArticleId(article.getId());
+                                userFileService.newFile(userFile);
+                            }
+                        }
+                    }
+                }
+            }
             model.addAttribute("user", user);
             return "redirect:/article";
         } catch (Exception e) {
+            e.printStackTrace();
             return "error";
         }
     }
@@ -128,7 +175,7 @@ public class ArticleController {
             article = (Article) articleService.queryById(id);
             model.addAttribute("article", article);
             model.addAttribute("typeList", types);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "management/article/edit";
         } catch (Exception e) {
@@ -144,12 +191,12 @@ public class ArticleController {
             String title = request.getParameter("title").trim();
             String content = request.getParameter("content");
             int typeId = Integer.parseInt(request.getParameter("typeId"));
-            if(articleService.checkExistByName(title)){
-                model.addAttribute("msg", "文章名称已存在！");
-                model.addAttribute("isRedirect",true);
-                return "management/article/edit";
-            }
-            User user = UserUtils.setUserSession(request,model);
+//            if (articleService.checkExistByName(title)) {
+//                model.addAttribute("msg", "文章名称已存在！");
+//                model.addAttribute("isRedirect", true);
+//                return "management/article/edit";
+//            }
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             articleService.updateArticleById(id, title, content, typeId, user.getId());
             return "redirect:/article";
@@ -165,11 +212,11 @@ public class ArticleController {
         try {
             if (articleService.queryById(id) == null) {
                 model.addAttribute("msg", "该文章不存在或已被删除！");
-                model.addAttribute("isRedirect",true);
+                model.addAttribute("isRedirect", true);
 //                return "management/article/list";
             }
             articleService.deleteById(id);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "redirect:/article";
         } catch (Exception e) {
@@ -181,13 +228,16 @@ public class ArticleController {
     public String toDetail(HttpServletRequest request, HttpServletResponse response,
                            Model model, Integer id) {
         Article article = new Article();
+        List<UserFile> files = Collections.emptyList();
         try {
             article = (Article) articleService.queryById(id);
             if (article == null) {
                 model.addAttribute("msg", "该文章不存在或已被删除！");
             }
             model.addAttribute("article", article);
-            User user = UserUtils.setUserSession(request,model);
+            files = userFileService.queryByArticleId(article.getId());
+            model.addAttribute("files",files);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "management/article/detail";
         } catch (Exception e) {
@@ -197,7 +247,7 @@ public class ArticleController {
 
     @RequestMapping(value = "/article/audited", method = RequestMethod.POST)
     public String audited(HttpServletRequest request, HttpServletResponse response,
-                           Model model) {
+                          Model model) {
         int isAudited = 1;
         Article article = new Article();
         int id = Integer.parseInt(request.getParameter("id"));
@@ -206,8 +256,8 @@ public class ArticleController {
 //            if (article == null) {
 //                model.addAttribute("msg", "该文章不存在或已被删除！");
 //            }
-            articleService.setIsAudited(id,isAudited);
-            User user = UserUtils.setUserSession(request,model);
+            articleService.setIsAudited(id, isAudited);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "redirect:/article";
         } catch (Exception e) {

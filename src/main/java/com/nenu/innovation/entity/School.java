@@ -22,6 +22,9 @@ public class School {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "type")
+    private Integer type;
+
     @Column(name = "created_time")
     private Timestamp createdTime;
 
@@ -43,6 +46,14 @@ public class School {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Timestamp getCreatedTime() {

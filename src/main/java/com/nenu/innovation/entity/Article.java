@@ -53,9 +53,6 @@ public class Article {
     @Transient
     private String schoolName;
 
-    @Column(name = "annex")
-    private String annex;
-
     public Integer getId() {
         return id;
     }
@@ -160,11 +157,4 @@ public class Article {
         this.schoolName = schoolName;
     }
 
-    public String getAnnex() {
-        return annex;
-    }
-
-    public void setAnnex(String annex) {
-        this.annex = annex;
-    }
 }

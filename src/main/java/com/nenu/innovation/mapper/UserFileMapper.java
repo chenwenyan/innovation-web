@@ -3,6 +3,8 @@ package com.nenu.innovation.mapper;
 import com.nenu.innovation.entity.UserFile;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * FileMapper
  *
@@ -43,4 +45,12 @@ public interface UserFileMapper {
      * @throws Exception
      */
     public UserFile queryById(@Param("id") Integer id)throws Exception;
+
+    /**
+     * 根据文章id查询文件信息
+     *
+     * @param articleId
+     * @throws Exception
+     */
+    public List<UserFile> queryByArticleId(@Param("articleId") Integer articleId)throws Exception;
 }

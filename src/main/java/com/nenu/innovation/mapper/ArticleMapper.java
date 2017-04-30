@@ -54,7 +54,7 @@ public interface ArticleMapper {
      * @param article
      * @throws Exception
      */
-    public void newArticle(@Param("article") Article article) throws Exception;
+    public Integer newArticle(@Param("article") Article article) throws Exception;
 
     /**
      * 更新文章

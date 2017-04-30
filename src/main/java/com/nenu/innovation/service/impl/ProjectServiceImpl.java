@@ -153,7 +153,11 @@ public class ProjectServiceImpl implements ProjectService {
         School school = new School();
         try {
             school = schoolMapper.queryById(project.getSchoolId());
-            project.setSchoolName(school.getName());
+            if(school != null){
+                project.setSchoolName(school.getName());
+            }else{
+                project.setSchoolName("无");
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("设置项目的学院名称出错！");

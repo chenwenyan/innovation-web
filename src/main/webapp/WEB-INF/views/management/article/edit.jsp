@@ -81,7 +81,17 @@
                                         <span class="tip2 col-sm-6">文章内容不能为空，请重新填写</span>
                                     </div>
                                 </div>
-
+                                <%--<div class="form-group">--%>
+                                    <%--<input hidden id="filesList" name="filesList">--%>
+                                    <%--<label class="col-sm-3 control-label">上传附件</label>--%>
+                                    <%--<div class="col-sm-6" style="margin-top: 5px;">--%>
+                                        <%--<form id="uploadForm">--%>
+                                            <%--<input class="" type="file" name="uploadInput" id="uploadInput" size="30"--%>
+                                                   <%--multiple="multiple"--%>
+                                                   <%--accept="application/msword;application/pdf;application/msexcel;">--%>
+                                        <%--</form>--%>
+                                    <%--</div>--%>
+                                <%--</div>--%>
                             </div>
                             <div class="panel-footer clearfix">
                                 <div class="col-sm-6 col-sm-offset-3 ">

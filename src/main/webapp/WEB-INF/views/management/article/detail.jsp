@@ -6,9 +6,7 @@
 <head>
     <title>查看文章内容</title>
     <jsp:include flush="true" page="/WEB-INF/views/management/common/head.jsp"/>
-    <style type="text/css">
-
-    </style>
+    <script src="http://www.lanrenzhijia.com/ajaxjs/pdfobject.js"></script>
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/management/common/header.jsp"/>
@@ -42,7 +40,7 @@
                                 <div class="form-group text-right">
                                     <%--<label class="col-sm-3 control-label"><span class="requires">*</span>文章类别</label>--%>
                                     <div class="col-sm-8">
-                                        文章类别：${article.typeName}&nbsp;&nbsp;&nbsp;发布单位：${article.schoolName} &nbsp;&nbsp;&nbsp;创建时间：<fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd hh-MM-ss"></fmt:formatDate>
+                                        文章类别：${article.typeName}&nbsp;&nbsp;&nbsp;发布单位：${article.schoolName} &nbsp;&nbsp;&nbsp;创建时间：<fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd hh:MM:ss"></fmt:formatDate>
                                     </div>
                                 </div>
                                 <hr>
@@ -50,6 +48,19 @@
                                     <%--<label class="col-sm-3 control-label"><span class="requires">*</span>文章内容</label>--%>
                                     <div class="col-sm-8 col-sm-offset-2">
                                         ${article.content}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="form-group col-sm-offset-3">
+                                    <%--<label class="col-sm-3 control-label"><span class="requires">*</span>文章类别</label>--%>
+                                    <div class="col-sm-8">
+                                        <c:if test="${files.size() > 0}">
+                                            <label class="label-control">附件：</label>
+                                            <c:forEach var="file" items="${files}">
+                                                <a href="${website}/file/download?fileId=${file.id}" class="file_download">${file.name}</a>
+                                                <br>
+                                            </c:forEach>
+                                        </c:if>
                                     </div>
                                 </div>
 
@@ -62,9 +73,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    $(function(){
 
-    });
 </script>
 </body>
 </html>

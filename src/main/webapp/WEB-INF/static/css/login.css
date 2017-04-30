@@ -1,137 +1,166 @@
-/******************管理员登录首页样式start*************************/
-		body.login-background{
-			background: #E6E7E8;
-			padding-top: 60px;
-		}
-		.login-background .page{
-			width: 400px;
-			margin-left: auto;
-			margin-right: auto; 
-		}
-		.login-heading{
-			margin-bottom: 20px;
-		}
-		.login-body{
-			border-top: 2px solid #4f8edc;
-			background: #FFFFFF;
-			padding: 20px;
-			padding-bottom: 30px;
-			border-bottom: 1px solid #ddd;
-		    border-left: 1px solid #ddd;
-		    border-right: 1px solid #ddd;
-		}
-		.btn{
-			padding: 8px 12px !important;
-		}
-		.login-box .form-group{
-			margin-bottom: 0;
-		}
-		.input-group {
-		    height: 68px;
-		}
-		.inline .pw-tip{
-			margin-top: 0 !important;
-		}
-		.input-group input.form-control{
-		    height: 40px;
-		    float: left;
-			width: 313px;
-		}
-		.input-group-addon,
-		.btn{
-			border-radius: 0 !important;
-			height: 32px;
-			line-height: 1px;
-		}
-		.btn-primary{
-			background-color: #4f8edc !important;
-		}
-		.btn-primary:hover{
-			background-color: #2D78D5 !important;
-		}
-		.input-group .input-group-addon{
-			float:left;
-			padding-top: 12px;
-			padding-bottom: 14px;
-			width: 43px;
-			height: 40px;
-		}
-		.login-footer{
-			background: #F7F8FA;
-			border-left: 1px solid #ddd;
-		    border-right: 1px solid #ddd;
-		   	border-bottom: 1px solid #ddd;
-		}
-		.tip-info{
-			color: #4F8EDC;
-		}
-		.login-footer{
-			padding:20px; 
-		}
-		.login-footer .reset-btn{
-			display: block;
-		    margin-top: 9px;
-		    padding-left: 25px;
-		    padding-right: 25px;
-		}
-		.form-group .label-style{
-			padding:0px !important;
-			width: 70px; 
-		}
-		.inline .pw-tip{
-			padding-left: 51px !important;
-		}
 
-		/******************管理员登录首页样式end*************************/
-		/******************管理员注册首页样式start*************************/
-		.licence-body{
-			border-top: 2px solid #4f8edc;
-			background: #FFFFFF;
-			padding: 50px 50px 30px 50px;
-			border-bottom: 1px solid #ddd;
-			border-left: 1px solid #ddd;
-			border-right: 1px solid #ddd;
-		}
-		.licence-body .form-group{
-			padding-bottom: 15px;
-		}
-		.licence-body .label-control-style{
-			line-height: 33px;
-		}
-		.licence-tip-info{
-			margin-top:13px;
-		}
-		.first-link{
-			margin-right: 68px;
-		}
-		.licence-body .padding-left-style{
-			padding-left: -15px !important;
-		}
-		.licence-body .form-group .pw-tip{
-			display: block;
-		}
-		.alert {
-		    padding: 15px;
-		    margin-bottom: 20px;
-		    border: 1px solid transparent;
-		    border-radius: 4px;
-		    margin-top: 20px;
-		}
-		.right{
-			float: right;
-			margin: 5px 0;
-		}
-		.input-tip{
-			display: none;
-			font-size: 12px;
-			padding-left: 51px !important;
-		}
-		.empty-tip{
-			display: none;
-			color: #B94A48;
-			font-size: 12px;
-			padding-left: 51px !important;
-		}
-		.show{
-			display: inline;
-		}
+body.login-background {
+    background: #E6E7E8;
+    padding-top: 60px;
+}
+
+.login-background .page {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-heading {
+    margin-bottom: 20px;
+}
+
+.login-body {
+    border-top: 2px solid #4f8edc;
+    background: #FFFFFF;
+    padding: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.btn {
+    padding: 8px 12px !important;
+}
+
+.login-box .form-group {
+    margin-bottom: 0;
+}
+
+.input-group {
+    height: 68px;
+}
+
+.inline .pw-tip {
+    margin-top: 0 !important;
+}
+
+.input-group input.form-control {
+    height: 40px;
+    float: left;
+    width: 313px;
+}
+
+.input-group-addon,
+.btn {
+    border-radius: 0 !important;
+    height: 32px;
+    line-height: 1px;
+}
+
+.btn-primary {
+    background-color: #4f8edc !important;
+}
+
+.btn-primary:hover {
+    background-color: #2D78D5 !important;
+}
+
+.input-group .input-group-addon {
+    float: left;
+    padding-top: 12px;
+    padding-bottom: 14px;
+    width: 43px;
+    height: 40px;
+}
+
+.login-footer {
+    background: #F7F8FA;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.tip-info {
+    color: #4F8EDC;
+}
+
+.login-footer {
+    padding: 20px;
+}
+
+.login-footer .reset-btn {
+    display: block;
+    margin-top: 9px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.form-group .label-style {
+    padding: 0px !important;
+    width: 70px;
+}
+
+.inline .pw-tip {
+    padding-left: 51px !important;
+}
+
+/******************管理员登录首页样式end*************************/
+/******************管理员注册首页样式start*************************/
+.licence-body {
+    border-top: 2px solid #4f8edc;
+    background: #FFFFFF;
+    padding: 50px 50px 30px 50px;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+}
+
+.licence-body .form-group {
+    padding-bottom: 15px;
+}
+
+.licence-body .label-control-style {
+    line-height: 33px;
+}
+
+.licence-tip-info {
+    margin-top: 13px;
+}
+
+.first-link {
+    margin-right: 68px;
+}
+
+.licence-body .padding-left-style {
+    padding-left: -15px !important;
+}
+
+.licence-body .form-group .pw-tip {
+    display: block;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.right {
+    float: right;
+    margin: 5px 0;
+}
+
+.input-tip {
+    display: none;
+    font-size: 12px;
+    padding-left: 51px !important;
+}
+
+.empty-tip {
+    display: none;
+    color: #B94A48;
+    font-size: 12px;
+    padding-left: 51px !important;
+}
+
+.show {
+    display: inline;
+}

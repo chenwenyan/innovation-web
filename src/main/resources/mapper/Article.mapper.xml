@@ -14,7 +14,6 @@
         <result column="read_num" property="readNum"/>
         <result column="is_audited" property="isAudited"/>
         <result column="school_id" property="schoolId"/>
-        <result column="annex" property="annex"/>
     </resultMap>
 
     <select id="listAll" resultMap="articleResultMap">
@@ -39,7 +38,7 @@
         </if>
     </select>
 
-    <insert id="newArticle">
+    <insert id="newArticle" useGeneratedKeys="true" keyProperty="article.id">
         INSERT INTO `t_article` (title,content,type_id,creator_id,school_id)
         VALUES(#{article.title},#{article.content},#{article.typeId},#{article.creatorId},#{article.schoolId})
     </insert>

@@ -20,6 +20,9 @@ public class UserFile {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "article_id")
+    private Integer articleId;
+
     @Column(name = "path")
     private String path;
 
@@ -58,6 +61,14 @@ public class UserFile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(Integer articleId) {
+        this.articleId = articleId;
     }
 
     public String getPath() {

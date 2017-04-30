@@ -24,6 +24,7 @@
     <select id="listAll" resultMap="schoolResultMap">
         SELECT *
         FROM t_school
+        WHERE type = 1
         ORDER BY created_time
     </select>
 

@@ -43,52 +43,6 @@
                 </div>
             </div>
 
-            <%--<div class="col-sm-7">--%>
-            <%--<div class="alert alert-success clearfix">--%>
-            <%--<div class="col-sm-12">--%>
-            <%--<span class="public-right"><i class="fa fa-map-marker"></i>&nbsp;当前位置：--%>
-            <%--<c:if test="${article.typeId == 1 || article.typeId == 2 || article.typeId == 3 || article.typeId == 11}"><a--%>
-            <%--href="/matches">比赛</a></c:if>--%>
-
-            <%--<c:if test="${article.typeId == 4 || article.typeId == 5 || article.typeId == 6 || article.typeId == 7 || article.typeId == 8 }"><a--%>
-            <%--href="/plans">计划</a></c:if>--%>
-            <%--<c:if test="${article.typeId == 9 || article.typeId == 10}"><a--%>
-            <%--href="/projects">立项</a></c:if>--%>
-            <%-->--%>
-            <%--<a href="/more-articles?typeId=${typeId}">--%>
-            <%--<c:if test="${article.typeId == 1 }">互联网+</c:if>--%>
-            <%--<c:if test="${article.typeId == 2 }">创青春全国大学生创业大赛</c:if>--%>
-            <%--<c:if test="${article.typeId == 3 }">挑战杯</c:if>--%>
-            <%--<c:if test="${article.typeId == 4 }">暑期社会实践公告</c:if>--%>
-            <%--<c:if test="${article.typeId == 5 }">科研扶持</c:if>--%>
-            <%--<c:if test="${article.typeId == 6 }">创业园</c:if>--%>
-            <%--<c:if test="${article.typeId == 7 }">企业注册</c:if>--%>
-            <%--<c:if test="${article.typeId == 8 }">科研成果</c:if>--%>
-            <%--<c:if test="${article.typeId == 9 }">国家级创新创业训练计划</c:if>--%>
-            <%--<c:if test="${article.typeId == 10 }">科研立项</c:if>--%>
-            <%--<c:if test="${article.typeId == 11 }">其他比赛</c:if>--%>
-            <%--</a>--%>
-            <%--> 通知公告--%>
-            <%--</span>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="col-sm-7">--%>
-            <%--<h3 class="text-center">${article.title}</h3>--%>
-            <%--<div class="text-center">--%>
-            <%--<span>发布时间：</span>--%>
-            <%--<span><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd HH:MM:ss"/></span>--%>
-            <%--<span>&nbsp;&nbsp;&nbsp;&nbsp;发布单位：</span>--%>
-            <%--<span>${article.schoolName}</span>--%>
-            <%--<span>&nbsp;&nbsp;&nbsp;&nbsp;浏览：</span>--%>
-            <%--<span>${article.readNum}</span>--%>
-            <%--<span>次</span>--%>
-            <%--</div>--%>
-            <%--<hr>--%>
-            <%--<p>--%>
-            <%--${article.content}--%>
-            <%--</p>--%>
-            <%--</div>--%>
             <div class="col-sm-7 panel panel-default panel-top">
                 <div class="panel-heading top-heading">
                                 <span class="panel-title top-location"><i class="fa fa-map-marker"></i>&nbsp;当前位置：
@@ -122,7 +76,7 @@
                 </div>
                 <div class="text-center" style="font-size: 12px">
                     <span>发布时间：</span>
-                    <span><fmt:formatDate value="${article.createdTime}" pattern="yyyy/MM/dd HH:MM:ss"/></span>
+                    <span><fmt:formatDate value="${article.createdTime}" pattern="yyyy-MM-dd"/></span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;发布单位：</span>
                     <span>${article.schoolName}</span>
                     <span>&nbsp;&nbsp;&nbsp;&nbsp;浏览：</span>
@@ -130,9 +84,20 @@
                     <span>次</span>
                 </div>
                 <hr>
-                <div style="margin: 0 20px">
+                <div class="content-padding">
                     ${article.content}
                 </div>
+               <div class="content-padding">
+                   <c:if test="${files.size() > 0}">
+                       <label class="label-control">附件：</label>
+                       <div class="file-ff">
+                           <c:forEach var="file" items="${files}">
+                               <a href="${website}/file/download?fileId=${file.id}" class="file_download">${file.name}</a>
+                               <br>
+                           </c:forEach>
+                       </div>
+                   </c:if>
+               </div>
             </div>
         </div>
     </div>

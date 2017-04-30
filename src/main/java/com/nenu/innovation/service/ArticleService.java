@@ -44,7 +44,7 @@ public interface ArticleService extends AbstractService {
      * @param article
      * @throws Exception
      */
-    public void newArticle(Article article) throws Exception;
+    public int newArticle(Article article) throws Exception;
 
     /**
      * 更新文章

@@ -274,3 +274,42 @@ footer a:hover {
 .my-current-location{
     float:none !important;
 }
+.side-xtw-left{
+    position: fixed;
+    left: 0;
+    top: 25%;
+}
+.side-xtw-right{
+    position: fixed;
+    right: 0;
+    top: 25%;
+}
+.side-xtw-left img, .side-xtw-right img{
+    width: 150px;
+}
+.content-padding{
+    padding:0 20px;
+}
+.file-ff{
+    padding-left: 40px;
+    margin-top: -8px;
+    font-size: 13px;
+}
+.file_download{
+    color: #5a5a5a !important;
+    text-decoration: none;
+}
+.file_download:hover{
+    color: #337ab7 !important;
+}
+.consult{
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 25px;
+}
+.consult-detail{
+    line-height: 30px;
+}
+.foot-empty{
+    height: 55px;
+}

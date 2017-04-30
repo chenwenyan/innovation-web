@@ -112,7 +112,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     
-    public void newArticle(Article article) throws Exception {
+    public int newArticle(Article article) throws Exception {
         try {
             if (article.getTitle() != null && article.getContent() != null && article.getTypeId() > 0 && article.getCreatorId() > 0) {
                 articleMapper.newArticle(article);
@@ -122,6 +122,7 @@ public class ArticleServiceImpl implements ArticleService {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
+        return 0;
     }
 
     
@@ -260,6 +261,15 @@ public class ArticleServiceImpl implements ArticleService {
             Type type = typeMapper.queryById(article.getTypeId());
             User user = userMapper.queryById(article.getCreatorId());
             School school = schoolMapper.queryById(article.getSchoolId());
+            if(type == null){
+                article.setTypeName("无");
+            }
+            if(user == null){
+                article.setCreatorName("无");
+            }
+            if(school == null){
+                article.setSchoolName("无");
+            }
             article.setTypeName(type.getName());
             article.setCreatorName(user.getUsername());
             article.setSchoolName(school.getName());

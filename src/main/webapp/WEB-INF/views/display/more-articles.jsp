@@ -8,6 +8,7 @@
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/side-bar.jsp"/>
 <div class="img-container container">
     <img src="/img/head1.jpg" alt="大学生创新创业计划">
 </div>
@@ -84,9 +85,7 @@
                         </c:forEach>
                     </ul>
                 </div>
-            </div>
-            <div class="col-sm-3 col-sm-offset-8">
-                <div class="pull-right">
+                <div class="pull-right" style="margin-right:20px;">
                     <ul id="pageLimit"></ul>
                 </div>
             </div>
@@ -98,15 +97,12 @@
 <script type="text/javascript">
     $(function () {
         $('#pageLimit').bootstrapPaginator({
+            size : "small",
             currentPage: ${pageNo + 1},
             totalPages: ${count},
-            size: "normal",
             bootstrapMajorVersion: 3,
             alignment: "right",
             numberOfPages: 5,
-            shouldShowPage: function () {
-                return ${pageNo == 0} ?  false : true;
-            },
             itemTexts: function (type, page, current) {
                 switch (type) {
                     case "first":
