@@ -8,6 +8,7 @@
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/side-bar.jsp"/>
 <div class="public">
     <div class="container">
         <div class="row">

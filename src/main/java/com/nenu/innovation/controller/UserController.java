@@ -142,11 +142,11 @@ public class UserController {
         String password = request.getParameter("password");
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
         try {
-            if(userService.checkExistByName(username)){
-                model.addAttribute("msg", "用户名已存在！");
-                model.addAttribute("isRedirect",true);
-                return "management/users/edit";
-            }
+//            if(userService.checkExistByName(username)){
+//                model.addAttribute("msg", "用户名已存在！");
+//                model.addAttribute("isRedirect",true);
+//                return "management/users/edit";
+//            }
             userService.updateUserInfo(id, username, password ,schoolId);
             User this_user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", this_user);

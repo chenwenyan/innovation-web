@@ -207,8 +207,15 @@
             pickerPosition: "bottom-left"
         }).on("changeDate", function (ev) {
             var startYear = $("#startYear").val();
-            $("#endYear").datetimepicker("setStartDate", startYear);
-            $("#startYear").datetimepicker("hide");
+            var endYear = $("#endYear").val();
+            if (startYear != "" && endYear != null) {
+                if (startYear > endYear) {
+                    alert("开始年份应小于结束年份，请重新选择年份！");
+                    $("#startYear").val('');
+                }
+            }
+//            $("#endYear").datetimepicker("setStartDate", startYear);
+//            $("#startYear").datetimepicker("hide");
         });
 
         $('#end_year').datetimepicker({
@@ -223,14 +230,15 @@
             var startYear = $("#startYear").val();
             var endYear = $("#endYear").val();
             if (startYear != "" && endYear != null) {
-                if (startYear >= endYear) {
+                if (startYear > endYear) {
                     alert("开始年份应小于结束年份");
-                    return;
+                    $("#endYear").val('');
                 }
             }
-            $("#startYear").datetimepicker("setEndDate", endYear);
-            $("#startYear").datetimepicker("hide");
+//            $("#startYear").datetimepicker("setEndDate", endYear);
+//            $("#startYear").datetimepicker("hide");
         });
+
 
 
         $('#pageLimit').bootstrapPaginator({

@@ -68,7 +68,7 @@ public class displayController {
             schoolId = Integer.parseInt(schoolIdStr);
         }
 
-        int startYear = 2012;
+        int startYear = 2010;
         int endYear = 1900 + new Date().getYear();
         try {
             if (request.getParameter("startYear") != "" && request.getParameter("startYear") != null) {

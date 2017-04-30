@@ -41,7 +41,7 @@
     <update id="updateProjectInfo">
         UPDATE `t_project`
         SET name = #{project.name},charger = #{project.charger},teacher = #{project.teacher}, school_id = #{project.schoolId},
-        year=#{project.year},type=#{type},category=#{category}
+        year=#{project.year},type=#{project.type},category=#{project.category}
         WHERE id = #{id}
     </update>
 

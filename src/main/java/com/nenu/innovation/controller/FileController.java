@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.net.URLEncoder;
 
 
 /**
@@ -46,7 +45,9 @@ public class FileController {
                     // 设置响应报头
                     long fSize = proposeFile.length();
                     response.setContentType("application/x-download");
-                    response.addHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(proposeFile.getName(), "utf-8"));
+                    response.setCharacterEncoding("utf-8");
+//                    response.addHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(proposeFile.getName(), "utf-8"));
+                    response.addHeader("Content-Disposition", "attachment; filename=" + new String(proposeFile.getName().getBytes("gbk"),"iso-8859-1"));
                     // Accept-Ranges: bytes
                     response.setHeader("Accept-Ranges", "bytes");
                     long pos = 0, last = fSize - 1, sum = 0;// pos开始读取位置; last最后读取位置; sum记录总共已经读取了多少字节

@@ -101,8 +101,8 @@
                                     <label class="col-sm-3 control-label"><span class="requires">*</span>项目分类</label>
                                     <div class="col-sm-9">
                                         <select class="col-sm-3 form-control w180" name ="type" id="type">
-                                            <option  <c:if test="${project.type == '国创'}">selected="selected"</c:if> value="1" selected>国创 </option>
-                                            <option  <c:if test="${project.type == '科研立项'}">selected="selected"</c:if>value="2">科研立项 </option>
+                                            <option  <c:if test="${project.type == '国创'}">selected="selected"</c:if> value="国创" selected>国创 </option>
+                                            <option  <c:if test="${project.type == '科研立项'}">selected="selected"</c:if>value="科研立项">科研立项 </option>
                                         </select>
                                         <label class="col-sm-1 control-label">项目类别</label>
                                         <select class="col-sm-3 form-control w180" name ="category" id="category">
@@ -211,21 +211,22 @@
             }
         });
 
+
         //类别选项
-        $("#category").change(function () {
-            var category = $("#category").val();
-            if (category == '国创') {
-                $("#typeId").empty();
-                $("#typeId").append("<option value='创新训练' selected>创新训练</option>");
-                $("#typeId").append("<option value='创业训练'>创业训练</option>");
-                $("#typeId").append("<option value='创业实践'>创业实践</option>");
+        $("#type").change(function () {
+            var type = $("#type").val();
+            if (type == '国创') {
+                $("#category").empty();
+                $("#category").append("<option value='创新训练' selected>创新训练</option>");
+                $("#category").append("<option value='创业训练'>创业训练</option>");
+                $("#category").append("<option value='创业实践'>创业实践</option>");
             }
-            if (category == '科研立项') {
-                $("#typeId").empty();
-                $("#typeId").append("<option value='本科生项目（重点）' selected>本科生项目（重点）</option>");
-                $("#typeId").append("<option value='本科生项目（一般）'>本科生项目（一般）</option>");
-                $("#typeId").append("<option value='青年探索培育基金拟资助项目'>青年探索培育基金拟资助项目</option>");
-                $("#typeId").append("<option value='科研项目'>科研项目</option>");
+            if (type == '科研立项') {
+                $("#category").empty();
+                $("#category").append("<option value='本科生项目（重点）' selected>本科生项目（重点）</option>");
+                $("#category").append("<option value='本科生项目（一般）'>本科生项目（一般）</option>");
+                $("#category").append("<option value='青年探索培育基金拟资助项目'>青年探索培育基金拟资助项目</option>");
+                $("#category").append("<option value='科研项目'>科研项目</option>");
             }
         });
     })

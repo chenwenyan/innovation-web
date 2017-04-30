@@ -59,10 +59,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-3 control-label"><span class="requires">*</span>用户名称</label>
+                                    <label class="col-sm-3 control-label"><span class="requires">*</span>密码</label>
                                     <div class="col-sm-9">
                                         <input type="text" value="${this_user.password}"
-                                               placeholder="请输入用户名称" class="w180 form-control name col-sm-3"
+                                               placeholder="请输入用户密码" class="w180 form-control name col-sm-3"
                                                name="password">
                                         <span class="tip2 col-sm-6">用户密码不能为空，请重新填写</span>
                                     </div>
@@ -73,7 +73,7 @@
                                         <select class="col-sm-2 form-control w180" name="schoolId" id="schoolId">
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size()> 0}">
-                                                    <option <c:if test='${school.id == user.schoolId}'>selected="selected"</c:if> value="${school.id}">${school.name}</option>
+                                                    <option <c:if test='${school.id == this_user.schoolId}'>selected="selected"</c:if> value="${school.id}">${school.name}</option>
                                                 </c:if>
                                             </c:forEach>
                                         </select>

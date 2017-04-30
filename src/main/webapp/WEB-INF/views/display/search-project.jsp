@@ -8,6 +8,7 @@
 </head>
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/display/common/header.jsp"/>
+<jsp:include flush="true" page="/WEB-INF/views/display/common/side-bar.jsp"/>
 <div class="public">
     <div class="container">
         <div class="row">
@@ -148,8 +149,15 @@
             pickerPosition: "bottom-left"
         }).on("changeDate", function (ev) {
             var startYear = $("#startYear").val();
-            $("#endYear").datetimepicker("setStartDate", startYear);
-            $("#startYear").datetimepicker("hide");
+            var endYear = $("#endYear").val();
+            if (startYear != "" && endYear != null) {
+                if (startYear > endYear) {
+                    alert("开始年份应小于结束年份，请重新选择年份！");
+                    $("#startYear").val('');
+                }
+            }
+//            $("#endYear").datetimepicker("setStartDate", startYear);
+//            $("#startYear").datetimepicker("hide");
         });
 
         $('#end_year').datetimepicker({
@@ -164,12 +172,13 @@
             var startYear = $("#startYear").val();
             var endYear = $("#endYear").val();
             if (startYear != "" && endYear != null) {
-                if (startYear >= endYear) {
+                if (startYear > endYear) {
                     alert("开始年份应小于结束年份");
+                    $("#endYear").val('');
                 }
             }
-            $("#startYear").datetimepicker("setEndDate", endYear);
-            $("#startYear").datetimepicker("hide");
+//            $("#startYear").datetimepicker("setEndDate", endYear);
+//            $("#startYear").datetimepicker("hide");
         });
 
 
