@@ -65,8 +65,7 @@
                                                     <option value = "-1">无</option>
                                                 </c:if>
                                                 <c:if test="${typeList.size()> 0}">
-                                                    <option value ="${type.id}">
-                                                    <%--<c:if test="${article.typeId eq type.id}"> selected="selected" </c:if>--%>
+                                                    <option   <c:if test="${article.typeId == type.id}"> selected="selected" </c:if> value ="${type.id}">
                                                     ${type.name}</option>
                                                 </c:if>
                                             </c:forEach>
