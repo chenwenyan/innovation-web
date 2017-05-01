@@ -172,11 +172,11 @@
             $(".J_username+.input-tip+.empty-tip").removeClass("show");
             $(".J_pwd+.input-tip+.empty-tip").removeClass("show");
         });
-        if (remember==1) {
-            $(".J_resetBtn").click( function () {
-                $(".J_remember").attr("checked","checked");
-            });
-        }
+//        if (remember==1) {
+//            $(".J_resetBtn").click( function () {
+//                $(".J_remember").attr("checked","checked");
+//            });
+//        }
     })
 </script>
 </body>
