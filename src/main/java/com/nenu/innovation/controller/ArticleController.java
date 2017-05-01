@@ -1,13 +1,7 @@
 package com.nenu.innovation.controller;
 
-import com.nenu.innovation.entity.Article;
-import com.nenu.innovation.entity.Type;
-import com.nenu.innovation.entity.User;
-import com.nenu.innovation.entity.UserFile;
-import com.nenu.innovation.service.ArticleService;
-import com.nenu.innovation.service.TypeService;
-import com.nenu.innovation.service.UserFileService;
-import com.nenu.innovation.service.UserService;
+import com.nenu.innovation.entity.*;
+import com.nenu.innovation.service.*;
 import com.nenu.innovation.utils.NumUtils;
 import com.nenu.innovation.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,9 +38,42 @@ public class ArticleController {
     private TypeService typeService;
 
     @Autowired
+    private SchoolService schoolService;
+
+    @Autowired
     private UserFileService userFileService;
 
-    @RequestMapping(value = "/article", method = RequestMethod.GET)
+    @RequestMapping(value = "article/list", method = RequestMethod.GET)
+    public String toArticleList(HttpServletRequest request, HttpServletResponse response,
+                         Model model) {
+        String pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
+        List<Article> articles = Collections.emptyList();
+        List<School> schools = Collections.emptyList();
+        List<Type> types = Collections.emptyList();
+
+        try {
+            articles = articleService.listByPage(offset, pageSize);
+            schools = schoolService.listAll();
+            types = typeService.listAll();
+            model.addAttribute("articleList", articles);
+            model.addAttribute("schoolList", schools);
+            model.addAttribute("typeList", types);
+            model.addAttribute("pageNo", pageNo);
+            int sum = articleService.count();
+            model.addAttribute("count", NumUtils.ceilNum(sum, pageSize));
+            User user = UserUtils.setUserSession(request, model);
+            model.addAttribute("user", user);
+            return "management/article/list";
+
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @RequestMapping(value = "article", method = RequestMethod.GET)
     public String toList(HttpServletRequest request, HttpServletResponse response,
                          Model model) {
         String pageNoStr = request.getParameter("pageNo");
@@ -54,28 +81,28 @@ public class ArticleController {
         int pageSize = 10;
         int offset = pageNo * pageSize;
         List<Article> articles = Collections.emptyList();
-        List<User> users = Collections.emptyList();
+        List<School> schools = Collections.emptyList();
         List<Type> types = Collections.emptyList();
 
-        String title = (request.getParameter("title") == null) ? null : request.getParameter("title").trim();
-        int creatorId = (request.getParameter("userId") == null) ? 0 : Integer.parseInt(request.getParameter("userId"));
+        String title = (request.getParameter("title") == null) ? null : request.getParameter("title");
+        int schoolId = (request.getParameter("schoolId") == null) ? 0 : Integer.parseInt(request.getParameter("schoolId"));
         int typeId = (request.getParameter("typeId") == null) ? 0 : Integer.parseInt(request.getParameter("typeId"));
         int isAudited = (request.getParameter("isAudited") == null) ? -1 : Integer.parseInt(request.getParameter("isAudited"));
 
         try {
-            articles = articleService.queryBySearchInfo(title, creatorId, typeId, isAudited, offset, pageSize);
-            users = userService.listAll();
+            articles = articleService.queryBySearchInfo(title, schoolId, typeId, isAudited, offset, pageSize);
+            schools = schoolService.listAll();
             types = typeService.listAll();
             model.addAttribute("articleList", articles);
-            model.addAttribute("userList", users);
+            model.addAttribute("schoolList", schools);
             model.addAttribute("typeList", types);
             model.addAttribute("pageNo", pageNo);
-            int sum = articleService.countQueryBySearchInfo(title, creatorId, typeId, isAudited);
+            int sum = articleService.countQueryBySearchInfo(title, schoolId, typeId, isAudited);
             model.addAttribute("count", NumUtils.ceilNum(sum, pageSize));
             User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             model.addAttribute("title", title);
-            model.addAttribute("creatorId", creatorId);
+            model.addAttribute("schoolId", schoolId);
             model.addAttribute("typeId", typeId);
             model.addAttribute("isAudited", isAudited);
             return "management/article/list";
@@ -158,7 +185,7 @@ public class ArticleController {
                 }
             }
             model.addAttribute("user", user);
-            return "redirect:/article";
+            return "redirect:/article/list";
         } catch (Exception e) {
             e.printStackTrace();
             return "error";
@@ -191,15 +218,10 @@ public class ArticleController {
             String title = request.getParameter("title").trim();
             String content = request.getParameter("content");
             int typeId = Integer.parseInt(request.getParameter("typeId"));
-//            if (articleService.checkExistByName(title)) {
-//                model.addAttribute("msg", "文章名称已存在！");
-//                model.addAttribute("isRedirect", true);
-//                return "management/article/edit";
-//            }
             User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             articleService.updateArticleById(id, title, content, typeId, user.getId());
-            return "redirect:/article";
+            return "redirect:/article/list";
         } catch (Exception e) {
             e.printStackTrace();
             return "error";
@@ -213,12 +235,12 @@ public class ArticleController {
             if (articleService.queryById(id) == null) {
                 model.addAttribute("msg", "该文章不存在或已被删除！");
                 model.addAttribute("isRedirect", true);
-//                return "management/article/list";
+                return "management/article/list";
             }
             articleService.deleteById(id);
             User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
-            return "redirect:/article";
+            return "redirect:/article/list";
         } catch (Exception e) {
             return "error";
         }
@@ -259,7 +281,7 @@ public class ArticleController {
             articleService.setIsAudited(id, isAudited);
             User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
-            return "redirect:/article";
+            return "redirect:/article/list";
         } catch (Exception e) {
             return "error";
         }

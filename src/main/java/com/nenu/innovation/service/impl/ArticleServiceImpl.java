@@ -54,10 +54,8 @@ public class ArticleServiceImpl implements ArticleService {
 
     
     public int count() throws Exception {
-        int sum = 0;
         try {
-            sum = articleMapper.count();
-            return sum;
+            return articleMapper.count() == null ? 0 :articleMapper.count();
         } catch (Exception e) {
             System.out.println("文章计数出错！");
             e.printStackTrace();
@@ -164,10 +162,10 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     
-    public List<Article> queryBySearchInfo(String title, int creatorId, int typeId,int isAudited, int offset, int pageSize) throws Exception {
+    public List<Article> queryBySearchInfo(String title, int schoolId, int typeId,int isAudited, int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
-            articles = articleMapper.queryBySearchInfo(title, creatorId, typeId,isAudited, offset, pageSize);
+            articles = articleMapper.queryBySearchInfo(title, schoolId, typeId,isAudited, offset, pageSize);
             for (Article article : articles) {
                 setArticleTypeAndCreatorAndSchool(article);
             }
@@ -220,16 +218,19 @@ public class ArticleServiceImpl implements ArticleService {
     
     public int countListByTypeAndPage(int typeId) throws Exception {
         try {
-            return articleMapper.countListByTypeAndPage(typeId);
+            return articleMapper.countListByTypeAndPage(typeId) == null ? 0 :articleMapper.countListByTypeAndPage(typeId);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
-    public int countQueryBySearchInfo(String title, int creatorId, int typeId,int isAudited) throws Exception{
+    public int countQueryBySearchInfo(String title, int schoolId, int typeId,int isAudited) throws Exception{
         try {
-            return articleMapper.countQueryBySearchInfo(title,creatorId,typeId,isAudited);
+            if(articleMapper.countQueryBySearchInfo(title,schoolId,typeId,isAudited) == null){
+                return 0;
+            }
+            return articleMapper.countQueryBySearchInfo(title,schoolId,typeId,isAudited);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());

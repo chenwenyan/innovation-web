@@ -35,7 +35,7 @@
 
     <select id="listAll" resultMap="userResultMap">
         SELECT * FROM t_user
-        ORDER BY created_time
+        ORDER BY created_time DESC
     </select>
 
     <select id="count" resultType="integer">
@@ -80,13 +80,33 @@
     <select id="listByPage" resultMap="userResultMap">
         SELECT * FROM t_user
         WHERE type = 2
-        ORDER BY created_time
+        ORDER BY created_time DESC
         LIMIT #{offset},#{pageSize}
     </select>
 
     <select id="queryByNameAndPassword" resultMap="userResultMap">
         SELECT * FROM t_user
         WHERE username = #{username} and password = #{password}
+    </select>
+
+    <select id="listByNameAndPage" resultMap="userResultMap">
+        SELECT * FROM t_user
+        WHERE TRUE
+        <if test="username != '' and username !=null">
+            and username LIKE "%"username"%"
+        </if>
+        and type = 2
+        ORDER BY created_time DESC
+        LIMIT #{offset},#{pageSize}
+    </select>
+
+    <select id="countByName" resultType ="Integer">
+        SELECT COUNT(1) FROM t_user
+        WHERE TRUE
+        <if test="username != '' and username !=null">
+            and username LIKE "%"username"%"
+        </if>
+        and type = 2
     </select>
 
 </mapper>

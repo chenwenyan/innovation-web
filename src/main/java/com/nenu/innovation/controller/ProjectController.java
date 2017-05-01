@@ -34,6 +34,36 @@ public class ProjectController {
     @Autowired
     private SchoolService schoolService;
 
+    @RequestMapping(value = "project/list", method = RequestMethod.GET)
+    public String toProjectList(HttpServletRequest request, HttpServletResponse response,
+                               Model model) {
+        String pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
+        List<Project> projects = Collections.emptyList();
+        List<School> schools = Collections.emptyList();
+
+        try {
+            schools = schoolService.listAll();
+            projects = projectService.listByPage(offset, pageSize);
+            model.addAttribute("schoolList", schools);
+            model.addAttribute("projectList", projects);
+            model.addAttribute("pageNo", pageNo);
+            int sum = projectService.count();
+            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
+            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", user);
+            if(user.getSchoolId() == 0){
+                return "management/project/list";
+            }else{
+                return "redirect:/article/list";
+            }
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
     @RequestMapping(value = "/project", method = RequestMethod.GET)
     public String toSearchList(HttpServletRequest request, HttpServletResponse response,
                                Model model) {
@@ -74,7 +104,13 @@ public class ProjectController {
             model.addAttribute("schoolId", schoolId);
             model.addAttribute("startYear", startYear);
             model.addAttribute("endYear", endYear);
-            return "management/project/list";
+            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("user", user);
+            if(user.getSchoolId() == 0){
+                return "management/project/list";
+            }else{
+                return "redirect:/article/list";
+            }
         } catch (Exception e) {
             return "error";
         }
@@ -123,7 +159,7 @@ public class ProjectController {
             projectService.newProject(project);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/project";
+            return "redirect:/project/list";
         } catch (Exception e) {
             return "error";
         }
@@ -176,7 +212,7 @@ public class ProjectController {
             projectService.updateProjectInfo(id, project);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/project";
+            return "redirect:/project/list";
         } catch (Exception e) {
             return "error";
         }
@@ -194,7 +230,7 @@ public class ProjectController {
             projectService.deleteById(id);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/project";
+            return "redirect:/project/list";
         } catch (Exception e) {
             return "error";
         }

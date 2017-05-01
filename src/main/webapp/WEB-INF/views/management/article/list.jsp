@@ -55,16 +55,16 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label class="col-sm-4 control-label">文章作者</label>
+                                    <label class="col-sm-4 control-label">发布单位</label>
                                     <div class="col-sm-2">
-                                        <select class="form-control w180" name="userId" id="userId">
+                                        <select class="form-control w180" name="schoolId" id="schoolId">
                                             <option value="0">全部</option>
-                                            <c:forEach var="user" items="${userList}">
-                                                <c:if test="${userList.size() == 0}">
+                                            <c:forEach var="school" items="${schoolList}">
+                                                <c:if test="${schoolList.size() == 0}">
                                                     <option value="-1">无</option>
                                                 </c:if>
-                                                <c:if test="${userList.size()> 0}">
-                                                    <option <c:if test='${user.id == creatorId}'>selected="selected"</c:if>  value="${user.id}">${user.username}</option>
+                                                <c:if test="${schoolList.size()> 0}">
+                                                    <option <c:if test='${school.id == schoolId}'>selected="selected"</c:if>  value="${school.id}">${school.name}</option>
                                                 </c:if>
                                             </c:forEach>
                                         </select>
@@ -214,7 +214,7 @@
         $('#pageLimit').bootstrapPaginator({
             currentPage: ${pageNo+1},
             totalPages: ${count},
-            size:"normal",
+            size:"small",
             bootstrapMajorVersion: 3,
             alignment:"right",
             numberOfPages:5,

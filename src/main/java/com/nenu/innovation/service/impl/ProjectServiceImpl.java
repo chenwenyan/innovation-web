@@ -40,7 +40,7 @@ public class ProjectServiceImpl implements ProjectService {
  
     public int count() throws Exception {
         try {
-            return projectMapper.count();
+            return projectMapper.count()== null ? 0 : projectMapper.count();
         } catch (Exception e) {
             System.out.println("统计项目数目出错！");
             throw new Exception(e.getMessage());
@@ -140,8 +140,12 @@ public class ProjectServiceImpl implements ProjectService {
 
     public int countQueryBySearchInfo(String name, String charger, String teacher, int schoolId, int startYear, int endYear) throws Exception {
         try {
-            int sum = projectMapper.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear);
-            return sum;
+            if(projectMapper.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear) == null){
+                return 0;
+            }else {
+                return projectMapper.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("条件查询计数出错");

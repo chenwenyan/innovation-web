@@ -30,7 +30,7 @@
     <select id="listAll" resultMap="projectResultMap">
         SELECT *
         FROM t_project
-        ORDER BY year DESC 
+        ORDER BY created_time DESC
     </select>
 
     <select id="count" resultType="integer">
@@ -76,7 +76,7 @@
         <if test="endYear != null">
             AND year &lt;= #{endYear}
         </if>
-        ORDER BY year DESC
+        ORDER BY created_time DESC
         LIMIT #{offset},#{pageSize}
     </select>
 
@@ -106,7 +106,7 @@
 
     <select id="listByPage" resultMap="projectResultMap">
         SELECT * FROM `t_project`
-        ORDER BY year DESC
+        ORDER BY created_time DESC
         LIMIT #{offset},#{pageSize}
     </select>
 </mapper>

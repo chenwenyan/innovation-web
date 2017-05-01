@@ -34,7 +34,7 @@ public class TypeServiceImpl implements TypeService {
  
     public int count() throws Exception {
         try {
-            return typeMapper.count();
+            return typeMapper.count() == null? 0 : typeMapper.count();
         } catch (Exception e) {
             System.out.println("统计类型数目出错！");
             throw new Exception(e.getMessage());
@@ -44,7 +44,7 @@ public class TypeServiceImpl implements TypeService {
  
     public int countByName(String name) throws Exception {
         try {
-            return typeMapper.countByName(name);
+            return typeMapper.countByName(name) == null? 0:typeMapper.countByName(name);
         } catch (Exception e) {
             System.out.println("根据名称统计类型数目出错！");
             throw new Exception(e.getMessage());

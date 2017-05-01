@@ -34,7 +34,7 @@ public class SchoolServiceImpl implements SchoolService {
  
     public int count() throws Exception {
         try {
-            return schoolMapper.count();
+            return schoolMapper.count()== null? 0:schoolMapper.count();
         } catch (Exception e) {
             System.out.println("统计学院书目出错！");
             throw new Exception(e.getMessage());

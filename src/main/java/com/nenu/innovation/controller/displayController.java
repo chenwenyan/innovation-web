@@ -125,19 +125,23 @@ public class displayController {
     public String toProjects(HttpServletRequest request, HttpServletResponse response,
                              Model model) {
         List<Article> sqshsjgg = Collections.emptyList();  //暑期社会实践
-        List<Article> kyfc = Collections.emptyList();  //科研扶持
-        List<Article> cyy = Collections.emptyList();  //创业园
+        List<Article> cyfc = Collections.emptyList();  //创业扶持
+        List<Article> cyy = Collections.emptyList();   //创业园
         List<Article> qyzc = Collections.emptyList();   //企业注册
         List<Article> kycg = Collections.emptyList();   //科研成果
 
         List<Article> plans = Collections.emptyList();  //总计划
         try {
             sqshsjgg = articleService.listByType(4);
-            kyfc = articleService.listThree();
+            cyfc = articleService.listByType(5);
+            cyy = articleService.listByType(6);
+            qyzc = articleService.listByType(7);
             kycg = articleService.listByType(8);
             model.addAttribute("sqshsjgg", sqshsjgg.size() > pageSize ? sqshsjgg.subList(0, pageSize) : sqshsjgg);
-            model.addAttribute("kyfc", kyfc.size() > pageSize ? kyfc.subList(0, pageSize) : kyfc);
+            model.addAttribute("cyfc", cyfc.size() > pageSize ? cyfc.subList(0, pageSize) : cyfc);
+            model.addAttribute("cyy", cyy.size() > pageSize ? cyy.subList(0, pageSize) : cyy);
             model.addAttribute("kycg", kycg.size() > pageSize ? kycg.subList(0, pageSize) : kycg);
+            model.addAttribute("qyzc", qyzc.size() > pageSize ? qyzc.subList(0, pageSize) : qyzc);
             model.addAttribute("plans", plans);
             return "display/plans";
         } catch (Exception e) {

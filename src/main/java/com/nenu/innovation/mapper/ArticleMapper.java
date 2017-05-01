@@ -88,12 +88,12 @@ public interface ArticleMapper {
      * 根据条件查询文章
      *
      * @param title
-     * @param creatorId
+     * @param schoolId
      * @param typeId
      * @return
      * @throws Exception
      */
-    public List<Article> queryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId,
+    public List<Article> queryBySearchInfo(@Param("title") String title, @Param("schoolId") Integer schoolId, @Param("typeId") Integer typeId,
                                            @Param("isAudited") Integer isAudited, @Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 
     /**
@@ -147,12 +147,12 @@ public interface ArticleMapper {
      * 获取条件查询的个数
      *
      * @param title
-     * @param creatorId
+     * @param schoolId
      * @param typeId
      * @return
      * @throws Exception
      */
-    public Integer countQueryBySearchInfo(@Param("title") String title, @Param("creatorId") Integer creatorId, @Param("typeId") Integer typeId,@Param("isAudited") Integer isAudited)throws Exception;
+    public Integer countQueryBySearchInfo(@Param("title") String title, @Param("schoolId") Integer schoolId, @Param("typeId") Integer typeId,@Param("isAudited") Integer isAudited)throws Exception;
 
     /**
      * 根据审批状态显示列表
@@ -173,7 +173,7 @@ public interface ArticleMapper {
     public void setIsAudited(@Param("id") Integer id,@Param("isAudited") Integer isAudited)throws Exception;
 
     /**
-     * 获取科研扶持 创业园 企业注册 三种类型文章列表
+     * 获取创业扶持 创业园 企业注册 三种类型文章列表
      *
      * @return
      * @throws Exception

@@ -29,7 +29,7 @@
                     </c:if>
                     <c:if test="${typeId == 4 || typeId == 5 || typeId == 6 || typeId == 7 || typeId == 8  }">
                         <li><a href="/more-articles?typeId=4"><i class="fa fa-th"></i>&nbsp;&nbsp;暑期社会实践公告</a></li>
-                        <li><a href="/more-articles?typeId=5"><i class="fa fa-th"></i>&nbsp;&nbsp;科研扶持</a></li>
+                        <li><a href="/more-articles?typeId=5"><i class="fa fa-th"></i>&nbsp;&nbsp;创业扶持</a></li>
                         <li><a href="/more-articles?typeId=6"><i class="fa fa-th"></i>&nbsp;&nbsp;创业园</a></li>
                         <li><a href="/more-articles?typeId=7"><i class="fa fa-th"></i>&nbsp;&nbsp;企业注册</a></li>
                         <li><a href="/more-articles?typeId=8"><i class="fa fa-th"></i>&nbsp;&nbsp;科研成果</a></li>
@@ -59,7 +59,7 @@
                              <c:if test="${typeId == 2 }">创青春全国大学生创业大赛</c:if>
                              <c:if test="${typeId == 3 }">挑战杯</c:if>
                              <c:if test="${typeId == 4 }">暑期社会实践公告</c:if>
-                             <c:if test="${typeId == 5 }">科研扶持</c:if>
+                             <c:if test="${typeId == 5 }">创业扶持</c:if>
                              <c:if test="${typeId == 6 }">创业园</c:if>
                              <c:if test="${typeId == 7 }">企业注册</c:if>
                              <c:if test="${typeId == 8 }">科研成果</c:if>

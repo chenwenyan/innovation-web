@@ -118,4 +118,8 @@ public interface UserMapper {
      * @throws Exception
      */
     public User queryByNameAndPassword(@Param("username") String username, @Param("password") String password) throws Exception;
+
+    public List<User> listByNameAndPage(@Param("offset") Integer offset,@Param("pageSize") Integer pageSize, @Param("username") String username);
+
+    public Integer countByName(@Param("username") String username);
 }

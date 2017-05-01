@@ -32,15 +32,15 @@ public class UserController {
     @Autowired
     private SchoolService schoolService;
 
-    @RequestMapping(value = "user", method = RequestMethod.GET)
-    public String toList(HttpServletRequest request, Model model) {
+
+    @RequestMapping(value = "user/list", method = RequestMethod.GET)
+    public String toUserList(HttpServletRequest request, Model model) {
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
         int pageSize = 10;
         int offset = pageNo * pageSize;
         User user = new User();
         try {
-
             if (request.getSession().getAttribute("user") != null) {
                 user = UserUtils.setUserSession(request,model);
                 model.addAttribute("user", user);
@@ -53,7 +53,37 @@ public class UserController {
             if(user.getSchoolId() == 0){
                 return "management/users/list";
             }else{
-                return "redirect:article";
+                return "redirect:/article";
+            }
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public String toList(HttpServletRequest request, Model model) {
+        String pageNoStr = request.getParameter("pageNo");
+        int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
+        int pageSize = 10;
+        int offset = pageNo * pageSize;
+        String name = request.getParameter("username");
+        User user = new User();
+        try {
+            if (request.getSession().getAttribute("user") != null) {
+                user = UserUtils.setUserSession(request,model);
+                model.addAttribute("user", user);
+            }
+            List<User> users = userService.listByNameAndPage(offset,pageSize,name);
+            int sum = userService.countByName(name);
+            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
+            model.addAttribute("username", name);
+            model.addAttribute("userList", users);
+            model.addAttribute("pageNo", pageNo);
+            if(user.getSchoolId() == 0){
+                return "management/users/list";
+            }else{
+                return "redirect:/article/list";
             }
         } catch (Exception e) {
             return "error";
@@ -63,13 +93,14 @@ public class UserController {
     @RequestMapping(value = "user", method = RequestMethod.POST)
     public String searchByInfo(HttpServletRequest request, Model model) {
         String username = request.getParameter("username").trim();
-        int status = Integer.parseInt(request.getParameter("status"));
+//        int status = Integer.parseInt(request.getParameter("status"));
         List<User> users = Collections.emptyList();
         try {
             User this_user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", this_user);
-            users = userService.queryBySearchInfo(username, status);
+            users = userService.queryBySearchInfo(username, 0);
             model.addAttribute("userList", users);
+            model.addAttribute("username", username);
             return "management/users/list";
         } catch (Exception e) {
             return "error";
@@ -111,7 +142,7 @@ public class UserController {
                 userService.newUser(user);
                 User this_user = UserUtils.setUserSession(request,model);
                 model.addAttribute("user", this_user);
-                return "redirect:/user";
+                return "redirect:/user/list";
             }
         } catch (Exception e) {
             return "error";
@@ -150,7 +181,7 @@ public class UserController {
             userService.updateUserInfo(id, username, password ,schoolId);
             User this_user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", this_user);
-            return "redirect:/user";
+            return "redirect:/user/list";
         } catch (Exception e) {
             return "error";
         }
@@ -169,7 +200,7 @@ public class UserController {
             User this_user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", this_user);
             model.addAttribute("isRedirect",true);
-            return "redirect:/user";
+            return "redirect:/user/list";
         } catch (Exception e) {
             return "error";
         }
@@ -190,7 +221,7 @@ public class UserController {
             }
             User this_user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", this_user);
-            return "redirect:/user";
+            return "redirect:/user/list";
         } catch (Exception e) {
             return "error";
         }

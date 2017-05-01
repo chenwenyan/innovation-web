@@ -2,13 +2,13 @@
 
 <html>
  <head>
-     <title>大学生创新创业计划工程</title>
+     <title>大学生创新创业计划培训工程</title>
      <jsp:include flush="true" page="/WEB-INF/views/management/common/head.jsp"/>
  </head>
 
 <body>
 <jsp:include flush="true" page="/WEB-INF/views/management/common/header.jsp"/>
-<h2>大学生创新创业计划工程</h2>
+<h2>大学生创新创业计划培训工程</h2>
 <div>
     <button onclick="location='${website}login'">登录</button>
 </div>

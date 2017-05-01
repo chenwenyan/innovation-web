@@ -25,12 +25,13 @@
         SELECT *
         FROM t_school
         WHERE type = 1
-        ORDER BY created_time
+        ORDER BY created_time DESC
     </select>
 
     <select id="count" resultType="integer">
         SELECT COUNT(1)
         FROM t_school
+        WHERE type = 1
     </select>
 
     <update id="updateSchoolInfo">
@@ -51,14 +52,18 @@
 
     <select id="queryBySearchInfo" resultMap="schoolResultMap">
         SELECT * from `t_school`
+        WHERE true
         <if test="name != null">
-            WHERE name LIKE "%"#{name}"%"
+            and name LIKE "%"#{name}"%"
         </if>
+        and type = 1
+        ORDER BY created_time DESC
     </select>
 
     <select id="listByPage" resultMap="schoolResultMap">
         SELECT * FROM t_school
-        ORDER BY created_time
+        WHERE type = 1
+        ORDER BY created_time DESC
         LIMIT #{offset},#{pageSize}
     </select>
 

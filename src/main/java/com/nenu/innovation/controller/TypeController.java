@@ -3,7 +3,6 @@ package com.nenu.innovation.controller;
 import com.nenu.innovation.entity.Type;
 import com.nenu.innovation.entity.User;
 import com.nenu.innovation.service.TypeService;
-import com.nenu.innovation.utils.NumUtils;
 import com.nenu.innovation.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +27,7 @@ public class TypeController {
     @Autowired
     private TypeService typeService;
 
-    @RequestMapping(value = "/type", method = RequestMethod.GET)
+    @RequestMapping(value = "type/list", method = RequestMethod.GET)
     public String toList(HttpServletRequest request, HttpServletResponse response,
                          Model model) {
         String pageNoStr = request.getParameter("pageNo");
@@ -37,17 +36,18 @@ public class TypeController {
         int offset = pageNo * pageSize;
         List<Type> types = Collections.emptyList();
         try {
-            types = typeService.listByPage(offset, pageSize);
+//            types = typeService.listByPage(offset, pageSize);
+            types = typeService.listAll();
             int sum = typeService.count();
             model.addAttribute("typeList", types);
-            model.addAttribute("pageNo", pageNo);
-            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
+//            model.addAttribute("pageNo", pageNo);
+//            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
             if(user.getSchoolId() == 0){
                 return "management/type/list";
             }else{
-                return "redirect:article";
+                return "redirect:/article/list";
             }
         } catch (Exception e) {
             return "error";
@@ -65,6 +65,8 @@ public class TypeController {
             model.addAttribute("typeList", types);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
+            model.addAttribute("name", name);
+            model.addAttribute("assistantCode", assistantCode);
             return "management/type/list";
         } catch (Exception e) {
             return "error";
@@ -95,7 +97,7 @@ public class TypeController {
             typeService.newType(name, assistantCode);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/type";
+            return "redirect:/type/list";
         } catch (Exception e) {
             return "error";
         }
@@ -129,7 +131,7 @@ public class TypeController {
             typeService.updateTypeInfo(id, name, assistantCode);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/type";
+            return "redirect:/type/list";
         } catch (Exception e) {
             return "error";
         }
@@ -147,7 +149,7 @@ public class TypeController {
             typeService.deleteById(id);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/type";
+            return "redirect:/type/list";
         } catch (Exception e) {
             return "error";
         }

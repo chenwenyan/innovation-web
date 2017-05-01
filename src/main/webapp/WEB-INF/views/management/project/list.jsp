@@ -158,7 +158,7 @@
                                             </td>
                                         </tr>
                                     </c:forEach>
-                                    <c:if test="${projectlList.size()=='0'}">
+                                    <c:if test="${projectList.size()=='0'}">
                                         <tr>
                                             <td colspan="8" style="text-align: center;">无查询结果</td>
                                         </tr>
@@ -208,7 +208,7 @@
         }).on("changeDate", function (ev) {
             var startYear = $("#startYear").val();
             var endYear = $("#endYear").val();
-            if (startYear != "" && endYear != null) {
+            if (startYear != "" && endYear != "") {
                 if (startYear > endYear) {
                     alert("开始年份应小于结束年份，请重新选择年份！");
                     $("#startYear").val('');
@@ -229,7 +229,7 @@
         }).on("changeDate", function (ev) {
             var startYear = $("#startYear").val();
             var endYear = $("#endYear").val();
-            if (startYear != "" && endYear != null) {
+            if (startYear != "" && endYear != "") {
                 if (startYear > endYear) {
                     alert("开始年份应小于结束年份");
                     $("#endYear").val('');
@@ -244,7 +244,7 @@
         $('#pageLimit').bootstrapPaginator({
             currentPage: ${pageNo+1},
             totalPages: ${count},
-            size: "normal",
+            size: "small",
             bootstrapMajorVersion: 3,
             alignment: "right",
             numberOfPages: 5,

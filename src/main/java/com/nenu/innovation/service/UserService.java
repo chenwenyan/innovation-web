@@ -72,4 +72,10 @@ public interface UserService extends AbstractService {
      * @throws Exception
      */
     public User queryByNameAndPassword(String username,String password) throws Exception;
+
+    public List<User> listByNameAndPage( int offset, int pageSize, String username) throws Exception;
+
+    public int countByName(String username) throws Exception;
+
+
 }

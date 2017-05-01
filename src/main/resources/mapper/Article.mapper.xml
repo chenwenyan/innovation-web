@@ -66,15 +66,15 @@
         SELECT * FROM `t_article`
         WHERE TRUE
         <if test="title != null and title != ''">
-            and title = "%"#{title}"%"
+            and title LIKE "%"#{title}"%"
         </if>
-        <if test="creatorId != 0">
-            and creator_id = #{creatorId}
+        <if test="schoolId != -1">
+            and school_id = #{schoolId}
         </if>
         <if test="typeId != 0">
             and type_id = #{typeId}
         </if>
-        <if test="isAudited == 0 || isAudited == 1">
+        <if test="isAudited != -1">
             and is_audited = #{isAudited}
         </if>
         ORDER BY created_time DESC
@@ -120,8 +120,8 @@
         <if test="title != null and title != ''">
             and title = "%"#{title}"%"
         </if>
-        <if test="creatorId != 0">
-            and creator_id = #{creatorId}
+        <if test="schoolId != -1">
+            and school_id = #{schoolId}
         </if>
         <if test="typeId != 0">
             and type_id = #{typeId}
@@ -134,7 +134,7 @@
     <select id="listIsAudited" resultMap="articleResultMap">
         SELECT * FROM t_article
         WHERE is_audited = #{isAudited}
-        ORDER BY create_time DESC
+        ORDER BY created_time DESC
     </select>
 
     <update id = "setIsAudited">

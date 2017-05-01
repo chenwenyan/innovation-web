@@ -27,7 +27,7 @@ public class SchoolController {
     @Autowired
     private SchoolService schoolService;
 
-    @RequestMapping(value = "/school", method = RequestMethod.GET)
+    @RequestMapping(value = "school/list", method = RequestMethod.GET)
     public String toList(HttpServletRequest request, HttpServletResponse response,
                          Model model) {
         String pageNoStr = request.getParameter("pageNo");
@@ -46,7 +46,7 @@ public class SchoolController {
             if(user.getSchoolId() == 0){
                 return "management/school/list";
             }else{
-                return "redirect:article";
+                return "redirect:/article/list";
             }
         } catch (Exception e) {
             return "error";
@@ -63,6 +63,7 @@ public class SchoolController {
             model.addAttribute("schoolList", schools);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
+            model.addAttribute("name", name);
             return "management/school/list";
         } catch (Exception e) {
             return "error";
@@ -82,7 +83,7 @@ public class SchoolController {
     }
 
     @RequestMapping(value = "/school/add", method = RequestMethod.POST)
-    public String newschool(HttpServletRequest request, HttpServletResponse response,
+    public String newSchool(HttpServletRequest request, HttpServletResponse response,
                             Model model) {
         String name = request.getParameter("name");
         try {
@@ -92,7 +93,7 @@ public class SchoolController {
             schoolService.newSchool(name);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/school";
+            return "redirect:/school/list";
         } catch (Exception e) {
             return "error";
         }
@@ -126,13 +127,13 @@ public class SchoolController {
             schoolService.updateSchoolInfo(id, name);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/school";
+            return "redirect:/school/list";
         } catch (Exception e) {
             return "error";
         }
     }
 
-    @RequestMapping(value = "/school/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "school/delete", method = RequestMethod.POST)
     public String deleteById(HttpServletRequest request, HttpServletResponse response,
                              Model model, Integer id) {
         School school = new School();
@@ -144,7 +145,7 @@ public class SchoolController {
             schoolService.deleteById(id);
             User user = UserUtils.setUserSession(request,model);
             model.addAttribute("user", user);
-            return "redirect:/school";
+            return "redirect:/school/list";
         } catch (Exception e) {
             return "error";
         }

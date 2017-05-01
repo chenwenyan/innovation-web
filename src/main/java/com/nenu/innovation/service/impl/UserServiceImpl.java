@@ -77,10 +77,8 @@ public class UserServiceImpl implements UserService {
 
  
     public int count() throws Exception {
-        int sum = 0;
         try {
-            sum = userMapper.count();
-            return sum;
+            return userMapper.count() == null ? 0 : userMapper.count() ;
         } catch (Exception e) {
             System.out.println("用户计数出错！");
             throw new Exception(e.getMessage());
@@ -178,6 +176,30 @@ public class UserServiceImpl implements UserService {
             throw new Exception(e.getMessage());
         }
     }
+
+    public List<User> listByNameAndPage(int offset, int pageSize, String username) throws Exception{
+        List<User> users = Collections.emptyList();
+        try{
+            users = userMapper.listByNameAndPage(offset,pageSize,username);
+            for(User user:users){
+                setSchoolName(user);
+            }
+            return users;
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    public int countByName(String username) throws Exception{
+        try{
+            return userMapper.countByName(username) ==null ? 0 : userMapper.countByName(username);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
+    }
+
 
     private void setSchoolName(User user) throws Exception{
         try{

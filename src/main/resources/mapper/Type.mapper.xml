@@ -31,7 +31,7 @@
     <select id="listAll" resultMap="typeResultMap">
         SELECT *
         FROM t_type
-        ORDER BY created_time
+        ORDER BY created_time DESC
     </select>
 
     <select id="count" resultType="integer">
@@ -69,7 +69,7 @@
     <select id="listByPage" resultMap="typeResultMap">
         SELECT *
         FROM t_type
-        ORDER BY created_time
+        ORDER BY created_time DESC
         LIMIT #{offset},#{pageSize}
     </select>
 </mapper>

@@ -51,13 +51,13 @@
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">类别名称</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="name" placeholder="请输入类别" class="form-control w180">
+                                        <input type="text" name="name" id="name" placeholder="请输入类别" class="form-control w180" value="${name}">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">助记码</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="assistantCode" placeholder="请输入助记码" class="form-control w180">
+                                        <input type="text" name="assistantCode" id="assistantCode" placeholder="请输入助记码" class="form-control w180" value="${assistantCode}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-5">
@@ -107,7 +107,7 @@
                                     </c:if>
                                     </tbody>
                                 </table>
-                                <div class="pull-right"><ul id="pageLimit"></ul></div>
+                                <%--<div class="pull-right"><ul id="pageLimit"></ul></div>--%>
                             </div>
                         </div>
                     </div>
@@ -136,26 +136,26 @@
 //                });
 //            }
 //        });
-        $('#pageLimit').bootstrapPaginator({
-            currentPage: ${pageNo+1},
-            totalPages: ${count},
-            size:"normal",
-            bootstrapMajorVersion: 3,
-            alignment:"right",
-            numberOfPages:5,
-            itemTexts: function (type, page, current) {
-                switch (type) {
-                    case "first": return "首页";
-                    case "prev": return "<<";
-                    case "next": return ">>";
-                    case "last": return "末页";
-                    case "page": return page;
-                }
-            },
-            pageUrl:function (url,page,current) {
-                return "/type?pageNo=" + page;
-            }
-        });
+        <%--$('#pageLimit').bootstrapPaginator({--%>
+            <%--currentPage: ${pageNo+1},--%>
+            <%--totalPages: ${count},--%>
+            <%--size:"small",--%>
+            <%--bootstrapMajorVersion: 3,--%>
+            <%--alignment:"right",--%>
+            <%--numberOfPages:5,--%>
+            <%--itemTexts: function (type, page, current) {--%>
+                <%--switch (type) {--%>
+                    <%--case "first": return "首页";--%>
+                    <%--case "prev": return "<<";--%>
+                    <%--case "next": return ">>";--%>
+                    <%--case "last": return "末页";--%>
+                    <%--case "page": return page;--%>
+                <%--}--%>
+            <%--},--%>
+            <%--pageUrl:function (url,page,current) {--%>
+                <%--return "/type?pageNo=" + page;--%>
+            <%--}--%>
+        <%--});--%>
     });
 </script>
 </body>

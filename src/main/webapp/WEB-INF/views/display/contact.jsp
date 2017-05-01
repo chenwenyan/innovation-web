@@ -19,14 +19,16 @@
                         </span>
                 </div>
                 <div class="panel-body" style="margin-left: 10px">
-                    <h3 class="text-center">校团委</h3>
+                    <h3 class="text-center">东北师范大学大学生创新创业中心</h3>
                     <hr>
                     <div class="col-sm-offset-2">
                         <span class="consult">咨询电话</span>
                         <span>（工作时间：周一至周五  8:00-11:30，13:30-17:00，法定节假日除外）</span>
                         <p class="consult-detail">办公室咨询电话：0431-85099382</p>
                         <span class="consult">通讯地址</span>
-                        <p class="consult-detail">吉林省长春市人民大街5268号东北师范大学北苑3楼204室</p>
+                        <p class="consult-detail">吉林省长春市人民大街5268号东北师范大学北苑3楼B05</p>
+                        <span class="consult">邮箱</span>
+                        <p class="consult-detail">cxcyb@nenu.edu.cn</p>
                         <span class="consult">邮编</span>
                         <p class="consult-detail">130024</p>
                     </div>

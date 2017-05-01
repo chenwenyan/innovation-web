@@ -51,7 +51,7 @@
                                 <div class="form-group col-sm-6">
                                     <label class="col-sm-4 control-label">学院名称</label>
                                     <div class="col-sm-3">
-                                        <input type="text" name="name" placeholder="请输入学院名称" class="form-control w180">
+                                        <input type="text" name="name" id="name" placeholder="请输入学院名称" class="form-control w180" value="${name}">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-sm-offset-5">
@@ -131,7 +131,7 @@
         $('#pageLimit').bootstrapPaginator({
             currentPage: ${pageNo+1},
             totalPages: ${count},
-            size:"normal",
+            size:"small",
             bootstrapMajorVersion: 3,
             alignment:"right",
             numberOfPages:5,
@@ -145,7 +145,7 @@
                 }
             },
             pageUrl:function (url,page,current) {
-                return "/school?pageNo=" + page;
+                return "/school/list?pageNo=" + page;
             }
         });
         console.log(${count});

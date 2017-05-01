@@ -18,7 +18,7 @@
             <img class="first-slide" src="/img/nenu-hlw.jpg" alt="First slide">
         </div>
         <div class="item">
-            <img class="second-slide" src="/img/head2.jpg" alt="Second slide">
+            <img class="second-slide" src="/img/innovation-head.jpg" alt="Second slide">
         </div>
         <div class="item">
             <img class="third-slide" src="/img/head3.jpg" alt="Third slide">
@@ -37,13 +37,13 @@
 <div class="container marketing">
 
     <!-- Three columns of text below the carousel -->
-    <div class="row">
+    <div class="row my-main">
         <div class="col-lg-4">
             <img class="img-circle" src="/img/1.jpg" alt="Generic placeholder image" width="140" height="140">
             <h3>创新创业类比赛</h3>
-            <p>互联网+</p>
-            <p>创青春全国大学生创业大赛</p>
-            <p>挑战杯</p>
+            <p><a class=“” href="/more-articles?type=1">"互联网+"大学生创新创业大赛</a></p>
+            <p><a href="/more-articles?type=2">"创青春"全国大学生创业大赛</a></p>
+            <p><a href="/more-articles?type=3">"挑战杯"全国大学生课外学术科技作品竞赛</a></p>
             <p><a class="btn btn-default" href="/matches" role="button">详情 &raquo;</a></p>
         </div>
         <div class="col-lg-4">
@@ -57,7 +57,7 @@
         <div class="col-lg-4">
             <img class="img-circle" src="/img/innovation.jpg" alt="Generic placeholder image" width="140" height="140">
             <h3>创新创业扶持一揽子计划</h3>
-            <p>暑期社会实践&nbsp;&nbsp;科研扶持</p>
+            <p>暑期社会实践&nbsp;&nbsp;创业扶持</p>
             <p>创业园&nbsp;&nbsp;企业注册</p>
             <p>科研成果</p>
             <p><a class="btn btn-default" href="/plans" role="button">详情 &raquo;</a></p>

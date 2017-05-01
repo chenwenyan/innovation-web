@@ -313,3 +313,11 @@ footer a:hover {
 .foot-empty{
     height: 55px;
 }
+.my-main a{
+    text-decoration: none;
+    color: #5a5a5a !important;
+    font-size: 14px;
+}
+.my-main a:hover{
+    color: #337ab7;
+}
