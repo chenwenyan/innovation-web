@@ -2,6 +2,7 @@
 <footer>
     <div class="container">
         <div class="row">
+            <div class="col-sm-12">&nbsp;</div>
             <div class="col-sm-5 footer-left col-sm-offset-1">
                 <p>
                     友情链接：
@@ -12,7 +13,7 @@
                 <p>版权所有：共青团东北师范大学委员会</p>
                 <p>地&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;址：吉林省长春市人民大街5268号　邮编：130024</p>
             </div>
-            <div class="col-sm-4 col-sm-offset-1">
+            <div class="col-sm-4 footer-right col-sm-offset-1">
                 <img src="/img/weixin.jpg" alt="微信二维码" class="weixin">
                 <span>东北师范大学大学生创业中心</span>
             </div>

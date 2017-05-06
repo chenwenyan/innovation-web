@@ -137,7 +137,11 @@ footer .weixin + span {
 }
 
 footer .footer-left {
-    margin-top: 20px;
+    margin-top: 5px;
+}
+
+footer .footer-right {
+    margin-top: 0px;
 }
 
 footer p {

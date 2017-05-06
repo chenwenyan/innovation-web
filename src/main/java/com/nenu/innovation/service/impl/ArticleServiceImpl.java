@@ -141,7 +141,9 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = new Article();
         try {
             article = articleMapper.queryById(id);
-            setArticleTypeAndCreatorAndSchool(article);
+            if(article != null){
+                setArticleTypeAndCreatorAndSchool(article);
+            }
             return article;
         } catch (Exception e) {
             System.out.println("根据id查询文章失败！");

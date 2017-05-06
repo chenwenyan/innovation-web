@@ -9,7 +9,8 @@
 <div class="page container clearfix">
     <div class="row">
         <div class="login-heading">
-            <h3 class="text-center">大学生创新创业计划培训工程管理系统</h3>
+            <h3 class="text-center">大学生创新创业计划培训工程</h3>
+            <h3 class="text-center">后台管理系统</h3>
         </div>
     </div>
     <form class="J_loginForm" method="post" action="/login">

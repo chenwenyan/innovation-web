@@ -132,7 +132,6 @@
         </div>
     </div>
 </div>
-
 <jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 <script type="text/javascript">

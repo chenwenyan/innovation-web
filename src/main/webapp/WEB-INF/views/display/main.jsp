@@ -15,13 +15,13 @@
     </ol>
     <div class="carousel-inner" role="listbox">
         <div class="item active">
-            <img class="first-slide" src="/img/nenu-hlw.jpg" alt="First slide">
+            <img class="first-slide" src="/img/head-hlw-1.jpg" alt="First slide">
         </div>
         <div class="item">
-            <img class="second-slide" src="/img/innovation-head.jpg" alt="Second slide">
+            <img class="second-slide" src="/img/head-hlw-2.jpg" alt="Second slide">
         </div>
         <div class="item">
-            <img class="third-slide" src="/img/head3.jpg" alt="Third slide">
+            <img class="third-slide" src="/img/head-hlw-3.jpg" alt="Third slide">
         </div>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -41,25 +41,25 @@
         <div class="col-lg-4">
             <img class="img-circle" src="/img/1.jpg" alt="Generic placeholder image" width="140" height="140">
             <h3>创新创业类比赛</h3>
-            <p><a class=“” href="/more-articles?type=1">"互联网+"大学生创新创业大赛</a></p>
-            <p><a href="/more-articles?type=2">"创青春"全国大学生创业大赛</a></p>
-            <p><a href="/more-articles?type=3">"挑战杯"全国大学生课外学术科技作品竞赛</a></p>
+            <p><a class=“” href="/more-articles?typeId=1">"互联网+"大学生创新创业大赛</a></p>
+            <p><a href="/more-articles?typeId=2">"创青春"全国大学生创业大赛</a></p>
+            <p><a href="/more-articles?typeId=3">"挑战杯"全国大学生课外学术科技作品竞赛</a></p>
             <p><a class="btn btn-default" href="/matches" role="button">详情 &raquo;</a></p>
         </div>
         <div class="col-lg-4">
             <img class="img-circle" src="/img/2.jpg" alt="Generic placeholder image" width="140" height="140">
             <h3>创新创业科研项目</h3>
-            <p>国家级大学生创新创业训练计划</p>
-            <p>“中央高校基本科研业务专项资金”本科生项目</p>
+            <p><a class=“” href="/more-articles?typeId=9">国家级大学生创新创业训练计划</a></p>
+            <p><a href="/more-articles?typeId=10">“中央高校基本科研业务专项资金”本科生项目</a></p>
             <p>&nbsp;</p>
             <p><a class="btn btn-default" href="/projects" role="button">详情 &raquo;</a></p>
         </div>
         <div class="col-lg-4">
             <img class="img-circle" src="/img/innovation.jpg" alt="Generic placeholder image" width="140" height="140">
             <h3>创新创业扶持一揽子计划</h3>
-            <p>暑期社会实践&nbsp;&nbsp;创业扶持</p>
-            <p>创业园&nbsp;&nbsp;企业注册</p>
-            <p>科研成果</p>
+            <p><a class=“” href="/more-articles?typeId=4">暑期社会实践</a>&nbsp;&nbsp;<a class=“” href="/more-articles?typeId=5">创业扶持</a></p>
+            <p><a href="/more-articles?typeId=6">创业园</a>&nbsp;&nbsp;<a href="/more-articles?typeId=7">企业注册</a></p>
+            <p><a href="/more-articles?typeId=8">科研成果</a></p>
             <p><a class="btn btn-default" href="/plans" role="button">详情 &raquo;</a></p>
         </div>
     </div>

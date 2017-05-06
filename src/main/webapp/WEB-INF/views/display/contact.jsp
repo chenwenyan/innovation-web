@@ -32,13 +32,12 @@
                         <span class="consult">邮编</span>
                         <p class="consult-detail">130024</p>
                     </div>
-               </div>
+                </div>
             </div>
         </div>
-        </div>
+    </div>
 </div>
 <div class="foot-empty"></div>
-
 <jsp:include flush="true" page="/WEB-INF/views/display/common/footer.jsp"/>
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </body>

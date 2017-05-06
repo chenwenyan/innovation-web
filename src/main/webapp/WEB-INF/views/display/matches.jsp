@@ -20,7 +20,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-12 text-left">
-                                <h6 class="smart-margin-left">互联网+</h6>
+                                <h6 class="smart-margin-left">"互联网+"大学生创新创业大赛</h6>
                                 <a href="/more-articles?typeId=1" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
@@ -54,7 +54,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-12 text-left">
-                                <h6 class="smart-margin-left">创青春全国大学生创业大赛</h6>
+                                <h6 class="smart-margin-left">"创青春"全国大学生创业大赛</h6>
                                 <a href="/more-articles?typeId=2" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
@@ -88,7 +88,7 @@
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-12 text-left">
-                                <h6 class="smart-margin-left">挑战杯</h6>
+                                <h6 class="smart-margin-left">"挑战杯"全国大学生课外学术科技作品竞赛</h6>
                                 <a href="/more-articles?typeId=3" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
