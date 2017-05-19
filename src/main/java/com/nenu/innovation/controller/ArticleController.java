@@ -130,8 +130,7 @@ public class ArticleController {
     public String newArticle(HttpServletRequest request, HttpServletResponse response,
                              Model model) {
 
-        String UPLOAD_FILE_PATH = request.getSession().getServletContext().getRealPath("") + "\\";
-//        String UPLOAD_FILE_PATH = request.getServletContext().getRealPath("upload_files")+"\\";
+        String UPLOAD_FILE_PATH = request.getSession().getServletContext().getRealPath("") + "/";
 
         String title = request.getParameter("title").trim();
         int typeId = Integer.parseInt(request.getParameter("typeId"));
@@ -173,7 +172,7 @@ public class ArticleController {
                                 File localFile = new File(filePath);
                                 file.transferTo(localFile);
                                 userFile.setName(fileName);
-                                userFile.setPath(filePath);
+                                userFile.setPath(fileName);
                                 userFile.setSize(file.getSize());
                                 userFile.setType(file.getContentType());
                                 userFile.setUserId(UserUtils.setUserSession(request, model).getId());

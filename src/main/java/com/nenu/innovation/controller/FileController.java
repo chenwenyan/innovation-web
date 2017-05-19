@@ -32,12 +32,16 @@ public class FileController {
                                Model model) throws Exception{
         int fileId = Integer.parseInt(request.getParameter("fileId"));
         UserFile userFile = new UserFile();
+
+        String UPLOAD_FILE_PATH = request.getSession().getServletContext().getRealPath("") + "/";
+
         try {
             userFile = userFileService.queryById(fileId);
             if (userFile == null) {
                 System.out.println("文件不存在！");
             } else {
-                File proposeFile = new File(userFile.getPath());
+
+                File proposeFile = new File(UPLOAD_FILE_PATH + userFile.getPath());
 
                 InputStream inputStream = null;
                 OutputStream bufferOut = null;
