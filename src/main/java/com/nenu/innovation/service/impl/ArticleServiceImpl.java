@@ -36,7 +36,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Autowired
     private SchoolMapper schoolMapper;
 
-    
+
     public List<Article> listAll() throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -52,10 +52,10 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public int count() throws Exception {
         try {
-            return articleMapper.count() == null ? 0 :articleMapper.count();
+            return articleMapper.count() == null ? 0 : articleMapper.count();
         } catch (Exception e) {
             System.out.println("文章计数出错！");
             e.printStackTrace();
@@ -63,7 +63,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public boolean checkExistByName(String name) throws Exception {
         try {
             return articleMapper.checkExistByName(name) > 0 ? true : false;
@@ -73,7 +73,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public List<Article> listByType(int typeId) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -91,7 +91,7 @@ public class ArticleServiceImpl implements ArticleService {
         return articles;
     }
 
-    
+
     public List<Article> listByKeyWords(String keywords) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -109,7 +109,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public int newArticle(Article article) throws Exception {
         try {
             if (article.getTitle() != null && article.getContent() != null && article.getTypeId() > 0 && article.getCreatorId() > 0) {
@@ -123,7 +123,7 @@ public class ArticleServiceImpl implements ArticleService {
         return 0;
     }
 
-    
+
     public void updateArticleById(int id, String title, String content, int typeId, int creatorId) throws Exception {
         try {
             if (title != null && content != null && typeId > 0 && creatorId > 0) {
@@ -136,12 +136,12 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public Article queryById(int id) throws Exception {
         Article article = new Article();
         try {
             article = articleMapper.queryById(id);
-            if(article != null){
+            if (article != null) {
                 setArticleTypeAndCreatorAndSchool(article);
             }
             return article;
@@ -152,7 +152,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public void deleteById(int id) throws Exception {
         try {
             articleMapper.deleteById(id);
@@ -163,11 +163,11 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
-    public List<Article> queryBySearchInfo(String title, int schoolId, int typeId,int isAudited, int offset, int pageSize) throws Exception {
+
+    public List<Article> queryBySearchInfo(String title, int schoolId, int typeId, int isAudited, int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
-            articles = articleMapper.queryBySearchInfo(title, schoolId, typeId,isAudited, offset, pageSize);
+            articles = articleMapper.queryBySearchInfo(title, schoolId, typeId, isAudited, offset, pageSize);
             for (Article article : articles) {
                 setArticleTypeAndCreatorAndSchool(article);
             }
@@ -179,7 +179,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public void updateReadNum(int id) throws Exception {
         try {
             if (id > 0) {
@@ -191,7 +191,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public List<Article> listByPage(int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -206,7 +206,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-    
+
     public List<Article> listByTypeAndPage(int typeId, int offset, int pageSize) throws Exception {
         List<Article> articles = Collections.emptyList();
         try {
@@ -217,43 +217,43 @@ public class ArticleServiceImpl implements ArticleService {
             throw new Exception(e.getMessage());
         }
     }
-    
+
     public int countListByTypeAndPage(int typeId) throws Exception {
         try {
-            return articleMapper.countListByTypeAndPage(typeId) == null ? 0 :articleMapper.countListByTypeAndPage(typeId);
+            return articleMapper.countListByTypeAndPage(typeId) == null ? 0 : articleMapper.countListByTypeAndPage(typeId);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
-    public int countQueryBySearchInfo(String title, int schoolId, int typeId,int isAudited) throws Exception{
+    public int countQueryBySearchInfo(String title, int schoolId, int typeId, int isAudited) throws Exception {
         try {
-            if(articleMapper.countQueryBySearchInfo(title,schoolId,typeId,isAudited) == null){
+            if (articleMapper.countQueryBySearchInfo(title, schoolId, typeId, isAudited) == null) {
                 return 0;
             }
-            return articleMapper.countQueryBySearchInfo(title,schoolId,typeId,isAudited);
+            return articleMapper.countQueryBySearchInfo(title, schoolId, typeId, isAudited);
         } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
-    public void setIsAudited(int id,int isAudited)throws Exception{
-        try{
-            articleMapper.setIsAudited(id,isAudited);
-        }catch (Exception e){
+    public void setIsAudited(int id, int isAudited) throws Exception {
+        try {
+            articleMapper.setIsAudited(id, isAudited);
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
-    public List<Article> listThree()throws Exception{
+    public List<Article> listThree() throws Exception {
         List<Article> articles = Collections.emptyList();
-        try{
+        try {
             articles = articleMapper.listThree();
             return articles;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
@@ -264,13 +264,13 @@ public class ArticleServiceImpl implements ArticleService {
             Type type = typeMapper.queryById(article.getTypeId());
             User user = userMapper.queryById(article.getCreatorId());
             School school = schoolMapper.queryById(article.getSchoolId());
-            if(type == null){
+            if (type == null) {
                 article.setTypeName("无");
             }
-            if(user == null){
+            if (user == null) {
                 article.setCreatorName("无");
             }
-            if(school == null){
+            if (school == null) {
                 article.setSchoolName("无");
             }
             article.setTypeName(type.getName());

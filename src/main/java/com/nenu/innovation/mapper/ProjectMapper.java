@@ -14,7 +14,7 @@ import java.util.List;
 public interface ProjectMapper {
 
     /**
-     *  新增项目
+     * 新增项目
      *
      * @param project
      * @throws Exception
@@ -62,7 +62,7 @@ public interface ProjectMapper {
      * @return
      * @throws Exception
      */
-    public Project queryById(@Param("id") Integer id)throws Exception;
+    public Project queryById(@Param("id") Integer id) throws Exception;
 
     /**
      * 根据id删除项目
@@ -86,8 +86,8 @@ public interface ProjectMapper {
      * @return
      * @throws Exception
      */
-    public List<Project> queryBySearchInfo(@Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId,
-                                           @Param("startYear") Integer startYear,@Param("endYear") Integer endYear,@Param("offset") Integer offset,@Param("pageSize") Integer pageSize) throws Exception;
+    public List<Project> queryBySearchInfo(@Param("name") String name, @Param("charger") String charger, @Param("teacher") String teacher, @Param("schoolId") Integer schoolId,
+                                           @Param("startYear") Integer startYear, @Param("endYear") Integer endYear, @Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 
     /**
      * 根据页码显示列表
@@ -97,7 +97,7 @@ public interface ProjectMapper {
      * @return
      * @throws Exception
      */
-    public List<Project> listByPage(@Param("offset") Integer offset,@Param("pageSize") Integer pageSize) throws Exception;
+    public List<Project> listByPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize) throws Exception;
 
     /**
      * 条件查询计数
@@ -111,7 +111,7 @@ public interface ProjectMapper {
      * @return
      * @throws Exception
      */
-    public Integer countQueryBySearchInfo(@Param("name") String name,@Param("charger") String charger, @Param("teacher") String teacher,@Param("schoolId") Integer schoolId,
-                                          @Param("startYear") Integer startYear,@Param("endYear") Integer endYear)throws Exception;
+    public Integer countQueryBySearchInfo(@Param("name") String name, @Param("charger") String charger, @Param("teacher") String teacher, @Param("schoolId") Integer schoolId,
+                                          @Param("startYear") Integer startYear, @Param("endYear") Integer endYear) throws Exception;
 
 }

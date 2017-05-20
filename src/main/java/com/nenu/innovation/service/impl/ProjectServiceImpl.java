@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private SchoolMapper schoolMapper;
 
- 
+
     public void newProject(Project project) throws Exception {
         try {
             projectMapper.newProject(project);
@@ -37,17 +37,17 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
- 
+
     public int count() throws Exception {
         try {
-            return projectMapper.count()== null ? 0 : projectMapper.count();
+            return projectMapper.count() == null ? 0 : projectMapper.count();
         } catch (Exception e) {
             System.out.println("统计项目数目出错！");
             throw new Exception(e.getMessage());
         }
     }
 
- 
+
     public boolean checkExistByName(String name) throws Exception {
         try {
             return projectMapper.checkExistByName(name) > 0 ? true : false;
@@ -57,7 +57,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
- 
+
     public List<Project> listAll() throws Exception {
         List<Project> projects = Collections.emptyList();
         try {
@@ -73,7 +73,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
- 
+
     public void updateProjectInfo(int id, Project project) throws Exception {
         try {
             projectMapper.updateProjectInfo(id, project);
@@ -84,7 +84,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
- 
+
     public Project queryById(int id) throws Exception {
         Project project = new Project();
         try {
@@ -97,7 +97,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
- 
+
     public void deleteById(int id) throws Exception {
         try {
             projectMapper.deleteById(id);
@@ -107,7 +107,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
- 
+
     public List<Project> queryBySearchInfo(String name, String charger, String teacher, int schoolId, int startYear, int endYear, int offset, int pageSize) throws Exception {
         List<Project> projects = Collections.emptyList();
         try {
@@ -123,7 +123,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
- 
+
     public List<Project> listByPage(int offset, int pageSize) throws Exception {
         List<Project> projects = Collections.emptyList();
         try {
@@ -140,9 +140,9 @@ public class ProjectServiceImpl implements ProjectService {
 
     public int countQueryBySearchInfo(String name, String charger, String teacher, int schoolId, int startYear, int endYear) throws Exception {
         try {
-            if(projectMapper.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear) == null){
+            if (projectMapper.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear) == null) {
                 return 0;
-            }else {
+            } else {
                 return projectMapper.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear);
             }
 
@@ -157,9 +157,9 @@ public class ProjectServiceImpl implements ProjectService {
         School school = new School();
         try {
             school = schoolMapper.queryById(project.getSchoolId());
-            if(school != null){
+            if (school != null) {
                 project.setSchoolName(school.getName());
-            }else{
+            } else {
                 project.setSchoolName("无");
             }
         } catch (Exception e) {

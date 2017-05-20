@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class UserUtils {
 
-    public static User setUserSession(HttpServletRequest request, Model model)throws Exception{
+    public static User setUserSession(HttpServletRequest request, Model model) throws Exception {
         User user = new User();
-        try{
+        try {
             user = (User) request.getSession().getAttribute("user");
             return user;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }

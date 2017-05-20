@@ -21,7 +21,7 @@ public class UserInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object handler) throws Exception {
         HttpSession session = req.getSession(true);
         // 从session 里面获取用户名的信息
-        User user = (User)req.getSession().getAttribute("user");
+        User user = (User) req.getSession().getAttribute("user");
         // 判断如果没有取到用户信息，就跳转到登陆页面，提示用户进行登陆
         if (user == null || "".equals(user.toString())) {
             res.sendRedirect(LOGIN_URL);

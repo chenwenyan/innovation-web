@@ -25,11 +25,9 @@ public class FileController {
     @Autowired
     private UserFileService userFileService;
 
-
-
-    @RequestMapping(value = "file/download",method = RequestMethod.GET)
+    @RequestMapping(value = "file/download", method = RequestMethod.GET)
     public void fileDownload(HttpServletRequest request, HttpServletResponse response,
-                               Model model) throws Exception{
+                             Model model) throws Exception {
         int fileId = Integer.parseInt(request.getParameter("fileId"));
         UserFile userFile = new UserFile();
 
@@ -51,7 +49,7 @@ public class FileController {
                     response.setContentType("application/x-download");
                     response.setCharacterEncoding("utf-8");
 //                    response.addHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(proposeFile.getName(), "utf-8"));
-                    response.addHeader("Content-Disposition", "attachment; filename=" + new String(proposeFile.getName().getBytes("gbk"),"iso-8859-1"));
+                    response.addHeader("Content-Disposition", "attachment; filename=" + new String(proposeFile.getName().getBytes("gbk"), "iso-8859-1"));
                     // Accept-Ranges: bytes
                     response.setHeader("Accept-Ranges", "bytes");
                     long pos = 0, last = fSize - 1, sum = 0;// pos开始读取位置; last最后读取位置; sum记录总共已经读取了多少字节
@@ -112,7 +110,7 @@ public class FileController {
                 }
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

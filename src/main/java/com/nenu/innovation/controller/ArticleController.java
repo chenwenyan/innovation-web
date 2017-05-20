@@ -32,9 +32,6 @@ public class ArticleController {
     private ArticleService articleService;
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     private TypeService typeService;
 
     @Autowired
@@ -45,7 +42,7 @@ public class ArticleController {
 
     @RequestMapping(value = "article/list", method = RequestMethod.GET)
     public String toArticleList(HttpServletRequest request, HttpServletResponse response,
-                         Model model) {
+                                Model model) {
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
         int pageSize = 10;
@@ -257,7 +254,7 @@ public class ArticleController {
             }
             model.addAttribute("article", article);
             files = userFileService.queryByArticleId(article.getId());
-            model.addAttribute("files",files);
+            model.addAttribute("files", files);
             User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "management/article/detail";

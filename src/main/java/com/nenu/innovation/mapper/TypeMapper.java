@@ -21,7 +21,7 @@ public interface TypeMapper {
      * @param assistantCode
      * @throws Exception
      */
-    public void newType(@Param("name") String name,@Param("assistantCode") String assistantCode) throws Exception;
+    public void newType(@Param("name") String name, @Param("assistantCode") String assistantCode) throws Exception;
 
     /**
      * 统计类型数目
@@ -64,7 +64,7 @@ public interface TypeMapper {
      * @param assistantCode
      * @throws Exception
      */
-    public void updateTypeInfo(@Param("id") Integer id, @Param("name") String name,@Param("assistantCode") String assistantCode) throws Exception;
+    public void updateTypeInfo(@Param("id") Integer id, @Param("name") String name, @Param("assistantCode") String assistantCode) throws Exception;
 
     /**
      * 根据查询类型
@@ -73,7 +73,7 @@ public interface TypeMapper {
      * @return
      * @throws Exception
      */
-    public Type queryById(@Param("id") Integer id)throws Exception;
+    public Type queryById(@Param("id") Integer id) throws Exception;
 
     /**
      * 根据id删除类型
@@ -91,7 +91,7 @@ public interface TypeMapper {
      * @return
      * @throws Exception
      */
-    public List<Type> queryBySearchInfo(@Param("name") String name,@Param("assistantCode") String assistantCode) throws Exception;
+    public List<Type> queryBySearchInfo(@Param("name") String name, @Param("assistantCode") String assistantCode) throws Exception;
 
     /**
      * 根据页码显示列表

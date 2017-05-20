@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private SchoolMapper schoolMapper;
 
- 
+
     public void newUser(User user) throws Exception {
         try {
             userMapper.newUser(user);
@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
- 
+
     public boolean checkLogin(User user) throws Exception {
         if (user == null) {
             return false;
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
- 
+
     public boolean checkExistByName(String username) throws Exception {
         try {
             return userMapper.checkExistByUsername(username) > 0 ? true : false;
@@ -59,12 +59,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
- 
+
     public List<User> listAll() throws Exception {
         List<User> users = Collections.emptyList();
         try {
             users = userMapper.listAll();
-            for(User user:users){
+            for (User user : users) {
                 setSchoolName(user);
             }
             return users;
@@ -75,17 +75,17 @@ public class UserServiceImpl implements UserService {
         }
     }
 
- 
+
     public int count() throws Exception {
         try {
-            return userMapper.count() == null ? 0 : userMapper.count() ;
+            return userMapper.count() == null ? 0 : userMapper.count();
         } catch (Exception e) {
             System.out.println("用户计数出错！");
             throw new Exception(e.getMessage());
         }
     }
 
- 
+
     public void setStatus(int id, int status) throws Exception {
         if (status > 0) {
             try {
@@ -97,11 +97,11 @@ public class UserServiceImpl implements UserService {
         }
     }
 
- 
-    public void updateUserInfo(int id, String username, String password,int schoolId) throws Exception {
+
+    public void updateUserInfo(int id, String username, String password, int schoolId) throws Exception {
         if (id > 0 && username != null && password != null) {
             try {
-                userMapper.updateUserInfo(id, username, password,schoolId);
+                userMapper.updateUserInfo(id, username, password, schoolId);
             } catch (Exception e) {
                 System.out.println("更新用户信息出错！");
                 throw new Exception(e.getMessage());
@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
- 
+
     public User queryById(int id) throws Exception {
         User user = new User();
         try {
@@ -124,7 +124,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
- 
+
     public void deleteById(int id) throws Exception {
         try {
             if (id > 0) {
@@ -136,12 +136,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
- 
+
     public List<User> queryBySearchInfo(String username, int status) throws Exception {
         List<User> users = Collections.emptyList();
         try {
             users = userMapper.queryBySearchInfo(username, status);
-            for(User user:users){
+            for (User user : users) {
                 setSchoolName(user);
             }
             return users;
@@ -151,12 +151,12 @@ public class UserServiceImpl implements UserService {
         }
     }
 
- 
+
     public List<User> listByPage(int offset, int pageSize) throws Exception {
         List<User> users = Collections.emptyList();
         try {
             users = userMapper.listByPage(offset, pageSize);
-            for(User user:users){
+            for (User user : users) {
                 setSchoolName(user);
             }
             return users;
@@ -167,47 +167,47 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public User queryByNameAndPassword(String username,String password) throws Exception{
-        try{
-            return userMapper.queryByNameAndPassword(username,password);
-        }catch (Exception e){
+    public User queryByNameAndPassword(String username, String password) throws Exception {
+        try {
+            return userMapper.queryByNameAndPassword(username, password);
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("根据用户名和密码查询用户信息出错！");
             throw new Exception(e.getMessage());
         }
     }
 
-    public List<User> listByNameAndPage(int offset, int pageSize, String username) throws Exception{
+    public List<User> listByNameAndPage(int offset, int pageSize, String username) throws Exception {
         List<User> users = Collections.emptyList();
-        try{
-            users = userMapper.listByNameAndPage(offset,pageSize,username);
-            for(User user:users){
+        try {
+            users = userMapper.listByNameAndPage(offset, pageSize, username);
+            for (User user : users) {
                 setSchoolName(user);
             }
             return users;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
-    public int countByName(String username) throws Exception{
-        try{
-            return userMapper.countByName(username) ==null ? 0 : userMapper.countByName(username);
-        }catch (Exception e){
+    public int countByName(String username) throws Exception {
+        try {
+            return userMapper.countByName(username) == null ? 0 : userMapper.countByName(username);
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
 
-    private void setSchoolName(User user) throws Exception{
-        try{
-            if(user != null){
+    private void setSchoolName(User user) throws Exception {
+        try {
+            if (user != null) {
                 School school = schoolMapper.queryById(user.getSchoolId());
                 user.setSchoolName(school.getName());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("给用户设置学院名称出错！");
             e.printStackTrace();
             throw new Exception(e.getMessage());

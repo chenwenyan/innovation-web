@@ -16,54 +16,54 @@ import java.util.List;
  * @time: 2017/4/28 14:45
  */
 @Service("userFileService")
-public class UserFileServiceImpl implements UserFileService{
+public class UserFileServiceImpl implements UserFileService {
 
     @Autowired
     private UserFileMapper userFileMapper;
 
-    public Integer newFile(UserFile userFile)throws Exception{
+    public Integer newFile(UserFile userFile) throws Exception {
         try {
             return userFileMapper.newFile(userFile);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
-    public void updateDownloadNum(int id, int downloadNum) throws Exception{
+    public void updateDownloadNum(int id, int downloadNum) throws Exception {
         try {
-            userFileMapper.updateDownloadNum(id,downloadNum);
-        }catch (Exception e){
+            userFileMapper.updateDownloadNum(id, downloadNum);
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
-    public void deleteById(int id) throws Exception{
+    public void deleteById(int id) throws Exception {
         try {
             userFileMapper.deleteById(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
 
-    public UserFile queryById(int id) throws Exception{
+    public UserFile queryById(int id) throws Exception {
         try {
             return userFileMapper.queryById(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
 
-    public List<UserFile> queryByArticleId(int articleId) throws Exception{
+    public List<UserFile> queryByArticleId(int articleId) throws Exception {
         List<UserFile> userFiles = Collections.emptyList();
         try {
             userFiles = userFileMapper.queryByArticleId(articleId);
             return userFiles;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }

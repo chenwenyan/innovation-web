@@ -18,7 +18,7 @@ public interface UserFileService {
      * @param userFile
      * @throws Exception
      */
-    public Integer newFile(UserFile userFile)throws Exception;
+    public Integer newFile(UserFile userFile) throws Exception;
 
     /**
      * 更新下载次数

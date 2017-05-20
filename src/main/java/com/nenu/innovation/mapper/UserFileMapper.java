@@ -36,7 +36,7 @@ public interface UserFileMapper {
      * @param id
      * @throws Exception
      */
-    public void deleteById(@Param("id") Integer id)throws Exception;
+    public void deleteById(@Param("id") Integer id) throws Exception;
 
     /**
      * 根据id查询文件信息
@@ -44,7 +44,7 @@ public interface UserFileMapper {
      * @param id
      * @throws Exception
      */
-    public UserFile queryById(@Param("id") Integer id)throws Exception;
+    public UserFile queryById(@Param("id") Integer id) throws Exception;
 
     /**
      * 根据文章id查询文件信息
@@ -52,5 +52,5 @@ public interface UserFileMapper {
      * @param articleId
      * @throws Exception
      */
-    public List<UserFile> queryByArticleId(@Param("articleId") Integer articleId)throws Exception;
+    public List<UserFile> queryByArticleId(@Param("articleId") Integer articleId) throws Exception;
 }

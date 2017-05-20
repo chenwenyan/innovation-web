@@ -83,7 +83,7 @@ public class displayController {
             model.addAttribute("projectList", projects);
             model.addAttribute("pageNo", pageNo);
             int sum = projectService.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear);
-            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
+            model.addAttribute("count", NumUtils.ceilNum(sum, pageSize));
             model.addAttribute("name", name);
             model.addAttribute("charger", charger);
             model.addAttribute("teacher", teacher);
@@ -175,12 +175,12 @@ public class displayController {
         int typeId = Integer.parseInt(request.getParameter("typeId"));
         List<Article> articles = Collections.emptyList();
         try {
-            model.addAttribute("typeId",typeId);
+            model.addAttribute("typeId", typeId);
             articles = articleService.listByTypeAndPage(typeId, offset, pageSize);
             model.addAttribute("list", articles);
             model.addAttribute("pageNo", pageNo);
             int sum = articleService.countListByTypeAndPage(typeId);
-            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
+            model.addAttribute("count", NumUtils.ceilNum(sum, pageSize));
             return "display/more-articles";
         } catch (Exception e) {
             return "error";
@@ -197,7 +197,7 @@ public class displayController {
                 articleService.updateReadNum(id);
                 model.addAttribute("article", article);
                 files = userFileService.queryByArticleId(article.getId());
-                model.addAttribute("files",files);
+                model.addAttribute("files", files);
             }
             return "display/article-detail";
         } catch (Exception e) {

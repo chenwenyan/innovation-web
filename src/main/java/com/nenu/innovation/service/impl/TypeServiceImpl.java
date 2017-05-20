@@ -21,7 +21,7 @@ public class TypeServiceImpl implements TypeService {
     @Autowired
     private TypeMapper typeMapper;
 
- 
+
     public void newType(String name, String assistantCode) throws Exception {
         try {
             typeMapper.newType(name, assistantCode);
@@ -31,27 +31,27 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
- 
+
     public int count() throws Exception {
         try {
-            return typeMapper.count() == null? 0 : typeMapper.count();
+            return typeMapper.count() == null ? 0 : typeMapper.count();
         } catch (Exception e) {
             System.out.println("统计类型数目出错！");
             throw new Exception(e.getMessage());
         }
     }
 
- 
+
     public int countByName(String name) throws Exception {
         try {
-            return typeMapper.countByName(name) == null? 0:typeMapper.countByName(name);
+            return typeMapper.countByName(name) == null ? 0 : typeMapper.countByName(name);
         } catch (Exception e) {
             System.out.println("根据名称统计类型数目出错！");
             throw new Exception(e.getMessage());
         }
     }
 
- 
+
     public boolean checkExistByName(String name) throws Exception {
         try {
             return typeMapper.checkExistByName(name) == 1 ? true : false;
@@ -61,7 +61,7 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
- 
+
     public List<Type> listAll() throws Exception {
         List<Type> types = Collections.emptyList();
         try {
@@ -73,7 +73,7 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
- 
+
     public void updateTypeInfo(int id, String name, String assistantCode) throws Exception {
         try {
             typeMapper.updateTypeInfo(id, name, assistantCode);
@@ -83,7 +83,7 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
- 
+
     public Type queryById(int id) throws Exception {
         try {
             return typeMapper.queryById(id);
@@ -93,7 +93,7 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
- 
+
     public void deleteById(int id) throws Exception {
         try {
             typeMapper.deleteById(id);
@@ -103,7 +103,7 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
- 
+
     public List<Type> queryBySearchInfo(String name, String assistantCode) throws Exception {
         try {
             return typeMapper.queryBySearchInfo(name, assistantCode);
@@ -113,7 +113,7 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
- 
+
     public List<Type> listByPage(int offset, int pageSize) throws Exception {
         List<Type> types = Collections.emptyList();
         try {

@@ -29,13 +29,13 @@ public class IndexController {
                           Model model) {
         try {
             if (request.getSession().getAttribute("user") != null) {
-                User user = UserUtils.setUserSession(request,model);
+                User user = UserUtils.setUserSession(request, model);
                 model.addAttribute("user", user);
                 return "redirect:user";
             } else {
                 return "management/login";
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return "error";
         }
     }
@@ -44,7 +44,7 @@ public class IndexController {
     public String login(User user, Model model, HttpServletRequest request) throws Exception {
         try {
             if (userService.checkLogin(user)) {
-                user = userService.queryByNameAndPassword(user.getUsername(),user.getPassword());
+                user = userService.queryByNameAndPassword(user.getUsername(), user.getPassword());
                 request.getSession().setAttribute("user", user);
                 return "redirect:article";
             } else {

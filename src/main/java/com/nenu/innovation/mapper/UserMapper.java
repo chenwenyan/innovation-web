@@ -44,7 +44,7 @@ public interface UserMapper {
      * @return
      * @throws Exception
      */
-    public List<User> listAll()throws Exception;
+    public List<User> listAll() throws Exception;
 
     /**
      * 用户计数
@@ -70,7 +70,7 @@ public interface UserMapper {
      * @param password
      * @throws Exception
      */
-    public void updateUserInfo(@Param("id") Integer id,@Param("username") String username,@Param("password") String password,@Param("schoolId") Integer schoolId) throws Exception;
+    public void updateUserInfo(@Param("id") Integer id, @Param("username") String username, @Param("password") String password, @Param("schoolId") Integer schoolId) throws Exception;
 
     /**
      * 根据id获取用户信息
@@ -97,7 +97,7 @@ public interface UserMapper {
      * @return
      * @throws Exception
      */
-    public List<User> queryBySearchInfo(@Param("username") String username,@Param("status")Integer status) throws Exception;
+    public List<User> queryBySearchInfo(@Param("username") String username, @Param("status") Integer status) throws Exception;
 
     /**
      * 根据页码显示列表
@@ -119,7 +119,7 @@ public interface UserMapper {
      */
     public User queryByNameAndPassword(@Param("username") String username, @Param("password") String password) throws Exception;
 
-    public List<User> listByNameAndPage(@Param("offset") Integer offset,@Param("pageSize") Integer pageSize, @Param("username") String username);
+    public List<User> listByNameAndPage(@Param("offset") Integer offset, @Param("pageSize") Integer pageSize, @Param("username") String username);
 
     public Integer countByName(@Param("username") String username);
 }

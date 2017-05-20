@@ -66,7 +66,7 @@ public interface ArticleService extends AbstractService {
      * @return
      * @throws Exception
      */
-    public List<Article> queryBySearchInfo(String title, int schoolId, int typeId, int isAudited,int offset, int pageSize) throws Exception;
+    public List<Article> queryBySearchInfo(String title, int schoolId, int typeId, int isAudited, int offset, int pageSize) throws Exception;
 
     /**
      * 更新阅读次数
@@ -113,7 +113,7 @@ public interface ArticleService extends AbstractService {
      * @return
      * @throws Exception
      */
-    public int countQueryBySearchInfo(String title, int schoolId, int typeId,int isAudited) throws Exception;
+    public int countQueryBySearchInfo(String title, int schoolId, int typeId, int isAudited) throws Exception;
 
 //    /**
 //     * 根据审批状态显示列表
@@ -131,7 +131,7 @@ public interface ArticleService extends AbstractService {
      * @param isAudited
      * @throws Exception
      */
-    public void setIsAudited(int id,int isAudited)throws Exception;
+    public void setIsAudited(int id, int isAudited) throws Exception;
 
     /**
      * 获取创业扶持 创业园 企业注册 三种类型文章列表

@@ -51,7 +51,7 @@ public interface UserService extends AbstractService {
      * @param password
      * @throws Exception
      */
-    public void updateUserInfo(int id, String username, String password,int schoolId) throws Exception;
+    public void updateUserInfo(int id, String username, String password, int schoolId) throws Exception;
 
     /**
      * 根据名称和状态查询用户
@@ -71,9 +71,9 @@ public interface UserService extends AbstractService {
      * @return
      * @throws Exception
      */
-    public User queryByNameAndPassword(String username,String password) throws Exception;
+    public User queryByNameAndPassword(String username, String password) throws Exception;
 
-    public List<User> listByNameAndPage( int offset, int pageSize, String username) throws Exception;
+    public List<User> listByNameAndPage(int offset, int pageSize, String username) throws Exception;
 
     public int countByName(String username) throws Exception;
 

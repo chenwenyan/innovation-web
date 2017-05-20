@@ -1,6 +1,5 @@
 package com.nenu.innovation.mapper;
 
-import com.nenu.innovation.entity.Article;
 import com.nenu.innovation.entity.School;
 import org.apache.ibatis.annotations.Param;
 
@@ -54,7 +53,7 @@ public interface SchoolMapper {
      * @param name
      * @throws Exception
      */
-    public void updateSchoolInfo(@Param("id") Integer id, @Param("name") String name ) throws Exception;
+    public void updateSchoolInfo(@Param("id") Integer id, @Param("name") String name) throws Exception;
 
     /**
      * 根据id查询学院信息
@@ -63,7 +62,7 @@ public interface SchoolMapper {
      * @return
      * @throws Exception
      */
-    public School queryById(@Param("id") Integer id)throws Exception;
+    public School queryById(@Param("id") Integer id) throws Exception;
 
     /**
      * 根据id删除学院

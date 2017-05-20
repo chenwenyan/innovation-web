@@ -8,12 +8,12 @@ package com.nenu.innovation.utils;
  */
 public class NumUtils {
 
-    public static int ceilNum(int num1, int num2) throws Exception{
+    public static int ceilNum(int num1, int num2) throws Exception {
         int result;
-        try{
-            result = (num1%num2 == 0)? num1/num2 : num1/num2 + 1;
+        try {
+            result = (num1 % num2 == 0) ? num1 / num2 : num1 / num2 + 1;
             return result;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             throw new Exception(e.getMessage());
         }

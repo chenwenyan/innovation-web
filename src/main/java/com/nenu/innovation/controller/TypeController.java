@@ -42,11 +42,11 @@ public class TypeController {
             model.addAttribute("typeList", types);
 //            model.addAttribute("pageNo", pageNo);
 //            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
-            if(user.getSchoolId() == 0){
+            if (user.getSchoolId() == 0) {
                 return "management/type/list";
-            }else{
+            } else {
                 return "redirect:/article/list";
             }
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class TypeController {
         try {
             types = typeService.queryBySearchInfo(name, assistantCode);
             model.addAttribute("typeList", types);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             model.addAttribute("name", name);
             model.addAttribute("assistantCode", assistantCode);
@@ -76,13 +76,13 @@ public class TypeController {
     @RequestMapping(value = "/type/add", method = RequestMethod.GET)
     public String toAdd(HttpServletRequest request, HttpServletResponse response,
                         Model model) {
-       try{
-           User user = UserUtils.setUserSession(request,model);
-           model.addAttribute("user", user);
-           return "management/type/add";
-       }catch (Exception e){
-           return "error";
-       }
+        try {
+            User user = UserUtils.setUserSession(request, model);
+            model.addAttribute("user", user);
+            return "management/type/add";
+        } catch (Exception e) {
+            return "error";
+        }
     }
 
     @RequestMapping(value = "/type/add", method = RequestMethod.POST)
@@ -95,7 +95,7 @@ public class TypeController {
                 model.addAttribute("msg", "该类别名称已经存在！");
             }
             typeService.newType(name, assistantCode);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "redirect:/type/list";
         } catch (Exception e) {
@@ -112,7 +112,7 @@ public class TypeController {
             if (type == null) {
                 model.addAttribute("msg", "该类别不存在或者已被删除！");
             }
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             model.addAttribute("type", type);
             return "management/type/edit";
@@ -129,7 +129,7 @@ public class TypeController {
         String assistantCode = request.getParameter("assistantCode");
         try {
             typeService.updateTypeInfo(id, name, assistantCode);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "redirect:/type/list";
         } catch (Exception e) {
@@ -147,7 +147,7 @@ public class TypeController {
                 model.addAttribute("msg", "该类别不存在或者已被删除！");
             }
             typeService.deleteById(id);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "redirect:/type/list";
         } catch (Exception e) {

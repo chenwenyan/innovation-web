@@ -36,7 +36,7 @@ public class ProjectController {
 
     @RequestMapping(value = "project/list", method = RequestMethod.GET)
     public String toProjectList(HttpServletRequest request, HttpServletResponse response,
-                               Model model) {
+                                Model model) {
         String pageNoStr = request.getParameter("pageNo");
         int pageNo = pageNoStr == null ? 0 : (Integer.parseInt(pageNoStr) - 1);
         int pageSize = 10;
@@ -51,12 +51,12 @@ public class ProjectController {
             model.addAttribute("projectList", projects);
             model.addAttribute("pageNo", pageNo);
             int sum = projectService.count();
-            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
-            User user = UserUtils.setUserSession(request,model);
+            model.addAttribute("count", NumUtils.ceilNum(sum, pageSize));
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
-            if(user.getSchoolId() == 0){
+            if (user.getSchoolId() == 0) {
                 return "management/project/list";
-            }else{
+            } else {
                 return "redirect:/article/list";
             }
         } catch (Exception e) {
@@ -97,18 +97,18 @@ public class ProjectController {
             model.addAttribute("projectList", projects);
             model.addAttribute("pageNo", pageNo);
             int sum = projectService.countQueryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear);
-            model.addAttribute("count", NumUtils.ceilNum(sum,pageSize));
+            model.addAttribute("count", NumUtils.ceilNum(sum, pageSize));
             model.addAttribute("name", name);
             model.addAttribute("charger", charger);
             model.addAttribute("teacher", teacher);
             model.addAttribute("schoolId", schoolId);
             model.addAttribute("startYear", startYear);
             model.addAttribute("endYear", endYear);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
-            if(user.getSchoolId() == 0){
+            if (user.getSchoolId() == 0) {
                 return "management/project/list";
-            }else{
+            } else {
                 return "redirect:/article/list";
             }
         } catch (Exception e) {
@@ -123,7 +123,7 @@ public class ProjectController {
         try {
             schools = schoolService.listAll();
             model.addAttribute("schoolList", schools);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "management/project/add";
         } catch (Exception e) {
@@ -145,7 +145,7 @@ public class ProjectController {
 //                model.addAttribute("msg", "该项目名称已经存在！");
 //            }
             int year = DateUtils.getCurrentYear();
-            if(request.getParameter("year") != null){
+            if (request.getParameter("year") != null) {
                 year = 1900 + DateUtils.formatDate("yyyy", request.getParameter("year")).getYear();
             }
             Project project = new Project();
@@ -157,7 +157,7 @@ public class ProjectController {
             project.setYear(year);
             project.setCategory(category);
             projectService.newProject(project);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "redirect:/project/list";
         } catch (Exception e) {
@@ -178,7 +178,7 @@ public class ProjectController {
             schools = schoolService.listAll();
             model.addAttribute("schoolList", schools);
             model.addAttribute("project", project);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "management/project/edit";
         } catch (Exception e) {
@@ -198,7 +198,7 @@ public class ProjectController {
         int schoolId = Integer.parseInt(request.getParameter("schoolId"));
         try {
             int year = DateUtils.getCurrentYear();
-            if(request.getParameter("year") != null){
+            if (request.getParameter("year") != null) {
                 year = 1900 + DateUtils.formatDate("yyyy", request.getParameter("year")).getYear();
             }
             Project project = new Project();
@@ -210,7 +210,7 @@ public class ProjectController {
             project.setYear(year);
             project.setCategory(category);
             projectService.updateProjectInfo(id, project);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "redirect:/project/list";
         } catch (Exception e) {
@@ -228,7 +228,7 @@ public class ProjectController {
                 model.addAttribute("msg", "该项目不存在或者已被删除！");
             }
             projectService.deleteById(id);
-            User user = UserUtils.setUserSession(request,model);
+            User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
             return "redirect:/project/list";
         } catch (Exception e) {
