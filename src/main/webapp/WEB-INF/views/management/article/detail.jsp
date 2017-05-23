@@ -17,7 +17,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
-                        <li><a href="${website}/article">文章管理</a></li>
+                        <li><a href="${website}/article/list">文章管理</a></li>
                         <li><a href="javascript:;" class="active">查看文章内容</a></li>
                     </ol>
                     <h2>查看文章</h2>

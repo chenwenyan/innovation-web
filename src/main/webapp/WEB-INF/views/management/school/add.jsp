@@ -32,7 +32,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
-                        <li><a href="${website}/school">学院管理</a></li>
+                        <li><a href="${website}/school/list">学院管理</a></li>
                         <li><a href="${website}/school/add" class="active">学院添加管理</a></li>
                     </ol>
                     <h2>添加类别</h2>

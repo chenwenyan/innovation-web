@@ -33,8 +33,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>首页</a></li>
-                        <li><a href="${website}/article">文章管理</a></li>
-                        <li><a href="${website}/article" class="active">文章信息管理</a></li>
+                        <li><a href="${website}/article/list">文章管理</a></li>
+                        <li><a href="${website}/article/list" class="active">文章信息管理</a></li>
                     </ol>
                     <h2>文章管理</h2>
                     <c:if test="${isRedirect==true}">
@@ -58,7 +58,7 @@
                                     <label class="col-sm-4 control-label">发布单位</label>
                                     <div class="col-sm-2">
                                         <select class="form-control w180" name="schoolId" id="schoolId">
-                                            <option value="0">全部</option>
+                                            <option value="-1">全部</option>
                                             <c:forEach var="school" items="${schoolList}">
                                                 <c:if test="${schoolList.size() == 0}">
                                                     <option value="-1">无</option>
@@ -74,7 +74,7 @@
                                     <label class="col-sm-4 control-label">文章类别</label>
                                     <div class="col-sm-2">
                                         <select class="form-control w180" name="typeId" id="typeId">
-                                            <option value="0">全部</option>
+                                            <option value="-1">全部</option>
                                             <c:forEach var="type" items="${typeList}">
                                                 <c:if test="${typeList.size() == 0}">
                                                     <option value="-1">无</option>
@@ -228,7 +228,7 @@
                 }
             },
             pageUrl:function (url,page,current) {
-                return "/article?pageNo=" + page + "&title=" + $("#title").val().trim() + "&creatorId=" + $("#userId").val() + "&typeId="+ $("#typeId").val();
+                return "/article?pageNo=" + page + "&title=" + $("#title").val().trim() + "&typeId="+ $("#typeId").val();
             }
         });
     });

@@ -33,8 +33,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>首页</a></li>
-                        <li><a href="${website}/school">学院管理</a></li>
-                        <li><a href="${website}/school" class="active">学院信息管理</a></li>
+                        <li><a href="${website}/school/list">学院管理</a></li>
+                        <li><a href="${website}/school/list" class="active">学院信息管理</a></li>
                     </ol>
                     <h2>项目管理</h2>
                     <c:if test="${isRedirect==true}">

@@ -34,7 +34,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
-                        <li><a href="${website}/article">文章管理</a></li>
+                        <li><a href="${website}/article/list">文章管理</a></li>
                         <li><a href="${website}/article/add" class="active">文章添加管理</a></li>
                     </ol>
                     <h2>编辑文章</h2>

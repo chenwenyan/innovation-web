@@ -32,7 +32,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
-                        <li><a href="${website}/type">类别管理</a></li>
+                        <li><a href="${website}/type/list">类别管理</a></li>
                         <li><a href="javascript:;" class="active">类别编辑管理</a></li>
                     </ol>
                     <h2>编辑类别</h2>

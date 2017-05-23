@@ -33,8 +33,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>首页</a></li>
-                        <li><a href="${website}/type">类别管理</a></li>
-                        <li><a href="${website}/type" class="active">类别信息管理</a></li>
+                        <li><a href="${website}/type/list">类别管理</a></li>
+                        <li><a href="${website}/type/list" class="active">类别信息管理</a></li>
                     </ol>
                     <h2>类别管理</h2>
                     <c:if test="${isRedirect==true}">

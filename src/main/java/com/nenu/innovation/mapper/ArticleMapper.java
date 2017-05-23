@@ -149,10 +149,12 @@ public interface ArticleMapper {
      * @param title
      * @param schoolId
      * @param typeId
+     * @param isAudited
      * @return
      * @throws Exception
      */
-    public Integer countQueryBySearchInfo(@Param("title") String title, @Param("schoolId") Integer schoolId, @Param("typeId") Integer typeId, @Param("isAudited") Integer isAudited) throws Exception;
+    public Integer countQueryBySearchInfo(@Param("title") String title, @Param("schoolId") Integer schoolId, @Param("typeId") Integer typeId,
+                                          @Param("isAudited") Integer isAudited) throws Exception;
 
     /**
      * 根据审批状态显示列表

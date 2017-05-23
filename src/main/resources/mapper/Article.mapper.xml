@@ -71,7 +71,7 @@
         <if test="schoolId != -1">
             and school_id = #{schoolId}
         </if>
-        <if test="typeId != 0">
+        <if test="typeId != -1">
             and type_id = #{typeId}
         </if>
         <if test="isAudited != -1">
@@ -123,10 +123,10 @@
         <if test="schoolId != -1">
             and school_id = #{schoolId}
         </if>
-        <if test="typeId != 0">
+        <if test="typeId != -1">
             and type_id = #{typeId}
         </if>
-        <if test="isAudited == 0 or isAudited == 1">
+        <if test="isAudited != -1">
             and is_audited = #{isAudited}
         </if>
     </select>

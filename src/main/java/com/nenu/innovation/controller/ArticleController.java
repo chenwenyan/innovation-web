@@ -82,8 +82,8 @@ public class ArticleController {
         List<Type> types = Collections.emptyList();
 
         String title = (request.getParameter("title") == null) ? null : request.getParameter("title");
-        int schoolId = (request.getParameter("schoolId") == null) ? 0 : Integer.parseInt(request.getParameter("schoolId"));
-        int typeId = (request.getParameter("typeId") == null) ? 0 : Integer.parseInt(request.getParameter("typeId"));
+        int schoolId = (request.getParameter("schoolId") == null) ? -1 : Integer.parseInt(request.getParameter("schoolId"));
+        int typeId = (request.getParameter("typeId") == null) ? -1 : Integer.parseInt(request.getParameter("typeId"));
         int isAudited = (request.getParameter("isAudited") == null) ? -1 : Integer.parseInt(request.getParameter("isAudited"));
 
         try {

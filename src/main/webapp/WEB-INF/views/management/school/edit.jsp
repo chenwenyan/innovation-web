@@ -32,7 +32,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
-                        <li><a href="${website}/school">学院管理</a></li>
+                        <li><a href="${website}/school/list">学院管理</a></li>
                         <li><a href="javascript:;" class="active">学院编辑管理</a></li>
                     </ol>
                     <h2>学院编辑</h2>
