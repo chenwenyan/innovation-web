@@ -174,7 +174,7 @@
         $("#saveBtn").click(function () {
             var title = $("#title").val().trim();
             if (title == null || title == "") {
-                alert("未填写标题！");
+                alert("文章标题不能为空！");
                 return false;
             }
 //            var files = $("#uploadInput").files;

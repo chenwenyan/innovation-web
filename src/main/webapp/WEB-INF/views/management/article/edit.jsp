@@ -174,9 +174,8 @@
         //表单提交验证
         $(".J_form").submit(function(){
             var title = $("#title").val();
-            var content = $("#content").val();
-            if(title == null || title =="" || content == null || content == ""){
-                alert("请将内容填写完整！");
+            if(title == null || title == ""){
+                alert("文章标题不能为空！");
                 return false;
             }
             else{

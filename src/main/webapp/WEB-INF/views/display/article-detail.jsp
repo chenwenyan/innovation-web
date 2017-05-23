@@ -55,7 +55,7 @@
                                     <c:if test="${article.typeId == 9 || article.typeId == 10}"><a
                                             href="/projects">立项</a></c:if>
                                      >
-                                    <a href="/more-articles?typeId=${typeId}">
+                                    <a href="/more-articles?typeId=${article.typeId}">
                                      <c:if test="${article.typeId == 1 }">互联网+</c:if>
                                      <c:if test="${article.typeId == 2 }">创青春全国大学生创业大赛</c:if>
                                      <c:if test="${article.typeId == 3 }">挑战杯</c:if>
