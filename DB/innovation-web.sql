@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50635
 File Encoding         : 65001
 
-Date: 2017-05-24 00:36:24
+Date: 2017-05-25 00:12:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,7 +31,7 @@ CREATE TABLE `t_article` (
   `is_audited` int(5) NOT NULL DEFAULT '0' COMMENT '0 待审核 1 审核通过',
   `school_id` int(5) NOT NULL DEFAULT '0' COMMENT '发布单位',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_article
@@ -133,7 +133,7 @@ CREATE TABLE `t_project` (
   `name` varchar(500) CHARACTER SET utf8 NOT NULL COMMENT '项目名称',
   `charger` varchar(30) CHARACTER SET utf8 NOT NULL DEFAULT '无' COMMENT '负责人',
   `teacher` varchar(30) CHARACTER SET utf8 NOT NULL DEFAULT '无' COMMENT '指导老师',
-  `school_id` varchar(100) CHARACTER SET utf8 NOT NULL COMMENT '学院id',
+  `school_id` varchar(100) CHARACTER SET utf8 DEFAULT NULL COMMENT '学院id',
   `school_name` varchar(500) CHARACTER SET utf8 NOT NULL DEFAULT '无' COMMENT '学院名称',
   `year` int(4) NOT NULL DEFAULT '2014' COMMENT '年份',
   `type` varchar(100) COLLATE utf8_estonian_ci NOT NULL DEFAULT '科研' COMMENT '项目分类：1国创 2挑战杯 3 科研立项',
@@ -141,7 +141,7 @@ CREATE TABLE `t_project` (
   `last_modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最近修改时间',
   `category` varchar(100) COLLATE utf8_estonian_ci NOT NULL DEFAULT '无' COMMENT '项目类别',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2288 DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2302 DEFAULT CHARSET=utf8 COLLATE=utf8_estonian_ci;
 
 -- ----------------------------
 -- Records of t_project
