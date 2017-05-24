@@ -1,6 +1,8 @@
 package com.nenu.innovation.service;
 
 import com.nenu.innovation.entity.Project;
+import net.sf.json.JSONObject;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -61,5 +63,11 @@ public interface ProjectService extends AbstractService {
      */
     public int countQueryBySearchInfo(String name, String charger, String teacher, int schoolId, int startYear, int endYear) throws Exception;
 
-
+    /**
+     * 读取excel表格
+     *
+     * @param file
+     * @return
+     */
+    public JSONObject readExcelFile(MultipartFile file) throws Exception;
 }

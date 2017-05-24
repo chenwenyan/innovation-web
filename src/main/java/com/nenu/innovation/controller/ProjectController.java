@@ -8,11 +8,15 @@ import com.nenu.innovation.service.SchoolService;
 import com.nenu.innovation.utils.DateUtils;
 import com.nenu.innovation.utils.NumUtils;
 import com.nenu.innovation.utils.UserUtils;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,11 +58,12 @@ public class ProjectController {
             model.addAttribute("count", NumUtils.ceilNum(sum, pageSize));
             User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
-            if (user.getSchoolId() == 0) {
-                return "management/project/list";
-            } else {
-                return "redirect:/article/list";
-            }
+            return "management/project/list";
+//            if (user.getSchoolId() == 0) {
+//                return "management/project/list";
+//            } else {
+//                return "redirect:/article/list";
+//            }
         } catch (Exception e) {
             return "error";
         }
@@ -106,11 +111,12 @@ public class ProjectController {
             model.addAttribute("endYear", endYear);
             User user = UserUtils.setUserSession(request, model);
             model.addAttribute("user", user);
-            if (user.getSchoolId() == 0) {
-                return "management/project/list";
-            } else {
-                return "redirect:/article/list";
-            }
+            return "management/project/list";
+//            if (user.getSchoolId() == 0) {
+//                return "management/project/list";
+//            } else {
+//                return "redirect:/article/list";
+//            }
         } catch (Exception e) {
             return "error";
         }
@@ -153,6 +159,10 @@ public class ProjectController {
             project.setCharger(charger);
             project.setTeacher(teacher);
             project.setSchoolId(schoolId);
+            School school = (School) schoolService.queryById(schoolId);
+            if(!school.equals(null)){
+                project.setSchoolName(school.getName());
+            }
             project.setType(type);
             project.setYear(year);
             project.setCategory(category);
@@ -236,4 +246,27 @@ public class ProjectController {
         }
     }
 
+    @RequestMapping(value = "/project/import", method = RequestMethod.GET)
+    public String importExcelPage(HttpServletRequest request, HttpServletResponse response,
+                             Model model) {
+        try {
+            User user = UserUtils.setUserSession(request, model);
+            model.addAttribute("user", user);
+            return "management/project/import";
+        } catch (Exception e) {
+            return "error";
+        }
+    }
+
+    @RequestMapping(value = "/project/ajax/import", method = RequestMethod.POST)
+    @ResponseBody
+    public JSONObject importExcel(@RequestParam(value="file",required = false)MultipartFile file, HttpServletRequest request, HttpServletResponse response){
+        JSONObject result = new JSONObject();
+        try{
+            result = projectService.readExcelFile(file);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

@@ -33,8 +33,8 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>首页</a></li>
-                        <li><a href="${website}/project">项目管理</a></li>
-                        <li><a href="${website}/project" class="active">项目信息管理</a></li>
+                        <li><a href="${website}/project/list">项目管理</a></li>
+                        <li><a href="${website}/project/list" class="active">项目信息管理</a></li>
                     </ol>
                     <h2>项目管理</h2>
                     <c:if test="${isRedirect==true}">
@@ -115,6 +115,8 @@
                         <div class="panel-body">
                             <a href="${website}/project/add" class="btn btn-success margin-bottom-15"><i
                                     class="fa fa-plus"></i>&nbsp;添加项目</a>
+                            <a href="${website}/project/import" class="btn btn-success margin-bottom-15"><i
+                                    class="fa fa-plus"></i>&nbsp;导入excel模板</a>
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered">
                                     <thead>

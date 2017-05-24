@@ -9,6 +9,7 @@
         <result column="charger" property="charger"/>
         <result column="teacher" property="teacher"/>
         <result column="school_id" property="schoolId"/>
+        <result column="school_name" property="schoolName"/>
         <result column="created_time" property="createdTime"/>
         <result column="last_modified_time" property="lastModifiedTime"/>
         <result column="year" property="year"/>
@@ -17,8 +18,8 @@
     </resultMap>
 
     <insert id="newProject">
-        INSERT INTO t_project (name, charger,teacher,school_id,year,type,category)
-        VALUES(#{project.name}, #{project.charger},#{project.teacher},#{project.schoolId},#{project.year},#{project.type},#{project.category})
+        INSERT INTO t_project (name, charger,teacher,school_id,school_name,year,type,category)
+        VALUES(#{project.name}, #{project.charger},#{project.teacher},#{project.schoolId},#{project.schoolName},#{project.year},#{project.type},#{project.category})
     </insert>
 
     <select id="checkExistByName" resultType="int">

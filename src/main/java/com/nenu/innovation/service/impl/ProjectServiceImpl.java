@@ -2,11 +2,16 @@ package com.nenu.innovation.service.impl;
 
 import com.nenu.innovation.entity.Project;
 import com.nenu.innovation.entity.School;
+import com.nenu.innovation.entity.User;
 import com.nenu.innovation.mapper.ProjectMapper;
 import com.nenu.innovation.mapper.SchoolMapper;
 import com.nenu.innovation.service.ProjectService;
+import com.nenu.innovation.utils.ReadExcelUtils;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
 import java.util.List;
@@ -62,9 +67,9 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> projects = Collections.emptyList();
         try {
             projects = projectMapper.listAll();
-            for (Project project : projects) {
-                setSchoolName(project);
-            }
+//            for (Project project : projects) {
+//                setSchoolName(project);
+//            }
             return projects;
         } catch (Exception e) {
             System.out.println("显示项目列表出错！");
@@ -89,7 +94,7 @@ public class ProjectServiceImpl implements ProjectService {
         Project project = new Project();
         try {
             project = projectMapper.queryById(id);
-            setSchoolName(project);
+//            setSchoolName(project);
             return project;
         } catch (Exception e) {
             System.out.println("根据id查询项目出错！");
@@ -112,9 +117,9 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> projects = Collections.emptyList();
         try {
             projects = projectMapper.queryBySearchInfo(name, charger, teacher, schoolId, startYear, endYear, offset, pageSize);
-            for (Project project : projects) {
-                setSchoolName(project);
-            }
+//            for (Project project : projects) {
+//                setSchoolName(project);
+//            }
             return projects;
         } catch (Exception e) {
             System.out.println("根据条件查询项目出错！");
@@ -128,9 +133,9 @@ public class ProjectServiceImpl implements ProjectService {
         List<Project> projects = Collections.emptyList();
         try {
             projects = projectMapper.listByPage(offset, pageSize);
-            for (Project project : projects) {
-                setSchoolName(project);
-            }
+//            for (Project project : projects) {
+//                setSchoolName(project);
+//            }
             return projects;
         } catch (Exception e) {
             e.printStackTrace();
@@ -151,6 +156,45 @@ public class ProjectServiceImpl implements ProjectService {
             System.out.println("条件查询计数出错");
             throw new Exception(e.getMessage());
         }
+    }
+
+    public JSONObject readExcelFile(MultipartFile file) throws Exception {
+        JSONObject result = new JSONObject();
+        String msg = "";
+        int code = 1;
+        //创建处理EXCEL的类
+        ReadExcelUtils readExcel = new ReadExcelUtils();
+        try {
+            //解析excel，获取上传的事件单
+                //至此已经将excel中的数据转换到list里面了,接下来就可以操作list,可以进行保存到数据库,或者其他操作,
+                List<Project> projects =  readExcel.getExcelInfo(file);
+                if (projects != null && !projects.isEmpty()) {
+                    for (Project project : projects) {
+                        if(projectMapper.checkExistByName(project.getName()) > 0){
+                            msg = "项目名称有重复，请检查表格数据！";
+                            code = 0;
+                           break;
+                        }else{
+                            projectMapper.newProject(project);
+                            msg = "上传成功！";
+                            System.out.println("上传成功");
+                        }
+                    }
+                } else {
+                    msg = "上传失败，请检查表格数据！";
+                    code = 0;
+                    System.out.println("上传失败，请检查表格数据");
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+            code = 0;
+            msg = "导入excel模板出错";
+            System.out.println("导入excel模板出错");
+            throw new Exception(e.getMessage());
+        }
+        result.put("msg",msg);
+        result.put("code",code);
+        return result;
     }
 
     private void setSchoolName(Project project) throws Exception {

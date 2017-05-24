@@ -40,7 +40,7 @@
                 <div class="col-sm-12">
                     <ol class="breadcrumb">
                         <li><a href="${website}/"><i class="fa fa-home"></i>&nbsp;首页</a></li>
-                        <li><a href="${website}/project">项目管理</a></li>
+                        <li><a href="${website}/project/list">项目管理</a></li>
                         <li><a href="${website}/project/add" class="active">项目添加管理</a></li>
                     </ol>
                     <h2>添加项目</h2>

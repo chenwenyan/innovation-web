@@ -28,7 +28,7 @@ public class Project {
     @Column(name = "school_id")
     private Integer schoolId;
 
-    @Transient
+    @Column(name = "school_name")
     private String schoolName;
 
     @Column(name = "created_time")
