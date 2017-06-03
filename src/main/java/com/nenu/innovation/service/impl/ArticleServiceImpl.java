@@ -11,6 +11,8 @@ import com.nenu.innovation.mapper.UserMapper;
 import com.nenu.innovation.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -110,6 +112,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
 
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public int newArticle(Article article) throws Exception {
         try {
             if (article.getTitle() != null && article.getContent() != null && article.getTypeId() > 0 && article.getCreatorId() > 0) {
@@ -123,7 +126,7 @@ public class ArticleServiceImpl implements ArticleService {
         return 0;
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void updateArticleById(int id, String title, String content, int typeId, int creatorId) throws Exception {
         try {
             if (title != null && content != null && typeId > 0 && creatorId > 0) {
@@ -152,7 +155,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void deleteById(int id) throws Exception {
         try {
             articleMapper.deleteById(id);
@@ -179,7 +182,7 @@ public class ArticleServiceImpl implements ArticleService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void updateReadNum(int id) throws Exception {
         try {
             if (id > 0) {

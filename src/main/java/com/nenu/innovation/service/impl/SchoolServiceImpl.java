@@ -5,6 +5,8 @@ import com.nenu.innovation.mapper.SchoolMapper;
 import com.nenu.innovation.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +23,7 @@ public class SchoolServiceImpl implements SchoolService {
     @Autowired
     private SchoolMapper schoolMapper;
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void newSchool(String name) throws Exception {
         try {
             schoolMapper.newSchool(name);
@@ -63,7 +65,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void updateSchoolInfo(int id, String name) throws Exception {
         try {
             schoolMapper.updateSchoolInfo(id, name);
@@ -86,7 +88,7 @@ public class SchoolServiceImpl implements SchoolService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void deleteById(int id) throws Exception {
         try {
             schoolMapper.deleteById(id);

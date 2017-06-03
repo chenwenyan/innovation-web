@@ -7,6 +7,8 @@ import com.nenu.innovation.mapper.UserMapper;
 import com.nenu.innovation.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private SchoolMapper schoolMapper;
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void newUser(User user) throws Exception {
         try {
             userMapper.newUser(user);
@@ -85,7 +87,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void setStatus(int id, int status) throws Exception {
         if (status > 0) {
             try {
@@ -97,7 +99,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void updateUserInfo(int id, String username, String password, int schoolId) throws Exception {
         if (id > 0 && username != null && password != null) {
             try {
@@ -124,7 +126,7 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void deleteById(int id) throws Exception {
         try {
             if (id > 0) {

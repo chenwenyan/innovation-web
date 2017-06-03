@@ -5,6 +5,8 @@ import com.nenu.innovation.mapper.TypeMapper;
 import com.nenu.innovation.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.List;
@@ -21,7 +23,7 @@ public class TypeServiceImpl implements TypeService {
     @Autowired
     private TypeMapper typeMapper;
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void newType(String name, String assistantCode) throws Exception {
         try {
             typeMapper.newType(name, assistantCode);
@@ -73,7 +75,7 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void updateTypeInfo(int id, String name, String assistantCode) throws Exception {
         try {
             typeMapper.updateTypeInfo(id, name, assistantCode);
@@ -93,7 +95,7 @@ public class TypeServiceImpl implements TypeService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void deleteById(int id) throws Exception {
         try {
             typeMapper.deleteById(id);

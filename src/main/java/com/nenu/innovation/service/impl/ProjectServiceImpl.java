@@ -2,15 +2,15 @@ package com.nenu.innovation.service.impl;
 
 import com.nenu.innovation.entity.Project;
 import com.nenu.innovation.entity.School;
-import com.nenu.innovation.entity.User;
 import com.nenu.innovation.mapper.ProjectMapper;
 import com.nenu.innovation.mapper.SchoolMapper;
 import com.nenu.innovation.service.ProjectService;
 import com.nenu.innovation.utils.ReadExcelUtils;
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Collections;
@@ -31,7 +31,7 @@ public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private SchoolMapper schoolMapper;
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void newProject(Project project) throws Exception {
         try {
             projectMapper.newProject(project);
@@ -78,7 +78,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void updateProjectInfo(int id, Project project) throws Exception {
         try {
             projectMapper.updateProjectInfo(id, project);
@@ -102,7 +102,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
-
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public void deleteById(int id) throws Exception {
         try {
             projectMapper.deleteById(id);
@@ -158,6 +158,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
     }
 
+    @Transactional(rollbackFor = {Exception.class, RuntimeException.class}, propagation = Propagation.REQUIRED)
     public JSONObject readExcelFile(MultipartFile file) throws Exception {
         JSONObject result = new JSONObject();
         String msg = "";
