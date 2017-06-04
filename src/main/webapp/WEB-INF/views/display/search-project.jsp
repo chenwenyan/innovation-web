@@ -136,8 +136,6 @@
 <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
 <script type="text/javascript">
     $(function () {
-        console.log(${projectList.size()});
-
         $('#start_year').datetimepicker({
             startView: 'decade',
             minView: 'decade',

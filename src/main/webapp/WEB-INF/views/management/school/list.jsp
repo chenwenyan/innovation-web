@@ -148,7 +148,6 @@
                 return "/school/list?pageNo=" + page;
             }
         });
-        console.log(${count});
     });
 </script>
 </body>

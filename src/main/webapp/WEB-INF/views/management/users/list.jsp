@@ -184,8 +184,6 @@
                 return "${website}/user?pageNo=" + page + "&username=" + $("#username").val().trim();
             }
         });
-        console.log(${count});
-        console.log(${pageNo});
     });
 </script>
 </body>
