@@ -256,6 +256,9 @@ footer a:hover {
     line-height: 40px;
     background-color: #f1f1f1;
     padding-left: 32px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .leftbottom {

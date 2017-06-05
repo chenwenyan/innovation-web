@@ -50,7 +50,7 @@ public class displayController {
         return "display/main";
     }
 
-    @RequestMapping(value = "/search-project", method = RequestMethod.GET)
+    @RequestMapping(value = "/searchProject", method = RequestMethod.GET)
     public String searchProject(HttpServletRequest request, HttpServletResponse response,
                                 Model model) {
         int pageSize = 15;
@@ -165,7 +165,7 @@ public class displayController {
         }
     }
 
-    @RequestMapping(value = "more-articles", method = RequestMethod.GET)
+    @RequestMapping(value = "moreArticles", method = RequestMethod.GET)
     public String moreArticles(HttpServletRequest request, HttpServletResponse response,
                                Model model) {
         int pageSize = 10;
@@ -187,7 +187,7 @@ public class displayController {
         }
     }
 
-    @RequestMapping(value = "article-detail", method = RequestMethod.GET)
+    @RequestMapping(value = "articleDetail", method = RequestMethod.GET)
     public String articleDetail(Model model, int id) {
         Article article = new Article();
         List<UserFile> files = Collections.emptyList();

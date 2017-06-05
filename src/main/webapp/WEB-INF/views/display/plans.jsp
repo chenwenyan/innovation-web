@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">创业园</h6>
-                                <a href="/more-articles?typeId=6" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=6" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                         <ul>
                             <c:forEach var="item" items="${cyy}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="information">
                                                 <c:if test="${fn:length(item.title) > 20 }">
@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">创业扶持</h6>
-                                <a href="/more-articles?typeId=5" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=5" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         <ul>
                             <c:forEach var="item" items="${cyfc}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="information">
                                                 <c:if test="${fn:length(item.title) > 20 }">
@@ -89,7 +89,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">科研成果</h6>
-                                <a href="/more-articles?typeId=8" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=8" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                         <ul>
                             <c:forEach var="item" items="${kycg}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="information">
                                                 <c:if test="${fn:length(item.title) > 20 }">
@@ -123,7 +123,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">企业注册</h6>
-                                <a href="/more-articles?typeId=7" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=7" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                         <ul>
                             <c:forEach var="item" items="${qyzc}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="lixiang-information">
                                                 <c:if test="${fn:length(item.title) > 20 }">
@@ -157,7 +157,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">暑期社会实践公告</h6>
-                                <a href="/more-articles?typeId=4" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=4" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -166,7 +166,7 @@
                         <ul>
                             <c:forEach var="item" items="${sqshsjgg}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="lixiang-information">
                                                 <c:if test="${fn:length(item.title) > 20 }">

@@ -22,21 +22,21 @@
                 </div>
                 <ul class="side-ul">
                     <c:if test="${article.typeId == 1 || article.typeId == 2 || article.typeId == 3 || article.typeId == 11}">
-                        <li><a href="/more-articles?typeId=1"><i class="fa fa-th"></i>&nbsp;&nbsp;互联网+</a></li>
-                        <li><a href="/more-articles?typeId=2"><i class="fa fa-th"></i>&nbsp;&nbsp;创青春</a></li>
-                        <li><a href="/more-articles?typeId=3"><i class="fa fa-th"></i>&nbsp;&nbsp;挑战杯</a></li>
-                        <li><a href="/more-articles?typeId=11"><i class="fa fa-th"></i>&nbsp;&nbsp;其他比赛</a></li>
+                        <li title="互联网+"><a href="/moreArticles?typeId=1"><i class="fa fa-th"></i>&nbsp;&nbsp;互联网+</a></li>
+                        <li title="创青春"><a href="/moreArticles?typeId=2"><i class="fa fa-th"></i>&nbsp;&nbsp;创青春</a></li>
+                        <li title="挑战杯"><a href="/moreArticles?typeId=3"><i class="fa fa-th"></i>&nbsp;&nbsp;挑战杯</a></li>
+                        <li title="其他比赛"><a href="/moreArticles?typeId=11"><i class="fa fa-th"></i>&nbsp;&nbsp;其他比赛</a></li>
                     </c:if>
                     <c:if test="${article.typeId == 4 || article.typeId == 5 || article.typeId == 6 || article.typeId == 7 || article.typeId == 8  }">
-                        <li><a href="/more-articles?typeId=4"><i class="fa fa-th"></i>&nbsp;&nbsp;暑期社会实践公告</a></li>
-                        <li><a href="/more-articles?typeId=5"><i class="fa fa-th"></i>&nbsp;&nbsp;创业扶持</a></li>
-                        <li><a href="/more-articles?typeId=6"><i class="fa fa-th"></i>&nbsp;&nbsp;创业园</a></li>
-                        <li><a href="/more-articles?typeId=7"><i class="fa fa-th"></i>&nbsp;&nbsp;企业注册</a></li>
-                        <li><a href="/more-articles?typeId=8"><i class="fa fa-th"></i>&nbsp;&nbsp;科研成果</a></li>
+                        <li title="暑期社会实践公告"><a href="/moreArticles?typeId=4"><i class="fa fa-th"></i>&nbsp;&nbsp;暑期社会实践公告</a></li>
+                        <li title="创业扶持"><a href="/moreArticles?typeId=5"><i class="fa fa-th"></i>&nbsp;&nbsp;创业扶持</a></li>
+                        <li title="创业园"><a href="/moreArticles?typeId=6"><i class="fa fa-th"></i>&nbsp;&nbsp;创业园</a></li>
+                        <li title="企业注册"><a href="/moreArticles?typeId=7"><i class="fa fa-th"></i>&nbsp;&nbsp;企业注册</a></li>
+                        <li title="科研成果"><a href="/moreArticles?typeId=8"><i class="fa fa-th"></i>&nbsp;&nbsp;科研成果</a></li>
                     </c:if>
                     <c:if test="${article.typeId == 9 || article.typeId == 10}">
-                        <li><a href="/more-articles?typeId=9"><i class="fa fa-th"></i>&nbsp;&nbsp;国家级创新创业训练计划</a></li>
-                        <li><a href="/more-articles?typeId=10"><i class="fa fa-th"></i>&nbsp;&nbsp;科研立项</a></li>
+                        <li title="国家级创新创业训练计划"><a href="/moreArticles?typeId=9"><i class="fa fa-th"></i>&nbsp;&nbsp;国家级创新创业训练计划</a></li>
+                        <li title="“中央高校基本科研业务专项资金”本科生项目"><a href="/moreArticles?typeId=10"><i class="fa fa-th"></i>&nbsp;&nbsp;“中央高校基本科研业务专项资金”本科生项目</a></li>
                     </c:if>
                 </ul>
                 <div class="leftbottom">
@@ -55,7 +55,7 @@
                                     <c:if test="${article.typeId == 9 || article.typeId == 10}"><a
                                             href="/projects">立项</a></c:if>
                                      >
-                                    <a href="/more-articles?typeId=${article.typeId}">
+                                    <a href="/moreArticles?typeId=${article.typeId}">
                                      <c:if test="${article.typeId == 1 }">互联网+</c:if>
                                      <c:if test="${article.typeId == 2 }">创青春全国大学生创业大赛</c:if>
                                      <c:if test="${article.typeId == 3 }">挑战杯</c:if>
@@ -65,7 +65,7 @@
                                      <c:if test="${article.typeId == 7 }">企业注册</c:if>
                                      <c:if test="${article.typeId == 8 }">科研成果</c:if>
                                      <c:if test="${article.typeId == 9 }">国家级创新创业训练计划</c:if>
-                                     <c:if test="${article.typeId == 10 }">科研立项</c:if>
+                                     <c:if test="${article.typeId == 10 }">“中央高校基本科研业务专项资金”本科生项目</c:if>
                                      <c:if test="${article.typeId == 11 }">其他比赛</c:if>
                                     </a>
                                     > 通知公告

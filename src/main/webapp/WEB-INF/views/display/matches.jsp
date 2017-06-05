@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">"互联网+"大学生创新创业大赛</h6>
-                                <a href="/more-articles?typeId=1" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=1" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                         <ul>
                             <c:forEach var="item" items="${hlw}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="lixiang-information">
                                                 <c:if test="${fn:length(item.title) > 20 }">
@@ -55,7 +55,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">"创青春"全国大学生创业大赛</h6>
-                                <a href="/more-articles?typeId=2" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=2" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         <ul>
                             <c:forEach var="item" items="${cqc}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="lixiang-information">
                                                <c:if test="${fn:length(item.title) > 20 }">
@@ -89,7 +89,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">"挑战杯"全国大学生课外学术科技作品竞赛</h6>
-                                <a href="/more-articles?typeId=3" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=3" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                         <ul>
                             <c:forEach var="item" items="${tzb}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="lixiang-information">
                                                 <c:if test="${fn:length(item.title) > 20 }">
@@ -123,7 +123,7 @@
                         <div class="row">
                             <div class="col-xs-12 text-left">
                                 <h6 class="smart-margin-left">其他比赛</h6>
-                                <a href="/more-articles?typeId=11" class="smart-margin-left"><i
+                                <a href="/moreArticles?typeId=11" class="smart-margin-left"><i
                                         class="fa fa-angle-double-right"></i>&nbsp;更多</a>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                         <ul>
                             <c:forEach var="item" items="${qtbs}">
                                 <li>
-                                    <a href="/article-detail?id=${item.id}" title="${item.title}">
+                                    <a href="/articleDetail?id=${item.id}" title="${item.title}">
                                         <i class="fa fa-fire">&nbsp;&nbsp;</i>
                                         <span class="lixiang-information">
                                                 <c:if test="${fn:length(item.title) > 20 }">

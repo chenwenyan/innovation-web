@@ -20,7 +20,7 @@
                      </span>
                     </div>
                     <div class="panel-body">
-                        <form action="/search-project" method="get" class="form-horizontal">
+                        <form action="/searchProject" method="get" class="form-horizontal">
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">项目名称：</label>
                                 <div class="col-sm-7">
@@ -201,7 +201,7 @@
                 }
             },
             pageUrl: function (url, page, current) {
-                return "/search-project?pageNo=" + page + "&name=" + $("#name").val().trim() + "&charger=" + $("#charger").val().trim() + "&teacher=" +
+                return "/searchProject?pageNo=" + page + "&name=" + $("#name").val().trim() + "&charger=" + $("#charger").val().trim() + "&teacher=" +
                         $("#teacher").val().trim() + "&schoolId=" + $("#schoolId").val() + "&startYear=" + $("#startYear").val() + "&endYear=" + $("#endYear").val();
             }
         });

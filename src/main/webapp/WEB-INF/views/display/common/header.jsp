@@ -21,7 +21,7 @@
                 <%--<img src="/img/font.png" class="font" alt="创新创业计划培训工程">--%>
             </div>
             <div class="col-sm-3">
-                <a href="/search-project"><img src="/img/search-menu.png" alt="创新创业项目查询入口"></a>
+                <a href="/searchProject"><img src="/img/search-menu.png" alt="创新创业项目查询入口"></a>
             </div>
         </div>
     </div>
